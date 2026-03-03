@@ -199,15 +199,16 @@
                 
                 <div class="flch-footer__copyright-content">
                     <p class="flch-footer__copyright-main">
-                        &copy; <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong> - UNMSM
-                        <p class="flch-footer__copyright-rights">
-                            Todos los derechos reservados.
-                        </p>
+                        
                     </p>
                 </div>
                 
             </div>
         </div>
+
+        <p class="flch-footer__copyright-rights">
+                            &copy; <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong> - UNMSM Todos los derechos reservados.
+                        </p>
     </div>
 </footer>
 
