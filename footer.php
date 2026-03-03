@@ -193,21 +193,16 @@
             </div>
         </div>
         
-        <!-- BARRA INFERIOR MEJORADA - MÁS VISIBLE Y PERFECTAMENTE CENTRADA -->
-        <div class="flch-footer__bottom-bar">
-            <div class="flch-footer__bottom-content">
-                <div class="flch-footer__copyright-wrapper">
-                    <div class="flch-footer__copyright-icon">
-                        <i class="fas fa-copyright"></i>
-                    </div>
-                    <p class="flch-footer__copyright-text">
-                        <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong>
-                    </p>
-                    <span class="flch-footer__separator">•</span>
-                    <p class="flch-footer__rights-text">
-                        UNMSM - Todos los derechos reservados
-                    </p>
-                </div>
+        <!-- BARRA INFERIOR - DISEÑO PROFESIONAL Y EQUILIBRADO -->
+        <div class="flch-footer__bottom">
+            <div class="flch-footer__bottom-inner">
+                <p class="flch-footer__copyright">
+                    &copy; <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong>
+                </p>
+                <span class="flch-footer__divider" aria-hidden="true"></span>
+                <p class="flch-footer__rights">
+                    UNMSM - Todos los derechos reservados
+                </p>
             </div>
         </div>
     </div>
@@ -322,8 +317,8 @@ document.addEventListener('DOMContentLoaded', function() {
     position: relative;
     overflow: hidden;
     padding-top: 4rem;
-    padding-bottom: 1.5rem;
-    font-family: 'Poppins', sans-serif;
+    padding-bottom: 2rem;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Elementos decorativos */
@@ -337,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
     position: absolute;
     border-radius: 9999px;
     filter: blur(128px);
-    opacity: 0.2;
+    opacity: 0.15;
 }
 
 .flch-footer__blob--top-left {
@@ -347,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 24rem;
     background: #A88F1D;
     transform: translate(-50%, -50%);
-    animation: flch-pulse-slow 4s ease-in-out infinite;
+    animation: flch-pulse-slow 8s ease-in-out infinite;
 }
 
 .flch-footer__blob--bottom-right {
@@ -357,13 +352,13 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 31.25rem;
     background: #A88F1D;
     transform: translate(33%, 33%);
-    animation: flch-pulse-slower 6s ease-in-out infinite;
+    animation: flch-pulse-slower 12s ease-in-out infinite;
 }
 
 .flch-footer__pattern {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
 }
 
@@ -373,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #A88F1D, transparent);
+    background: linear-gradient(90deg, transparent, rgba(168,143,29,0.5), transparent);
 }
 
 /* Contenedor */
@@ -381,8 +376,8 @@ document.addEventListener('DOMContentLoaded', function() {
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     position: relative;
     z-index: 10;
 }
@@ -391,20 +386,21 @@ document.addEventListener('DOMContentLoaded', function() {
 .flch-footer__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
     margin-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
     .flch-footer__grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 }
 
 @media (min-width: 1024px) {
     .flch-footer__grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 3rem;
+        gap: 2.5rem;
     }
 }
 
@@ -429,36 +425,37 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .flch-footer__icon-wrapper {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3rem;
+    height: 3rem;
     background: linear-gradient(135deg, #A88F1D, #8B7718);
     border-radius: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
 }
 
 .flch-footer__icon-wrapper:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .flch-footer__icon {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: white;
 }
 
 .flch-footer__brand-title {
-    font-size: 1.125rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     color: white;
     margin: 0;
+    line-height: 1.2;
 }
 
 .flch-footer__brand-subtitle {
-    font-size: 1.5rem;
-    font-weight: 900;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: #A88F1D;
     display: block;
     line-height: 1.2;
@@ -476,29 +473,17 @@ document.addEventListener('DOMContentLoaded', function() {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
     backdrop-filter: blur(4px);
     border-radius: 9999px;
-    padding: 0.375rem 1rem;
-    border: 1px solid rgba(168,143,29,0.3);
+    padding: 0.25rem 1rem;
+    border: 1px solid rgba(168,143,29,0.2);
     width: fit-content;
-    cursor: default;
-    transition: all 0.3s ease;
-}
-
-.flch-footer__badge:hover {
-    background: rgba(168,143,29,0.2);
-    transform: translateY(-2px);
 }
 
 .flch-footer__badge-icon {
     color: #A88F1D;
     font-size: 0.75rem;
-    transition: transform 0.3s ease;
-}
-
-.flch-footer__badge:hover .flch-footer__badge-icon {
-    transform: scale(1.2);
 }
 
 .flch-footer__badge-text {
@@ -509,15 +494,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* Títulos */
 .flch-footer__title {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(168,143,29,0.3);
-    margin: 0 0 0.5rem 0;
+    border-bottom: 1px solid rgba(168,143,29,0.2);
+    margin: 0 0 0.75rem 0;
 }
 
 .flch-footer__title-icon {
@@ -544,55 +529,41 @@ document.addEventListener('DOMContentLoaded', function() {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.7);
     font-size: 0.875rem;
     text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
+    transition: color 0.2s ease;
     padding: 0.25rem 0;
 }
 
 .flch-footer__link:hover {
     color: #A88F1D;
-    transform: translateX(4px);
 }
 
 .flch-footer__link-dot {
-    width: 0.375rem;
-    height: 0.375rem;
+    width: 0.25rem;
+    height: 0.25rem;
     background: #A88F1D;
     border-radius: 9999px;
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
+}
+
+.flch-footer__link:hover .flch-footer__link-dot {
+    transform: scale(1.5);
 }
 
 .flch-footer__link-icon,
 .flch-footer__link-arrow {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: opacity 0.2s ease;
     margin-left: auto;
 }
 
 .flch-footer__link:hover .flch-footer__link-icon,
 .flch-footer__link:hover .flch-footer__link-arrow {
-    opacity: 1;
-    transform: translateX(4px);
-}
-
-.flch-footer__link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: #A88F1D;
-    transition: width 0.3s ease;
-}
-
-.flch-footer__link:hover::after {
-    width: 100%;
+    opacity: 0.7;
 }
 
 /* Schedule */
@@ -615,13 +586,6 @@ document.addEventListener('DOMContentLoaded', function() {
     justify-content: center;
     color: #A88F1D;
     font-size: 0.875rem;
-    transition: all 0.3s ease;
-}
-
-.flch-footer__schedule:hover .flch-footer__schedule-icon {
-    background: #A88F1D;
-    color: white;
-    transform: scale(1.1);
 }
 
 .flch-footer__schedule-info {
@@ -630,14 +594,15 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .flch-footer__schedule-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .flch-footer__schedule-time {
     font-size: 0.875rem;
     color: rgba(255,255,255,0.8);
-    font-weight: 500;
 }
 
 /* Contacto */
@@ -650,51 +615,30 @@ document.addEventListener('DOMContentLoaded', function() {
 .flch-footer__contact-icon-wrapper {
     width: 2rem;
     height: 2rem;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: all 0.3s ease;
-}
-
-.flch-footer__contact-item:hover .flch-footer__contact-icon-wrapper {
-    background: #A88F1D;
-    transform: scale(1.1);
 }
 
 .flch-footer__contact-icon {
     color: #A88F1D;
     font-size: 0.75rem;
-    transition: color 0.3s ease;
-}
-
-.flch-footer__contact-item:hover .flch-footer__contact-icon {
-    color: white;
 }
 
 .flch-footer__contact-text {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.7);
     font-size: 0.875rem;
     line-height: 1.4;
 }
 
-.flch-footer__contact-phone {
-    display: flex;
-    flex-direction: column;
-}
-
-.flch-footer__contact-extension {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.5);
-}
-
 .flch-footer__contact-email {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.7);
     font-size: 0.875rem;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
     word-break: break-all;
 }
 
@@ -710,9 +654,9 @@ document.addEventListener('DOMContentLoaded', function() {
 .flch-footer__social-title {
     font-size: 0.75rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.4);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.5px;
     margin: 0 0 0.75rem 0;
 }
 
@@ -722,162 +666,73 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .flch-footer__social-link {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: rgba(255,255,255,0.1);
+    width: 2.25rem;
+    height: 2.25rem;
+    background: rgba(255,255,255,0.05);
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.7);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .flch-footer__social-link:hover {
-    transform: translateY(-3px);
+    background: #A88F1D;
     color: white;
+    transform: translateY(-2px);
 }
-
-.flch-footer__social-link--facebook:hover { background: #1877F2; }
-.flch-footer__social-link--instagram:hover { background: #E4405F; }
-.flch-footer__social-link--youtube:hover { background: #FF0000; }
-.flch-footer__social-link--linkedin:hover { background: #0077B5; }
 
 /* ===================================
-   BOTTOM BAR MEJORADA - MÁS VISIBLE Y CENTRADA
+   BOTTOM BAR - DISEÑO PROFESIONAL
    =================================== */
-.flch-footer__bottom-bar {
-    margin-top: 3rem;
-    padding: 2rem 0 1.5rem;
-    border-top: 2px solid rgba(168, 143, 29, 0.2);
-    background: linear-gradient(to right, transparent, rgba(168, 143, 29, 0.05), transparent);
-    position: relative;
+.flch-footer__bottom {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-.flch-footer__bottom-bar::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, #A88F1D, #FFD700, #A88F1D, transparent);
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(168, 143, 29, 0.6);
-    animation: flch-glow 2s ease-in-out infinite;
-}
-
-.flch-footer__bottom-content {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-.flch-footer__copyright-wrapper {
+.flch-footer__bottom-inner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem 1.5rem;
-    background: rgba(10, 30, 60, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: 3rem;
-    padding: 1rem 2.5rem;
-    border: 1px solid rgba(168, 143, 29, 0.3);
-    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-    width: fit-content;
+    gap: 0.5rem 1rem;
+    max-width: 800px;
     margin: 0 auto;
-    transition: all 0.3s ease;
+    text-align: center;
 }
 
-.flch-footer__copyright-wrapper:hover {
-    border-color: rgba(168, 143, 29, 0.6);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+.flch-footer__copyright {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.875rem;
+    margin: 0;
+    letter-spacing: 0.2px;
 }
 
-.flch-footer__copyright-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: linear-gradient(135deg, #A88F1D, #8B7718);
+.flch-footer__copyright strong {
+    color: #FFD700;
+    font-weight: 600;
+}
+
+.flch-footer__divider {
+    width: 4px;
+    height: 4px;
+    background: rgba(168,143,29,0.5);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1rem;
-    box-shadow: 0 5px 15px rgba(168, 143, 29, 0.4);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
-}
-
-.flch-footer__copyright-wrapper:hover .flch-footer__copyright-icon {
-    transform: rotate(360deg) scale(1.1);
-    background: linear-gradient(135deg, #FFD700, #A88F1D);
-}
-
-.flch-footer__copyright-text {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-    font-weight: 500;
-    margin: 0;
-    letter-spacing: 0.3px;
-}
-
-.flch-footer__copyright-text strong {
-    color: #FFD700;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    position: relative;
     display: inline-block;
 }
 
-.flch-footer__copyright-text strong:hover {
-    color: #FFF;
-    transform: scale(1.05);
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-}
-
-.flch-footer__separator {
-    color: #FFD700;
-    font-size: 1.5rem;
-    font-weight: 300;
-    opacity: 0.8;
-    display: inline-block;
-    animation: flch-pulse-separator 2s ease-in-out infinite;
-    line-height: 1;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-}
-
-.flch-footer__rights-text {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    font-weight: 400;
+.flch-footer__rights {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.875rem;
     margin: 0;
-    letter-spacing: 0.3px;
-    position: relative;
-    padding: 0.25rem 0;
-}
-
-.flch-footer__rights-text::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #FFD700, transparent);
-    transition: width 0.3s ease;
-}
-
-.flch-footer__copyright-wrapper:hover .flch-footer__rights-text::after {
-    width: 100%;
+    letter-spacing: 0.2px;
 }
 
 /* ===================================
-   WHATSAPP BUTTON - ESTILOS INDEPENDIENTES
+   WHATSAPP BUTTON
    =================================== */
 .flch-whatsapp {
     position: fixed;
@@ -901,11 +756,11 @@ document.addEventListener('DOMContentLoaded', function() {
     inset: 0;
     background: #25D366;
     border-radius: 9999px;
-    opacity: 0.25;
+    opacity: 0.2;
 }
 
 .flch-whatsapp__ripple {
-    animation: flch-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    animation: flch-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 .flch-whatsapp__ripple-2 {
@@ -914,38 +769,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .flch-whatsapp__button {
     position: relative;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3rem;
+    height: 3rem;
     background: #25D366;
     border-radius: 9999px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .flch-whatsapp__button {
-        width: 3rem;
-        height: 3rem;
-    }
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
 }
 
 .flch-whatsapp__button:hover {
-    background: #128C7E;
     transform: scale(1.1);
 }
 
 .flch-whatsapp__icon {
-    font-size: 1.5rem;
-}
-
-@media (max-width: 768px) {
-    .flch-whatsapp__icon {
-        font-size: 1.25rem;
-    }
+    font-size: 1.25rem;
 }
 
 .flch-whatsapp__tooltip {
@@ -957,14 +798,13 @@ document.addEventListener('DOMContentLoaded', function() {
     background: #0A1E3C;
     color: white;
     font-size: 0.75rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
     white-space: nowrap;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    border: 1px solid rgba(168,143,29,0.3);
+    transition: opacity 0.2s ease;
+    border: 1px solid rgba(168,143,29,0.2);
     pointer-events: none;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
 }
 
 .flch-whatsapp:hover .flch-whatsapp__tooltip {
@@ -972,38 +812,30 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 /* ===================================
-   BACK TO TOP - ESTILOS INDEPENDIENTES
+   BACK TO TOP
    =================================== */
 .flch-backtotop {
     position: fixed;
     bottom: 1.5rem;
     left: 1.5rem;
     z-index: 9999;
-    width: 3rem;
-    height: 3rem;
-    background: #143B63;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(20,59,99,0.9);
+    backdrop-filter: blur(4px);
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    border: 1px solid rgba(168,143,29,0.3);
+    border: 1px solid rgba(168,143,29,0.2);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     opacity: 0;
     visibility: hidden;
     transform: scale(0.8);
     padding: 0;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
-}
-
-@media (max-width: 768px) {
-    .flch-backtotop {
-        bottom: 1rem;
-        left: 1rem;
-        width: 2.5rem;
-        height: 2.5rem;
-    }
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .flch-backtotop--visible {
@@ -1014,18 +846,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .flch-backtotop:hover {
     background: #A88F1D;
-    transform: scale(1.1) translateY(-2px);
+    border-color: rgba(168,143,29,0.4);
 }
 
 .flch-backtotop__icon {
     font-size: 0.875rem;
     position: relative;
     z-index: 2;
-    transition: transform 0.3s ease;
-}
-
-.flch-backtotop:hover .flch-backtotop__icon {
-    transform: translateY(-2px);
 }
 
 .flch-backtotop__progress {
@@ -1043,21 +870,21 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .flch-backtotop__progress-fill {
-    stroke: #A88F1D;
+    stroke: #FFD700;
     stroke-width: 2;
     fill: transparent;
     stroke-dasharray: 138.2;
     stroke-dashoffset: 138.2;
-    transition: stroke-dashoffset 0.3s ease;
+    transition: stroke-dashoffset 0.1s ease;
 }
 
 /* ===================================
-   ANIMACIONES MEJORADAS
+   ANIMACIONES
    =================================== */
 @keyframes flch-fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(15px);
     }
     to {
         opacity: 1;
@@ -1066,8 +893,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 @keyframes flch-pulse-slow {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.3; }
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.25; }
 }
 
 @keyframes flch-pulse-slower {
@@ -1077,94 +904,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
 @keyframes flch-ping {
     75%, 100% {
-        transform: scale(2);
+        transform: scale(1.8);
         opacity: 0;
     }
 }
 
 @keyframes flch-pulse {
-    0%, 100% { opacity: 0.25; }
-    50% { opacity: 0.4; }
-}
-
-@keyframes flch-glow {
-    0%, 100% {
-        opacity: 0.6;
-        box-shadow: 0 0 20px rgba(168, 143, 29, 0.4);
-    }
-    50% {
-        opacity: 1;
-        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-    }
-}
-
-@keyframes flch-pulse-separator {
-    0%, 100% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.2);
-        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-    }
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.3; }
 }
 
 /* ===================================
-   RESPONSIVE FINAL
+   RESPONSIVE
    =================================== */
 @media (max-width: 768px) {
-    .flch-footer__copyright-wrapper {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.2rem 1.5rem;
-        border-radius: 2rem;
-        gap: 0.75rem;
-        width: 100%;
-        max-width: 90%;
+    .flch-footer {
+        padding-top: 3rem;
+        padding-bottom: 1.5rem;
     }
     
-    .flch-footer__separator {
+    .flch-footer__bottom-inner {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .flch-footer__divider {
         display: none;
     }
     
-    .flch-footer__copyright-text,
-    .flch-footer__rights-text {
-        font-size: 0.9rem;
-        text-align: center;
-        width: 100%;
-    }
-    
-    .flch-footer__copyright-text strong {
-        display: inline-block;
-    }
-    
-    .flch-footer__bottom-bar::before {
-        width: 100px;
+    .flch-footer__copyright,
+    .flch-footer__rights {
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 480px) {
-    .flch-footer__copyright-wrapper {
-        padding: 1rem;
-        max-width: 95%;
+    .flch-footer__container {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
     
-    .flch-footer__copyright-icon {
-        width: 2rem;
-        height: 2rem;
-        font-size: 0.875rem;
-    }
-    
-    .flch-footer__copyright-text,
-    .flch-footer__rights-text {
-        font-size: 0.8rem;
-        line-height: 1.4;
-    }
-    
-    .flch-footer__copyright-text strong {
-        display: block;
-        margin: 0.25rem 0;
+    .flch-footer__grid {
+        gap: 2rem;
     }
 }
 
@@ -1175,16 +956,9 @@ document.addEventListener('DOMContentLoaded', function() {
     .flch-whatsapp__ripple-2,
     .flch-backtotop,
     .flch-footer__link,
-    .flch-footer__social-link,
-    .flch-footer__copyright-wrapper,
-    .flch-footer__copyright-icon,
-    .flch-footer__copyright-text strong,
-    .flch-footer__separator,
-    .flch-footer__bottom-bar::before {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+    .flch-footer__social-link {
+        animation: none !important;
+        transition: none !important;
     }
 }
 </style>
