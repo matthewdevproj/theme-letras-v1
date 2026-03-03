@@ -1,6 +1,6 @@
 <?php
 /**
- * Header template con barra superior separada para FLCH - Versión Mejorada
+ * Header template con barra superior separada para FLCH - Versión Final
  *
  * @package LetrasFLCH
  */
@@ -71,6 +71,97 @@
         
         .mobile-menu::-webkit-scrollbar-thumb:hover {
             background: #8B7718;
+        }
+        
+        /* Estilos para el menú desktop */
+        .main-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .main-menu > li {
+            position: relative;
+        }
+        
+        .main-menu > li > a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: white;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        
+        .main-menu > li > a:hover {
+            color: #A88F1D;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Submenús */
+        .main-menu .sub-menu {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: #0A1E3C;
+            border: 1px solid rgba(168, 143, 29, 0.3);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+            padding: 0.5rem 0;
+            min-width: 240px;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        
+        .main-menu li:hover > .sub-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .main-menu .sub-menu .sub-menu {
+            left: 100%;
+            top: 0;
+            margin-left: 2px;
+        }
+        
+        .main-menu .sub-menu a {
+            display: block;
+            padding: 0.5rem 1.5rem;
+            color: white;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .main-menu .sub-menu a:hover {
+            background-color: #1E4A7A;
+            color: #A88F1D;
+            padding-left: 2rem;
+        }
+        
+        .main-menu .sub-menu li:last-child a {
+            border-bottom: none;
+        }
+        
+        /* Flechas animadas */
+        .fa-chevron-down, .fa-chevron-right {
+            transition: transform 0.2s ease;
+        }
+        
+        li:hover > a .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        li:hover > a .fa-chevron-right {
+            transform: translateX(4px);
+        }
+        
+        /* Rotación para móvil */
+        .rotate-180 {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -345,10 +436,21 @@
 <!-- Alpine.js -->
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<!-- Script adicional para funcionalidades -->
+<!-- Script para toggle de submenús móvil -->
 <script>
+function toggleMobileSubmenu(button) {
+    const submenu = button.closest('li').querySelector('ul.sub-menu');
+    const icon = button.querySelector('i');
+    
+    if (submenu) {
+        submenu.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+    }
+    return false;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Guardar búsquedas recientes (opcional)
+    // Guardar búsquedas recientes
     const searchForm = document.querySelector('.search-form');
     if (searchForm) {
         searchForm.addEventListener('submit', function() {
@@ -371,6 +473,10 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     window.addEventListener('resize', checkMobileMenu);
+    
+    // Debug
+    console.log('Header cargado correctamente');
+    console.log('Menú desktop items:', document.querySelectorAll('.main-menu > li').length);
 });
 </script>
 

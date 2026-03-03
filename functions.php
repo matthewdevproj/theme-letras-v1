@@ -5,8 +5,17 @@
  * @package LetrasFLCH
  */
 
+// Registrar ubicaciones de menú
+function letras_flch_register_menus() {
+    register_nav_menus(array(
+        'primary' => esc_html__('Menú Principal', 'letrasflch'),
+        'footer'  => esc_html__('Menú Footer', 'letrasflch'),
+    ));
+}
+add_action('init', 'letras_flch_register_menus');
+
 /**
- * Walker personalizado para menú desktop - VERSIÓN CORREGIDA
+ * Walker personalizado para menú desktop
  */
 class Letras_FLCH_Walker_Nav extends Walker_Nav_Menu {
     
@@ -14,9 +23,9 @@ class Letras_FLCH_Walker_Nav extends Walker_Nav_Menu {
         $indent = str_repeat("\t", $depth);
         
         if ($depth === 0) {
-            $output .= "\n$indent<ul class=\"sub-menu absolute left-0 top-full mt-0 shadow-xl py-2 min-w-[250px] z-50 hidden group-hover:block\">\n";
+            $output .= "\n$indent<ul class=\"sub-menu absolute left-0 top-full mt-0 bg-[#0A1E3C] border border-[#A88F1D]/30 rounded-lg shadow-xl py-2 min-w-[250px] z-50\">\n";
         } else {
-            $output .= "\n$indent<ul class=\"sub-menu absolute left-full top-0 shadow-xl py-2 min-w-[250px] z-50 hidden group-hover:block\">\n";
+            $output .= "\n$indent<ul class=\"sub-menu absolute left-full top-0 ml-2 bg-[#0A1E3C] border border-[#A88F1D]/30 rounded-lg shadow-xl py-2 min-w-[250px] z-50\">\n";
         }
     }
     
@@ -40,7 +49,7 @@ class Letras_FLCH_Walker_Nav extends Walker_Nav_Menu {
         $atts['href'] = !empty($item->url) ? $item->url : '#';
         
         if ($depth === 0) {
-            $link_classes = 'block px-4 py-2 text-sm font-medium text-white hover:text-[#A88F1D] transition-colors duration-200';
+            $link_classes = 'block px-4 py-2 text-sm font-medium text-white hover:text-[#A88F1D] hover:bg-white/5 rounded-lg transition-all duration-200';
         } else {
             $link_classes = 'block px-4 py-2 text-sm text-white hover:text-[#A88F1D] hover:bg-[#1E4A7A] transition-all duration-200 whitespace-nowrap';
         }
@@ -85,13 +94,13 @@ class Letras_FLCH_Walker_Nav extends Walker_Nav_Menu {
 }
 
 /**
- * Walker para menú móvil con Tailwind - VERSIÓN CORREGIDA
+ * Walker para menú móvil con Tailwind
  */
 class Letras_FLCH_Mobile_Walker_Nav extends Walker_Nav_Menu {
     
     public function start_lvl(&$output, $depth = 0, $args = null) {
         $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"pl-4 mt-2 space-y-2 hidden\">\n";
+        $output .= "\n$indent<ul class=\"sub-menu pl-4 mt-2 space-y-2 border-l-2 border-[#A88F1D]/30 hidden\">\n";
     }
     
     public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
@@ -108,13 +117,7 @@ class Letras_FLCH_Mobile_Walker_Nav extends Walker_Nav_Menu {
         $atts = array();
         $atts['href'] = !empty($item->url) ? $item->url : '#';
         
-        $link_classes = 'block py-2 text-white hover:text-[#A88F1D] transition-colors duration-200';
-        
-        if ($has_children) {
-            $link_classes .= ' flex items-center justify-between w-full';
-            $output .= '<div class="flex items-center justify-between w-full">';
-        }
-        
+        $link_classes = 'block py-2 px-3 text-white hover:text-[#A88F1D] transition-colors duration-200 rounded-lg';
         $atts['class'] = $link_classes;
         
         $attributes = '';
@@ -125,11 +128,12 @@ class Letras_FLCH_Mobile_Walker_Nav extends Walker_Nav_Menu {
         $item_output = $args->before;
         
         if ($has_children) {
-            $item_output .= '<a' . $attributes . '>';
+            $item_output .= '<div class="flex items-center justify-between w-full">';
+            $item_output .= '<a' . $attributes . ' class="flex-1">';
             $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
             $item_output .= '</a>';
-            $item_output .= '<button class="mobile-submenu-toggle p-2 text-white hover:text-[#A88F1D] focus:outline-none transition-colors duration-200" onclick="toggleMobileSubmenu(this); return false;">';
-            $item_output .= '<i class="fas fa-chevron-down transition-transform duration-200"></i>';
+            $item_output .= '<button class="mobile-submenu-toggle w-10 h-10 flex items-center justify-center text-white hover:text-[#A88F1D] focus:outline-none transition-colors duration-200" onclick="toggleMobileSubmenu(this); return false;">';
+            $item_output .= '<i class="fas fa-chevron-down transition-transform duration-300"></i>';
             $item_output .= '</button>';
             $item_output .= '</div>';
         } else {
@@ -152,3 +156,29 @@ class Letras_FLCH_Mobile_Walker_Nav extends Walker_Nav_Menu {
         $output .= "$indent</ul>\n";
     }
 }
+
+// Agregar soporte para thumbnails
+add_theme_support('post-thumbnails');
+
+// Agregar soporte para logo personalizado
+add_theme_support('custom-logo', array(
+    'height'      => 100,
+    'width'       => 400,
+    'flex-height' => true,
+    'flex-width'  => true,
+));
+
+// Agregar soporte para título dinámico
+add_theme_support('title-tag');
+
+// Configurar tamaño de excerpt
+function letras_flch_excerpt_length($length) {
+    return 30;
+}
+add_filter('excerpt_length', 'letras_flch_excerpt_length');
+
+// Configurar texto de "Leer más"
+function letras_flch_excerpt_more($more) {
+    return '...';
+}
+add_filter('excerpt_more', 'letras_flch_excerpt_more');
