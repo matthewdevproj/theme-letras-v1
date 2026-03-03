@@ -1,6 +1,6 @@
 <?php
 /**
- * Header template con barra superior separada para FLCH - Versión Premium
+ * Header template con barra superior separada para FLCH - Versión Final SIN CONFLICTOS
  *
  * @package LetrasFLCH
  */
@@ -32,7 +32,7 @@
     <!-- Theme color -->
     <meta name="theme-color" content="#0A1E3C">
     
-    <!-- Preload del logo para mejor performance -->
+    <!-- Preload del logo -->
     <link rel="preload" as="image" href="https://letras.unmsm.edu.pe/wp-content/uploads/2022/09/LOGO-BLANCO-LETRAS-WEB_2.png">
 </head>
 
@@ -41,15 +41,14 @@
       @keydown.escape="searchOpen = false; mobileMenuOpen = false">
 <?php wp_body_open(); ?>
 
-<!-- Skip to content link - Mejorado para accesibilidad -->
+<!-- Skip to content link -->
 <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-4 focus:bg-[#A88F1D] focus:text-white focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-4 focus:ring-[#A88F1D]/50 transition-all duration-300">
     <i class="fas fa-arrow-down mr-2"></i>
     Saltar al contenido principal
 </a>
 
-<!-- BARRA SUPERIOR - Diseño moderno -->
-<div class="hidden lg:block relative bg-gradient-to-r from-[#1A1A1A] to-[#2A2A2A] text-white text-sm border-b border-[#A88F1D]/30 shadow-lg" 
-     x-data="{ hoveredItem: null }">
+<!-- BARRA SUPERIOR - Usando clases existentes -->
+<div class="hidden lg:block relative bg-gradient-to-r from-[#1A1A1A] to-[#2A2A2A] text-white text-sm border-b border-[#A88F1D]/30 shadow-lg top-bar-custom">
     
     <!-- Efecto de brillo superior -->
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A88F1D]/50 to-transparent"></div>
@@ -57,19 +56,16 @@
     <div class="container-custom">
         <div class="flex justify-between items-center py-2">
             
-            <!-- Información de contacto con micro-interacciones -->
+            <!-- Información de contacto -->
             <div class="flex items-center divide-x divide-[#A88F1D]/20">
                 
                 <!-- Directorio -->
                 <a href="https://letras.unmsm.edu.pe/directorio/" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   class="flex items-center gap-2 pr-5 group"
-                   @mouseenter="hoveredItem = 'directorio'"
-                   @mouseleave="hoveredItem = null">
-                    <div class="w-8 h-8 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300 group-hover:scale-110" 
-                         :class="{ 'bg-[#A88F1D] scale-110': hoveredItem === 'directorio' }">
-                        <i class="fas fa-address-book text-[#A88F1D] group-hover:text-white transition-colors duration-300 text-xs"></i>
+                   class="flex items-center gap-2 pr-5 group">
+                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
+                        <i class="fas fa-address-book text-[#A88F1D] group-hover:text-white text-xs"></i>
                     </div>
                     <div>
                         <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">DIRECTORIO</span>
@@ -79,12 +75,9 @@
                 
                 <!-- Email -->
                 <a href="mailto:informatica.letras@unmsm.edu.pe" 
-                   class="flex items-center gap-2 px-5 group"
-                   @mouseenter="hoveredItem = 'email'"
-                   @mouseleave="hoveredItem = null">
-                    <div class="w-8 h-8 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300 group-hover:scale-110"
-                         :class="{ 'bg-[#A88F1D] scale-110': hoveredItem === 'email' }">
-                        <i class="fas fa-envelope text-[#A88F1D] group-hover:text-white transition-colors duration-300 text-xs"></i>
+                   class="flex items-center gap-2 px-5 group">
+                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
+                        <i class="fas fa-envelope text-[#A88F1D] group-hover:text-white text-xs"></i>
                     </div>
                     <div>
                         <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">EMAIL</span>
@@ -96,12 +89,9 @@
                 <a href="https://maps.app.goo.gl/..." 
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="flex items-center gap-2 pl-5 group"
-                   @mouseenter="hoveredItem = 'ubicacion'"
-                   @mouseleave="hoveredItem = null">
-                    <div class="w-8 h-8 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300 group-hover:scale-110"
-                         :class="{ 'bg-[#A88F1D] scale-110': hoveredItem === 'ubicacion' }">
-                        <i class="fas fa-map-marker-alt text-[#A88F1D] group-hover:text-white transition-colors duration-300 text-xs"></i>
+                   class="flex items-center gap-2 pl-5 group">
+                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
+                        <i class="fas fa-map-marker-alt text-[#A88F1D] group-hover:text-white text-xs"></i>
                     </div>
                     <div>
                         <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">CAMPUS</span>
@@ -110,17 +100,18 @@
                 </a>
             </div>
             
-            <!-- Redes sociales con efectos hover mejorados -->
-            <div class="flex items-center gap-3">
-                <span class="text-[#A88F1D]/50 text-[10px] font-medium uppercase tracking-[0.2em]">SÍGUENOS</span>
+            <!-- Redes sociales con colores específicos en hover -->
+            <div class="flex items-center gap-2">
+                <span class="text-[#A88F1D]/50 text-[10px] font-medium uppercase tracking-wider">SÍGUENOS</span>
                 <div class="flex items-center gap-2">
                     
                     <!-- Facebook -->
                     <a href="https://www.facebook.com/letrassanmarcos" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#1877F2] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl"
-                       aria-label="Facebook">
+                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 facebook"
+                       aria-label="Facebook"
+                       style="--hover-color: #1877F2;">
                         <i class="fab fa-facebook-f text-base"></i>
                     </a>
 
@@ -128,8 +119,9 @@
                     <a href="https://www.instagram.com/letrasunmsm/" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#E4405F] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 hover:scale-110 hover:-rotate-3 hover:shadow-xl"
-                       aria-label="Instagram">
+                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 instagram"
+                       aria-label="Instagram"
+                       style="--hover-color: #E4405F;">
                         <i class="fab fa-instagram text-base"></i>
                     </a>
 
@@ -137,8 +129,9 @@
                     <a href="https://www.youtube.com/@LetrasTV-p9j" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#FF0000] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-xl"
-                       aria-label="YouTube">
+                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 youtube"
+                       aria-label="YouTube"
+                       style="--hover-color: #FF0000;">
                         <i class="fab fa-youtube text-base"></i>
                     </a>
 
@@ -146,8 +139,9 @@
                     <a href="https://pe.linkedin.com/school/letrasunmsm/" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#0077B5] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 hover:scale-110 hover:-rotate-3 hover:shadow-xl"
-                       aria-label="LinkedIn">
+                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 linkedin"
+                       aria-label="LinkedIn"
+                       style="--hover-color: #0077B5;">
                         <i class="fab fa-linkedin-in text-base"></i>
                     </a>
                     
@@ -160,23 +154,20 @@
     <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A88F1D]/30 to-transparent"></div>
 </div>
 
-<!-- HEADER PRINCIPAL -->
-<header class="sticky top-0 z-50 bg-gradient-to-r from-[#0A1E3C] to-[#143B63] shadow-lg transition-all duration-300 backdrop-blur-sm bg-opacity-95" 
+<!-- HEADER PRINCIPAL - Usando clases existentes -->
+<header class="sticky top-0 z-50 bg-gradient-to-r from-[#0A1E3C] to-[#143B63] shadow-lg transition-all duration-300" 
         id="header"
         @keydown.escape="searchOpen = false; mobileMenuOpen = false">
     
     <div class="container-custom">
         <div class="flex items-center justify-between py-3 lg:py-4">
             
-            <!-- Logo con efecto 3D -->
-            <div class="header-logo group relative">
+            <!-- Logo -->
+            <div class="header-logo group bg-[#0A1E3C] p-2 rounded-lg shadow-inner">
                 <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="block relative">
-                    <!-- Sombra del logo -->
-                    <div class="absolute inset-0 bg-[#A88F1D]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
                     <img src="https://letras.unmsm.edu.pe/wp-content/uploads/2022/09/LOGO-BLANCO-LETRAS-WEB_2.png" 
                          alt="<?php bloginfo('name'); ?>"
-                         class="h-12 lg:h-16 w-auto brightness-0 invert relative z-10 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-2xl"
+                         class="h-12 lg:h-16 w-auto brightness-0 invert transition-all duration-300 group-hover:scale-105"
                          style="filter: brightness(0) invert(1);"
                          width="200"
                          height="64"
@@ -198,48 +189,36 @@
                 ?>
             </nav>
             
-            <!-- Acciones derecha con mejor UX -->
+            <!-- Acciones derecha -->
             <div class="flex items-center space-x-2 md:space-x-3">
                 
-                <!-- Botón de búsqueda - AHORA FUNCIONA CORRECTAMENTE -->
+                <!-- Botón de búsqueda -->
                 <button @click="searchOpen = !searchOpen; if(searchOpen) setTimeout(() => $refs.searchInput.focus(), 300)" 
                         class="relative w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-[#A88F1D] text-white transition-all duration-300 flex items-center justify-center group"
                         :class="{ 'bg-[#A88F1D]': searchOpen }"
                         aria-label="Abrir buscador"
-                        aria-expanded="false"
                         :aria-expanded="searchOpen.toString()">
                     
                     <i class="fas fa-search text-sm md:text-base transition-all duration-300 group-hover:scale-110"
                        :class="{ 'rotate-90': searchOpen }"></i>
-                    
-                    <!-- Indicador de estado -->
-                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-[#A88F1D] rounded-full animate-pulse"
-                          x-show="!searchOpen"
-                          x-cloak></span>
                 </button>
                 
-                <!-- Botón móvil con mejor feedback -->
+                <!-- Botón móvil -->
                 <button class="block lg:hidden relative w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-[#A88F1D] text-white transition-all duration-300 flex items-center justify-center" 
                         @click="mobileMenuOpen = !mobileMenuOpen; if(mobileMenuOpen) document.body.style.overflow = 'hidden'; else document.body.style.overflow = ''"
                         :class="{ 'bg-[#A88F1D]': mobileMenuOpen }"
                         aria-label="Abrir menú móvil"
-                        aria-expanded="false"
                         :aria-expanded="mobileMenuOpen.toString()">
                     
                     <i class="fas fa-bars text-sm md:text-base transition-transform duration-300"
                        :class="{ 'rotate-90': mobileMenuOpen }"></i>
-                    
-                    <!-- Indicador de menú abierto -->
-                    <span class="absolute top-0 right-0 w-2 h-2 bg-white rounded-full animate-ping"
-                          x-show="mobileMenuOpen"
-                          x-cloak></span>
                 </button>
             </div>
         </div>
     </div>
     
-    <!-- Barra de búsqueda MEJORADA - AHORA FUNCIONA -->
-    <div class="search-bar overflow-hidden transition-all duration-500 bg-gradient-to-b from-[#0A1E3C] to-[#143B63] border-t border-[#A88F1D]/30 shadow-2xl" 
+    <!-- Barra de búsqueda MEJORADA -->
+    <div class="search-bar overflow-hidden transition-all duration-500 bg-[#0A1E3C] border-t border-[#A88F1D]/30 shadow-inner" 
          x-show="searchOpen" 
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0 transform -translate-y-4"
@@ -276,7 +255,7 @@
                         <!-- Botones dentro del input -->
                         <div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
                             
-                            <!-- Limpiar (solo si hay texto) -->
+                            <!-- Limpiar -->
                             <button type="button" 
                                     class="search-clear p-2 text-white/50 hover:text-white transition-colors"
                                     @click="$refs.searchInput.value = ''; $refs.searchInput.focus()"
@@ -296,7 +275,7 @@
                     </div>
                 </form>
                 
-                <!-- Sugerencias mejoradas -->
+                <!-- Sugerencias -->
                 <div class="flex flex-wrap items-center gap-3 mt-4 text-sm">
                     <span class="text-white/40 flex items-center gap-1">
                         <i class="fas fa-lightbulb text-[#A88F1D] text-xs"></i>
@@ -326,32 +305,13 @@
                         </a>
                     </div>
                 </div>
-                
-                <!-- Búsquedas recientes (usando localStorage) -->
-                <div class="mt-4 pt-4 border-t border-white/10" x-data="{ recentSearches: [] }" x-init="recentSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]')">
-                    <template x-if="recentSearches.length > 0">
-                        <div class="flex flex-wrap items-center gap-3 text-sm">
-                            <span class="text-white/40 flex items-center gap-1">
-                                <i class="fas fa-history text-[#A88F1D] text-xs"></i>
-                                Recientes:
-                            </span>
-                            <div class="flex flex-wrap gap-2">
-                                <template x-for="search in recentSearches" :key="search">
-                                    <a :href="'<?php echo esc_url(home_url('/')); ?>?s=' + encodeURIComponent(search)" 
-                                       class="px-3 py-1 bg-white/5 hover:bg-[#A88F1D] text-white/60 hover:text-white rounded-lg transition-all duration-300 text-xs">
-                                        <span x-text="search"></span>
-                                    </a>
-                                </template>
-                            </div>
-                        </div>
-                    </template>
-                </div>
             </div>
         </div>
     </div>
     
-    <!-- Menú móvil MEJORADO -->
-    <div class="mobile-menu fixed inset-x-0 top-[72px] lg:hidden bg-gradient-to-b from-[#0A1E3C] to-[#143B63] shadow-2xl border-t border-[#A88F1D]/30 max-h-[calc(100vh-72px)] overflow-y-auto z-40"
+    <!-- Menú móvil -->
+    <div class="mobile-menu fixed inset-x-0 top-[72px] lg:hidden bg-[#0A1E3C] shadow-xl border-t border-[#A88F1D]/30 max-h-[calc(100vh-72px)] overflow-y-auto hidden" 
+         id="mobile-menu"
          x-show="mobileMenuOpen"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0 transform -translate-y-4"
@@ -366,7 +326,7 @@
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'primary',
-                'menu_class'     => 'mobile-nav space-y-1',
+                'menu_class'     => 'space-y-2',
                 'container'      => false,
                 'depth'          => 3,
                 'fallback_cb'    => false,
@@ -374,89 +334,30 @@
             ));
             ?>
             
-            <!-- Información de contacto en móvil con diseño mejorado -->
+            <!-- Información de contacto en móvil -->
             <div class="mt-8 pt-6 border-t border-white/10">
-                <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-                    <i class="fas fa-info-circle text-[#A88F1D]"></i>
-                    Contacto
-                </h3>
-                
-                <div class="space-y-4">
-                    <!-- Teléfono -->
-                    <a href="tel:+5101967000" class="flex items-center gap-3 text-sm text-white/80 hover:text-[#A88F1D] transition-colors group">
-                        <div class="w-8 h-8 rounded-full bg-[#A88F1D]/10 flex items-center justify-center group-hover:bg-[#A88F1D] transition-colors">
-                            <i class="fas fa-phone-alt text-[#A88F1D] group-hover:text-white text-xs"></i>
-                        </div>
-                        <div>
-                            <span class="block text-xs text-white/40">Teléfono</span>
-                            <span class="font-medium">(01) 619-7000 anexo 2801</span>
-                        </div>
-                    </a>
-                    
-                    <!-- Directorio -->
-                    <a href="https://letras.unmsm.edu.pe/directorio/" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="flex items-center gap-3 text-sm text-white/80 hover:text-[#A88F1D] transition-colors group">
-                        <div class="w-8 h-8 rounded-full bg-[#A88F1D]/10 flex items-center justify-center group-hover:bg-[#A88F1D] transition-colors">
-                            <i class="fas fa-address-book text-[#A88F1D] group-hover:text-white text-xs"></i>
-                        </div>
-                        <div>
-                            <span class="block text-xs text-white/40">Directorio</span>
-                            <span class="font-medium">FLCH UNMSM</span>
-                        </div>
-                    </a>
-                    
-                    <!-- Email -->
-                    <a href="mailto:informatica.letras@unmsm.edu.pe" class="flex items-center gap-3 text-sm text-white/80 hover:text-[#A88F1D] transition-colors group">
-                        <div class="w-8 h-8 rounded-full bg-[#A88F1D]/10 flex items-center justify-center group-hover:bg-[#A88F1D] transition-colors">
-                            <i class="fas fa-envelope text-[#A88F1D] group-hover:text-white text-xs"></i>
-                        </div>
-                        <div>
-                            <span class="block text-xs text-white/40">Email</span>
-                            <span class="font-medium break-all">informatica.letras@unmsm.edu.pe</span>
-                        </div>
-                    </a>
-                    
-                    <!-- Ubicación -->
-                    <a href="https://maps.app.goo.gl/..." 
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="flex items-center gap-3 text-sm text-white/80 hover:text-[#A88F1D] transition-colors group">
-                        <div class="w-8 h-8 rounded-full bg-[#A88F1D]/10 flex items-center justify-center group-hover:bg-[#A88F1D] transition-colors">
-                            <i class="fas fa-map-marker-alt text-[#A88F1D] group-hover:text-white text-xs"></i>
-                        </div>
-                        <div>
-                            <span class="block text-xs text-white/40">Campus</span>
-                            <span class="font-medium">Calle Germán Amézaga N° 375 - Lima</span>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Redes sociales en móvil -->
-                <div class="mt-6 pt-4 border-t border-white/10">
-                    <h4 class="text-xs font-medium text-white/40 mb-3">Síguenos en redes</h4>
-                    <div class="flex gap-2">
-                        <a href="https://www.facebook.com/letrassanmarcos" 
-                           target="_blank"
-                           class="w-10 h-10 rounded-lg bg-[#A88F1D]/10 hover:bg-[#1877F2] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300">
-                            <i class="fab fa-facebook-f"></i>
+                <h3 class="text-sm font-semibold text-white mb-4">Contacto</h3>
+                <div class="space-y-3 text-sm text-white/80">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-phone-alt text-[#A88F1D] w-5"></i>
+                        <a href="tel:+5101967000" class="hover:text-[#A88F1D]">(01) 619-7000 anexo 2801</a>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-address-book text-[#A88F1D] w-5"></i>
+                        <a href="https://letras.unmsm.edu.pe/directorio/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="hover:text-[#A88F1D] border-b border-transparent hover:border-[#A88F1D]">
+                            Directorio FLCH
                         </a>
-                        <a href="https://www.instagram.com/letrasunmsm/" 
-                           target="_blank"
-                           class="w-10 h-10 rounded-lg bg-[#A88F1D]/10 hover:bg-[#E4405F] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@LetrasTV-p9j" 
-                           target="_blank"
-                           class="w-10 h-10 rounded-lg bg-[#A88F1D]/10 hover:bg-[#FF0000] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://pe.linkedin.com/school/letrasunmsm/" 
-                           target="_blank"
-                           class="w-10 h-10 rounded-lg bg-[#A88F1D]/10 hover:bg-[#0077B5] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-envelope text-[#A88F1D] w-5"></i>
+                        <a href="mailto:informatica.letras@unmsm.edu.pe" class="hover:text-[#A88F1D] break-all">informatica.letras@unmsm.edu.pe</a>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-map-marker-alt text-[#A88F1D] w-5"></i>
+                        <span>Calle Germán Amézaga N° 375 - Lima</span>
                     </div>
                 </div>
             </div>
@@ -464,9 +365,16 @@
     </div>
 </header>
 
-<!-- Script para guardar búsquedas recientes y mejoras UX -->
+<!-- Script para el menú móvil -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar Alpine store si es necesario
+    if (typeof Alpine !== 'undefined') {
+        Alpine.store('header', {
+            searchOpen: false,
+            mobileMenuOpen: false
+        });
+    }
     
     // Guardar búsquedas recientes
     const searchForm = document.querySelector('.search-form');
@@ -482,56 +390,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Limpiar búsqueda con botón X
-    const clearButton = document.querySelector('.search-clear');
-    if (clearButton) {
-        clearButton.addEventListener('click', function() {
-            const input = document.getElementById('search-input');
-            if (input) {
-                input.value = '';
-                input.focus();
-            }
-        });
-    }
-    
-    // Cerrar menú móvil al redimensionar a desktop
-    window.addEventListener('resize', function() {
-        if (window.innerWidth >= 1024) {
-            if (typeof Alpine !== 'undefined') {
-                Alpine.store('mobileMenuOpen', false);
-            }
-            document.body.style.overflow = '';
-        }
-    });
-    
-    // Efecto de parallax suave en el header
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header');
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            header.classList.add('shadow-2xl', 'backdrop-blur-md');
-            header.classList.remove('shadow-lg');
-        } else {
-            header.classList.remove('shadow-2xl', 'backdrop-blur-md');
-            header.classList.add('shadow-lg');
-        }
-        
-        lastScroll = currentScroll;
-    }, { passive: true });
 });
 </script>
 
-<!-- Alpine.js (una sola vez) -->
+<!-- Alpine.js -->
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<!-- Estilos adicionales para Alpine -->
+<!-- Estilos mínimos adicionales (solo para Alpine) -->
 <style>
 [x-cloak] { display: none !important; }
 
-/* Animaciones personalizadas */
+/* Animaciones personalizadas (sin conflictos) */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -543,22 +412,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 }
 
+/* Solo para elementos específicos que no existan en tu CSS */
 .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Mejoras para móvil */
-@media (max-width: 768px) {
-    .mobile-menu {
-        -webkit-overflow-scrolling: touch;
-    }
+/* Hover colors específicos para redes sociales (usando !important para asegurar) */
+.social-icon.facebook:hover {
+    background-color: #1877F2 !important;
 }
 
-/* Transiciones suaves */
-.transition-all {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
+.social-icon.instagram:hover {
+    background-color: #E4405F !important;
+}
+
+.social-icon.youtube:hover {
+    background-color: #FF0000 !important;
+}
+
+.social-icon.linkedin:hover {
+    background-color: #0077B5 !important;
 }
 </style>
 
