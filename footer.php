@@ -196,27 +196,16 @@
         <!-- Barra inferior MEJORADA - AHORA MÁS VISIBLE Y CENTRADA -->
         <div class="flch-footer__bottom">
             <div class="flch-footer__copyright-wrapper">
-                <!-- Escudo de San Marcos como elemento distintivo -->
-                <div class="flch-footer__copyright-shield">
-                    <i class="fas fa-regular fa-crown"></i>
-                </div>
                 
                 <div class="flch-footer__copyright-content">
                     <p class="flch-footer__copyright-main">
                         &copy; <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong> - UNMSM
-                    </p>
-                    <p class="flch-footer__copyright-sub">
-                        Decana de América • Universidad Nacional Mayor de San Marcos
-                    </p>
-                    <p class="flch-footer__copyright-rights">
-                        Todos los derechos reservados.
+                        <p class="flch-footer__copyright-rights">
+                            Todos los derechos reservados.
+                        </p>
                     </p>
                 </div>
                 
-                <!-- Año de fundación destacado -->
-                <div class="flch-footer__copyright-year">
-                    <span class="flch-footer__year-badge">1551</span>
-                </div>
             </div>
         </div>
     </div>
