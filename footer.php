@@ -1,6 +1,6 @@
 <?php
 /**
- * Footer template por columnas para FLCH - VERSIÓN CORREGIDA
+ * Footer template premium para FLCH - Versión Mejorada
  *
  * @package LetrasFLCH
  */
@@ -8,249 +8,452 @@
 
 </main><!-- #main -->
 
-<!-- Footer por columnas - CON GRID CORREGIDO -->
-<footer style="background: linear-gradient(135deg, #0A1E3C 0%, #143B63 50%, #1E4A7A 100%); color: white; width: 100%; padding-top: 4rem; padding-bottom: 1.5rem; position: relative; overflow: hidden;">
+<!-- FOOTER PREMIUM - Diseño profesional con Tailwind -->
+<footer class="footer relative bg-gradient-to-br from-[#0A1E3C] via-[#143B63] to-[#1E4A7A] text-white pt-16 pb-6 overflow-hidden">
     
-    <!-- Elementos decorativos -->
-    <div style="position: absolute; inset: 0; opacity: 0.05; pointer-events: none;">
-        <div style="position: absolute; top: 0; left: 0; width: 24rem; height: 24rem; background: #A88F1D; border-radius: 9999px; filter: blur(64px); transform: translate(-50%, -50%);"></div>
-        <div style="position: absolute; bottom: 0; right: 0; width: 31.25rem; height: 31.25rem; background: #A88F1D; border-radius: 9999px; filter: blur(64px); transform: translate(33%, 33%);"></div>
+    <!-- Elementos decorativos con animación -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-[#A88F1D] rounded-full filter blur-[128px] opacity-20 animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#A88F1D] rounded-full filter blur-[128px] opacity-20 animate-pulse-slower"></div>
+        
+        <!-- Patrón de puntos sutil -->
+        <div class="absolute inset-0 opacity-5" 
+             style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 1px); background-size: 40px 40px;">
+        </div>
     </div>
     
-    <!-- Línea decorativa -->
-    <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #A88F1D, transparent);"></div>
+    <!-- Línea decorativa superior animada -->
+    <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#A88F1D] to-transparent"></div>
     
-    <div style="max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; position: relative; z-index: 10;">
+    <div class="container-custom relative z-10">
         
-        <!-- GRID DE 4 COLUMNAS - CORREGIDO -->
-        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem;">
+        <!-- Grid principal - 4 columnas en desktop -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
             
-            <!-- COLUMNA 1: Información institucional -->
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <div style="width: 3rem; height: 3rem; background: linear-gradient(135deg, #A88F1D, #8B7718); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);">
-                        <i class="fas fa-university" style="font-size: 1.25rem; color: white;"></i>
+            <!-- COLUMNA 1: Info institucional -->
+            <div class="space-y-4 animate-fadeInUp" style="animation-delay: 0.1s">
+                <div class="flex items-center gap-3 group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-[#A88F1D] to-[#8B7718] rounded-xl flex items-center justify-center shadow-xl shadow-[#A88F1D]/20 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-university text-2xl text-white"></i>
                     </div>
-                    <h4 style="font-size: 1.25rem; font-weight: 700; color: white; margin: 0;">
-                        Facultad de <span style="color: #A88F1D; display: block; font-size: 1.5rem;">Letras</span>
-                    </h4>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Facultad de</h4>
+                        <span class="text-2xl font-black text-[#A88F1D] block leading-tight">Letras</span>
+                    </div>
                 </div>
                 
-                <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem; line-height: 1.6; margin: 0;">
-                    Formando profesionales en humanidades con excelencia académica y compromiso social desde 1551.
+                <p class="text-white/70 text-sm leading-relaxed">
+                    Formando profesionales en humanidades con excelencia académica y compromiso social desde 1551. Decana de América.
                 </p>
                 
-                <!-- Badge de acreditación -->
-                <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 9999px; padding: 0.375rem 1rem; border: 1px solid rgba(168,143,29,0.3); width: fit-content;">
-                    <i class="fas fa-check-circle" style="color: #A88F1D; font-size: 0.75rem;"></i>
-                    <span style="font-size: 0.75rem; color: rgba(255,255,255,0.9);">Acreditación Internacional</span>
+                <!-- Badge de acreditación con hover -->
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-[#A88F1D]/30 hover:bg-[#A88F1D]/20 transition-all duration-300 group cursor-default">
+                    <i class="fas fa-check-circle text-[#A88F1D] text-sm group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-white/90">Acreditación Internacional</span>
                 </div>
                 
+                <!-- Widget dinámico -->
                 <?php if (is_active_sidebar('footer-1')) : ?>
-                    <div style="margin-top: 1rem;">
+                    <div class="mt-4">
                         <?php dynamic_sidebar('footer-1'); ?>
                     </div>
                 <?php endif; ?>
             </div>
             
             <!-- COLUMNA 2: Revistas Académicas -->
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <h4 style="font-size: 1.125rem; font-weight:    00; color: white; display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(168,143,29,0.3); margin: 0;">
-                    <i class="fas fa-book-open" style="color: #A88F1D; font-size: 0.875rem;"></i>
-                    Revistas Académicas
+            <div class="space-y-4 animate-fadeInUp" style="animation-delay: 0.2s">
+                <h4 class="text-lg font-bold text-white flex items-center gap-2 pb-3 border-b border-[#A88F1D]/30">
+                    <i class="fas fa-book-open text-[#A88F1D] text-sm"></i>
+                    <span>Revistas Académicas</span>
                 </h4>
                 
-                <ul style="display: flex; flex-direction: column; gap: 0.5rem; list-style: none; padding: 0; margin: 0;">
-                    <li><a href="https://revistaletras.unmsm.edu.pe/index.php/le" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Letras (Lima)</a></li>
-                    <li><a href="https://rcllletras.unmsm.edu.pe/index.php/content" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Crítica Literaria Latinoamericana</a></li>
-                    <li><a href="https://revistasinvestigacion.unmsm.edu.pe/index.php/lenguaysociedad" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Lengua y Sociedad</a></li>
-                    <li><a href="https://revistasinvestigacion.unmsm.edu.pe/index.php/tesis" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Tesis (Lima)</a></li>
-                    <li><a href="https://revistasinvestigacion.unmsm.edu.pe/index.php/letras" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Escritura y Pensamiento</a></li>
-                    <li><a href="https://revistaazulletras.unmsm.edu.pe/index.php/azul/index" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Azul </a></li>
+                <ul class="space-y-2">
+                    <?php
+                    $journals = [
+                        ['url' => 'https://revistaletras.unmsm.edu.pe/index.php/le', 'title' => 'Letras (Lima)'],
+                        ['url' => 'https://rcllletras.unmsm.edu.pe/index.php/content', 'title' => 'Crítica Literaria'],
+                        ['url' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/lenguaysociedad', 'title' => 'Lengua y Sociedad'],
+                        ['url' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/tesis', 'title' => 'Tesis (Lima)'],
+                        ['url' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/letras', 'title' => 'Escritura y Pensamiento'],
+                        ['url' => 'https://revistaazulletras.unmsm.edu.pe/index.php/azul/index', 'title' => 'Azul']
+                    ];
+                    
+                    foreach ($journals as $journal) :
+                    ?>
+                        <li>
+                            <a href="<?php echo esc_url($journal['url']); ?>" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="footer-link group flex items-center gap-2 text-white/70 hover:text-[#A88F1D] transition-all duration-300">
+                                <span class="w-1.5 h-1.5 bg-[#A88F1D] rounded-full group-hover:scale-125 transition-transform"></span>
+                                <span class="text-sm"><?php echo esc_html($journal['title']); ?></span>
+                                <i class="fas fa-external-link-alt text-xs opacity-0 group-hover:opacity-100 transition-opacity ml-auto"></i>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             
-            <!-- COLUMNA 3: Programas académicos -->
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <h4 style="font-size: 1.125rem; font-weight: 600; color: white; display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(168,143,29,0.3); margin: 0;">
-                    <i class="fas fa-graduation-cap" style="color: #A88F1D; font-size: 0.875rem;"></i>
-                    Programas
+            <!-- COLUMNA 3: Programas -->
+            <div class="space-y-4 animate-fadeInUp" style="animation-delay: 0.3s">
+                <h4 class="text-lg font-bold text-white flex items-center gap-2 pb-3 border-b border-[#A88F1D]/30">
+                    <i class="fas fa-graduation-cap text-[#A88F1D] text-sm"></i>
+                    <span>Programas</span>
                 </h4>
                 
-                <ul style="display: flex; flex-direction: column; gap: 0.5rem; list-style: none; padding: 0; margin: 0;">
-                    <li><a href="<?php echo esc_url(home_url('/pregrado')); ?>" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Pregrado</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/posgrado')); ?>" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Posgrado</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/idiomas')); ?>" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Centro de Idiomas</a></li>
+                <ul class="space-y-2">
+                    <?php
+                    $programs = [
+                        ['url' => '/pregrado', 'title' => 'Pregrado'],
+                        ['url' => '/posgrado', 'title' => 'Posgrado'],
+                        ['url' => '/idiomas', 'title' => 'Centro de Idiomas'],
+                        ['url' => '/investigacion', 'title' => 'Investigación'],
+                        ['url' => '/biblioteca', 'title' => 'Biblioteca'],
+                        ['url' => '/internacional', 'title' => 'Internacional']
+                    ];
+                    
+                    foreach ($programs as $program) :
+                    ?>
+                        <li>
+                            <a href="<?php echo esc_url(home_url($program['url'])); ?>" 
+                               class="footer-link group flex items-center gap-2 text-white/70 hover:text-[#A88F1D] transition-all duration-300">
+                                <span class="w-1.5 h-1.5 bg-[#A88F1D] rounded-full group-hover:scale-125 transition-transform"></span>
+                                <span class="text-sm"><?php echo esc_html($program['title']); ?></span>
+                                <i class="fas fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 ml-auto"></i>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
                 
-                <!-- Horario de atención -->
-                <div style="padding-top: 1rem; margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; color: rgba(255,255,255,0.7);">
-                        <i class="fas fa-clock" style="color: #A88F1D; font-size: 0.875rem;"></i>
+                <!-- Horario de atención con diseño mejorado -->
+                <div class="pt-4 mt-4 border-t border-white/10">
+                    <div class="flex items-start gap-3 text-sm">
+                        <div class="w-8 h-8 rounded-lg bg-[#A88F1D]/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-clock text-[#A88F1D] text-sm"></i>
+                        </div>
                         <div>
-                            <span style="display: block; font-size: 0.75rem; color: rgba(255,255,255,0.4);">Atención</span>
-                            <span>Lun - Vie: 8:00 - 17:00</span>
+                            <span class="text-xs text-white/40 block">Atención</span>
+                            <span class="text-white/80 font-medium">Lun - Vie: 8:00 - 17:00</span>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- COLUMNA 4: Contacto -->
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <h4 style="font-size: 1.125rem; font-weight: 600; color: white; display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(168,143,29,0.3); margin: 0;">
-                    <i class="fas fa-envelope" style="color: #A88F1D; font-size: 0.875rem;"></i>
-                    Contacto
+            <div class="space-y-4 animate-fadeInUp" style="animation-delay: 0.4s">
+                <h4 class="text-lg font-bold text-white flex items-center gap-2 pb-3 border-b border-[#A88F1D]/30">
+                    <i class="fas fa-envelope text-[#A88F1D] text-sm"></i>
+                    <span>Contacto</span>
                 </h4>
                 
-                <ul style="display: flex; flex-direction: column; gap: 0.75rem; list-style: none; padding: 0; margin: 0;">
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                        <div style="width: 1.75rem; height: 1.75rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.3s;" onmouseover="this.style.background='#A88F1D'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-                            <i class="fas fa-map-marker-alt" style="color: #A88F1D; font-size: 0.75rem;"></i>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-white/10 group-hover:bg-[#A88F1D] transition-all duration-300 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-map-marker-alt text-[#A88F1D] group-hover:text-white text-sm transition-colors"></i>
                         </div>
-                        <span style="color: rgba(255,255,255,0.8); font-size: 0.875rem;">Calle Germán Amézaga N° 375 - Lima</span>
+                        <span class="text-white/70 group-hover:text-white transition-colors text-sm">Calle Germán Amézaga N° 375 - Lima</span>
                     </li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                        <div style="width: 1.75rem; height: 1.75rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.3s;" onmouseover="this.style.background='#A88F1D'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-                            <i class="fas fa-envelope" style="color: #A88F1D; font-size: 0.75rem;"></i>
+                    
+                    <li class="flex items-start gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-white/10 group-hover:bg-[#A88F1D] transition-all duration-300 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-phone-alt text-[#A88F1D] group-hover:text-white text-sm transition-colors"></i>
                         </div>
-                        <a href="mailto:informatica.letras@unmsm.edu.pe" style="color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; word-break: break-all;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">informatica.letras@unmsm.edu.pe</a>
+                        <div>
+                            <span class="text-white/70 group-hover:text-white transition-colors text-sm block">(01) 619-7000</span>
+                            <span class="text-white/50 text-xs">anexo 2801</span>
+                        </div>
+                    </li>
+                    
+                    <li class="flex items-start gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-white/10 group-hover:bg-[#A88F1D] transition-all duration-300 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-envelope text-[#A88F1D] group-hover:text-white text-sm transition-colors"></i>
+                        </div>
+                        <a href="mailto:informatica.letras@unmsm.edu.pe" 
+                           class="text-white/70 hover:text-[#A88F1D] transition-colors text-sm break-all">
+                            informatica.letras@unmsm.edu.pe
+                        </a>
                     </li>
                 </ul>
                 
-                <!-- Redes Sociales -->
-                <div style="padding-top: 1rem;">
-                    <h5 style="font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; margin-top: 0;">Síguenos</h5>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <a href="https://www.facebook.com/letrassanmarcos" target="_blank" style="width: 2.25rem; height: 2.25rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='#1877F2'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='scale(1)'"><i class="fab fa-facebook-f" style="font-size: 0.875rem;"></i></a>
-                        <a href="https://www.instagram.com/letrasunmsm/" target="_blank" style="width: 2.25rem; height: 2.25rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='#E4405F'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='scale(1)'"><i class="fab fa-instagram" style="font-size: 0.875rem;"></i></a>
-                        <a href="https://www.youtube.com/@LetrasTV-p9j" target="_blank" style="width: 2.25rem; height: 2.25rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='#FF0000'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='scale(1)'"><i class="fab fa-youtube" style="font-size: 0.875rem;"></i></a>
-                        <a href="https://pe.linkedin.com/school/letrasunmsm/" target="_blank" style="width: 2.25rem; height: 2.25rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); text-decoration: none; transition: all 0.3s;" onmouseover="this.style.background='#0077B5'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='scale(1)'"><i class="fab fa-linkedin-in" style="font-size: 0.875rem;"></i></a>
+                <!-- Redes Sociales con diseño premium -->
+                <div class="pt-4">
+                    <h5 class="text-xs font-medium text-white/40 uppercase tracking-wider mb-3">Síguenos en redes</h5>
+                    <div class="flex gap-2">
+                        <a href="https://www.facebook.com/letrassanmarcos" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="social-icon w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all duration-300 facebook"
+                           aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/letrasunmsm/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="social-icon w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all duration-300 instagram"
+                           aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@LetrasTV-p9j" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="social-icon w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all duration-300 youtube"
+                           aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://pe.linkedin.com/school/letrasunmsm/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="social-icon w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all duration-300 linkedin"
+                           aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Media query para desktop -->
-        <style>
-            @media (min-width: 768px) {
-                footer > div > div:first-child {
-                    grid-template-columns: repeat(2, 1fr) !important;
-                }
-            }
-            @media (min-width: 1024px) {
-                footer > div > div:first-child {
-                    grid-template-columns: repeat(4, 1fr) !important;
-                }
-            }
-        </style>
-        
+        <!-- Barra inferior con copyright y enlaces legales -->
+        <div class="pt-8 mt-8 border-t border-white/10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                
+                <!-- Copyright -->
+                <div class="text-white/50 text-xs text-center md:text-left">
+                    &copy; <?php echo date('Y'); ?> Facultad de Letras y Ciencias Humanas - UNMSM. 
+                    <span class="block md:inline">Todos los derechos reservados.</span>
+                </div>
+                
+                <!-- Enlaces legales -->
+                <div class="flex flex-wrap justify-center gap-4 text-xs">
+                    <a href="<?php echo esc_url(home_url('/terminos-condiciones')); ?>" 
+                       class="text-white/50 hover:text-[#A88F1D] transition-colors">
+                        Términos y condiciones
+                    </a>
+                    <span class="text-white/20 hidden sm:inline">|</span>
+                    <a href="<?php echo esc_url(home_url('/politica-privacidad')); ?>" 
+                       class="text-white/50 hover:text-[#A88F1D] transition-colors">
+                        Política de privacidad
+                    </a>
+                    <span class="text-white/20 hidden sm:inline">|</span>
+                    <a href="<?php echo esc_url(home_url('/mapa-sitio')); ?>" 
+                       class="text-white/50 hover:text-[#A88F1D] transition-colors">
+                        Mapa del sitio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
-<!-- Botón WhatsApp -->
-<a href="https://wa.me/51982086285?text=Hola,%20deseo%20información" 
-   style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50; text-decoration: none;"
+<!-- BOTONES FLOTANTES MEJORADOS -->
+
+<!-- WhatsApp Button con efecto mejorado -->
+<a href="https://wa.me/51982086285?text=Hola,%20deseo%20información%20sobre%20la%20facultad" 
+   class="fixed bottom-6 right-6 z-50 group"
    target="_blank"
    rel="noopener noreferrer"
    aria-label="Contactar por WhatsApp">
-    <div style="position: relative;">
-        <div style="position: absolute; inset: 0; background: #25D366; border-radius: 9999px; animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; opacity: 0.5;"></div>
-        <div style="position: relative; width: 3rem; height: 3rem; background: #25D366; border-radius: 9999px; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); transition: all 0.3s;"
-             onmouseover="this.style.background='#128C7E'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='#25D366'; this.style.transform='scale(1)'">
-            <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i>
-        </div>
+    
+    <!-- Efecto de ondas -->
+    <div class="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-25 group-hover:opacity-50"></div>
+    <div class="absolute inset-0 bg-[#25D366] rounded-full animate-pulse opacity-25"></div>
+    
+    <!-- Botón principal -->
+    <div class="relative w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-[#25D366]/30">
+        <i class="fab fa-whatsapp text-2xl"></i>
     </div>
+    
+    <!-- Tooltip -->
+    <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0A1E3C] text-white text-xs py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-xl border border-[#A88F1D]/30">
+        ¿Necesitas ayuda?
+    </span>
 </a>
 
-<!-- Botón volver arriba -->
+<!-- Back to Top Button mejorado -->
 <button id="back-to-top" 
-        style="position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 50; width: 2.5rem; height: 2.5rem; background: #143B63; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); border: 1px solid rgba(168,143,29,0.3); opacity: 0; visibility: hidden; transition: all 0.3s; cursor: pointer;"
-        onmouseover="this.style.background='#A88F1D'" onmouseout="this.style.background='#143B63'"
-        aria-label="Volver al inicio">
-    <i class="fas fa-arrow-up" style="font-size: 0.875rem;"></i>
+        class="fixed bottom-6 left-6 z-50 w-12 h-12 bg-[#0A1E3C] rounded-xl flex items-center justify-center text-white shadow-xl transition-all duration-300 hover:bg-[#A88F1D] hover:scale-110 border border-[#A88F1D]/30 opacity-0 invisible"
+        aria-label="Volver al inicio"
+        title="Volver arriba">
+    
+    <i class="fas fa-arrow-up text-lg transition-transform duration-300 group-hover:-translate-y-1"></i>
+    
+    <!-- Indicador de progreso (opcional) -->
+    <svg class="absolute inset-0 w-full h-full -rotate-90">
+        <circle class="text-white/10" stroke="currentColor" stroke-width="2" fill="transparent" r="22" cx="24" cy="24"/>
+        <circle id="progress-circle" class="text-[#A88F1D]" stroke="currentColor" stroke-width="2" fill="transparent" r="22" cx="24" cy="24" stroke-dasharray="138.2" stroke-dashoffset="138.2"/>
+    </svg>
 </button>
 
 <?php wp_footer(); ?>
 
+<!-- Scripts mejorados -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Menu toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
+    'use strict';
     
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', function() {
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('hidden');
-                this.querySelector('i').classList.remove('fa-bars');
-                this.querySelector('i').classList.add('fa-times');
+    // === BACK TO TOP CON PROGRESO ===
+    const backToTop = document.getElementById('back-to-top');
+    const progressCircle = document.getElementById('progress-circle');
+    
+    if (backToTop && progressCircle) {
+        const circumference = 2 * Math.PI * 22; // 138.2 aprox
+        
+        window.addEventListener('scroll', function() {
+            const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = window.pageYOffset / scrollTotal;
+            const scrollOffset = circumference - (scrollProgress * circumference);
+            
+            // Mostrar/ocultar botón
+            if (window.pageYOffset > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+                backToTop.style.transform = 'scale(1)';
             } else {
-                mobileMenu.classList.add('hidden');
-                this.querySelector('i').classList.remove('fa-times');
-                this.querySelector('i').classList.add('fa-bars');
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
+                backToTop.style.transform = 'scale(0.8)';
             }
+            
+            // Actualizar círculo de progreso
+            progressCircle.style.strokeDashoffset = scrollOffset;
+        });
+        
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     }
-
-    // Submenús móvil
-    window.toggleMobileSubmenu = function(button) {
-        event.preventDefault();
-        event.stopPropagation();
-        
-        const li = button.closest('li');
-        const submenu = li.querySelector('ul');
-        const icon = button.querySelector('i');
-        
-        if (submenu) {
-            submenu.classList.toggle('hidden');
-            icon.classList.toggle('rotate-180');
-        }
-        
-        return false;
-    };
-
-    // Cerrar menú
-    document.addEventListener('click', function(e) {
-        if (menuToggle && mobileMenu && !e.target.closest('#header')) {
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                menuToggle.querySelector('i').classList.remove('fa-times');
-                menuToggle.querySelector('i').classList.add('fa-bars');
-            }
-        }
-    });
-
-    // Back to top
-    const backToTop = document.getElementById('back-to-top');
     
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTop.style.opacity = '1';
-            backToTop.style.visibility = 'visible';
-        } else {
-            backToTop.style.opacity = '0';
-            backToTop.style.visibility = 'hidden';
-        }
+    // === ANIMACIÓN DE ENLACES DEL FOOTER ===
+    const footerLinks = document.querySelectorAll('.footer-link');
+    footerLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(4px)';
+        });
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
     });
     
-    backToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    // === SOPORTE PARA REDUCED MOTION ===
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.animate-ping, .animate-pulse, .animate-pulse-slow').forEach(el => {
+            el.style.animation = 'none';
+        });
+    }
 });
+
+// === FUNCIÓN PARA GUARDAR ÚLTIMA BÚSQUEDA (OPCIONAL) ===
+function saveSearchTerm(term) {
+    if (term && term.length > 2) {
+        let recentSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+        recentSearches = [term, ...recentSearches.filter(t => t !== term)].slice(0, 5);
+        localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+    }
+}
 </script>
 
+<!-- Estilos adicionales para animaciones -->
 <style>
-.rotate-180 {
-    transform: rotate(180deg);
-    transition: transform 0.3s ease;
-}
-
-#mobile-menu {
-    transition: opacity 0.3s ease;
-}
-
-@keyframes ping {
-    75%, 100% {
-        transform: scale(2);
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+    from {
         opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes pulse-slower {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.2; }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-pulse-slower {
+    animation: pulse-slower 6s ease-in-out infinite;
+}
+
+/* Mejoras para íconos sociales */
+.social-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-icon.facebook:hover { background-color: #1877F2 !important; transform: translateY(-3px); }
+.social-icon.instagram:hover { background-color: #E4405F !important; transform: translateY(-3px); }
+.social-icon.youtube:hover { background-color: #FF0000 !important; transform: translateY(-3px); }
+.social-icon.linkedin:hover { background-color: #0077B5 !important; transform: translateY(-3px); }
+
+/* Enlaces del footer */
+.footer-link {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #A88F1D;
+    transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .footer .grid {
+        gap: 2rem;
+    }
+    
+    #back-to-top,
+    a[href*="wa.me"] {
+        bottom: 1rem;
+    }
+    
+    a[href*="wa.me"] .w-14 {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    a[href*="wa.me"] .text-2xl {
+        font-size: 1.25rem;
+    }
+}
+
+/* Soporte para prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 </style>
