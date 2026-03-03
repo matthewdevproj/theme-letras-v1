@@ -193,11 +193,30 @@
             </div>
         </div>
         
-        <!-- Barra inferior -->
+        <!-- Barra inferior MEJORADA - AHORA MÁS VISIBLE Y CENTRADA -->
         <div class="flch-footer__bottom">
-            <div class="flch-footer__copyright">
-                &copy; <?php echo date('Y'); ?> Facultad de Letras y Ciencias Humanas - UNMSM. 
-                <span class="flch-footer__copyright-span">Todos los derechos reservados.</span>
+            <div class="flch-footer__copyright-wrapper">
+                <!-- Escudo de San Marcos como elemento distintivo -->
+                <div class="flch-footer__copyright-shield">
+                    <i class="fas fa-regular fa-crown"></i>
+                </div>
+                
+                <div class="flch-footer__copyright-content">
+                    <p class="flch-footer__copyright-main">
+                        &copy; <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong> - UNMSM
+                    </p>
+                    <p class="flch-footer__copyright-sub">
+                        Decana de América • Universidad Nacional Mayor de San Marcos
+                    </p>
+                    <p class="flch-footer__copyright-rights">
+                        Todos los derechos reservados.
+                    </p>
+                </div>
+                
+                <!-- Año de fundación destacado -->
+                <div class="flch-footer__copyright-year">
+                    <span class="flch-footer__year-badge">1551</span>
+                </div>
             </div>
         </div>
     </div>
@@ -734,72 +753,139 @@ document.addEventListener('DOMContentLoaded', function() {
 .flch-footer__social-link--youtube:hover { background: #FF0000; }
 .flch-footer__social-link--linkedin:hover { background: #0077B5; }
 
-/* Bottom bar */
+/* ===================================
+   BOTTOM BAR MEJORADA - MÁS VISIBLE
+   =================================== */
 .flch-footer__bottom {
-    padding-top: 2rem;
+    padding-top: 2.5rem;
     margin-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(168,143,29,0.3);
+    position: relative;
+}
+
+/* Línea decorativa adicional */
+.flch-footer__bottom::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #A88F1D;
+    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(168,143,29,0.5);
+}
+
+.flch-footer__copyright-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-}
-
-@media (min-width: 768px) {
-    .flch-footer__bottom {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-}
-
-.flch-footer__copyright {
-    color: rgba(255,255,255,0.5);
-    font-size: 0.75rem;
+    justify-content: center;
+    gap: 1.5rem;
+    background: rgba(10,30,60,0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(168,143,29,0.2);
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
     text-align: center;
 }
 
 @media (min-width: 768px) {
-    .flch-footer__copyright {
-        text-align: left;
+    .flch-footer__copyright-wrapper {
+        flex-direction: row;
+        padding: 1.5rem 2rem;
     }
 }
 
-.flch-footer__copyright-span {
-    display: block;
-}
-
-@media (min-width: 768px) {
-    .flch-footer__copyright-span {
-        display: inline;
-    }
-}
-
-.flch-footer__legal {
+.flch-footer__copyright-shield {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #A88F1D, #8B7718);
+    border-radius: 50%;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+    flex-shrink: 0;
 }
 
-.flch-footer__legal-link {
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    transition: color 0.3s ease;
+@media (max-width: 767px) {
+    .flch-footer__copyright-shield {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.75rem;
+    }
 }
 
-.flch-footer__legal-link:hover {
-    color: #A88F1D;
+.flch-footer__copyright-content {
+    flex: 1;
 }
 
-.flch-footer__legal-separator {
-    color: rgba(255,255,255,0.2);
-    display: none;
+.flch-footer__copyright-main {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: 0.5px;
 }
 
 @media (min-width: 768px) {
-    .flch-footer__legal-separator {
-        display: inline;
+    .flch-footer__copyright-main {
+        font-size: 1.125rem;
+    }
+}
+
+.flch-footer__copyright-main strong {
+    color: #A88F1D;
+    font-weight: 700;
+}
+
+.flch-footer__copyright-sub {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.6);
+    margin: 0 0 0.25rem 0;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.flch-footer__copyright-rights {
+    font-size: 0.875rem;
+    color: white;
+    margin: 0;
+    font-weight: 500;
+    display: inline-block;
+    background: rgba(168,143,29,0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(168,143,29,0.3);
+}
+
+.flch-footer__copyright-year {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flch-footer__year-badge {
+    background: linear-gradient(135deg, #A88F1D, #8B7718);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(168,143,29,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+}
+
+@media (min-width: 768px) {
+    .flch-footer__year-badge {
+        font-size: 1.5rem;
     }
 }
 
