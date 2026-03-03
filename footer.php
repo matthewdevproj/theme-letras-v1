@@ -194,21 +194,13 @@
         </div>
         
         <!-- Barra inferior MEJORADA - AHORA MÁS VISIBLE Y CENTRADA -->
-        <div class="flch-footer__bottom">
-            <div class="flch-footer__copyright-wrapper">
-                
-                <div class="flch-footer__copyright-content">
-                    <p class="flch-footer__copyright-main">
-                        
-                    </p>
-                </div>
-                
-            </div>
-        </div>
+        
 
-        <p class="flch-footer__copyright-rights">
-                            &copy; <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong> - UNMSM Todos los derechos reservados.
-                        </p>
+        <div class="flex items-center justify-center">
+            <p class="flch-footer__copyright-rights">
+                &copy; <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong> - UNMSM Todos los derechos reservados.
+            </p>
+        </div>
     </div>
 </footer>
 
