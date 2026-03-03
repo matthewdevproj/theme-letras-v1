@@ -68,14 +68,6 @@
                     <li><a href="https://revistasinvestigacion.unmsm.edu.pe/index.php/letras" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Escritura y Pensamiento</a></li>
                     <li><a href="https://revistaazulletras.unmsm.edu.pe/index.php/azul/index" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Azul </a></li>
                 </ul>
-                
-                <!-- Ver todas las revistas -->
-                <div style="padding-top: 0.5rem;">
-                    <a href="https://letras.unmsm.edu.pe/revistas" style="font-size: 0.75rem; color: rgba(255,255,255,0.5); text-decoration: none; display: flex; align-items: center; gap: 0.25rem;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
-                        <span>Ver todas las revistas</span>
-                        <i class="fas fa-arrow-right" style="font-size: 0.625rem;"></i>
-                    </a>
-                </div>
             </div>
             
             <!-- COLUMNA 3: Programas académicos -->
