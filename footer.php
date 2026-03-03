@@ -193,13 +193,22 @@
             </div>
         </div>
         
-        <!-- Barra inferior MEJORADA - AHORA MÁS VISIBLE Y CENTRADA -->
-        
-
-        <div class="flex items-center justify-center">
-            <p class="flch-footer__copyright-rights">
-                &copy; <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong> - UNMSM Todos los derechos reservados.
-            </p>
+        <!-- BARRA INFERIOR MEJORADA - MÁS VISIBLE Y PERFECTAMENTE CENTRADA -->
+        <div class="flch-footer__bottom-bar">
+            <div class="flch-footer__bottom-content">
+                <div class="flch-footer__copyright-wrapper">
+                    <div class="flch-footer__copyright-icon">
+                        <i class="fas fa-copyright"></i>
+                    </div>
+                    <p class="flch-footer__copyright-text">
+                        <?php echo date('Y'); ?> <strong>Facultad de Letras y Ciencias Humanas</strong>
+                    </p>
+                    <span class="flch-footer__separator">•</span>
+                    <p class="flch-footer__rights-text">
+                        UNMSM - Todos los derechos reservados
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
@@ -736,139 +745,135 @@ document.addEventListener('DOMContentLoaded', function() {
 .flch-footer__social-link--linkedin:hover { background: #0077B5; }
 
 /* ===================================
-   BOTTOM BAR MEJORADA - MÁS VISIBLE
+   BOTTOM BAR MEJORADA - MÁS VISIBLE Y CENTRADA
    =================================== */
-.flch-footer__bottom {
-    padding-top: 2.5rem;
-    margin-top: 2rem;
-    border-top: 1px solid rgba(168,143,29,0.3);
+.flch-footer__bottom-bar {
+    margin-top: 3rem;
+    padding: 2rem 0 1.5rem;
+    border-top: 2px solid rgba(168, 143, 29, 0.2);
+    background: linear-gradient(to right, transparent, rgba(168, 143, 29, 0.05), transparent);
     position: relative;
 }
 
-/* Línea decorativa adicional */
-.flch-footer__bottom::before {
+.flch-footer__bottom-bar::before {
     content: '';
     position: absolute;
     top: -2px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: #A88F1D;
-    border-radius: 3px;
-    box-shadow: 0 0 15px rgba(168,143,29,0.5);
+    width: 150px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #A88F1D, #FFD700, #A88F1D, transparent);
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(168, 143, 29, 0.6);
+    animation: flch-glow 2s ease-in-out infinite;
+}
+
+.flch-footer__bottom-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
 .flch-footer__copyright-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
-    background: rgba(10,30,60,0.6);
+    gap: 0.75rem 1.5rem;
+    background: rgba(10, 30, 60, 0.6);
     backdrop-filter: blur(10px);
-    border-radius: 1rem;
-    padding: 2rem 1.5rem;
-    border: 1px solid rgba(168,143,29,0.2);
-    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
-    text-align: center;
+    border-radius: 3rem;
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(168, 143, 29, 0.3);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    width: fit-content;
+    margin: 0 auto;
+    transition: all 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    .flch-footer__copyright-wrapper {
-        flex-direction: row;
-        padding: 1.5rem 2rem;
-    }
+.flch-footer__copyright-wrapper:hover {
+    border-color: rgba(168, 143, 29, 0.6);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
 }
 
-.flch-footer__copyright-shield {
-    width: 4rem;
-    height: 4rem;
+.flch-footer__copyright-icon {
+    width: 2.5rem;
+    height: 2.5rem;
     background: linear-gradient(135deg, #A88F1D, #8B7718);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 2rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    border: 2px solid rgba(255,255,255,0.2);
-    flex-shrink: 0;
-}
-
-@media (max-width: 767px) {
-    .flch-footer__copyright-shield {
-        width: 3.5rem;
-        height: 3.5rem;
-        font-size: 1.75rem;
-    }
-}
-
-.flch-footer__copyright-content {
-    flex: 1;
-}
-
-.flch-footer__copyright-main {
     font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    margin: 0 0 0.25rem 0;
-    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(168, 143, 29, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    .flch-footer__copyright-main {
-        font-size: 1.125rem;
-    }
+.flch-footer__copyright-wrapper:hover .flch-footer__copyright-icon {
+    transform: rotate(360deg) scale(1.1);
+    background: linear-gradient(135deg, #FFD700, #A88F1D);
 }
 
-.flch-footer__copyright-main strong {
-    color: #A88F1D;
-    font-weight: 700;
-}
-
-.flch-footer__copyright-sub {
-    font-size: 0.875rem;
-    color: rgba(255,255,255,0.6);
-    margin: 0 0 0.25rem 0;
-    font-style: italic;
-    letter-spacing: 0.5px;
-}
-
-.flch-footer__copyright-rights {
-    font-size: 0.875rem;
-    color: white;
-    margin: 0;
+.flch-footer__copyright-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
     font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.flch-footer__copyright-text strong {
+    color: #FFD700;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    position: relative;
     display: inline-block;
-    background: rgba(168,143,29,0.2);
-    padding: 0.25rem 0.75rem;
-    border-radius: 2rem;
-    border: 1px solid rgba(168,143,29,0.3);
 }
 
-.flch-footer__copyright-year {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.flch-footer__copyright-text strong:hover {
+    color: #FFF;
+    transform: scale(1.05);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
-.flch-footer__year-badge {
-    background: linear-gradient(135deg, #A88F1D, #8B7718);
-    color: white;
-    font-size: 1.25rem;
-    font-weight: 800;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 5px 15px rgba(168,143,29,0.3);
-    border: 2px solid rgba(255,255,255,0.2);
-    letter-spacing: 1px;
+.flch-footer__separator {
+    color: #FFD700;
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.8;
+    display: inline-block;
+    animation: flch-pulse-separator 2s ease-in-out infinite;
+    line-height: 1;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
-@media (min-width: 768px) {
-    .flch-footer__year-badge {
-        font-size: 1.5rem;
-    }
+.flch-footer__rights-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 0.3px;
+    position: relative;
+    padding: 0.25rem 0;
+}
+
+.flch-footer__rights-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #FFD700, transparent);
+    transition: width 0.3s ease;
+}
+
+.flch-footer__copyright-wrapper:hover .flch-footer__rights-text::after {
+    width: 100%;
 }
 
 /* ===================================
@@ -1047,7 +1052,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 /* ===================================
-   ANIMACIONES
+   ANIMACIONES MEJORADAS
    =================================== */
 @keyframes flch-fadeInUp {
     from {
@@ -1082,9 +1087,87 @@ document.addEventListener('DOMContentLoaded', function() {
     50% { opacity: 0.4; }
 }
 
+@keyframes flch-glow {
+    0%, 100% {
+        opacity: 0.6;
+        box-shadow: 0 0 20px rgba(168, 143, 29, 0.4);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    }
+}
+
+@keyframes flch-pulse-separator {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+}
+
 /* ===================================
    RESPONSIVE FINAL
    =================================== */
+@media (max-width: 768px) {
+    .flch-footer__copyright-wrapper {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.2rem 1.5rem;
+        border-radius: 2rem;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 90%;
+    }
+    
+    .flch-footer__separator {
+        display: none;
+    }
+    
+    .flch-footer__copyright-text,
+    .flch-footer__rights-text {
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .flch-footer__copyright-text strong {
+        display: inline-block;
+    }
+    
+    .flch-footer__bottom-bar::before {
+        width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flch-footer__copyright-wrapper {
+        padding: 1rem;
+        max-width: 95%;
+    }
+    
+    .flch-footer__copyright-icon {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.875rem;
+    }
+    
+    .flch-footer__copyright-text,
+    .flch-footer__rights-text {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    .flch-footer__copyright-text strong {
+        display: block;
+        margin: 0.25rem 0;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .flch-footer__column,
     .flch-footer__blob,
@@ -1092,7 +1175,12 @@ document.addEventListener('DOMContentLoaded', function() {
     .flch-whatsapp__ripple-2,
     .flch-backtotop,
     .flch-footer__link,
-    .flch-footer__social-link {
+    .flch-footer__social-link,
+    .flch-footer__copyright-wrapper,
+    .flch-footer__copyright-icon,
+    .flch-footer__copyright-text strong,
+    .flch-footer__separator,
+    .flch-footer__bottom-bar::before {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
