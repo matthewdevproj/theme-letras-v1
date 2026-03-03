@@ -1,6 +1,6 @@
 <?php
 /**
- * Footer template premium para FLCH - Versión Mejorada
+ * Footer template premium para FLCH - Versión con estilos independientes
  *
  * @package LetrasFLCH
  */
@@ -8,66 +8,61 @@
 
 </main><!-- #main -->
 
-<!-- FOOTER PREMIUM - Diseño profesional con Tailwind -->
-<footer class="footer relative bg-gradient-to-br from-[#0A1E3C] via-[#143B63] to-[#1E4A7A] text-white pt-16 pb-6 overflow-hidden">
+<!-- FOOTER PREMIUM - Estilos independientes (sin conflictos) -->
+<footer class="flch-footer">
     
-    <!-- Elementos decorativos con animación -->
-    <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-0 left-0 w-96 h-96 bg-[#A88F1D] rounded-full filter blur-[128px] opacity-20 animate-pulse-slow"></div>
-        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#A88F1D] rounded-full filter blur-[128px] opacity-20 animate-pulse-slower"></div>
-        
-        <!-- Patrón de puntos sutil -->
-        <div class="absolute inset-0 opacity-5" 
-             style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 1px); background-size: 40px 40px;">
-        </div>
+    <!-- Elementos decorativos -->
+    <div class="flch-footer__decor">
+        <div class="flch-footer__blob flch-footer__blob--top-left"></div>
+        <div class="flch-footer__blob flch-footer__blob--bottom-right"></div>
+        <div class="flch-footer__pattern"></div>
     </div>
     
-    <!-- Línea decorativa superior animada -->
-    <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#A88F1D] to-transparent"></div>
+    <!-- Línea decorativa superior -->
+    <div class="flch-footer__top-line"></div>
     
-    <div class="container-custom relative z-10">
+    <div class="flch-footer__container">
         
-        <!-- Grid principal - 4 columnas en desktop -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+        <!-- Grid principal -->
+        <div class="flch-footer__grid">
             
             <!-- COLUMNA 1: Info institucional -->
-            <div class="space-y-4 animate-fadeInUp" style="animation-delay: 0.1s">
-                <div class="flex items-center gap-3 group">
-                    <div class="w-14 h-14 bg-gradient-to-br from-[#A88F1D] to-[#8B7718] rounded-xl flex items-center justify-center shadow-xl shadow-[#A88F1D]/20 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-university text-2xl text-white"></i>
+            <div class="flch-footer__column flch-footer__column--1">
+                <div class="flch-footer__brand">
+                    <div class="flch-footer__icon-wrapper">
+                        <i class="fas fa-university flch-footer__icon"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-white">Facultad de</h4>
-                        <span class="text-2xl font-black text-[#A88F1D] block leading-tight">Letras</span>
+                        <h4 class="flch-footer__brand-title">Facultad de</h4>
+                        <span class="flch-footer__brand-subtitle">Letras</span>
                     </div>
                 </div>
                 
-                <p class="text-white/70 text-sm leading-relaxed">
+                <p class="flch-footer__description">
                     Formando profesionales en humanidades con excelencia académica y compromiso social desde 1551. Decana de América.
                 </p>
                 
-                <!-- Badge de acreditación con hover -->
-                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-[#A88F1D]/30 hover:bg-[#A88F1D]/20 transition-all duration-300 group cursor-default">
-                    <i class="fas fa-check-circle text-[#A88F1D] text-sm group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xs font-medium text-white/90">Acreditación Internacional</span>
+                <!-- Badge de acreditación -->
+                <div class="flch-footer__badge">
+                    <i class="fas fa-check-circle flch-footer__badge-icon"></i>
+                    <span class="flch-footer__badge-text">Acreditación Internacional</span>
                 </div>
                 
-                <!-- Widget dinámico -->
                 <?php if (is_active_sidebar('footer-1')) : ?>
-                    <div class="mt-4">
+                    <div class="flch-footer__widget">
                         <?php dynamic_sidebar('footer-1'); ?>
                     </div>
                 <?php endif; ?>
             </div>
             
             <!-- COLUMNA 2: Revistas Académicas -->
-            <div class="space-y-4 animate-fadeInUp" style="animation-delay: 0.2s">
-                <h4 class="text-lg font-bold text-white flex items-center gap-2 pb-3 border-b border-[#A88F1D]/30">
-                    <i class="fas fa-book-open text-[#A88F1D] text-sm"></i>
+            <div class="flch-footer__column flch-footer__column--2">
+                <h4 class="flch-footer__title">
+                    <i class="fas fa-book-open flch-footer__title-icon"></i>
                     <span>Revistas Académicas</span>
                 </h4>
                 
-                <ul class="space-y-2">
+                <ul class="flch-footer__list">
                     <?php
                     $journals = [
                         ['url' => 'https://revistaletras.unmsm.edu.pe/index.php/le', 'title' => 'Letras (Lima)'],
@@ -80,14 +75,14 @@
                     
                     foreach ($journals as $journal) :
                     ?>
-                        <li>
+                        <li class="flch-footer__list-item">
                             <a href="<?php echo esc_url($journal['url']); ?>" 
                                target="_blank" 
                                rel="noopener noreferrer"
-                               class="footer-link group flex items-center gap-2 text-white/70 hover:text-[#A88F1D] transition-all duration-300">
-                                <span class="w-1.5 h-1.5 bg-[#A88F1D] rounded-full group-hover:scale-125 transition-transform"></span>
-                                <span class="text-sm"><?php echo esc_html($journal['title']); ?></span>
-                                <i class="fas fa-external-link-alt text-xs opacity-0 group-hover:opacity-100 transition-opacity ml-auto"></i>
+                               class="flch-footer__link">
+                                <span class="flch-footer__link-dot"></span>
+                                <span class="flch-footer__link-text"><?php echo esc_html($journal['title']); ?></span>
+                                <i class="fas fa-external-link-alt flch-footer__link-icon"></i>
                             </a>
                         </li>
                     <?php endforeach; ?>
@@ -95,13 +90,13 @@
             </div>
             
             <!-- COLUMNA 3: Programas -->
-            <div class="space-y-4 animate-fadeInUp" style="animation-delay: 0.3s">
-                <h4 class="text-lg font-bold text-white flex items-center gap-2 pb-3 border-b border-[#A88F1D]/30">
-                    <i class="fas fa-graduation-cap text-[#A88F1D] text-sm"></i>
+            <div class="flch-footer__column flch-footer__column--3">
+                <h4 class="flch-footer__title">
+                    <i class="fas fa-graduation-cap flch-footer__title-icon"></i>
                     <span>Programas</span>
                 </h4>
                 
-                <ul class="space-y-2">
+                <ul class="flch-footer__list">
                     <?php
                     $programs = [
                         ['url' => '/pregrado', 'title' => 'Pregrado'],
@@ -114,96 +109,94 @@
                     
                     foreach ($programs as $program) :
                     ?>
-                        <li>
+                        <li class="flch-footer__list-item">
                             <a href="<?php echo esc_url(home_url($program['url'])); ?>" 
-                               class="footer-link group flex items-center gap-2 text-white/70 hover:text-[#A88F1D] transition-all duration-300">
-                                <span class="w-1.5 h-1.5 bg-[#A88F1D] rounded-full group-hover:scale-125 transition-transform"></span>
-                                <span class="text-sm"><?php echo esc_html($program['title']); ?></span>
-                                <i class="fas fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 ml-auto"></i>
+                               class="flch-footer__link">
+                                <span class="flch-footer__link-dot"></span>
+                                <span class="flch-footer__link-text"><?php echo esc_html($program['title']); ?></span>
+                                <i class="fas fa-arrow-right flch-footer__link-arrow"></i>
                             </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
                 
-                <!-- Horario de atención con diseño mejorado -->
-                <div class="pt-4 mt-4 border-t border-white/10">
-                    <div class="flex items-start gap-3 text-sm">
-                        <div class="w-8 h-8 rounded-lg bg-[#A88F1D]/10 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-clock text-[#A88F1D] text-sm"></i>
-                        </div>
-                        <div>
-                            <span class="text-xs text-white/40 block">Atención</span>
-                            <span class="text-white/80 font-medium">Lun - Vie: 8:00 - 17:00</span>
-                        </div>
+                <!-- Horario de atención -->
+                <div class="flch-footer__schedule">
+                    <div class="flch-footer__schedule-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="flch-footer__schedule-info">
+                        <span class="flch-footer__schedule-label">Atención</span>
+                        <span class="flch-footer__schedule-time">Lun - Vie: 8:00 - 17:00</span>
                     </div>
                 </div>
             </div>
             
             <!-- COLUMNA 4: Contacto -->
-            <div class="space-y-4 animate-fadeInUp" style="animation-delay: 0.4s">
-                <h4 class="text-lg font-bold text-white flex items-center gap-2 pb-3 border-b border-[#A88F1D]/30">
-                    <i class="fas fa-envelope text-[#A88F1D] text-sm"></i>
+            <div class="flch-footer__column flch-footer__column--4">
+                <h4 class="flch-footer__title">
+                    <i class="fas fa-envelope flch-footer__title-icon"></i>
                     <span>Contacto</span>
                 </h4>
                 
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3 group">
-                        <div class="w-8 h-8 rounded-lg bg-white/10 group-hover:bg-[#A88F1D] transition-all duration-300 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-[#A88F1D] group-hover:text-white text-sm transition-colors"></i>
+                <ul class="flch-footer__contact-list">
+                    <li class="flch-footer__contact-item">
+                        <div class="flch-footer__contact-icon-wrapper">
+                            <i class="fas fa-map-marker-alt flch-footer__contact-icon"></i>
                         </div>
-                        <span class="text-white/70 group-hover:text-white transition-colors text-sm">Calle Germán Amézaga N° 375 - Lima</span>
+                        <span class="flch-footer__contact-text">Calle Germán Amézaga N° 375 - Lima</span>
                     </li>
                     
-                    <li class="flex items-start gap-3 group">
-                        <div class="w-8 h-8 rounded-lg bg-white/10 group-hover:bg-[#A88F1D] transition-all duration-300 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-phone-alt text-[#A88F1D] group-hover:text-white text-sm transition-colors"></i>
+                    <li class="flch-footer__contact-item">
+                        <div class="flch-footer__contact-icon-wrapper">
+                            <i class="fas fa-phone-alt flch-footer__contact-icon"></i>
                         </div>
-                        <div>
-                            <span class="text-white/70 group-hover:text-white transition-colors text-sm block">(01) 619-7000</span>
-                            <span class="text-white/50 text-xs">anexo 2801</span>
+                        <div class="flch-footer__contact-phone">
+                            <span class="flch-footer__contact-text">(01) 619-7000</span>
+                            <span class="flch-footer__contact-extension">anexo 2801</span>
                         </div>
                     </li>
                     
-                    <li class="flex items-start gap-3 group">
-                        <div class="w-8 h-8 rounded-lg bg-white/10 group-hover:bg-[#A88F1D] transition-all duration-300 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-envelope text-[#A88F1D] group-hover:text-white text-sm transition-colors"></i>
+                    <li class="flch-footer__contact-item">
+                        <div class="flch-footer__contact-icon-wrapper">
+                            <i class="fas fa-envelope flch-footer__contact-icon"></i>
                         </div>
                         <a href="mailto:informatica.letras@unmsm.edu.pe" 
-                           class="text-white/70 hover:text-[#A88F1D] transition-colors text-sm break-all">
+                           class="flch-footer__contact-email">
                             informatica.letras@unmsm.edu.pe
                         </a>
                     </li>
                 </ul>
                 
-                <!-- Redes Sociales con diseño premium -->
-                <div class="pt-4">
-                    <h5 class="text-xs font-medium text-white/40 uppercase tracking-wider mb-3">Síguenos en redes</h5>
-                    <div class="flex gap-2">
+                <!-- Redes Sociales -->
+                <div class="flch-footer__social">
+                    <h5 class="flch-footer__social-title">Síguenos en redes</h5>
+                    <div class="flch-footer__social-grid">
                         <a href="https://www.facebook.com/letrassanmarcos" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="social-icon w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all duration-300 facebook"
+                           class="flch-footer__social-link flch-footer__social-link--facebook"
                            aria-label="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="https://www.instagram.com/letrasunmsm/" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="social-icon w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all duration-300 instagram"
+                           class="flch-footer__social-link flch-footer__social-link--instagram"
                            aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
                         <a href="https://www.youtube.com/@LetrasTV-p9j" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="social-icon w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all duration-300 youtube"
+                           class="flch-footer__social-link flch-footer__social-link--youtube"
                            aria-label="YouTube">
                             <i class="fab fa-youtube"></i>
                         </a>
                         <a href="https://pe.linkedin.com/school/letrasunmsm/" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="social-icon w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-white transition-all duration-300 linkedin"
+                           class="flch-footer__social-link flch-footer__social-link--linkedin"
                            aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
@@ -212,90 +205,80 @@
             </div>
         </div>
         
-        <!-- Barra inferior con copyright y enlaces legales -->
-        <div class="pt-8 mt-8 border-t border-white/10">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                
-                <!-- Copyright -->
-                <div class="text-white/50 text-xs text-center md:text-left">
-                    &copy; <?php echo date('Y'); ?> Facultad de Letras y Ciencias Humanas - UNMSM. 
-                    <span class="block md:inline">Todos los derechos reservados.</span>
-                </div>
-                
-                <!-- Enlaces legales -->
-                <div class="flex flex-wrap justify-center gap-4 text-xs">
-                    <a href="<?php echo esc_url(home_url('/terminos-condiciones')); ?>" 
-                       class="text-white/50 hover:text-[#A88F1D] transition-colors">
-                        Términos y condiciones
-                    </a>
-                    <span class="text-white/20 hidden sm:inline">|</span>
-                    <a href="<?php echo esc_url(home_url('/politica-privacidad')); ?>" 
-                       class="text-white/50 hover:text-[#A88F1D] transition-colors">
-                        Política de privacidad
-                    </a>
-                    <span class="text-white/20 hidden sm:inline">|</span>
-                    <a href="<?php echo esc_url(home_url('/mapa-sitio')); ?>" 
-                       class="text-white/50 hover:text-[#A88F1D] transition-colors">
-                        Mapa del sitio
-                    </a>
-                </div>
+        <!-- Barra inferior -->
+        <div class="flch-footer__bottom">
+            <div class="flch-footer__copyright">
+                &copy; <?php echo date('Y'); ?> Facultad de Letras y Ciencias Humanas - UNMSM. 
+                <span class="flch-footer__copyright-span">Todos los derechos reservados.</span>
+            </div>
+            
+            <div class="flch-footer__legal">
+                <a href="<?php echo esc_url(home_url('/terminos-condiciones')); ?>" 
+                   class="flch-footer__legal-link">
+                    Términos y condiciones
+                </a>
+                <span class="flch-footer__legal-separator">|</span>
+                <a href="<?php echo esc_url(home_url('/politica-privacidad')); ?>" 
+                   class="flch-footer__legal-link">
+                    Política de privacidad
+                </a>
+                <span class="flch-footer__legal-separator">|</span>
+                <a href="<?php echo esc_url(home_url('/mapa-sitio')); ?>" 
+                   class="flch-footer__legal-link">
+                    Mapa del sitio
+                </a>
             </div>
         </div>
     </div>
 </footer>
 
-<!-- BOTONES FLOTANTES MEJORADOS -->
+<!-- BOTONES FLOTANTES con estilos independientes -->
 
-<!-- WhatsApp Button con efecto mejorado -->
+<!-- WhatsApp Button -->
 <a href="https://wa.me/51982086285?text=Hola,%20deseo%20información%20sobre%20la%20facultad" 
-   class="fixed bottom-6 right-6 z-50 group"
+   class="flch-whatsapp"
    target="_blank"
    rel="noopener noreferrer"
    aria-label="Contactar por WhatsApp">
     
-    <!-- Efecto de ondas -->
-    <div class="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-25 group-hover:opacity-50"></div>
-    <div class="absolute inset-0 bg-[#25D366] rounded-full animate-pulse opacity-25"></div>
+    <div class="flch-whatsapp__ripple"></div>
+    <div class="flch-whatsapp__ripple-2"></div>
     
-    <!-- Botón principal -->
-    <div class="relative w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-[#25D366]/30">
-        <i class="fab fa-whatsapp text-2xl"></i>
+    <div class="flch-whatsapp__button">
+        <i class="fab fa-whatsapp flch-whatsapp__icon"></i>
     </div>
     
-    <!-- Tooltip -->
-    <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0A1E3C] text-white text-xs py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-xl border border-[#A88F1D]/30">
-        ¿Necesitas ayuda?
-    </span>
+    <span class="flch-whatsapp__tooltip">¿Necesitas ayuda?</span>
 </a>
 
-<!-- Back to Top Button mejorado -->
-<button id="back-to-top" 
-        class="fixed bottom-6 left-6 z-50 w-12 h-12 bg-[#0A1E3C] rounded-xl flex items-center justify-center text-white shadow-xl transition-all duration-300 hover:bg-[#A88F1D] hover:scale-110 border border-[#A88F1D]/30 opacity-0 invisible"
+<!-- Back to Top Button -->
+<button id="flch-back-to-top" 
+        class="flch-backtotop"
         aria-label="Volver al inicio"
         title="Volver arriba">
     
-    <i class="fas fa-arrow-up text-lg transition-transform duration-300 group-hover:-translate-y-1"></i>
+    <i class="fas fa-arrow-up flch-backtotop__icon"></i>
     
-    <!-- Indicador de progreso (opcional) -->
-    <svg class="absolute inset-0 w-full h-full -rotate-90">
-        <circle class="text-white/10" stroke="currentColor" stroke-width="2" fill="transparent" r="22" cx="24" cy="24"/>
-        <circle id="progress-circle" class="text-[#A88F1D]" stroke="currentColor" stroke-width="2" fill="transparent" r="22" cx="24" cy="24" stroke-dasharray="138.2" stroke-dashoffset="138.2"/>
+    <svg class="flch-backtotop__progress" viewBox="0 0 48 48">
+        <circle class="flch-backtotop__progress-bg" cx="24" cy="24" r="22"></circle>
+        <circle id="flch-progress-circle" class="flch-backtotop__progress-fill" cx="24" cy="24" r="22"></circle>
     </svg>
 </button>
 
 <?php wp_footer(); ?>
 
-<!-- Scripts mejorados -->
+<!-- Scripts independientes -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
     
     // === BACK TO TOP CON PROGRESO ===
-    const backToTop = document.getElementById('back-to-top');
-    const progressCircle = document.getElementById('progress-circle');
+    const backToTop = document.getElementById('flch-back-to-top');
+    const progressCircle = document.getElementById('flch-progress-circle');
     
     if (backToTop && progressCircle) {
         const circumference = 2 * Math.PI * 22; // 138.2 aprox
+        progressCircle.style.strokeDasharray = circumference;
         
         window.addEventListener('scroll', function() {
             const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
@@ -304,13 +287,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Mostrar/ocultar botón
             if (window.pageYOffset > 300) {
-                backToTop.style.opacity = '1';
-                backToTop.style.visibility = 'visible';
-                backToTop.style.transform = 'scale(1)';
+                backToTop.classList.add('flch-backtotop--visible');
             } else {
-                backToTop.style.opacity = '0';
-                backToTop.style.visibility = 'hidden';
-                backToTop.style.transform = 'scale(0.8)';
+                backToTop.classList.remove('flch-backtotop--visible');
             }
             
             // Actualizar círculo de progreso
@@ -326,90 +305,301 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // === ANIMACIÓN DE ENLACES DEL FOOTER ===
-    const footerLinks = document.querySelectorAll('.footer-link');
+    // === ANIMACIÓN DE ENLACES ===
+    const footerLinks = document.querySelectorAll('.flch-footer__link');
     footerLinks.forEach(link => {
         link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateX(4px)';
+            const dot = this.querySelector('.flch-footer__link-dot');
+            if (dot) dot.style.transform = 'scale(1.5)';
         });
         link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateX(0)';
+            const dot = this.querySelector('.flch-footer__link-dot');
+            if (dot) dot.style.transform = 'scale(1)';
         });
     });
     
     // === SOPORTE PARA REDUCED MOTION ===
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.querySelectorAll('.animate-ping, .animate-pulse, .animate-pulse-slow').forEach(el => {
+        document.querySelectorAll('.flch-whatsapp__ripple, .flch-whatsapp__ripple-2').forEach(el => {
             el.style.animation = 'none';
         });
     }
 });
-
-// === FUNCIÓN PARA GUARDAR ÚLTIMA BÚSQUEDA (OPCIONAL) ===
-function saveSearchTerm(term) {
-    if (term && term.length > 2) {
-        let recentSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
-        recentSearches = [term, ...recentSearches.filter(t => t !== term)].slice(0, 5);
-        localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
-    }
-}
 </script>
 
-<!-- Estilos adicionales para animaciones -->
+<!-- Estilos independientes - SIN CONFLICTOS con Tailwind -->
 <style>
-/* Animaciones personalizadas */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* ===================================
+   FLCH FOOTER - ESTILOS INDEPENDIENTES
+   =================================== */
 
-@keyframes pulse-slow {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.3; }
-}
-
-@keyframes pulse-slower {
-    0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.2; }
-}
-
-.animate-fadeInUp {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-}
-
-.animate-pulse-slow {
-    animation: pulse-slow 4s ease-in-out infinite;
-}
-
-.animate-pulse-slower {
-    animation: pulse-slower 6s ease-in-out infinite;
-}
-
-/* Mejoras para íconos sociales */
-.social-icon {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.social-icon.facebook:hover { background-color: #1877F2 !important; transform: translateY(-3px); }
-.social-icon.instagram:hover { background-color: #E4405F !important; transform: translateY(-3px); }
-.social-icon.youtube:hover { background-color: #FF0000 !important; transform: translateY(-3px); }
-.social-icon.linkedin:hover { background-color: #0077B5 !important; transform: translateY(-3px); }
-
-/* Enlaces del footer */
-.footer-link {
-    transition: all 0.3s ease;
+/* Contenedor principal */
+.flch-footer {
+    background: linear-gradient(135deg, #0A1E3C 0%, #143B63 50%, #1E4A7A 100%);
+    color: white;
+    width: 100%;
     position: relative;
     overflow: hidden;
+    padding-top: 4rem;
+    padding-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
 }
 
-.footer-link::after {
+/* Elementos decorativos */
+.flch-footer__decor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.flch-footer__blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(128px);
+    opacity: 0.2;
+}
+
+.flch-footer__blob--top-left {
+    top: 0;
+    left: 0;
+    width: 24rem;
+    height: 24rem;
+    background: #A88F1D;
+    transform: translate(-50%, -50%);
+    animation: flch-pulse-slow 4s ease-in-out infinite;
+}
+
+.flch-footer__blob--bottom-right {
+    bottom: 0;
+    right: 0;
+    width: 31.25rem;
+    height: 31.25rem;
+    background: #A88F1D;
+    transform: translate(33%, 33%);
+    animation: flch-pulse-slower 6s ease-in-out infinite;
+}
+
+.flch-footer__pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.flch-footer__top-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #A88F1D, transparent);
+}
+
+/* Contenedor */
+.flch-footer__container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Grid */
+.flch-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .flch-footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .flch-footer__grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem;
+    }
+}
+
+/* Columnas */
+.flch-footer__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.flch-footer__column--1 { animation: flch-fadeInUp 0.6s ease-out forwards; animation-delay: 0.1s; opacity: 0; }
+.flch-footer__column--2 { animation: flch-fadeInUp 0.6s ease-out forwards; animation-delay: 0.2s; opacity: 0; }
+.flch-footer__column--3 { animation: flch-fadeInUp 0.6s ease-out forwards; animation-delay: 0.3s; opacity: 0; }
+.flch-footer__column--4 { animation: flch-fadeInUp 0.6s ease-out forwards; animation-delay: 0.4s; opacity: 0; }
+
+/* Brand */
+.flch-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.flch-footer__icon-wrapper {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: linear-gradient(135deg, #A88F1D, #8B7718);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.flch-footer__icon-wrapper:hover {
+    transform: scale(1.1);
+}
+
+.flch-footer__icon {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.flch-footer__brand-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.flch-footer__brand-subtitle {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #A88F1D;
+    display: block;
+    line-height: 1.2;
+}
+
+.flch-footer__description {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Badge */
+.flch-footer__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    border-radius: 9999px;
+    padding: 0.375rem 1rem;
+    border: 1px solid rgba(168,143,29,0.3);
+    width: fit-content;
+    cursor: default;
+    transition: all 0.3s ease;
+}
+
+.flch-footer__badge:hover {
+    background: rgba(168,143,29,0.2);
+    transform: translateY(-2px);
+}
+
+.flch-footer__badge-icon {
+    color: #A88F1D;
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.flch-footer__badge:hover .flch-footer__badge-icon {
+    transform: scale(1.2);
+}
+
+.flch-footer__badge-text {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Títulos */
+.flch-footer__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(168,143,29,0.3);
+    margin: 0 0 0.5rem 0;
+}
+
+.flch-footer__title-icon {
+    color: #A88F1D;
+    font-size: 0.875rem;
+}
+
+/* Listas */
+.flch-footer__list,
+.flch-footer__contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.flch-footer__list-item {
+    margin: 0;
+}
+
+.flch-footer__link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.25rem 0;
+}
+
+.flch-footer__link:hover {
+    color: #A88F1D;
+    transform: translateX(4px);
+}
+
+.flch-footer__link-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    background: #A88F1D;
+    border-radius: 9999px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.flch-footer__link-icon,
+.flch-footer__link-arrow {
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.flch-footer__link:hover .flch-footer__link-icon,
+.flch-footer__link:hover .flch-footer__link-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.flch-footer__link::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -420,36 +610,450 @@ function saveSearchTerm(term) {
     transition: width 0.3s ease;
 }
 
-.footer-link:hover::after {
+.flch-footer__link:hover::after {
     width: 100%;
 }
 
-/* Responsive para móvil */
+/* Schedule */
+.flch-footer__schedule {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.flch-footer__schedule-icon {
+    width: 2rem;
+    height: 2rem;
+    background: rgba(168,143,29,0.1);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #A88F1D;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.flch-footer__schedule:hover .flch-footer__schedule-icon {
+    background: #A88F1D;
+    color: white;
+    transform: scale(1.1);
+}
+
+.flch-footer__schedule-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.flch-footer__schedule-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+}
+
+.flch-footer__schedule-time {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+}
+
+/* Contacto */
+.flch-footer__contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.flch-footer__contact-icon-wrapper {
+    width: 2rem;
+    height: 2rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.flch-footer__contact-item:hover .flch-footer__contact-icon-wrapper {
+    background: #A88F1D;
+    transform: scale(1.1);
+}
+
+.flch-footer__contact-icon {
+    color: #A88F1D;
+    font-size: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.flch-footer__contact-item:hover .flch-footer__contact-icon {
+    color: white;
+}
+
+.flch-footer__contact-text {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.flch-footer__contact-phone {
+    display: flex;
+    flex-direction: column;
+}
+
+.flch-footer__contact-extension {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.flch-footer__contact-email {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    word-break: break-all;
+}
+
+.flch-footer__contact-email:hover {
+    color: #A88F1D;
+}
+
+/* Social */
+.flch-footer__social {
+    margin-top: 1rem;
+}
+
+.flch-footer__social-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.75rem 0;
+}
+
+.flch-footer__social-grid {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.flch-footer__social-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.flch-footer__social-link:hover {
+    transform: translateY(-3px);
+    color: white;
+}
+
+.flch-footer__social-link--facebook:hover { background: #1877F2; }
+.flch-footer__social-link--instagram:hover { background: #E4405F; }
+.flch-footer__social-link--youtube:hover { background: #FF0000; }
+.flch-footer__social-link--linkedin:hover { background: #0077B5; }
+
+/* Bottom bar */
+.flch-footer__bottom {
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .flch-footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.flch-footer__copyright {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .flch-footer__copyright {
+        text-align: left;
+    }
+}
+
+.flch-footer__copyright-span {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .flch-footer__copyright-span {
+        display: inline;
+    }
+}
+
+.flch-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.flch-footer__legal-link {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.flch-footer__legal-link:hover {
+    color: #A88F1D;
+}
+
+.flch-footer__legal-separator {
+    color: rgba(255,255,255,0.2);
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .flch-footer__legal-separator {
+        display: inline;
+    }
+}
+
+/* ===================================
+   WHATSAPP BUTTON - ESTILOS INDEPENDIENTES
+   =================================== */
+.flch-whatsapp {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    text-decoration: none;
+    display: block;
+}
+
 @media (max-width: 768px) {
-    .footer .grid {
-        gap: 2rem;
-    }
-    
-    #back-to-top,
-    a[href*="wa.me"] {
+    .flch-whatsapp {
         bottom: 1rem;
+        right: 1rem;
     }
-    
-    a[href*="wa.me"] .w-14 {
+}
+
+.flch-whatsapp__ripple,
+.flch-whatsapp__ripple-2 {
+    position: absolute;
+    inset: 0;
+    background: #25D366;
+    border-radius: 9999px;
+    opacity: 0.25;
+}
+
+.flch-whatsapp__ripple {
+    animation: flch-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.flch-whatsapp__ripple-2 {
+    animation: flch-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.flch-whatsapp__button {
+    position: relative;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: #25D366;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .flch-whatsapp__button {
         width: 3rem;
         height: 3rem;
     }
-    
-    a[href*="wa.me"] .text-2xl {
+}
+
+.flch-whatsapp__button:hover {
+    background: #128C7E;
+    transform: scale(1.1);
+}
+
+.flch-whatsapp__icon {
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .flch-whatsapp__icon {
         font-size: 1.25rem;
     }
 }
 
-/* Soporte para prefers-reduced-motion */
+.flch-whatsapp__tooltip {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 0.75rem;
+    background: #0A1E3C;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 1px solid rgba(168,143,29,0.3);
+    pointer-events: none;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+}
+
+.flch-whatsapp:hover .flch-whatsapp__tooltip {
+    opacity: 1;
+}
+
+/* ===================================
+   BACK TO TOP - ESTILOS INDEPENDIENTES
+   =================================== */
+.flch-backtotop {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 9999;
+    width: 3rem;
+    height: 3rem;
+    background: #143B63;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 1px solid rgba(168,143,29,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    padding: 0;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+    .flch-backtotop {
+        bottom: 1rem;
+        left: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+.flch-backtotop--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.flch-backtotop:hover {
+    background: #A88F1D;
+    transform: scale(1.1) translateY(-2px);
+}
+
+.flch-backtotop__icon {
+    font-size: 0.875rem;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.flch-backtotop:hover .flch-backtotop__icon {
+    transform: translateY(-2px);
+}
+
+.flch-backtotop__progress {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.flch-backtotop__progress-bg {
+    stroke: rgba(255,255,255,0.1);
+    stroke-width: 2;
+    fill: transparent;
+}
+
+.flch-backtotop__progress-fill {
+    stroke: #A88F1D;
+    stroke-width: 2;
+    fill: transparent;
+    stroke-dasharray: 138.2;
+    stroke-dashoffset: 138.2;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+/* ===================================
+   ANIMACIONES
+   =================================== */
+@keyframes flch-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flch-pulse-slow {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes flch-pulse-slower {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.2; }
+}
+
+@keyframes flch-ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes flch-pulse {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.4; }
+}
+
+/* ===================================
+   RESPONSIVE FINAL
+   =================================== */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    .flch-footer__column,
+    .flch-footer__blob,
+    .flch-whatsapp__ripple,
+    .flch-whatsapp__ripple-2,
+    .flch-backtotop,
+    .flch-footer__link,
+    .flch-footer__social-link {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
