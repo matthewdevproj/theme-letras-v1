@@ -99,12 +99,10 @@
                 <ul class="flch-footer__list">
                     <?php
                     $programs = [
-                        ['url' => '/pregrado', 'title' => 'Pregrado'],
-                        ['url' => '/posgrado', 'title' => 'Posgrado'],
-                        ['url' => '/idiomas', 'title' => 'Centro de Idiomas'],
-                        ['url' => '/investigacion', 'title' => 'Investigación'],
-                        ['url' => '/biblioteca', 'title' => 'Biblioteca'],
-                        ['url' => '/internacional', 'title' => 'Internacional']
+                        ['url' => 'https://posgradoletras.unmsm.edu.pe/', 'title' => 'Pregrado'],
+                        ['url' => 'https://ceidletras.unmsm.edu.pe/', 'title' => 'Centro de Idiomas'],
+                        ['url' => 'https://letras.unmsm.edu.pe/cerseu/', 'title' => 'CERSEU'],
+                        ['url' => 'https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/', 'title' => 'OESI']
                     ];
                     
                     foreach ($programs as $program) :
@@ -145,16 +143,6 @@
                             <i class="fas fa-map-marker-alt flch-footer__contact-icon"></i>
                         </div>
                         <span class="flch-footer__contact-text">Calle Germán Amézaga N° 375 - Lima</span>
-                    </li>
-                    
-                    <li class="flch-footer__contact-item">
-                        <div class="flch-footer__contact-icon-wrapper">
-                            <i class="fas fa-phone-alt flch-footer__contact-icon"></i>
-                        </div>
-                        <div class="flch-footer__contact-phone">
-                            <span class="flch-footer__contact-text">(01) 619-7000</span>
-                            <span class="flch-footer__contact-extension">anexo 2801</span>
-                        </div>
                     </li>
                     
                     <li class="flch-footer__contact-item">
@@ -210,23 +198,6 @@
             <div class="flch-footer__copyright">
                 &copy; <?php echo date('Y'); ?> Facultad de Letras y Ciencias Humanas - UNMSM. 
                 <span class="flch-footer__copyright-span">Todos los derechos reservados.</span>
-            </div>
-            
-            <div class="flch-footer__legal">
-                <a href="<?php echo esc_url(home_url('/terminos-condiciones')); ?>" 
-                   class="flch-footer__legal-link">
-                    Términos y condiciones
-                </a>
-                <span class="flch-footer__legal-separator">|</span>
-                <a href="<?php echo esc_url(home_url('/politica-privacidad')); ?>" 
-                   class="flch-footer__legal-link">
-                    Política de privacidad
-                </a>
-                <span class="flch-footer__legal-separator">|</span>
-                <a href="<?php echo esc_url(home_url('/mapa-sitio')); ?>" 
-                   class="flch-footer__legal-link">
-                    Mapa del sitio
-                </a>
             </div>
         </div>
     </div>
