@@ -55,7 +55,7 @@
             
             <!-- COLUMNA 2: Revistas Académicas -->
             <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <h4 style="font-size: 1.125rem; font-weight: 600; color: white; display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(168,143,29,0.3); margin: 0;">
+                <h4 style="font-size: 1.125rem; font-weight:    00; color: white; display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(168,143,29,0.3); margin: 0;">
                     <i class="fas fa-book-open" style="color: #A88F1D; font-size: 0.875rem;"></i>
                     Revistas Académicas
                 </h4>
@@ -89,8 +89,6 @@
                     <li><a href="<?php echo esc_url(home_url('/pregrado')); ?>" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Pregrado</a></li>
                     <li><a href="<?php echo esc_url(home_url('/posgrado')); ?>" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Posgrado</a></li>
                     <li><a href="<?php echo esc_url(home_url('/idiomas')); ?>" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Centro de Idiomas</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/diplomados')); ?>" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Diplomados</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/extension-cultural')); ?>" style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'"><span style="width: 0.375rem; height: 0.375rem; background: #A88F1D; border-radius: 9999px; display: inline-block;"></span> Extensión Cultural</a></li>
                 </ul>
                 
                 <!-- Horario de atención -->
@@ -118,12 +116,6 @@
                             <i class="fas fa-map-marker-alt" style="color: #A88F1D; font-size: 0.75rem;"></i>
                         </div>
                         <span style="color: rgba(255,255,255,0.8); font-size: 0.875rem;">Calle Germán Amézaga N° 375 - Lima</span>
-                    </li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                        <div style="width: 1.75rem; height: 1.75rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.3s;" onmouseover="this.style.background='#A88F1D'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-                            <i class="fas fa-phone" style="color: #A88F1D; font-size: 0.75rem;"></i>
-                        </div>
-                        <a href="tel:+5101967000" style="color: rgba(255,255,255,0.8); font-size: 0.875rem; text-decoration: none;" onmouseover="this.style.color='#A88F1D'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">(01) 619-7000 anexo 2801</a>
                     </li>
                     <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
                         <div style="width: 1.75rem; height: 1.75rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.3s;" onmouseover="this.style.background='#A88F1D'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">

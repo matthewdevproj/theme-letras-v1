@@ -89,40 +89,40 @@
             </div>
             
             <!-- Redes sociales -->
-<div class="flex items-center gap-2">
-    <span class="text-[#A88F1D]/50 text-[10px] font-medium uppercase tracking-wider">SÍGUENOS</span>
-    <div class="flex items-center gap-2">
-        
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/letrassanmarcos" target="_blank" 
-           class="w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#1877F2] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all social-icon facebook"
-           aria-label="Facebook">
-            <i class="fab fa-facebook-f text-base"></i> <!-- text-base = 16px -->
-        </a>
+            <div class="flex items-center gap-2">
+                <span class="text-[#A88F1D]/50 text-[10px] font-medium uppercase tracking-wider">SÍGUENOS</span>
+                <div class="flex items-center gap-2">
+                    
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/letrassanmarcos" target="_blank" 
+                       class="w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#1877F2] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all social-icon facebook"
+                       aria-label="Facebook">
+                        <i class="fab fa-facebook-f text-base"></i>
+                    </a>
 
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/letrasunmsm/" target="_blank" 
-           class="w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#E4405F] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all social-icon instagram"
-           aria-label="Instagram">
-            <i class="fab fa-instagram text-base"></i>
-        </a>
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/letrasunmsm/" target="_blank" 
+                       class="w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#E4405F] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all social-icon instagram"
+                       aria-label="Instagram">
+                        <i class="fab fa-instagram text-base"></i>
+                    </a>
 
-        <!-- YouTube -->
-        <a href="https://www.youtube.com/@LetrasTV-p9j" target="_blank" 
-           class="w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#FF0000] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all social-icon youtube"
-           aria-label="YouTube">
-            <i class="fab fa-youtube text-base"></i>
-        </a>
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@LetrasTV-p9j" target="_blank" 
+                       class="w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#FF0000] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all social-icon youtube"
+                       aria-label="YouTube">
+                        <i class="fab fa-youtube text-base"></i>
+                    </a>
 
-        <!-- LinkedIn -->
-        <a href="https://pe.linkedin.com/school/letrasunmsm/" target="_blank" 
-           class="w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#0077B5] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all social-icon linkedin"
-           aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in text-base"></i>
-        </a>
-        
-    </div>
-</div>
+                    <!-- LinkedIn -->
+                    <a href="https://pe.linkedin.com/school/letrasunmsm/" target="_blank" 
+                       class="w-10 h-10 rounded-lg bg-[#A88F1D]/20 hover:bg-[#0077B5] flex items-center justify-center text-[#A88F1D] hover:text-white transition-all social-icon linkedin"
+                       aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in text-base"></i>
+                    </a>
+                    
+                </div>
+            </div>
         </div>
     </div>
     
@@ -131,7 +131,7 @@
 </div>
 
 <!-- HEADER PRINCIPAL -->
-<header class="sticky top-0 z-50 bg-gradient-to-r from-[#0A1E3C] to-[#143B63] shadow-lg transition-all duration-300" id="header" x-data="{ searchOpen: false }">
+<header class="sticky top-0 z-50 bg-gradient-to-r from-[#0A1E3C] to-[#143B63] shadow-lg transition-all duration-300" id="header">
     
     <div class="container-custom">
         <div class="flex items-center justify-between py-3 lg:py-4">
@@ -163,25 +163,28 @@
             <!-- Acciones derecha -->
             <div class="flex items-center space-x-3">
                 
-                <!-- Botón de búsqueda -->
+                <!-- Botón de búsqueda (Alpine) -->
                 <button @click="searchOpen = !searchOpen" 
+                        x-data="{ searchOpen: false }"
                         class="relative w-10 h-10 rounded-full bg-white/10 hover:bg-[#A88F1D] text-white transition-all duration-300 flex items-center justify-center group"
                         aria-label="Abrir buscador">
                     <i class="fas fa-search text-sm transition-transform duration-300 group-hover:scale-110"></i>
                 </button>
                 
-                <!-- Botón móvil -->
-                <button class="block lg:hidden w-10 h-10 rounded-full bg-white/10 hover:bg-[#A88F1D] text-white transition-all duration-300 flex items-center justify-center" 
+                <!-- Botón móvil (JavaScript vanilla) -->
+                <button class="block lg:hidden w-10 h-10 rounded-full bg-white/10 hover:bg-[#A88F1D] text-white transition-all duration-300 flex items-center justify-center mobile-menu-toggle" 
                         id="menu-toggle" 
-                        aria-label="Abrir menú móvil">
+                        aria-label="Abrir menú móvil"
+                        aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </div>
     
-    <!-- Barra de búsqueda -->
+    <!-- Barra de búsqueda (Alpine) -->
     <div class="search-bar overflow-hidden transition-all duration-300 bg-[#0A1E3C] border-t border-[#A88F1D]/30 shadow-inner" 
+         x-data="{ searchOpen: false }"
          x-show="searchOpen" 
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0 transform -translate-y-2"
@@ -216,7 +219,7 @@
     </div>
     
     <!-- Menú móvil -->
-    <div class="hidden mobile-menu fixed inset-x-0 top-[72px] lg:hidden bg-[#0A1E3C] shadow-xl border-t border-[#A88F1D]/30 max-h-[calc(100vh-72px)] overflow-y-auto" 
+    <div class="mobile-menu fixed inset-x-0 top-[72px] lg:hidden bg-[#0A1E3C] shadow-xl border-t border-[#A88F1D]/30 max-h-[calc(100vh-72px)] overflow-y-auto hidden" 
          id="mobile-menu">
         <nav class="px-4 py-6">
             <?php
@@ -261,6 +264,107 @@
     </div>
 </header>
 
+<!-- Script para el menú móvil y búsqueda -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Menú móvil
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Toggle menú
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                this.setAttribute('aria-expanded', 'true');
+                this.querySelector('i').classList.remove('fa-bars');
+                this.querySelector('i').classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('hidden');
+                this.setAttribute('aria-expanded', 'false');
+                this.querySelector('i').classList.remove('fa-times');
+                this.querySelector('i').classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Cerrar al hacer click fuera
+        document.addEventListener('click', function(event) {
+            if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+        
+        // Cerrar al hacer click en un enlace
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Cerrar al redimensionar a desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) { // lg breakpoint
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    }
+    
+    // Búsqueda con Alpine
+    if (typeof Alpine !== 'undefined') {
+        Alpine.store('search', {
+            open: false
+        });
+    }
+    
+    // Submenús móvil
+    const mobileSubmenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+    mobileSubmenuToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const submenu = this.closest('.menu-item-has-children').querySelector('ul');
+            const icon = this.querySelector('i');
+            
+            if (submenu) {
+                submenu.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            }
+        });
+    });
+});
+
+// Prevenir que Alpine interfiera con el menú
+document.addEventListener('alpine:init', () => {
+    Alpine.data('searchDropdown', () => ({
+        searchOpen: false
+    }));
+});
+</script>
 
 <!-- Alpine.js -->
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
