@@ -1,483 +1,879 @@
 <?php
 /**
- * Header template con barra superior separada para FLCH - Versión Final
- *
+ * Template part: Hero section premium con diseño cinematográfico
+ * Versión mejorada con namespace exclusivo para evitar conflictos
+ * 
  * @package LetrasFLCH
  */
 ?>
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?php bloginfo('description'); ?>">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/tailwind.css">
-    
-    <?php wp_head(); ?>
-    
-    <!-- Theme color -->
-    <meta name="theme-color" content="#0A1E3C">
-    
-    <style>
-        /* Estilos personalizados para Alpine.js y mejoras */
-        [x-cloak] { display: none !important; }
-        
-        /* Animaciones personalizadas */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        /* Mejora para los íconos sociales */
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon.facebook:hover { background-color: #1877F2 !important; }
-        .social-icon.instagram:hover { background-color: #E4405F !important; }
-        .social-icon.youtube:hover { background-color: #FF0000 !important; }
-        .social-icon.linkedin:hover { background-color: #0077B5 !important; }
-        
-        /* Scrollbar personalizada para menú móvil */
-        .mobile-menu::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .mobile-menu::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-        }
-        
-        .mobile-menu::-webkit-scrollbar-thumb {
-            background: #A88F1D;
-            border-radius: 3px;
-        }
-        
-        .mobile-menu::-webkit-scrollbar-thumb:hover {
-            background: #8B7718;
-        }
-        
-        /* Estilos para el menú desktop */
-        .main-menu {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        
-        .main-menu > li {
-            position: relative;
-        }
-        
-        .main-menu > li > a {
-            display: block;
-            padding: 0.5rem 1rem;
-            color: white;
-            font-weight: 500;
-            border-radius: 0.5rem;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-        
-        .main-menu > li > a:hover {
-            color: #A88F1D;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Submenús */
-        .main-menu .sub-menu {
-            position: absolute;
-            left: 0;
-            top: 100%;
-            background-color: #0A1E3C;
-            border: 1px solid rgba(168, 143, 29, 0.3);
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
-            padding: 0.5rem 0;
-            min-width: 240px;
-            z-index: 50;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-        }
-        
-        .main-menu li:hover > .sub-menu {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .main-menu .sub-menu .sub-menu {
-            left: 100%;
-            top: 0;
-            margin-left: 2px;
-        }
-        
-        .main-menu .sub-menu a {
-            display: block;
-            padding: 0.5rem 1.5rem;
-            color: white;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .main-menu .sub-menu a:hover {
-            background-color: #1E4A7A;
-            color: #A88F1D;
-            padding-left: 2rem;
-        }
-        
-        .main-menu .sub-menu li:last-child a {
-            border-bottom: none;
-        }
-        
-        /* Flechas animadas */
-        .fa-chevron-down, .fa-chevron-right {
-            transition: transform 0.2s ease;
-        }
-        
-        li:hover > a .fa-chevron-down {
-            transform: rotate(180deg);
-        }
-        
-        li:hover > a .fa-chevron-right {
-            transform: translateX(4px);
-        }
-        
-        /* Rotación para móvil */
-        .rotate-180 {
-            transform: rotate(180deg);
-        }
-    </style>
-</head>
 
-<body <?php body_class('antialiased bg-white'); ?> 
-      x-data="{ searchOpen: false, mobileMenuOpen: false }"
-      @keydown.escape="searchOpen = false; mobileMenuOpen = false">
-<?php wp_body_open(); ?>
-
-<!-- Skip to content link -->
-<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-8 focus:left-8 focus:z-50 focus:px-4 focus:py-4 focus:bg-[#A88F1D] focus:text-white focus:rounded-lg">
-    Saltar al contenido principal
-</a>
-
-<!-- BARRA SUPERIOR - Diseño moderno -->
-<div class="hidden lg:block relative bg-gradient-to-r from-[#1A1A1A] to-[#2A2A2A] text-white text-sm border-b border-[#A88F1D]/30 shadow-lg">
+<!-- Hero Section Premium - Namespace exclusivo: flch-hero-v2 -->
+<section class="flch-hero-v2" aria-label="Hero principal con experiencia cinematográfica">
     
-    <!-- Efecto de brillo superior -->
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A88F1D]/50 to-transparent"></div>
+    <!-- Slideshow container -->
+    <div class="flch-hero-v2__media" id="heroMediaV2">
+        <?php
+        $slides = [
+            ['DJI_0007-Trim-frame-at-0m5s.jpg', 'Vista aérea del campus universitario'],
+            ['DJI_0018-Trim-frame-at-0m2s.jpg', 'Arquitectura histórica de San Marcos'],
+            ['IMG_1565-scaled.jpg', 'Estudiantes en la biblioteca central'],
+            ['IMG_1561-scaled.jpg', 'Actividades académicas'],
+            ['IMG_1556-scaled.jpg', 'Ceremonia institucional']
+        ];
+        
+        foreach ($slides as $index => $slide) :
+            $is_active = $index === 0;
+        ?>
+            <div class="flch-hero-v2__slide <?php echo $is_active ? 'is-active' : ''; ?>" 
+                 data-slide-index="<?php echo $index; ?>"
+                 role="img" 
+                 aria-label="<?php echo esc_attr($slide[1]); ?>"
+                 style="background-image: url('https://letras.unmsm.edu.pe/wp-content/uploads/2025/12/<?php echo $slide[0]; ?>');">
+            </div>
+        <?php endforeach; ?>
+        
+        <!-- Overlays -->
+        <div class="flch-hero-v2__overlay-base"></div>
+        <div class="flch-hero-v2__overlay-gradient"></div>
+        <div class="flch-hero-v2__overlay-vignette"></div>
+        <div class="flch-hero-v2__texture" aria-hidden="true"></div>
+        <div class="flch-hero-v2__light-sweep" aria-hidden="true"></div>
+    </div>
     
-    <div class="container-custom">
-        <div class="flex justify-between items-center py-2">
+    <!-- Divisor inferior -->
+    <div class="flch-hero-v2__divider" aria-hidden="true">
+        <div class="flch-hero-v2__divider-inner"></div>
+    </div>
+    
+    <!-- Contenido principal -->
+    <div class="flch-hero-v2__content">
+        <div class="flch-hero-v2__container">
             
-            <!-- Información de contacto -->
-            <div class="flex items-center divide-x divide-[#A88F1D]/20">
-                
-                <!-- Directorio -->
-                <a href="https://letras.unmsm.edu.pe/directorio/" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="flex items-center gap-2 pr-5 group">
-                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
-                        <i class="fas fa-address-book text-[#A88F1D] group-hover:text-white text-xs"></i>
-                    </div>
-                    <div>
-                        <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">DIRECTORIO</span>
-                        <span class="text-white/90 group-hover:text-white text-xs font-medium">FLCH UNMSM</span>
-                    </div>
-                </a>
-                
-                <!-- Email -->
-                <a href="mailto:informatica.letras@unmsm.edu.pe" 
-                   class="flex items-center gap-2 px-5 group">
-                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
-                        <i class="fas fa-envelope text-[#A88F1D] group-hover:text-white text-xs"></i>
-                    </div>
-                    <div>
-                        <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">EMAIL</span>
-                        <span class="text-white/80 group-hover:text-white text-xs">informatica.letras@unmsm.edu.pe</span>
-                    </div>
-                </a>
-                
-                <!-- Ubicación -->
-                <a href="https://maps.app.goo.gl/..." 
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="flex items-center gap-2 pl-5 group">
-                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
-                        <i class="fas fa-map-marker-alt text-[#A88F1D] group-hover:text-white text-xs"></i>
-                    </div>
-                    <div>
-                        <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">CAMPUS</span>
-                        <span class="text-white/80 group-hover:text-white text-xs">Calle Germán Amézaga N° 375 - Lima</span>
-                    </div>
-                </a>
+            <!-- Badge -->
+            <div class="flch-hero-v2__seal">
+                <div class="flch-hero-v2__seal-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="flch-hero-v2__seal-text">UNMSM · EST. 1551</span>
             </div>
             
-            <!-- Redes sociales con hover colors específicos -->
-            <div class="flex items-center gap-2">
-                <span class="text-[#A88F1D]/50 text-[10px] font-medium uppercase tracking-wider">SÍGUENOS</span>
-                <div class="flex items-center gap-2">
+            <!-- Título -->
+            <h1 class="flch-hero-v2__title">
+                <span class="flch-hero-v2__title-line">
+                    <span class="flch-hero-v2__title-prefix">Facultad de</span>
+                </span>
+                <span class="flch-hero-v2__title-line flch-hero-v2__title-line--main">
+                    <span class="flch-hero-v2__title-word">Letras</span>
+                    <span class="flch-hero-v2__title-word">&</span>
+                    <span class="flch-hero-v2__title-word">Ciencias</span>
+                </span>
+                <span class="flch-hero-v2__title-line flch-hero-v2__title-line--main">
+                    <span class="flch-hero-v2__title-word">Humanas</span>
+                </span>
+            </h1>
+            
+            <!-- Línea decorativa -->
+            <div class="flch-hero-v2__accent-line">
+                <div class="flch-hero-v2__accent-line-inner"></div>
+            </div>
+            
+            <!-- Descripción -->
+            <div class="flch-hero-v2__description-wrapper">
+                <p class="flch-hero-v2__description">
+                    <span class="flch-hero-v2__description-text">
+                        Bienvenidos al portal oficial de la Facultad de Letras y Ciencias Humanas 
+                        de la Universidad Nacional Mayor de San Marcos, 
+                    </span>
+                    <span class="flch-hero-v2__description-highlight">
+                        casa de estudios de nuestro premio nobel Mario Vargas Llosa
+                    </span>
+                    <span class="flch-hero-v2__description-text">
+                        y de reconocidas eminencias en el ámbito académico y cultural del Perú.
+                    </span>
+                </p>
+            </div>
+            
+            <!-- Acciones -->
+            <div class="flch-hero-v2__actions-group">
+                <div class="flch-hero-v2__actions">
+                    <a href="https://ceidletras.unmsm.edu.pe/" 
+                       class="flch-hero-v2__btn flch-hero-v2__btn--primary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <span class="flch-hero-v2__btn-text">CEID · Investigación</span>
+                        <span class="flch-hero-v2__btn-icon">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </span>
+                        <span class="flch-hero-v2__btn-glow"></span>
+                    </a>
                     
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/letrassanmarcos" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 facebook"
-                       aria-label="Facebook">
-                        <i class="fab fa-facebook-f text-base"></i>
+                    <a href="https://posgradoletras.unmsm.edu.pe/" 
+                       class="flch-hero-v2__btn flch-hero-v2__btn--secondary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <span class="flch-hero-v2__btn-text">Posgrado</span>
+                        <span class="flch-hero-v2__btn-icon">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            </svg>
+                        </span>
+                        <span class="flch-hero-v2__btn-glow"></span>
                     </a>
-
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/letrasunmsm/" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 instagram"
-                       aria-label="Instagram">
-                        <i class="fab fa-instagram text-base"></i>
-                    </a>
-
-                    <!-- YouTube -->
-                    <a href="https://www.youtube.com/@LetrasTV-p9j" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 youtube"
-                       aria-label="YouTube">
-                        <i class="fab fa-youtube text-base"></i>
-                    </a>
-
-                    <!-- LinkedIn -->
-                    <a href="https://pe.linkedin.com/school/letrasunmsm/" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 linkedin"
-                       aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in text-base"></i>
-                    </a>
-                    
+                </div>
+                
+                <!-- Scroll indicator -->
+                <div class="flch-hero-v2__scroll-indicator" aria-hidden="true">
+                    <span class="flch-hero-v2__scroll-text">Explorar</span>
+                    <div class="flch-hero-v2__scroll-line">
+                        <div class="flch-hero-v2__scroll-progress"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Efecto de brillo inferior -->
-    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A88F1D]/30 to-transparent"></div>
-</div>
-
-<!-- HEADER PRINCIPAL -->
-<header class="sticky top-0 z-50 bg-gradient-to-r from-[#0A1E3C] to-[#143B63] shadow-lg transition-all duration-300" id="header">
-    
-    <div class="container-custom">
-        <div class="flex items-center justify-between py-3 lg:py-4">
-            
-            <!-- Logo -->
-            <div class="header-logo group bg-[#0A1E3C] p-2 rounded-lg shadow-inner">
-                <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="block relative">
-                    <img src="https://letras.unmsm.edu.pe/wp-content/uploads/2022/09/LOGO-BLANCO-LETRAS-WEB_2.png" 
-                         alt="<?php bloginfo('name'); ?>"
-                         class="h-12 lg:h-16 w-auto brightness-0 invert transition-all duration-300 group-hover:scale-105"
-                         style="filter: brightness(0) invert(1);">
-                </a>
-            </div>
-            
-            <!-- Navegación desktop -->
-            <nav class="hidden lg:block" aria-label="Menú principal">
-                <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'primary',
-                    'menu_class'     => 'main-menu flex items-center gap-1',
-                    'container'      => false,
-                    'depth'          => 3,
-                    'fallback_cb'    => false,
-                    'walker'         => new Letras_FLCH_Walker_Nav()
-                ));
-                ?>
-            </nav>
-            
-            <!-- Acciones derecha -->
-            <div class="flex items-center space-x-3">
-                
-                <!-- Botón de búsqueda -->
-                <button @click="searchOpen = !searchOpen; if(searchOpen) setTimeout(() => $refs.searchInput.focus(), 300)" 
-                        class="relative w-10 h-10 rounded-full bg-white/10 hover:bg-[#A88F1D] text-white transition-all duration-300 flex items-center justify-center group"
-                        :class="{ 'bg-[#A88F1D]': searchOpen }"
-                        aria-label="Abrir buscador">
-                    <i class="fas fa-search text-sm transition-all duration-300 group-hover:scale-110"
-                       :class="{ 'rotate-90': searchOpen }"></i>
-                </button>
-                
-                <!-- Botón móvil -->
-                <button class="block lg:hidden relative w-10 h-10 rounded-full bg-white/10 hover:bg-[#A88F1D] text-white transition-all duration-300 flex items-center justify-center" 
-                        @click="mobileMenuOpen = !mobileMenuOpen; if(mobileMenuOpen) document.body.style.overflow = 'hidden'; else document.body.style.overflow = ''"
-                        :class="{ 'bg-[#A88F1D]': mobileMenuOpen }"
-                        aria-label="Abrir menú móvil">
-                    <i class="fas fa-bars text-sm transition-transform duration-300"
-                       :class="{ 'rotate-90': mobileMenuOpen }"></i>
-                </button>
-            </div>
-        </div>
+    <!-- Elementos decorativos -->
+    <div class="flch-hero-v2__floating-elements" aria-hidden="true">
+        <div class="flch-hero-v2__floating-circle flch-hero-v2__floating-circle--1"></div>
+        <div class="flch-hero-v2__floating-circle flch-hero-v2__floating-circle--2"></div>
+        <div class="flch-hero-v2__floating-circle flch-hero-v2__floating-circle--3"></div>
     </div>
-    
-    <!-- Barra de búsqueda -->
-    <div class="search-bar overflow-hidden transition-all duration-300 bg-[#0A1E3C] border-t border-[#A88F1D]/30 shadow-inner" 
-         x-show="searchOpen" 
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 transform -translate-y-2"
-         x-transition:enter-end="opacity-100 transform translate-y-0"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100 transform translate-y-0"
-         x-transition:leave-end="opacity-0 transform -translate-y-2"
-         @click.away="searchOpen = false"
-         role="search"
-         x-cloak>
-        <div class="container-custom py-4">
-            <form role="search" method="get" class="search-form relative" action="<?php echo esc_url(home_url('/')); ?>">
-                <label for="search-input" class="sr-only">Buscar en el sitio</label>
-                <input type="search" 
-                       id="search-input"
-                       x-ref="searchInput"
-                       class="w-full px-5 py-3 pr-12 text-white bg-[#1E3A5F] border border-[#A88F1D]/30 rounded-full focus:outline-none focus:border-[#A88F1D] focus:ring-2 focus:ring-[#A88F1D]/20 transition-all duration-300 placeholder-white/50" 
-                       placeholder="Buscar facultades, cursos, noticias..." 
-                       value="<?php echo get_search_query(); ?>" 
-                       name="s"
-                       autocomplete="off">
-                
-                <!-- Botón limpiar (opcional) -->
-                <button type="button" 
-                        class="absolute right-14 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"
-                        @click="$refs.searchInput.value = ''; $refs.searchInput.focus()"
-                        x-show="$refs.searchInput?.value.length > 0"
-                        x-cloak>
-                    <i class="fas fa-times-circle"></i>
-                </button>
-            </form>
-            
-            <!-- Sugerencias -->
-            <div class="flex flex-wrap gap-2 mt-3 text-xs text-white/60">
-                <span class="text-white/40">Sugerencias:</span>
-                <a href="<?php echo esc_url(home_url('/?s=Pregrado')); ?>" class="hover:text-[#A88F1D] transition-colors">Pregrado</a>
-                <a href="<?php echo esc_url(home_url('/?s=Posgrado')); ?>" class="hover:text-[#A88F1D] transition-colors">Posgrado</a>
-                <a href="<?php echo esc_url(home_url('/?s=Idiomas')); ?>" class="hover:text-[#A88F1D] transition-colors">Centro de Idiomas</a>
-                <a href="<?php echo esc_url(home_url('/?s=Biblioteca')); ?>" class="hover:text-[#A88F1D] transition-colors">Biblioteca</a>
-                <a href="<?php echo esc_url(home_url('/?s=Investigación')); ?>" class="hover:text-[#A88F1D] transition-colors">Investigación</a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Menú móvil -->
-    <div class="mobile-menu fixed inset-x-0 top-[72px] lg:hidden bg-[#0A1E3C] shadow-xl border-t border-[#A88F1D]/30 max-h-[calc(100vh-72px)] overflow-y-auto" 
-         x-show="mobileMenuOpen" 
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 transform -translate-y-2"
-         x-transition:enter-end="opacity-100 transform translate-y-0"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100 transform translate-y-0"
-         x-transition:leave-end="opacity-0 transform -translate-y-2"
-         @click.away="mobileMenuOpen = false"
-         x-cloak>
-        <nav class="px-4 py-6">
-            <?php
-            wp_nav_menu(array(
-                'theme_location' => 'primary',
-                'menu_class'     => 'space-y-2',
-                'container'      => false,
-                'depth'          => 3,
-                'fallback_cb'    => false,
-                'walker'         => new Letras_FLCH_Mobile_Walker_Nav()
-            ));
-            ?>
-            
-            <!-- Información de contacto en móvil -->
-            <div class="mt-8 pt-6 border-t border-white/10">
-                <h3 class="text-sm font-semibold text-white mb-4">Contacto</h3>
-                <div class="space-y-3 text-sm text-white/80">
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-phone-alt text-[#A88F1D] w-5"></i>
-                        <a href="tel:+5101967000" class="hover:text-[#A88F1D]">(01) 619-7000 anexo 2801</a>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-address-book text-[#A88F1D] w-5"></i>
-                        <a href="https://letras.unmsm.edu.pe/directorio/" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           class="hover:text-[#A88F1D] border-b border-transparent hover:border-[#A88F1D]">
-                            Directorio FLCH
-                        </a>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-envelope text-[#A88F1D] w-5"></i>
-                        <a href="mailto:informatica.letras@unmsm.edu.pe" class="hover:text-[#A88F1D] break-all">informatica.letras@unmsm.edu.pe</a>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-map-marker-alt text-[#A88F1D] w-5"></i>
-                        <span>Calle Germán Amézaga N° 375 - Lima</span>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
+</section>
 
-<!-- Alpine.js -->
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-<!-- Script para toggle de submenús móvil -->
+<!-- JavaScript -->
 <script>
-function toggleMobileSubmenu(button) {
-    const submenu = button.closest('li').querySelector('ul.sub-menu');
-    const icon = button.querySelector('i');
+(function() {
+    'use strict';
     
-    if (submenu) {
-        submenu.classList.toggle('hidden');
-        icon.classList.toggle('rotate-180');
-    }
-    return false;
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Guardar búsquedas recientes
-    const searchForm = document.querySelector('.search-form');
-    if (searchForm) {
-        searchForm.addEventListener('submit', function() {
-            const input = document.getElementById('search-input');
-            const searchTerm = input.value.trim();
-            
-            if (searchTerm && searchTerm.length > 2) {
-                let recentSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
-                recentSearches = [searchTerm, ...recentSearches.filter(s => s !== searchTerm)].slice(0, 5);
-                localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
-            }
-        });
-    }
-    
-    // Prevenir scroll cuando el menú móvil está abierto
-    const checkMobileMenu = () => {
-        if (window.innerWidth >= 1024) {
-            document.body.style.overflow = '';
-        }
+    // Configuración
+    const CONFIG = {
+        slideDuration: 5800,
+        transitionDuration: 2800,
+        parallaxIntensity: 0.08,
+        autoplay: true
     };
     
-    window.addEventListener('resize', checkMobileMenu);
+    class HeroSliderV2 {
+        constructor() {
+            this.slides = document.querySelectorAll('.flch-hero-v2__slide');
+            this.hero = document.querySelector('.flch-hero-v2');
+            this.currentIndex = 0;
+            this.intervalId = null;
+            this.isTransitioning = false;
+            
+            if (!this.slides.length) return;
+            
+            this.init();
+        }
+        
+        init() {
+            this.setInitialState();
+            this.bindEvents();
+            this.startAutoplay();
+        }
+        
+        setInitialState() {
+            this.slides.forEach((slide, index) => {
+                slide.style.opacity = '0';
+                slide.style.zIndex = '1';
+                slide.style.transition = `opacity ${CONFIG.transitionDuration}ms cubic-bezier(0.645, 0.045, 0.355, 1)`;
+            });
+            
+            if (this.slides[0]) {
+                this.slides[0].style.opacity = '1';
+                this.slides[0].style.zIndex = '5';
+                this.slides[0].classList.add('is-active');
+            }
+        }
+        
+        bindEvents() {
+            if (this.hero) {
+                this.hero.addEventListener('mouseenter', () => this.stopAutoplay());
+                this.hero.addEventListener('mouseleave', () => this.startAutoplay());
+            }
+        }
+        
+        transitionToNext() {
+            if (this.isTransitioning) return;
+            
+            this.isTransitioning = true;
+            
+            this.slides[this.currentIndex].style.opacity = '0';
+            this.slides[this.currentIndex].style.zIndex = '1';
+            this.slides[this.currentIndex].classList.remove('is-active');
+            
+            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+            
+            this.slides[this.currentIndex].style.opacity = '1';
+            this.slides[this.currentIndex].style.zIndex = '5';
+            this.slides[this.currentIndex].classList.add('is-active');
+            
+            setTimeout(() => {
+                this.isTransitioning = false;
+            }, CONFIG.transitionDuration);
+        }
+        
+        startAutoplay() {
+            if (!CONFIG.autoplay || this.intervalId) return;
+            this.intervalId = setInterval(() => this.transitionToNext(), CONFIG.slideDuration);
+        }
+        
+        stopAutoplay() {
+            if (this.intervalId) {
+                clearInterval(this.intervalId);
+                this.intervalId = null;
+            }
+        }
+    }
     
-    // Debug
-    console.log('Header cargado correctamente');
-    console.log('Menú desktop items:', document.querySelectorAll('.main-menu > li').length);
-});
+    // Inicializar
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => new HeroSliderV2());
+    } else {
+        new HeroSliderV2();
+    }
+})();
 </script>
 
-<main id="main" class="site-main">
+<!-- CSS - Namespace completo y selectores específicos -->
+<style>
+/* ===== HERO V2 - ESTILOS INDEPENDIENTES ===== */
+/* 
+ * Todos los selectores usan el prefijo .flch-hero-v2
+ * Sin !important para no forzar conflictos
+ * Variables locales con namespace
+ */
+
+.flch-hero-v2 {
+    --flch-v2-primary: #0A1A35;
+    --flch-v2-primary-light: #1A2A45;
+    --flch-v2-primary-dark: #051020;
+    --flch-v2-gold: #C6A43F;
+    --flch-v2-gold-light: #DAB95C;
+    --flch-v2-gold-dark: #9A7E2F;
+    --flch-v2-gold-dim: rgba(198, 164, 63, 0.15);
+    --flch-v2-white: #FFFFFF;
+    --flch-v2-offwhite: #F8F6F2;
+    --flch-v2-overlay-deep: rgba(5, 16, 32, 0.85);
+    --flch-v2-overlay-medium: rgba(10, 26, 53, 0.65);
+    
+    position: relative;
+    width: 100%;
+    height: min(90vh, 900px);
+    min-height: 650px;
+    overflow: hidden;
+    background-color: var(--flch-v2-primary);
+    color: var(--flch-v2-white);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    isolation: isolate; /* Aísla el contexto de stacking */
+}
+
+/* Media container */
+.flch-hero-v2__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 110%;
+}
+
+.flch-hero-v2__slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.65) saturate(1.2);
+    will-change: opacity;
+    opacity: 0;
+    z-index: 1;
+}
+
+.flch-hero-v2__slide.is-active {
+    opacity: 1;
+    z-index: 5;
+}
+
+/* Overlays */
+.flch-hero-v2__overlay-base {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, 
+        var(--flch-v2-overlay-deep) 0%,
+        var(--flch-v2-overlay-medium) 40%,
+        transparent 80%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.flch-hero-v2__overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, 
+        transparent 0%,
+        var(--flch-v2-overlay-deep) 100%);
+    opacity: 0.6;
+    z-index: 11;
+    pointer-events: none;
+}
+
+.flch-hero-v2__overlay-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, 
+        transparent 30%,
+        rgba(0, 0, 0, 0.4) 100%);
+    z-index: 12;
+    pointer-events: none;
+}
+
+.flch-hero-v2__texture {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        repeating-linear-gradient(45deg, 
+            rgba(255, 255, 255, 0.01) 0px,
+            rgba(255, 255, 255, 0.01) 2px,
+            transparent 2px,
+            transparent 8px);
+    background-size: 20px 20px;
+    z-index: 13;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.flch-hero-v2__light-sweep {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        transparent 100%);
+    transform: translateX(-100%);
+    animation: flch-v2-lightSweep 12s infinite;
+    z-index: 14;
+    pointer-events: none;
+}
+
+/* Divisor */
+.flch-hero-v2__divider {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 30;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.flch-hero-v2__divider-inner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(175deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.9) 30%,
+        var(--flch-v2-white) 80%);
+    transform: skewY(-1.8deg) translateY(30px);
+    transform-origin: left;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+    border-bottom: 2px solid var(--flch-v2-gold);
+}
+
+/* Contenido */
+.flch-hero-v2__content {
+    position: relative;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(2rem, 6vw, 4rem);
+}
+
+.flch-hero-v2__container {
+    max-width: 750px;
+    animation: flch-v2-containerFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Seal */
+.flch-hero-v2__seal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    padding: 0.5rem 2rem 0.5rem 1.5rem;
+    background: linear-gradient(90deg, 
+        var(--flch-v2-gold-dim) 0%,
+        transparent 100%);
+    border-left: 3px solid var(--flch-v2-gold);
+    border-radius: 0 30px 30px 0;
+    transform-origin: left;
+    animation: flch-v2-sealAppear 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.flch-hero-v2__seal-icon {
+    color: var(--flch-v2-gold);
+    animation: flch-v2-rotateSlow 20s infinite linear;
+}
+
+.flch-hero-v2__seal-text {
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--flch-v2-gold-light);
+    text-transform: uppercase;
+}
+
+/* Título */
+.flch-hero-v2__title {
+    margin-bottom: 1.5rem;
+}
+
+.flch-hero-v2__title-line {
+    display: block;
+    overflow: hidden;
+}
+
+.flch-hero-v2__title-line--main {
+    margin-top: -0.2em;
+}
+
+.flch-hero-v2__title-prefix {
+    display: block;
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--flch-v2-gold-light);
+    text-transform: uppercase;
+    transform: translateY(100%);
+    animation: flch-v2-slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.flch-hero-v2__title-word {
+    display: inline-block;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--flch-v2-white);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(100%);
+    opacity: 0;
+    animation: flch-v2-slideUpWord 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.flch-hero-v2__title-word:nth-child(1) { animation-delay: 0.3s; }
+.flch-hero-v2__title-word:nth-child(2) { animation-delay: 0.4s; }
+.flch-hero-v2__title-word:nth-child(3) { animation-delay: 0.5s; }
+.flch-hero-v2__title-word:nth-child(4) { animation-delay: 0.6s; }
+
+/* Línea decorativa */
+.flch-hero-v2__accent-line {
+    width: 120px;
+    height: 3px;
+    margin: 2rem 0 2rem 0;
+    background: linear-gradient(90deg, 
+        var(--flch-v2-gold) 0%,
+        var(--flch-v2-gold-light) 50%,
+        transparent 100%);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: flch-v2-lineExpand 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+}
+
+.flch-hero-v2__accent-line-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        transparent 100%);
+    animation: flch-v2-shimmer 3s infinite;
+}
+
+/* Descripción */
+.flch-hero-v2__description-wrapper {
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    opacity: 0;
+    animation: flch-v2-fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 1s forwards;
+}
+
+.flch-hero-v2__description {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.flch-hero-v2__description-highlight {
+    display: inline-block;
+    color: var(--flch-v2-gold);
+    font-weight: 500;
+    position: relative;
+    padding: 0 0.2rem;
+    background: linear-gradient(120deg, 
+        transparent 0%,
+        var(--flch-v2-gold-dim) 30%,
+        var(--flch-v2-gold-dim) 70%,
+        transparent 100%);
+}
+
+/* Botones */
+.flch-hero-v2__actions-group {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.flch-hero-v2__actions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.flch-hero-v2__btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    opacity: 0;
+    animation: flch-v2-buttonAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+}
+
+.flch-hero-v2__btn:nth-child(2) {
+    animation-delay: 1.3s;
+}
+
+.flch-hero-v2__btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.8s, height 0.8s;
+}
+
+.flch-hero-v2__btn:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.flch-hero-v2__btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.flch-hero-v2__btn-icon {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flch-hero-v2__btn:hover .flch-hero-v2__btn-icon {
+    transform: translateX(5px);
+}
+
+.flch-hero-v2__btn-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flch-hero-v2__btn:hover .flch-hero-v2__btn-glow {
+    transform: translateX(100%);
+}
+
+.flch-hero-v2__btn--primary {
+    background: linear-gradient(135deg, 
+        var(--flch-v2-gold) 0%,
+        var(--flch-v2-gold-light) 100%);
+    color: var(--flch-v2-primary);
+    box-shadow: 0 10px 30px rgba(198, 164, 63, 0.25);
+}
+
+.flch-hero-v2__btn--primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(198, 164, 63, 0.4);
+}
+
+.flch-hero-v2__btn--secondary {
+    background: transparent;
+    color: var(--flch-v2-white);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.flch-hero-v2__btn--secondary:hover {
+    background: var(--flch-v2-white);
+    color: var(--flch-v2-primary);
+    border-color: var(--flch-v2-white);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Scroll indicator */
+.flch-hero-v2__scroll-indicator {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0;
+    animation: flch-v2-fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 1.5s forwards;
+}
+
+.flch-hero-v2__scroll-text {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.flch-hero-v2__scroll-line {
+    width: 100px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.flch-hero-v2__scroll-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--flch-v2-gold);
+    transform: translateX(-100%);
+    animation: flch-v2-scrollProgress 2.5s infinite;
+}
+
+/* Elementos flotantes */
+.flch-hero-v2__floating-elements {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.flch-hero-v2__floating-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(198, 164, 63, 0.1) 0%,
+        transparent 70%);
+    animation: flch-v2-float 20s infinite linear;
+}
+
+.flch-hero-v2__floating-circle--1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    right: -100px;
+    animation-duration: 25s;
+}
+
+.flch-hero-v2__floating-circle--2 {
+    width: 500px;
+    height: 500px;
+    bottom: -200px;
+    left: -200px;
+    animation-duration: 35s;
+    animation-direction: reverse;
+}
+
+.flch-hero-v2__floating-circle--3 {
+    width: 200px;
+    height: 200px;
+    top: 40%;
+    right: 20%;
+    animation-duration: 15s;
+    opacity: 0.3;
+}
+
+/* ===== ANIMACIONES CON NAMESPACE ===== */
+@keyframes flch-v2-containerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flch-v2-sealAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-50px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes flch-v2-slideUp {
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes flch-v2-slideUpWord {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes flch-v2-lineExpand {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes flch-v2-fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes flch-v2-buttonAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flch-v2-scrollProgress {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes flch-v2-lightSweep {
+    0% { transform: translateX(-100%); }
+    20% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes flch-v2-float {
+    from { transform: rotate(0deg) translate(0, 0); }
+    to { transform: rotate(360deg) translate(50px, 50px); }
+}
+
+@keyframes flch-v2-rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes flch-v2-shimmer {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .flch-hero-v2__floating-elements {
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 768px) {
+    .flch-hero-v2 {
+        min-height: 600px;
+    }
+    
+    .flch-hero-v2__seal {
+        margin-bottom: 1.5rem;
+        padding: 0.4rem 1.5rem 0.4rem 1rem;
+    }
+    
+    .flch-hero-v2__title-word {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+    }
+    
+    .flch-hero-v2__accent-line {
+        margin: 1.5rem 0;
+    }
+    
+    .flch-hero-v2__actions-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .flch-hero-v2__actions {
+        gap: 1rem;
+    }
+    
+    .flch-hero-v2__btn {
+        padding: 0.7rem 2rem;
+        font-size: 0.8rem;
+    }
+    
+    .flch-hero-v2__scroll-indicator {
+        display: none;
+    }
+    
+    .flch-hero-v2__divider-inner {
+        transform: skewY(-2.5deg) translateY(25px);
+    }
+}
+
+/* Respetar preferencias de movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .flch-hero-v2 *,
+    .flch-hero-v2 *::before,
+    .flch-hero-v2 *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
