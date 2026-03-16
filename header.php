@@ -120,7 +120,7 @@
             color: #A88F1D;
         }
 
-        /* Iconos circulares - AHORA CON COLORES ESPECÍFICOS */
+        /* Iconos circulares */
         .top-bar-custom .top-bar-icon-wrapper {
             width: 1.75rem;
             height: 1.75rem;
@@ -135,17 +135,14 @@
         /* Colores específicos para cada icono de contacto */
         .top-bar-custom .top-bar-icon-wrapper.directorio {
             background-color: #A88F1D;
-            /* Azul medio */
         }
 
         .top-bar-custom .top-bar-icon-wrapper.email {
             background-color: #A88F1D;
-            /* Rojo suave */
         }
 
         .top-bar-custom .top-bar-icon-wrapper.ubicacion {
             background-color: #A88F1D;
-            /* Verde medio */
         }
 
         .top-bar-custom .top-bar-icon {
@@ -162,7 +159,6 @@
         .top-bar-custom .top-bar-label {
             display: block;
             color: #B0B0B0;
-            /* Gris más claro para mejor contraste */
             font-size: 0.5625rem;
             font-weight: 600;
             line-height: 1.2;
@@ -172,12 +168,10 @@
 
         .top-bar-custom .top-bar-value {
             color: #FFFFFF;
-            /* Blanco puro */
             font-size: 0.75rem;
             font-weight: 600;
             transition: color 0.3s ease;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-            /* Sombra para mejor legibilidad */
         }
 
         .top-bar-custom .top-bar-item:hover .top-bar-value {
@@ -186,7 +180,6 @@
 
         .top-bar-custom .top-bar-email {
             color: #FFFFFF;
-            /* Blanco puro */
             font-size: 0.75rem;
             font-weight: 500;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -205,7 +198,6 @@
 
         .top-bar-custom .top-bar-social-text {
             color: #B0B0B0;
-            /* Gris claro para mejor contraste */
             font-size: 0.625rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -238,30 +230,25 @@
         /* Colores PERMANENTES de redes sociales */
         .top-bar-custom .top-bar-social-link.facebook {
             background-color: #1877F2 !important;
-            /* Azul Facebook permanente */
         }
 
         .top-bar-custom .top-bar-social-link.instagram {
             background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4) !important;
-            /* Gradiente Instagram permanente */
         }
 
         .top-bar-custom .top-bar-social-link.youtube {
             background-color: #FF0000 !important;
-            /* Rojo YouTube permanente */
         }
 
         .top-bar-custom .top-bar-social-link.linkedin {
             background-color: #0077B5 !important;
-            /* Azul LinkedIn permanente */
         }
 
-        /* Hover effects - sin cambio de color, solo animación */
+        /* Hover effects */
         .top-bar-custom .top-bar-social-link:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             filter: brightness(1.1);
-            /* Solo un poco más brillante */
         }
 
         /* Responsive */
@@ -284,6 +271,100 @@
             .top-bar-custom {
                 display: none !important;
             }
+        }
+
+        /* ===================================
+           BARRA DE BÚSQUEDA - VERSIÓN CORREGIDA
+           =================================== */
+        .search-bar {
+            background-color: #0A1E3C !important;
+            border-top: 1px solid rgba(168, 143, 29, 0.3) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
+            position: relative;
+            z-index: 45;
+        }
+
+        .search-bar .search-input {
+            background-color: #1E3A5F !important;
+            border: 2px solid rgba(168, 143, 29, 0.3) !important;
+            color: white !important;
+            border-radius: 0.75rem !important;
+            padding: 1rem 1.5rem !important;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar .search-input:focus {
+            border-color: #A88F1D !important;
+            outline: none !important;
+            box-shadow: 0 0 0 4px rgba(168, 143, 29, 0.2) !important;
+        }
+
+        .search-bar .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .search-bar .search-clear-btn {
+            position: absolute;
+            right: 5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .search-bar .search-clear-btn:hover {
+            color: white;
+        }
+
+        .search-bar .search-submit-btn {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #A88F1D;
+            color: white;
+            font-weight: 600;
+            padding: 0.6rem 1.25rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-bar .search-submit-btn:hover {
+            background-color: #8B7718;
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.4);
+        }
+
+        .search-bar .suggestion-link {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .search-bar .suggestion-link:hover {
+            background-color: #A88F1D;
+            color: white;
+            border-color: #A88F1D;
+            transform: translateY(-2px);
         }
 
         /* ===================================
@@ -413,6 +494,12 @@
 
         .rotate-180 {
             transform: rotate(180deg);
+        }
+
+        /* Asegurar que el main content tenga el z-index correcto */
+        .site-main {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
@@ -584,24 +671,24 @@
             </div>
         </div>
 
-                <!-- Barra de búsqueda MEJORADA -->
-        <div class="search-bar overflow-hidden transition-all duration-500 bg-[#0A1E3C] border-t border-[#A88F1D]/30 shadow-inner" 
-            x-show="searchOpen" 
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 transform -translate-y-2"
-            x-transition:enter-end="opacity-100 transform translate-y-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 transform translate-y-0"
-            x-transition:leave-end="opacity-0 transform -translate-y-2"
-            @click.away="searchOpen = false"
-            role="search"
-            x-cloak>
+        <!-- Barra de búsqueda - VERSIÓN CORREGIDA -->
+        <div class="search-bar overflow-hidden transition-all duration-500" 
+             x-show="searchOpen" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 transform -translate-y-4"
+             x-transition:enter-end="opacity-100 transform translate-y-0"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100 transform translate-y-0"
+             x-transition:leave-end="opacity-0 transform -translate-y-4"
+             @click.away="searchOpen = false"
+             role="search"
+             x-cloak>
             <div class="container-custom py-6">
                 
-                <!-- Título de búsqueda (opcional para mejor UX) -->
-                <div class="text-white/70 text-sm mb-3 flex items-center gap-2">
+                <!-- Título de búsqueda -->
+                <div class="text-white/80 text-sm mb-3 flex items-center gap-2 font-medium">
                     <i class="fas fa-search text-[#A88F1D]"></i>
-                    <span>¿Qué estás buscando?</span>
+                    <span>¿Qué estás buscando en la Facultad de Letras?</span>
                 </div>
                 
                 <form role="search" method="get" class="search-form relative" action="<?php echo esc_url(home_url('/')); ?>">
@@ -609,18 +696,17 @@
                     
                     <div class="relative">
                         <input type="search" 
-                            id="search-input"
-                            x-ref="searchInput"
-                            class="w-full px-6 py-4 pr-24 text-white bg-[#1E3A5F] border-2 border-[#A88F1D]/40 rounded-xl focus:outline-none focus:border-[#A88F1D] focus:ring-4 focus:ring-[#A88F1D]/20 transition-all duration-300 placeholder-white/50 text-base md:text-lg shadow-lg" 
-                            placeholder="Buscar facultades, cursos, noticias, eventos..." 
-                            value="<?php echo get_search_query(); ?>" 
-                            name="s"
-                            autocomplete="off"
-                            style="background-color: #1E3A5F; color: white;">
+                               id="search-input"
+                               x-ref="searchInput"
+                               class="search-input w-full"
+                               placeholder="Buscar facultades, carreras, cursos, noticias, eventos..." 
+                               value="<?php echo get_search_query(); ?>" 
+                               name="s"
+                               autocomplete="off">
                         
                         <!-- Botón limpiar -->
                         <button type="button" 
-                                class="absolute right-20 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors bg-transparent border-0 cursor-pointer p-2"
+                                class="search-clear-btn"
                                 @click="$refs.searchInput.value = ''; $refs.searchInput.focus()"
                                 x-show="$refs.searchInput?.value.length > 0"
                                 x-cloak>
@@ -629,7 +715,7 @@
                         
                         <!-- Botón buscar -->
                         <button type="submit" 
-                                class="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 bg-[#A88F1D] hover:bg-[#8B7718] text-white font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
+                                class="search-submit-btn"
                                 aria-label="Buscar">
                             <i class="fas fa-search"></i>
                             <span class="hidden sm:inline">Buscar</span>
@@ -638,44 +724,49 @@
                 </form>
                 
                 <!-- Sugerencias mejoradas -->
-                <div class="flex flex-wrap items-center gap-3 mt-4 text-sm">
-                    <span class="text-white/50 flex items-center gap-1">
+                <div class="flex flex-wrap items-center gap-3 mt-4">
+                    <span class="text-white/60 flex items-center gap-1 text-sm">
                         <i class="fas fa-lightbulb text-[#A88F1D] text-xs"></i>
                         <span>Sugerencias:</span>
                     </span>
                     
                     <div class="flex flex-wrap gap-2">
                         <a href="<?php echo esc_url(home_url('/?s=Pregrado')); ?>" 
-                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                           class="suggestion-link">
                             Pregrado
                         </a>
                         <a href="<?php echo esc_url(home_url('/?s=Posgrado')); ?>" 
-                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                           class="suggestion-link">
                             Posgrado
                         </a>
                         <a href="<?php echo esc_url(home_url('/?s=Idiomas')); ?>" 
-                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                           class="suggestion-link">
                             Centro de Idiomas
                         </a>
                         <a href="<?php echo esc_url(home_url('/?s=Biblioteca')); ?>" 
-                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                           class="suggestion-link">
                             Biblioteca
                         </a>
                         <a href="<?php echo esc_url(home_url('/?s=Investigación')); ?>" 
-                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                           class="suggestion-link">
                             Investigación
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/?s=Admisión')); ?>" 
+                           class="suggestion-link">
+                            Admisión
                         </a>
                     </div>
                 </div>
                 
-                <!-- Búsquedas populares (opcional) -->
-                <div class="mt-3 pt-3 border-t border-white/10 text-xs text-white/40 flex items-center gap-2">
+                <!-- Búsquedas populares -->
+                <div class="mt-4 pt-3 border-t border-white/10 text-xs text-white/40 flex flex-wrap items-center gap-2">
                     <i class="fas fa-chart-line text-[#A88F1D]"></i>
-                    <span>Búsquedas populares:</span>
-                    <div class="flex gap-2">
-                        <span class="text-white/60">Admisión</span>
-                        <span class="text-white/60">Malla curricular</span>
-                        <span class="text-white/60">Docentes</span>
+                    <span>Búsquedas populares hoy:</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-white/50 bg-white/5 px-2 py-1 rounded-full">Malla curricular</span>
+                        <span class="text-white/50 bg-white/5 px-2 py-1 rounded-full">Docentes</span>
+                        <span class="text-white/50 bg-white/5 px-2 py-1 rounded-full">Calendario académico</span>
+                        <span class="text-white/50 bg-white/5 px-2 py-1 rounded-full">Trámites</span>
                     </div>
                 </div>
             </div>
