@@ -1,6 +1,6 @@
 <?php
 /**
- * Header template con barra superior separada para FLCH - VERSIÓN UNIFICADA
+ * Header template con barra superior separada para FLCH - VERSIÓN CORREGIDA
  *
  * @package LetrasFLCH
  */
@@ -32,10 +32,244 @@
     <meta name="theme-color" content="#0A1E3C">
     
     <style>
-        /* Estilos personalizados para Alpine.js */
+        /* ===================================
+           ESTILOS DIRECTOS PARA BARRA SUPERIOR
+           =================================== */
+        
+        /* Contenedor principal */
+        .top-bar-custom {
+            background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%) !important;
+            color: white !important;
+            border-bottom: 1px solid rgba(168, 143, 29, 0.3) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+            position: relative !important;
+            font-size: 0.875rem !important;
+            display: block !important;
+        }
+        
+        /* Efectos de brillo */
+        .top-bar-custom .top-bar-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 143, 29, 0.5), transparent);
+            z-index: 1;
+        }
+        
+        .top-bar-custom .top-bar-shine-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 143, 29, 0.3), transparent);
+            z-index: 1;
+        }
+        
+        /* Contenedor interno */
+        .top-bar-custom .top-bar-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Flex principal */
+        .top-bar-custom .top-bar-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Información de contacto */
+        .top-bar-custom .top-bar-contact {
+            display: flex;
+            align-items: center;
+        }
+        
+        .top-bar-custom .top-bar-divider {
+            display: flex;
+            align-items: center;
+        }
+        
+        .top-bar-custom .top-bar-divider > * {
+            border-right: 1px solid rgba(168, 143, 29, 0.2);
+            padding-right: 1.25rem;
+            margin-right: 1.25rem;
+        }
+        
+        .top-bar-custom .top-bar-divider > *:last-child {
+            border-right: none;
+            padding-right: 0;
+            margin-right: 0;
+        }
+        
+        /* Items de contacto */
+        .top-bar-custom .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .top-bar-custom .top-bar-item:hover {
+            color: #A88F1D;
+        }
+        
+        /* Iconos circulares */
+        .top-bar-custom .top-bar-icon-wrapper {
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 9999px;
+            background-color: rgba(168, 143, 29, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .top-bar-custom .top-bar-item:hover .top-bar-icon-wrapper {
+            background-color: #A88F1D;
+        }
+        
+        .top-bar-custom .top-bar-icon {
+            color: #A88F1D;
+            font-size: 0.75rem;
+            transition: color 0.3s ease;
+        }
+        
+        .top-bar-custom .top-bar-item:hover .top-bar-icon {
+            color: white;
+        }
+        
+        /* Textos */
+        .top-bar-custom .top-bar-label {
+            display: block;
+            color: rgba(168, 143, 29, 0.7);
+            font-size: 0.5625rem;
+            font-weight: 500;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        
+        .top-bar-custom .top-bar-value {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .top-bar-custom .top-bar-item:hover .top-bar-value {
+            color: white;
+        }
+        
+        .top-bar-custom .top-bar-email {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.75rem;
+        }
+        
+        .top-bar-custom .top-bar-item:hover .top-bar-email {
+            color: white;
+        }
+        
+        /* Redes sociales */
+        .top-bar-custom .top-bar-social {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .top-bar-custom .top-bar-social-text {
+            color: rgba(168, 143, 29, 0.5);
+            font-size: 0.625rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .top-bar-custom .top-bar-social-grid {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .top-bar-custom .top-bar-social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            background-color: rgba(168, 143, 29, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #A88F1D;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .top-bar-custom .top-bar-social-link i {
+            font-size: 1rem;
+        }
+        
+        .top-bar-custom .top-bar-social-link:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .top-bar-custom .top-bar-social-link.facebook:hover {
+            background-color: #1877F2 !important;
+        }
+        
+        .top-bar-custom .top-bar-social-link.instagram:hover {
+            background-color: #E4405F !important;
+        }
+        
+        .top-bar-custom .top-bar-social-link.youtube:hover {
+            background-color: #FF0000 !important;
+        }
+        
+        .top-bar-custom .top-bar-social-link.linkedin:hover {
+            background-color: #0077B5 !important;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1150px) {
+            .top-bar-custom .top-bar-value {
+                display: none;
+            }
+            
+            .top-bar-custom .top-bar-email {
+                font-size: 0.7rem;
+            }
+            
+            .top-bar-custom .top-bar-icon-wrapper {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .top-bar-custom {
+                display: none !important;
+            }
+        }
+        
+        /* ===================================
+           ESTILOS ADICIONALES
+           =================================== */
+        
         [x-cloak] { display: none !important; }
         
-        /* Animaciones */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -45,37 +279,6 @@
             animation: fadeInUp 0.6s ease-out forwards;
         }
         
-        /* Mejora para los íconos sociales */
-        .social-icon {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .social-icon::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
-        }
-        
-        .social-icon:hover::after {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .social-icon.facebook:hover { background-color: #1877F2 !important; }
-        .social-icon.instagram:hover { background-color: #E4405F !important; }
-        .social-icon.youtube:hover { background-color: #FF0000 !important; }
-        .social-icon.linkedin:hover { background-color: #0077B5 !important; }
-        
-        /* Scrollbar personalizada para menú móvil */
         .mobile-menu::-webkit-scrollbar {
             width: 6px;
         }
@@ -93,7 +296,6 @@
             background: #8B7718;
         }
         
-        /* Estilos para el menú desktop */
         .main-menu {
             display: flex;
             align-items: center;
@@ -119,7 +321,6 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
         
-        /* Submenús */
         .main-menu .sub-menu {
             position: absolute;
             left: 0;
@@ -166,7 +367,6 @@
             border-bottom: none;
         }
         
-        /* Flechas animadas */
         .fa-chevron-down, .fa-chevron-right {
             transition: transform 0.2s ease;
         }
@@ -182,13 +382,6 @@
         .rotate-180 {
             transform: rotate(180deg);
         }
-        
-        /* Accesibilidad - foco visible */
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid #A88F1D;
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
     </style>
 </head>
 
@@ -202,41 +395,41 @@
     Saltar al contenido principal
 </a>
 
-<!-- BARRA SUPERIOR - Unificada y funcional -->
-<div class="hidden lg:block relative bg-gradient-to-r from-[#1A1A1A] to-[#2A2A2A] text-white text-sm border-b border-[#A88F1D]/30 shadow-lg">
+<!-- BARRA SUPERIOR - CON ESTILOS DIRECTOS -->
+<div class="top-bar-custom hidden lg:block">
     
-    <!-- Efecto de brillo superior -->
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A88F1D]/50 to-transparent"></div>
+    <!-- Efectos de brillo -->
+    <div class="top-bar-shine"></div>
     
-    <div class="container-custom">
-        <div class="flex justify-between items-center py-2">
+    <div class="top-bar-container">
+        <div class="top-bar-flex">
             
             <!-- Información de contacto -->
-            <div class="flex items-center divide-x divide-[#A88F1D]/20">
+            <div class="top-bar-divider">
                 
                 <!-- Directorio -->
                 <a href="https://letras.unmsm.edu.pe/directorio/" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   class="flex items-center gap-2 pr-5 group">
-                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
-                        <i class="fas fa-address-book text-[#A88F1D] group-hover:text-white text-xs"></i>
+                   class="top-bar-item">
+                    <div class="top-bar-icon-wrapper">
+                        <i class="fas fa-address-book top-bar-icon"></i>
                     </div>
                     <div>
-                        <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">DIRECTORIO</span>
-                        <span class="text-white/90 group-hover:text-white text-xs font-medium">FLCH UNMSM</span>
+                        <span class="top-bar-label">DIRECTORIO</span>
+                        <span class="top-bar-value">FLCH UNMSM</span>
                     </div>
                 </a>
                 
                 <!-- Email -->
                 <a href="mailto:informatica.letras@unmsm.edu.pe" 
-                   class="flex items-center gap-2 px-5 group">
-                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
-                        <i class="fas fa-envelope text-[#A88F1D] group-hover:text-white text-xs"></i>
+                   class="top-bar-item">
+                    <div class="top-bar-icon-wrapper">
+                        <i class="fas fa-envelope top-bar-icon"></i>
                     </div>
                     <div>
-                        <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">EMAIL</span>
-                        <span class="text-white/80 group-hover:text-white text-xs">informatica.letras@unmsm.edu.pe</span>
+                        <span class="top-bar-label">EMAIL</span>
+                        <span class="top-bar-email">informatica.letras@unmsm.edu.pe</span>
                     </div>
                 </a>
                 
@@ -244,56 +437,56 @@
                 <a href="https://maps.app.goo.gl/..." 
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="flex items-center gap-2 pl-5 group">
-                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300">
-                        <i class="fas fa-map-marker-alt text-[#A88F1D] group-hover:text-white text-xs"></i>
+                   class="top-bar-item">
+                    <div class="top-bar-icon-wrapper">
+                        <i class="fas fa-map-marker-alt top-bar-icon"></i>
                     </div>
                     <div>
-                        <span class="text-[#A88F1D]/70 text-[9px] font-medium block leading-tight">CAMPUS</span>
-                        <span class="text-white/80 group-hover:text-white text-xs">Calle Germán Amézaga N° 375 - Lima</span>
+                        <span class="top-bar-label">CAMPUS</span>
+                        <span class="top-bar-value">Calle Germán Amézaga N° 375 - Lima</span>
                     </div>
                 </a>
             </div>
             
             <!-- Redes sociales -->
-            <div class="flex items-center gap-2">
-                <span class="text-[#A88F1D]/50 text-[10px] font-medium uppercase tracking-wider">SÍGUENOS</span>
-                <div class="flex items-center gap-2">
+            <div class="top-bar-social">
+                <span class="top-bar-social-text">SÍGUENOS</span>
+                <div class="top-bar-social-grid">
                     
                     <!-- Facebook -->
                     <a href="https://www.facebook.com/letrassanmarcos" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 facebook"
+                       class="top-bar-social-link facebook"
                        aria-label="Facebook">
-                        <i class="fab fa-facebook-f text-base"></i>
+                        <i class="fab fa-facebook-f"></i>
                     </a>
 
                     <!-- Instagram -->
                     <a href="https://www.instagram.com/letrasunmsm/" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 instagram"
+                       class="top-bar-social-link instagram"
                        aria-label="Instagram">
-                        <i class="fab fa-instagram text-base"></i>
+                        <i class="fab fa-instagram"></i>
                     </a>
 
                     <!-- YouTube -->
                     <a href="https://www.youtube.com/@LetrasTV-p9j" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 youtube"
+                       class="top-bar-social-link youtube"
                        aria-label="YouTube">
-                        <i class="fab fa-youtube text-base"></i>
+                        <i class="fab fa-youtube"></i>
                     </a>
 
                     <!-- LinkedIn -->
                     <a href="https://pe.linkedin.com/school/letrasunmsm/" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="social-icon w-10 h-10 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-[#A88F1D] hover:text-white transition-all duration-300 linkedin"
+                       class="top-bar-social-link linkedin"
                        aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in text-base"></i>
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
                     
                 </div>
@@ -302,10 +495,10 @@
     </div>
     
     <!-- Efecto de brillo inferior -->
-    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A88F1D]/30 to-transparent"></div>
+    <div class="top-bar-shine-bottom"></div>
 </div>
 
-<!-- HEADER PRINCIPAL -->
+<!-- HEADER PRINCIPAL - Se mantiene igual -->
 <header class="sticky top-0 z-50 bg-gradient-to-r from-[#0A1E3C] to-[#143B63] shadow-lg transition-all duration-300" id="header">
     
     <div class="container-custom">
@@ -499,10 +692,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     window.addEventListener('resize', checkMobileMenu);
-    
-    // Debug
-    console.log('Header cargado correctamente');
-    console.log('Menú desktop items:', document.querySelectorAll('.main-menu > li').length);
 });
 </script>
 
