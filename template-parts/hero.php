@@ -131,43 +131,45 @@
             <!-- Grupo de acciones -->
             <div class="flch-hero__actions">
                 
-                <!-- Botones principales -->
+                <!-- Botones principales - VERSIÓN CORREGIDA CON ALINEACIÓN -->
                 <div class="flch-hero__buttons">
                     
-                    <!-- CEID -->
+                    <!-- CEID - Primario -->
                     <a href="https://ceidletras.unmsm.edu.pe/" 
                        class="flch-btn flch-btn--primary"
                        target="_blank"
                        rel="noopener noreferrer">
-                        <span class="flch-btn__text">CEID · Investigación</span>
+                        <span class="flch-btn__text">CEID</span>
+                        <span class="flch-btn__badge">Investigación</span>
                         <span class="flch-btn__icon" aria-hidden="true">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
                     </a>
                     
-                    <!-- Posgrado -->
+                    <!-- Posgrado - Secundario con borde claro -->
                     <a href="https://posgradoletras.unmsm.edu.pe/" 
                        class="flch-btn flch-btn--secondary"
                        target="_blank"
                        rel="noopener noreferrer">
                         <span class="flch-btn__text">Posgrado</span>
                         <span class="flch-btn__icon" aria-hidden="true">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
                     </a>
                     
-                    <!-- Suficiencia Idiomas -->
+                    <!-- Suficiencia Idiomas - Secundario con borde claro -->
                     <a href="https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/" 
                        class="flch-btn flch-btn--secondary"
                        target="_blank"
                        rel="noopener noreferrer">
-                        <span class="flch-btn__text">Suficiencia Idiomas</span>
+                        <span class="flch-btn__text">Suficiencia</span>
+                        <span class="flch-btn__subtext">Idiomas</span>
                         <span class="flch-btn__icon" aria-hidden="true">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
@@ -200,17 +202,13 @@
     
     // Configuración optimizada
     const CONFIG = {
-        slideDuration: 6000,      // 6 segundos por slide
-        transitionDuration: 2400,  // 2.4 segundos de transición
+        slideDuration: 6000,
+        transitionDuration: 2400,
         autoplay: true,
         pauseOnHover: true,
-        easing: [0.25, 0.1, 0.25, 1] // Curva easing personalizada
+        easing: [0.25, 0.1, 0.25, 1]
     };
     
-    /**
-     * Hero Slider Class
-     * Maneja el slideshow con rendimiento optimizado
-     */
     class HeroSlider {
         constructor() {
             this.slides = document.querySelectorAll('.flch-hero__slide');
@@ -224,9 +222,6 @@
             this.init();
         }
         
-        /**
-         * Inicialización
-         */
         init() {
             this.setInitialState();
             this.bindEvents();
@@ -234,9 +229,6 @@
             this.preloadImages();
         }
         
-        /**
-         * Estado inicial de los slides
-         */
         setInitialState() {
             this.slides.forEach((slide, index) => {
                 slide.style.opacity = '0';
@@ -251,63 +243,42 @@
             });
         }
         
-        /**
-         * Event listeners
-         */
         bindEvents() {
             if (!this.hero || !CONFIG.pauseOnHover) return;
             
             this.hero.addEventListener('mouseenter', () => this.stopAutoplay());
             this.hero.addEventListener('mouseleave', () => this.startAutoplay());
             
-            // Pausar cuando la pestaña no está visible
             document.addEventListener('visibilitychange', () => {
-                if (document.hidden) {
-                    this.stopAutoplay();
-                } else {
-                    this.startAutoplay();
-                }
+                document.hidden ? this.stopAutoplay() : this.startAutoplay();
             });
         }
         
-        /**
-         * Transición al siguiente slide
-         */
         transitionToNext() {
             if (this.isTransitioning || !this.slides.length) return;
             
             this.isTransitioning = true;
             
-            // Ocultar slide actual
             this.slides[this.currentIndex].style.opacity = '0';
             this.slides[this.currentIndex].style.zIndex = '1';
             this.slides[this.currentIndex].classList.remove('is-active');
             
-            // Calcular siguiente
             this.currentIndex = (this.currentIndex + 1) % this.slides.length;
             
-            // Mostrar nuevo slide
             this.slides[this.currentIndex].style.opacity = '1';
             this.slides[this.currentIndex].style.zIndex = '5';
             this.slides[this.currentIndex].classList.add('is-active');
             
-            // Reset flag después de la transición
             setTimeout(() => {
                 this.isTransitioning = false;
             }, CONFIG.transitionDuration);
         }
         
-        /**
-         * Iniciar autoplay
-         */
         startAutoplay() {
             if (!CONFIG.autoplay || this.intervalId) return;
             this.intervalId = setInterval(() => this.transitionToNext(), CONFIG.slideDuration);
         }
         
-        /**
-         * Detener autoplay
-         */
         stopAutoplay() {
             if (this.intervalId) {
                 clearInterval(this.intervalId);
@@ -315,9 +286,6 @@
             }
         }
         
-        /**
-         * Precarga de imágenes (mejora rendimiento)
-         */
         preloadImages() {
             if ('requestIdleCallback' in window) {
                 requestIdleCallback(() => {
@@ -336,7 +304,6 @@
         }
     }
     
-    // Inicialización diferida
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => new HeroSlider());
     } else {
@@ -345,7 +312,6 @@
 })();
 </script>
 
-<!-- CSS optimizado -->
 <style>
 /* ===== VARIABLES CSS ===== */
 :root {
@@ -367,6 +333,10 @@
     --flch-white-70: rgba(255, 255, 255, 0.7);
     --flch-white-60: rgba(255, 255, 255, 0.6);
     --flch-white-50: rgba(255, 255, 255, 0.5);
+    --flch-white-40: rgba(255, 255, 255, 0.4);
+    --flch-white-30: rgba(255, 255, 255, 0.3);
+    --flch-white-20: rgba(255, 255, 255, 0.2);
+    --flch-white-10: rgba(255, 255, 255, 0.1);
     
     /* Overlays */
     --flch-overlay-deep: rgba(5, 16, 32, 0.85);
@@ -689,64 +659,102 @@
     gap: var(--flch-space-6);
 }
 
+/* ===== BOTONES - VERSIÓN CORREGIDA CON ALINEACIÓN ===== */
 .flch-hero__buttons {
     display: flex;
-    gap: var(--flch-space-4);
     flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
 }
 
-/* ===== BOTONES ===== */
+/* Base de botones - TODOS CON EL MISMO TAMAÑO */
 .flch-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: var(--flch-space-3);
-    padding: 0.9rem 2.2rem;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.5px;
     text-decoration: none;
-    border: none;
     cursor: pointer;
-    transition: all 0.3s var(--flch-ease-out);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 6px;
+    min-width: 140px;
+    height: 48px;
+    box-sizing: border-box;
+    white-space: nowrap;
 }
 
+/* Botón primario */
 .flch-btn--primary {
-    background: linear-gradient(135deg, 
-        var(--flch-gold) 0%,
-        var(--flch-gold-light) 100%);
+    background: linear-gradient(135deg, var(--flch-gold) 0%, var(--flch-gold-light) 100%);
     color: var(--flch-primary);
+    border: 2px solid transparent;
     box-shadow: var(--flch-shadow-gold);
 }
 
 .flch-btn--primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(198, 164, 63, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(198, 164, 63, 0.4);
 }
 
+/* Botón secundario - CON BORDE CLARO (como en la imagen) */
 .flch-btn--secondary {
     background: transparent;
     color: var(--flch-white);
-    border: 2px solid var(--flch-white-30);
-    backdrop-filter: blur(5px);
+    border: 2px solid var(--flch-white-80);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .flch-btn--secondary:hover {
     background: var(--flch-white);
     color: var(--flch-primary);
     border-color: var(--flch-white);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: var(--flch-shadow-md);
 }
 
+/* Texto principal del botón */
+.flch-btn__text {
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Badge para "Investigación" (más pequeño) */
+.flch-btn__badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 400;
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    margin-left: 0.25rem;
+}
+
+/* Subtexto para "Idiomas" */
+.flch-btn__subtext {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 400;
+    opacity: 0.9;
+    margin-left: 0.15rem;
+}
+
+/* Icono */
 .flch-btn__icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s var(--flch-ease-out);
+    transition: transform 0.3s ease;
 }
 
 .flch-btn:hover .flch-btn__icon {
@@ -916,12 +924,14 @@
     }
     
     .flch-hero__buttons {
-        gap: var(--flch-space-3);
+        gap: 0.75rem;
     }
     
     .flch-btn {
-        padding: 0.7rem 1.8rem;
+        padding: 0.7rem 1.2rem;
+        min-width: 130px;
         font-size: 0.8rem;
+        height: 44px;
     }
     
     .flch-hero__scroll {
@@ -937,11 +947,18 @@
     .flch-hero__buttons {
         flex-direction: column;
         width: 100%;
+        gap: 0.75rem;
     }
     
     .flch-btn {
         width: 100%;
-        justify-content: center;
+        justify-content: space-between;
+        min-width: 100%;
+    }
+    
+    .flch-btn__badge,
+    .flch-btn__subtext {
+        display: inline-block; /* Se mantienen visibles */
     }
 }
 
