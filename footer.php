@@ -102,7 +102,7 @@
                 <ul class="flch-footer__list flch-footer__list--compact">
                     <?php
                     $programs = [
-                        ['url' => 'https://posgradoletras.unmsm.edu.pe/', 'title' => 'Pregrado', 'icon' => 'fa-solid fa-graduation-cap'],
+                        ['url' => 'https://posgradoletras.unmsm.edu.pe/', 'title' => 'Posgrado', 'icon' => 'fa-solid fa-graduation-cap'],
                         ['url' => 'https://ceidletras.unmsm.edu.pe/', 'title' => 'Centro de Idiomas', 'icon' => 'fa-solid fa-language'],
                         ['url' => 'https://letras.unmsm.edu.pe/cerseu/', 'title' => 'CERSEU', 'icon' => 'fa-solid fa-hand-holding-heart'],
                         ['url' => 'https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/', 'title' => 'OESI', 'icon' => 'fa-solid fa-certificate']
