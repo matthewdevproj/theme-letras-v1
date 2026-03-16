@@ -112,15 +112,17 @@
                 <div class="flch-hero__accent-line-inner"></div>
             </div>
             
-            <!-- Descripción institucional -->
+            <!-- Descripción institucional - VERSIÓN CORREGIDA -->
             <div class="flch-hero__description-wrapper">
                 <p class="flch-hero__description">
                     <span class="flch-hero__description-text">
                         Bienvenidos al portal oficial de la Facultad de Letras y Ciencias Humanas 
                         de la Universidad Nacional Mayor de San Marcos, 
+                    </span>
                     <span class="flch-hero__description-highlight">
                         casa de estudios de nuestro premio nobel Mario Vargas Llosa
                     </span>
+                    <span class="flch-hero__description-text">
                         y de reconocidas eminencias en el ámbito académico y cultural del Perú.
                     </span>
                 </p>
@@ -619,10 +621,10 @@
     animation: shimmer 3s infinite;
 }
 
-/* ===== DESCRIPCIÓN ===== */
+/* ===== DESCRIPCIÓN CORREGIDA ===== */
 .flch-hero__description-wrapper {
     margin-bottom: var(--flch-space-8);
-    max-width: 600px;
+    max-width: 650px;
 }
 
 .flch-hero__description {
@@ -630,22 +632,27 @@
     line-height: 1.7;
     color: var(--flch-white-90);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
 }
 
 .flch-hero__description-text {
     display: inline;
+    color: var(--flch-white-90);
 }
 
 .flch-hero__description-highlight {
-    display: inline-block;
+    display: inline;
     color: var(--flch-gold);
-    font-weight: 500;
-    padding: 0 0.2rem;
+    font-weight: 600;
     background: linear-gradient(120deg, 
         transparent 0%,
         var(--flch-gold-dim) 30%,
         var(--flch-gold-dim) 70%,
         transparent 100%);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    white-space: normal;
+    position: relative;
 }
 
 /* ===== ACCIONES ===== */
