@@ -621,7 +621,7 @@
     animation: shimmer 3s infinite;
 }
 
-/* ===== DESCRIPCIÓN CORREGIDA ===== */
+/* ===== DESCRIPCIÓN - VERSIÓN DEFINITIVA ===== */
 .flch-hero__description-wrapper {
     margin-bottom: var(--flch-space-8);
     max-width: 650px;
@@ -633,15 +633,16 @@
     color: var(--flch-white-90);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin: 0;
+    display: block; /* Aseguramos que el párrafo sea bloque */
 }
 
 .flch-hero__description-text {
-    display: inline;
+    display: inline; /* Forzamos inline */
     color: var(--flch-white-90);
 }
 
 .flch-hero__description-highlight {
-    display: inline;
+    display: inline !important; /* Forzamos inline con !important */
     color: var(--flch-gold);
     font-weight: 600;
     background: linear-gradient(120deg, 
@@ -649,12 +650,19 @@
         var(--flch-gold-dim) 30%,
         var(--flch-gold-dim) 70%,
         transparent 100%);
-    padding: 0.1rem 0.3rem;
-    border-radius: 4px;
+    padding: 0.1rem 0.2rem;
+    border-radius: 3px;
     white-space: normal;
-    position: relative;
+    line-height: inherit; /* Hereda la altura de línea del padre */
+    vertical-align: baseline; /* Alineación correcta */
 }
 
+/* Aseguramos que no haya elementos bloque dentro */
+.flch-hero__description-text,
+.flch-hero__description-highlight {
+    float: none;
+    clear: none;
+}
 /* ===== ACCIONES ===== */
 .flch-hero__actions {
     display: flex;
