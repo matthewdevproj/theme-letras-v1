@@ -108,7 +108,7 @@
                        class="flch-btn flch-btn--primary"
                        target="_blank"
                        rel="noopener noreferrer">
-                        <span class="flch-btn__text">CEID · Investigación</span>
+                        <span class="flch-btn__text">CEID</span>
                         <span class="flch-btn__icon">
                             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                                 <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -122,6 +122,19 @@
                        target="_blank"
                        rel="noopener noreferrer">
                         <span class="flch-btn__text">Posgrado</span>
+                        <span class="flch-btn__icon">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            </svg>
+                        </span>
+                        <span class="flch-btn__glow"></span>
+                    </a>
+                    
+                    <a href="https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/" 
+                       class="flch-btn flch-btn--secondary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <span class="flch-btn__text">Suficiencia Idiomas</span>
                         <span class="flch-btn__icon">
                             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                                 <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-width="1.5" fill="none"/>
