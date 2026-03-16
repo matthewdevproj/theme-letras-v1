@@ -134,17 +134,17 @@
 
         /* Colores específicos para cada icono de contacto */
         .top-bar-custom .top-bar-icon-wrapper.directorio {
-            background-color: #4A6FA5;
+            background-color: #A88F1D;
             /* Azul medio */
         }
 
         .top-bar-custom .top-bar-icon-wrapper.email {
-            background-color: #C45A5A;
+            background-color: #A88F1D;
             /* Rojo suave */
         }
 
         .top-bar-custom .top-bar-icon-wrapper.ubicacion {
-            background-color: #5A8F6C;
+            background-color: #A88F1D;
             /* Verde medio */
         }
 
@@ -584,9 +584,9 @@
             </div>
         </div>
 
-        <!-- Barra de búsqueda -->
-        <div class="search-bar overflow-hidden transition-all duration-300 bg-[#0A1E3C] border-t border-[#A88F1D]/30 shadow-inner"
-            x-show="searchOpen"
+                <!-- Barra de búsqueda MEJORADA -->
+        <div class="search-bar overflow-hidden transition-all duration-500 bg-[#0A1E3C] border-t border-[#A88F1D]/30 shadow-inner" 
+            x-show="searchOpen" 
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 transform -translate-y-2"
             x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -596,36 +596,87 @@
             @click.away="searchOpen = false"
             role="search"
             x-cloak>
-            <div class="container-custom py-4">
+            <div class="container-custom py-6">
+                
+                <!-- Título de búsqueda (opcional para mejor UX) -->
+                <div class="text-white/70 text-sm mb-3 flex items-center gap-2">
+                    <i class="fas fa-search text-[#A88F1D]"></i>
+                    <span>¿Qué estás buscando?</span>
+                </div>
+                
                 <form role="search" method="get" class="search-form relative" action="<?php echo esc_url(home_url('/')); ?>">
                     <label for="search-input" class="sr-only">Buscar en el sitio</label>
-                    <input type="search"
-                        id="search-input"
-                        x-ref="searchInput"
-                        class="w-full px-5 py-3 pr-12 text-white bg-[#1E3A5F] border border-[#A88F1D]/30 rounded-full focus:outline-none focus:border-[#A88F1D] focus:ring-2 focus:ring-[#A88F1D]/20 transition-all duration-300 placeholder-white/50"
-                        placeholder="Buscar facultades, cursos, noticias..."
-                        value="<?php echo get_search_query(); ?>"
-                        name="s"
-                        autocomplete="off">
-
-                    <!-- Botón limpiar -->
-                    <button type="button"
-                        class="absolute right-14 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"
-                        @click="$refs.searchInput.value = ''; $refs.searchInput.focus()"
-                        x-show="$refs.searchInput?.value.length > 0"
-                        x-cloak>
-                        <i class="fas fa-times-circle"></i>
-                    </button>
+                    
+                    <div class="relative">
+                        <input type="search" 
+                            id="search-input"
+                            x-ref="searchInput"
+                            class="w-full px-6 py-4 pr-24 text-white bg-[#1E3A5F] border-2 border-[#A88F1D]/40 rounded-xl focus:outline-none focus:border-[#A88F1D] focus:ring-4 focus:ring-[#A88F1D]/20 transition-all duration-300 placeholder-white/50 text-base md:text-lg shadow-lg" 
+                            placeholder="Buscar facultades, cursos, noticias, eventos..." 
+                            value="<?php echo get_search_query(); ?>" 
+                            name="s"
+                            autocomplete="off"
+                            style="background-color: #1E3A5F; color: white;">
+                        
+                        <!-- Botón limpiar -->
+                        <button type="button" 
+                                class="absolute right-20 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors bg-transparent border-0 cursor-pointer p-2"
+                                @click="$refs.searchInput.value = ''; $refs.searchInput.focus()"
+                                x-show="$refs.searchInput?.value.length > 0"
+                                x-cloak>
+                            <i class="fas fa-times-circle text-lg"></i>
+                        </button>
+                        
+                        <!-- Botón buscar -->
+                        <button type="submit" 
+                                class="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 bg-[#A88F1D] hover:bg-[#8B7718] text-white font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
+                                aria-label="Buscar">
+                            <i class="fas fa-search"></i>
+                            <span class="hidden sm:inline">Buscar</span>
+                        </button>
+                    </div>
                 </form>
-
-                <!-- Sugerencias -->
-                <div class="flex flex-wrap gap-2 mt-3 text-xs text-white/60">
-                    <span class="text-white/40">Sugerencias:</span>
-                    <a href="<?php echo esc_url(home_url('/?s=Pregrado')); ?>" class="hover:text-[#A88F1D] transition-colors">Pregrado</a>
-                    <a href="<?php echo esc_url(home_url('/?s=Posgrado')); ?>" class="hover:text-[#A88F1D] transition-colors">Posgrado</a>
-                    <a href="<?php echo esc_url(home_url('/?s=Idiomas')); ?>" class="hover:text-[#A88F1D] transition-colors">Centro de Idiomas</a>
-                    <a href="<?php echo esc_url(home_url('/?s=Biblioteca')); ?>" class="hover:text-[#A88F1D] transition-colors">Biblioteca</a>
-                    <a href="<?php echo esc_url(home_url('/?s=Investigación')); ?>" class="hover:text-[#A88F1D] transition-colors">Investigación</a>
+                
+                <!-- Sugerencias mejoradas -->
+                <div class="flex flex-wrap items-center gap-3 mt-4 text-sm">
+                    <span class="text-white/50 flex items-center gap-1">
+                        <i class="fas fa-lightbulb text-[#A88F1D] text-xs"></i>
+                        <span>Sugerencias:</span>
+                    </span>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <a href="<?php echo esc_url(home_url('/?s=Pregrado')); ?>" 
+                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                            Pregrado
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/?s=Posgrado')); ?>" 
+                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                            Posgrado
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/?s=Idiomas')); ?>" 
+                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                            Centro de Idiomas
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/?s=Biblioteca')); ?>" 
+                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                            Biblioteca
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/?s=Investigación')); ?>" 
+                        class="px-4 py-2 bg-white/10 hover:bg-[#A88F1D] text-white/80 hover:text-white rounded-full transition-all duration-300 text-xs border border-white/20 hover:border-[#A88F1D]">
+                            Investigación
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Búsquedas populares (opcional) -->
+                <div class="mt-3 pt-3 border-t border-white/10 text-xs text-white/40 flex items-center gap-2">
+                    <i class="fas fa-chart-line text-[#A88F1D]"></i>
+                    <span>Búsquedas populares:</span>
+                    <div class="flex gap-2">
+                        <span class="text-white/60">Admisión</span>
+                        <span class="text-white/60">Malla curricular</span>
+                        <span class="text-white/60">Docentes</span>
+                    </div>
                 </div>
             </div>
         </div>
