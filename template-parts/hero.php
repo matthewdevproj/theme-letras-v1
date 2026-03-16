@@ -118,11 +118,9 @@
                     <span class="flch-hero__description-text">
                         Bienvenidos al portal oficial de la Facultad de Letras y Ciencias Humanas 
                         de la Universidad Nacional Mayor de San Marcos, 
-                    </span>
                     <span class="flch-hero__description-highlight">
                         casa de estudios de nuestro premio nobel Mario Vargas Llosa
                     </span>
-                    <span class="flch-hero__description-text">
                         y de reconocidas eminencias en el ámbito académico y cultural del Perú.
                     </span>
                 </p>
