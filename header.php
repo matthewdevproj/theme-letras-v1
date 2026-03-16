@@ -1,6 +1,10 @@
 <?php
 /**
+<<<<<<< Updated upstream
  * Header template con barra superior separada para FLCH - Versión Final
+=======
+ * Header template con barra superior separada para FLCH - Versión Final Optimizada
+>>>>>>> Stashed changes
  *
  * @package LetrasFLCH
  */
@@ -32,6 +36,7 @@
     <meta name="theme-color" content="#0A1E3C">
     
     <style>
+<<<<<<< Updated upstream
         /* ===================================
            ESTILOS INDEPENDIENTES - BARRA SUPERIOR
            =================================== */
@@ -266,6 +271,12 @@
            =================================== */
         [x-cloak] { display: none !important; }
         
+=======
+        /* Estilos personalizados para Alpine.js y mejoras */
+        [x-cloak] { display: none !important; }
+        
+        /* Animaciones personalizadas */
+>>>>>>> Stashed changes
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -275,6 +286,47 @@
             animation: fadeInUp 0.6s ease-out forwards;
         }
         
+<<<<<<< Updated upstream
+=======
+        /* Mejora para los íconos sociales */
+        .social-icon {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+        
+        .social-icon:hover::after {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .social-icon.facebook:hover { background-color: #1877F2 !important; }
+        .social-icon.instagram:hover { background-color: #E4405F !important; }
+        .social-icon.youtube:hover { background-color: #FF0000 !important; }
+        .social-icon.linkedin:hover { background-color: #0077B5 !important; }
+        
+        /* Mejora de accesibilidad - foco visible */
+        a:focus-visible {
+            outline: 2px solid #A88F1D;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+        
+        /* Scrollbar personalizada para menú móvil */
+>>>>>>> Stashed changes
         .mobile-menu::-webkit-scrollbar {
             width: 6px;
         }
@@ -292,6 +344,10 @@
             background: #8B7718;
         }
         
+<<<<<<< Updated upstream
+=======
+        /* Estilos para el menú desktop */
+>>>>>>> Stashed changes
         .main-menu {
             display: flex;
             align-items: center;
@@ -317,6 +373,10 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
         
+<<<<<<< Updated upstream
+=======
+        /* Submenús */
+>>>>>>> Stashed changes
         .main-menu .sub-menu {
             position: absolute;
             left: 0;
@@ -363,6 +423,10 @@
             border-bottom: none;
         }
         
+<<<<<<< Updated upstream
+=======
+        /* Flechas animadas */
+>>>>>>> Stashed changes
         .fa-chevron-down, .fa-chevron-right {
             transition: transform 0.2s ease;
         }
@@ -375,9 +439,37 @@
             transform: translateX(4px);
         }
         
+<<<<<<< Updated upstream
         .rotate-180 {
             transform: rotate(180deg);
         }
+=======
+        /* Rotación para móvil */
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+        
+        /* Animación para tooltips */
+        .group:hover .absolute {
+            animation: fadeInUp 0.2s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 5px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+        
+        /* Contraste garantizado */
+        .text-white\/95 {
+            color: rgba(255, 255, 255, 0.95);
+        }
+>>>>>>> Stashed changes
     </style>
 </head>
 
@@ -391,6 +483,7 @@
     Saltar al contenido principal
 </a>
 
+<<<<<<< Updated upstream
 <!-- BARRA SUPERIOR - Con estilos independientes -->
 <div class="flch-topbar hidden lg:block">
     
@@ -440,10 +533,69 @@
                     <div>
                         <span class="flch-topbar__label">CAMPUS</span>
                         <span class="flch-topbar__value">Calle Germán Amézaga N° 375 - Lima</span>
+=======
+<!-- BARRA SUPERIOR - Versión optimizada con alto contraste y mejor UX -->
+<div class="hidden lg:block relative bg-gradient-to-r from-[#0A1E3C] to-[#143B63] text-white text-sm border-b border-[#A88F1D]/40 shadow-lg">
+    
+    <!-- Efecto de brillo superior -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A88F1D]/60 to-transparent"></div>
+    
+    <div class="container-custom">
+        <div class="flex justify-between items-center py-2">
+            
+            <!-- Información de contacto - Mejorada semánticamente -->
+            <div class="flex items-center divide-x divide-[#A88F1D]/30">
+                
+                <!-- Directorio - Con micro-interacción mejorada -->
+                <a href="https://letras.unmsm.edu.pe/directorio/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="flex items-center gap-2 pr-5 group relative overflow-hidden"
+                   aria-label="Directorio FLCH UNMSM">
+                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300 group-hover:scale-110">
+                        <i class="fas fa-address-book text-[#A88F1D] group-hover:text-white text-xs transition-colors"></i>
+                    </div>
+                    <div>
+                        <span class="text-[#A88F1D] text-[9px] font-semibold block leading-tight uppercase tracking-wider">DIRECTORIO</span>
+                        <span class="text-white/95 group-hover:text-white text-xs font-medium">Facultad de Letras</span>
+                    </div>
+                </a>
+                
+                <!-- Email - Con microtip y mejor contraste -->
+                <a href="mailto:informatica.letras@unmsm.edu.pe" 
+                   class="flex items-center gap-2 px-5 group relative"
+                   aria-label="Enviar correo a informatica.letras@unmsm.edu.pe">
+                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300 group-hover:scale-110">
+                        <i class="fas fa-envelope text-[#A88F1D] group-hover:text-white text-xs transition-colors"></i>
+                    </div>
+                    <div>
+                        <span class="text-[#A88F1D] text-[9px] font-semibold block leading-tight uppercase tracking-wider">EMAIL</span>
+                        <span class="text-white/95 group-hover:text-white text-xs font-medium">informatica.letras@...</span>
+                    </div>
+                    
+                    <!-- Tooltip moderno en hover -->
+                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[#1E4A7A] text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-lg pointer-events-none z-50">
+                        Copiar dirección completa
+                    </span>
+                </a>
+                
+                <!-- Ubicación - Con microinteracción de mapa -->
+                <a href="https://maps.app.goo.gl/..." 
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="flex items-center gap-2 pl-5 group relative">
+                    <div class="w-7 h-7 rounded-full bg-[#A88F1D]/20 flex items-center justify-center group-hover:bg-[#A88F1D] transition-all duration-300 group-hover:scale-110">
+                        <i class="fas fa-map-marker-alt text-[#A88F1D] group-hover:text-white text-xs transition-colors"></i>
+                    </div>
+                    <div>
+                        <span class="text-[#A88F1D] text-[9px] font-semibold block leading-tight uppercase tracking-wider">CAMPUS</span>
+                        <span class="text-white/95 group-hover:text-white text-xs font-medium">Ciudad Universitaria</span>
+>>>>>>> Stashed changes
                     </div>
                 </a>
             </div>
             
+<<<<<<< Updated upstream
             <!-- Redes sociales -->
             <div class="flch-topbar__social">
                 <span class="flch-topbar__social-text">SÍGUENOS</span>
@@ -456,33 +608,65 @@
                        class="flch-topbar__social-link facebook"
                        aria-label="Facebook">
                         <i class="fab fa-facebook-f flch-topbar__social-icon"></i>
+=======
+            <!-- Redes sociales - Con animaciones y estados mejorados -->
+            <div class="flex items-center gap-2">
+                <span class="text-[#A88F1D] text-[10px] font-semibold uppercase tracking-wider border-r border-[#A88F1D]/30 pr-3">SÍGUENOS</span>
+                <div class="flex items-center gap-2">
+                    
+                    <!-- Facebook - Con efecto ripple simplificado -->
+                    <a href="https://www.facebook.com/letrassanmarcos" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="social-icon w-9 h-9 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-white hover:bg-[#1877F2] transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                       aria-label="Facebook Facultad de Letras">
+                        <i class="fab fa-facebook-f text-sm"></i>
+>>>>>>> Stashed changes
                     </a>
 
                     <!-- Instagram -->
                     <a href="https://www.instagram.com/letrasunmsm/" 
                        target="_blank" 
                        rel="noopener noreferrer"
+<<<<<<< Updated upstream
                        class="flch-topbar__social-link instagram"
                        aria-label="Instagram">
                         <i class="fab fa-instagram flch-topbar__social-icon"></i>
+=======
+                       class="social-icon w-9 h-9 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-white hover:bg-[#E4405F] transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                       aria-label="Instagram Facultad de Letras">
+                        <i class="fab fa-instagram text-sm"></i>
+>>>>>>> Stashed changes
                     </a>
 
                     <!-- YouTube -->
                     <a href="https://www.youtube.com/@LetrasTV-p9j" 
                        target="_blank" 
                        rel="noopener noreferrer"
+<<<<<<< Updated upstream
                        class="flch-topbar__social-link youtube"
                        aria-label="YouTube">
                         <i class="fab fa-youtube flch-topbar__social-icon"></i>
+=======
+                       class="social-icon w-9 h-9 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-white hover:bg-[#FF0000] transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                       aria-label="YouTube Facultad de Letras">
+                        <i class="fab fa-youtube text-sm"></i>
+>>>>>>> Stashed changes
                     </a>
 
                     <!-- LinkedIn -->
                     <a href="https://pe.linkedin.com/school/letrasunmsm/" 
                        target="_blank" 
                        rel="noopener noreferrer"
+<<<<<<< Updated upstream
                        class="flch-topbar__social-link linkedin"
                        aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in flch-topbar__social-icon"></i>
+=======
+                       class="social-icon w-9 h-9 rounded-lg bg-[#A88F1D]/20 flex items-center justify-center text-white hover:bg-[#0077B5] transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                       aria-label="LinkedIn Facultad de Letras">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+>>>>>>> Stashed changes
                     </a>
                     
                 </div>
@@ -491,10 +675,17 @@
     </div>
     
     <!-- Efecto de brillo inferior -->
+<<<<<<< Updated upstream
     <div class="flch-topbar__shine-bottom"></div>
 </div>
 
 <!-- HEADER PRINCIPAL (el resto igual) -->
+=======
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A88F1D]/40 to-transparent"></div>
+</div>
+
+<!-- HEADER PRINCIPAL -->
+>>>>>>> Stashed changes
 <header class="sticky top-0 z-50 bg-gradient-to-r from-[#0A1E3C] to-[#143B63] shadow-lg transition-all duration-300" id="header">
     
     <div class="container-custom">
@@ -572,7 +763,11 @@
                        name="s"
                        autocomplete="off">
                 
+<<<<<<< Updated upstream
                 <!-- Botón limpiar -->
+=======
+                <!-- Botón limpiar (opcional) -->
+>>>>>>> Stashed changes
                 <button type="button" 
                         class="absolute right-14 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"
                         @click="$refs.searchInput.value = ''; $refs.searchInput.focus()"
