@@ -735,7 +735,7 @@
                         </div>
                         <div>
                             <span class="top-bar-label">HORARIOS ACADÉMICOS</span>
-                            <span class="top-bar-value">Conoce tu horario - 2026-1</span>
+                            <span class="top-bar-value">CONOCE TUS HORARIOS - CICLO 2026-I</span>
                         </div>
                     </a>
                 </div>
