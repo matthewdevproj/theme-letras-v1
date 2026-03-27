@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Header template con barra superior separada para FLCH - VERSIÓN PREMIUM
+ * Header template con barra superior separada para FLCH - VERSIÓN PREMIUM RESPONSIVE
  *
  * @package LetrasFLCH
  */
@@ -42,11 +42,16 @@
             --color-primary-light: #143B63;
             --color-accent: #A88F1D;
             --color-accent-dark: #8B7718;
+            --color-accent-glow: rgba(168, 143, 29, 0.35);
             --color-text-light: #FFFFFF;
             --color-text-muted: #E0E0E0;
             --color-text-dim: #B0B0B0;
             --color-bg-dark: #1A1A1A;
             --color-bg-darker: #0F0F0F;
+            --color-divider: rgba(168, 143, 29, 0.22);
+            --tb-height-sm: 42px;
+            --tb-height-md: 46px;
+            --tb-height-lg: 52px;
         }
 
         /* Mejora de contraste para textos */
@@ -56,243 +61,425 @@
         }
 
         /* ===================================
-           BARRA SUPERIOR - VERSIÓN PREMIUM
+           BARRA SUPERIOR - FLCH PREMIUM RESPONSIVE
            =================================== */
-        .top-bar-custom {
-            background: linear-gradient(135deg, #0F0F0F 0%, #1E1E1E 100%) !important;
-            color: var(--color-text-light) !important;
-            box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.3) !important;
-            position: relative !important;
-            font-size: 0.875rem !important;
-            display: block !important;
-            border-bottom: 1px solid rgba(168, 143, 29, 0.25) !important;
-            letter-spacing: 0.3px;
+        .flch-topbar {
+            background: linear-gradient(135deg, #0C0C0C 0%, #1A1A1A 60%, #141414 100%);
+            border-bottom: 1px solid var(--color-divider);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            animation: tb-slide-down 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        /* Efectos de brillo */
-        .top-bar-custom .top-bar-shine {
+        @keyframes tb-slide-down {
+            from { opacity: 0; transform: translateY(-100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .flch-topbar::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(168, 143, 29, 0.4), transparent);
-            z-index: 1;
+            background: linear-gradient(90deg, transparent 0%, var(--color-accent) 30%, #D4AF37 50%, var(--color-accent) 70%, transparent 100%);
+            opacity: 0.6;
+            animation: shimmer-line 4s ease-in-out infinite;
         }
 
-        .top-bar-custom .top-bar-shine-bottom {
+        @keyframes shimmer-line {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.9; }
+        }
+
+        .flch-topbar::after {
+            content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(168, 143, 29, 0.2), transparent);
-            z-index: 1;
+            background: linear-gradient(90deg, transparent, var(--color-divider), transparent);
         }
 
-        /* Contenedor interno */
-        .top-bar-custom .top-bar-container {
+        .flch-tb-inner {
             max-width: 1280px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: var(--tb-height-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
             position: relative;
             z-index: 2;
         }
 
-        /* Flex principal */
-        .top-bar-custom .top-bar-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 0.6rem;
-            padding-bottom: 0.6rem;
-        }
-
-        /* Información de contacto */
-        .top-bar-custom .top-bar-divider {
+        .flch-tb-contact {
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0;
+            flex-shrink: 0;
         }
 
-        .top-bar-custom .top-bar-divider>* {
-            padding-right: 1.5rem;
-            margin-right: 1.5rem;
+        .flch-tb-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            padding: 0.35rem 1.1rem;
+            border-radius: 6px;
+            transition: all 0.22s ease;
             position: relative;
+            white-space: nowrap;
+            cursor: pointer;
+            color: inherit;
         }
 
-        .top-bar-custom .top-bar-divider>*:not(:last-child)::after {
+        .flch-tb-item:not(:last-child)::after {
             content: '';
             position: absolute;
             right: 0;
             top: 50%;
             transform: translateY(-50%);
             width: 1px;
-            height: 20px;
-            background: rgba(168, 143, 29, 0.3);
+            height: 18px;
+            background: var(--color-divider);
         }
 
-        .top-bar-custom .top-bar-divider>*:last-child {
-            padding-right: 0;
-            margin-right: 0;
+        .flch-tb-item:hover {
+            color: var(--color-accent);
+            background: rgba(168, 143, 29, 0.07);
+            transform: translateY(-1px);
         }
 
-        /* Items de contacto */
-        .top-bar-custom .top-bar-item {
+        .flch-tb-item:active {
+            transform: scale(0.97);
+        }
+
+        .flch-tb-icon-ring {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.22s ease;
+            box-shadow: 0 2px 6px rgba(168, 143, 29, 0.3);
+        }
+
+        .flch-tb-item:hover .flch-tb-icon-ring {
+            transform: scale(1.12) rotate(-5deg);
+            box-shadow: 0 4px 10px rgba(168, 143, 29, 0.45);
+        }
+
+        .flch-tb-icon-ring i {
+            color: #fff;
+            font-size: 0.72rem;
+        }
+
+        .flch-tb-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flch-tb-label {
+            font-size: 0.56rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: var(--color-accent);
+            line-height: 1.2;
+        }
+
+        .flch-tb-value {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            transition: color 0.22s ease;
+        }
+
+        .flch-tb-item:hover .flch-tb-value {
+            color: var(--color-accent);
+        }
+
+        .flch-tb-email-val {
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .flch-tb-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(168, 143, 29, 0.12);
+            border: 1px solid rgba(168, 143, 29, 0.3);
+            border-radius: 20px;
+            padding: 0.25rem 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .flch-tb-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4ADE80;
+            box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.8); }
+        }
+
+        .flch-tb-social {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-        }
-
-        .top-bar-custom .top-bar-item:hover {
-            color: var(--color-accent);
-        }
-
-        /* Iconos circulares */
-        .top-bar-custom .top-bar-icon-wrapper {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 9999px;
-            background-color: var(--color-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
             flex-shrink: 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        .top-bar-custom .top-bar-icon {
-            color: white;
-            font-size: 0.85rem;
-            transition: transform 0.3s ease;
-        }
-
-        .top-bar-custom .top-bar-item:hover .top-bar-icon {
-            transform: scale(1.15);
-        }
-
-        /* Textos - CONTRASTE ÓPTIMO */
-        .top-bar-custom .top-bar-label {
-            display: block;
-            color: var(--color-accent);
+        .flch-tb-social-label {
             font-size: 0.6rem;
             font-weight: 700;
-            line-height: 1.3;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.9px;
+            color: rgba(255, 255, 255, 0.4);
         }
 
-        .top-bar-custom .top-bar-value {
-            color: var(--color-text-light);
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .top-bar-custom .top-bar-item:hover .top-bar-value {
-            color: var(--color-accent);
-        }
-
-        .top-bar-custom .top-bar-email {
-            color: var(--color-text-light);
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .top-bar-custom .top-bar-item:hover .top-bar-email {
-            color: var(--color-accent);
-        }
-
-        /* Redes sociales */
-        .top-bar-custom .top-bar-social {
+        .flch-tb-social-links {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.45rem;
         }
 
-        .top-bar-custom .top-bar-social-text {
-            color: var(--color-text-dim);
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-
-        .top-bar-custom .top-bar-social-grid {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .top-bar-custom .top-bar-social-link {
-            width: 2.2rem;
-            height: 2.2rem;
-            border-radius: 0.5rem;
+        .flch-tb-soc {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #fff;
             text-decoration: none;
-            transition: all 0.25s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            transition: all 0.22s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
-        /* Colores PERMANENTES de redes sociales */
-        .top-bar-custom .top-bar-social-link.facebook {
-            background-color: #1877F2 !important;
-        }
-
-        .top-bar-custom .top-bar-social-link.instagram {
-            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4) !important;
-        }
-
-        .top-bar-custom .top-bar-social-link.youtube {
-            background-color: #FF0000 !important;
-        }
-
-        .top-bar-custom .top-bar-social-link.linkedin {
-            background-color: #0077B5 !important;
-        }
-
-        /* Hover effects */
-        .top-bar-custom .top-bar-social-link:hover {
-            transform: translateY(-3px) scale(1.08);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        .flch-tb-soc:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
             filter: brightness(1.15);
         }
 
-        /* Responsive */
-        @media (max-width: 1150px) {
-            .top-bar-custom .top-bar-value {
-                display: none;
-            }
+        .flch-tb-soc:active { transform: scale(0.95); }
+        .flch-tb-soc.fb { background: #1877F2; }
+        .flch-tb-soc.ig { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4); }
+        .flch-tb-soc.yt { background: #FF0000; }
+        .flch-tb-soc.li { background: #0077B5; }
 
-            .top-bar-custom .top-bar-email {
-                font-size: 0.75rem;
-            }
-
-            .top-bar-custom .top-bar-icon-wrapper {
-                width: 1.8rem;
-                height: 1.8rem;
-            }
-            
-            .top-bar-custom .top-bar-divider>* {
-                padding-right: 1rem;
-                margin-right: 1rem;
-            }
+        /* Tooltip */
+        .flch-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.72rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: 8px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.18s ease;
+            border: 1px solid var(--color-divider);
+            z-index: 999;
         }
 
-        @media (max-width: 1024px) {
-            .top-bar-custom {
-                display: none !important;
+        .flch-tb-item:hover .flch-tooltip,
+        .flch-tb-soc:hover .flch-tooltip,
+        .flch-scroll-item:hover .flch-tooltip,
+        .flch-scroll-soc:hover .flch-tooltip {
+            opacity: 1;
+        }
+
+        /* Versión móvil/tablet - Scroll horizontal */
+        .flch-tb-scroll-track {
+            display: none;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x proximity;
+            scrollbar-width: none;
+            position: relative;
+        }
+
+        .flch-tb-scroll-track::-webkit-scrollbar { display: none; }
+
+        .flch-tb-scroll-inner {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            padding: 0 0.75rem;
+            width: max-content;
+            min-width: 100%;
+            height: var(--tb-height-sm);
+        }
+
+        .flch-tb-fade-left,
+        .flch-tb-fade-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 32px;
+            pointer-events: none;
+            z-index: 5;
+            transition: opacity 0.3s ease;
+        }
+
+        .flch-tb-fade-left { left: 0; background: linear-gradient(to right, #111 0%, transparent 100%); }
+        .flch-tb-fade-right { right: 0; background: linear-gradient(to left, #111 0%, transparent 100%); }
+
+        .flch-scroll-item {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.3rem 0.85rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            scroll-snap-align: start;
+            min-width: 44px;
+            min-height: 44px;
+            position: relative;
+        }
+
+        .flch-scroll-item:hover {
+            color: var(--color-accent);
+            background: rgba(168, 143, 29, 0.08);
+        }
+
+        .flch-scroll-item:active { transform: scale(0.96); }
+
+        .flch-scroll-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 14px;
+            background: var(--color-divider);
+        }
+
+        .flch-scroll-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 1px 4px rgba(168, 143, 29, 0.3);
+        }
+
+        .flch-scroll-icon i { color: #fff; font-size: 0.65rem; }
+
+        .flch-scroll-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .flch-scroll-divider {
+            width: 1px;
+            height: 18px;
+            background: var(--color-divider);
+            margin: 0 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .flch-scroll-soc {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: all 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .flch-scroll-soc:hover { transform: scale(1.12); filter: brightness(1.15); }
+        .flch-scroll-soc:active { transform: scale(0.93); }
+        .flch-scroll-soc.fb { background: #1877F2; }
+        .flch-scroll-soc.ig { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4); }
+        .flch-scroll-soc.yt { background: #FF0000; }
+        .flch-scroll-soc.li { background: #0077B5; }
+
+        /* Focus visible - Accesibilidad */
+        .flch-tb-item:focus-visible,
+        .flch-tb-soc:focus-visible,
+        .flch-scroll-item:focus-visible,
+        .flch-scroll-soc:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 1023px) and (min-width: 768px) {
+            .flch-tb-inner { display: none; }
+            .flch-tb-scroll-track { display: flex; align-items: center; }
+            .flch-tb-scroll-inner { height: var(--tb-height-md); }
+            .flch-scroll-email-val { max-width: 110px; overflow: hidden; text-overflow: ellipsis; display: block; }
+            .flch-scroll-label { font-size: 0.68rem; }
+        }
+
+        @media (max-width: 767px) {
+            .flch-tb-inner { display: none; }
+            .flch-tb-scroll-track { display: flex; align-items: center; }
+            .flch-tb-scroll-inner { height: var(--tb-height-sm); padding: 0 0.5rem; }
+            .flch-scroll-label-mobile-hide { display: none; }
+            .flch-scroll-item { padding: 0.25rem 0.65rem; }
+            .flch-scroll-soc { width: 28px; height: 28px; font-size: 0.78rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .flch-tb-scroll-track { display: none; }
+        }
+
+        @media (max-width: 400px) {
+            .flch-scroll-icon { width: 22px; height: 22px; }
+            .flch-scroll-icon i { font-size: 0.55rem; }
+            .flch-scroll-item { padding: 0.2rem 0.55rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .flch-topbar, .flch-topbar::before, .flch-tb-badge-dot {
+                animation: none;
             }
+            * { transition-duration: 0.01ms !important; }
         }
 
         /* ===================================
@@ -678,7 +865,24 @@
 </head>
 
 <body <?php body_class('antialiased bg-white'); ?>
-    x-data="{ searchOpen: false, mobileMenuOpen: false }"
+    x-data="{ 
+        searchOpen: false, 
+        mobileMenuOpen: false,
+        tbAtStart: true,
+        tbAtEnd: false,
+        tbPressTimer: null,
+        tbStartPress(key) {
+            this.tbPressTimer = setTimeout(() => { this[key] = true; }, 500);
+        },
+        tbEndPress(key) {
+            clearTimeout(this.tbPressTimer);
+            setTimeout(() => { this[key] = false; }, 1800);
+        },
+        tbUpdateFades(el) {
+            this.tbAtStart = el.scrollLeft <= 4;
+            this.tbAtEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+        }
+    }"
     @keydown.escape="searchOpen = false; mobileMenuOpen = false">
     <?php wp_body_open(); ?>
 
@@ -687,107 +891,231 @@
         Saltar al contenido principal
     </a>
 
-    <!-- BARRA SUPERIOR - VERSIÓN PREMIUM -->
-    <div class="top-bar-custom hidden lg:block">
+    <!-- BARRA SUPERIOR - FLCH PREMIUM RESPONSIVE -->
+    <div class="flch-topbar" role="complementary" aria-label="Información de contacto y redes sociales FLCH UNMSM">
 
-        <!-- Efectos de brillo sutiles -->
-        <div class="top-bar-shine"></div>
+        <!-- VERSIÓN DESKTOP (≥1024px) -->
+        <div class="flch-tb-inner">
 
-        <div class="top-bar-container">
-            <div class="top-bar-flex">
-
-                <!-- Información de contacto -->
-                <div class="top-bar-divider">
-
-                    <!-- Directorio -->
-                    <a href="https://letras.unmsm.edu.pe/directorio/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="top-bar-item">
-                        <div class="top-bar-icon-wrapper">
-                            <i class="fas fa-address-book top-bar-icon"></i>
-                        </div>
-                        <div>
-                            <span class="top-bar-label">DIRECTORIO</span>
-                            <span class="top-bar-value">FLCH UNMSM</span>
-                        </div>
-                    </a>
-
-                    <!-- Email -->
-                    <a href="mailto:informatica.letras@unmsm.edu.pe"
-                        class="top-bar-item">
-                        <div class="top-bar-icon-wrapper">
-                            <i class="fas fa-envelope top-bar-icon"></i>
-                        </div>
-                        <div>
-                            <span class="top-bar-label">EMAIL</span>
-                            <span class="top-bar-email">informatica.letras@unmsm.edu.pe</span>
-                        </div>
-                    </a>
-
-                    <!-- Ubicación -->
-                    <a href="https://letras.unmsm.edu.pe/horarios-flch.php"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="top-bar-item">
-                        <div class="top-bar-icon-wrapper">
-                            <i class="fas fa-clock top-bar-icon"></i>
-                        </div>
-                        <div>
-                            <span class="top-bar-label">HORARIOS ACADÉMICOS | CICLO 2026 - I</span>
-                            <span class="top-bar-value">Conoce tus horarios</span>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Redes sociales -->
-                <div class="top-bar-social">
-                    <span class="top-bar-social-text">SÍGUENOS</span>
-                    <div class="top-bar-social-grid">
-
-                        <!-- Facebook -->
-                        <a href="https://www.facebook.com/letrassanmarcos"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="top-bar-social-link facebook"
-                            aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-
-                        <!-- Instagram -->
-                        <a href="https://www.instagram.com/letrasunmsm/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="top-bar-social-link instagram"
-                            aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-
-                        <!-- YouTube -->
-                        <a href="https://www.youtube.com/@LetrasTV-p9j"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="top-bar-social-link youtube"
-                            aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-
-                        <!-- LinkedIn -->
-                        <a href="https://pe.linkedin.com/school/letrasunmsm/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="top-bar-social-link linkedin"
-                            aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-
+            <div class="flch-tb-contact" role="list" aria-label="Información de contacto">
+                <a href="https://letras.unmsm.edu.pe/directorio/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="flch-tb-item"
+                   role="listitem"
+                   aria-label="Directorio de la Facultad de Letras y Ciencias Humanas UNMSM">
+                    <div class="flch-tb-icon-ring" aria-hidden="true">
+                        <i class="fas fa-address-book"></i>
                     </div>
+                    <div class="flch-tb-text">
+                        <span class="flch-tb-label">Directorio</span>
+                        <span class="flch-tb-value">FLCH UNMSM</span>
+                    </div>
+                </a>
+
+                <a href="mailto:informatica.letras@unmsm.edu.pe"
+                   class="flch-tb-item"
+                   role="listitem"
+                   aria-label="Correo electrónico: informatica.letras@unmsm.edu.pe">
+                    <div class="flch-tb-icon-ring" aria-hidden="true">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="flch-tb-text">
+                        <span class="flch-tb-label">Email</span>
+                        <span class="flch-tb-value flch-tb-email-val">informatica.letras@unmsm.edu.pe</span>
+                    </div>
+                    <div class="flch-tooltip" role="tooltip">informatica.letras@unmsm.edu.pe</div>
+                </a>
+
+                <a href="tel:+5101619700028001"
+                   class="flch-tb-item"
+                   role="listitem"
+                   aria-label="Teléfono: (01) 619-7000 anexo 2801">
+                    <div class="flch-tb-icon-ring" aria-hidden="true">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="flch-tb-text">
+                        <span class="flch-tb-label">Teléfono</span>
+                        <span class="flch-tb-value">(01) 619-7000 ext. 2801</span>
+                    </div>
+                </a>
+
+                <a href="https://letras.unmsm.edu.pe/horarios-flch.php"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="flch-tb-item"
+                   role="listitem"
+                   aria-label="Horarios académicos Ciclo 2026-I">
+                    <div class="flch-tb-icon-ring" aria-hidden="true">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="flch-tb-text">
+                        <span class="flch-tb-label">Horarios Académicos</span>
+                        <span class="flch-tb-value">Ciclo 2026 - I</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flch-tb-badge" role="status" aria-live="polite">
+                <span class="flch-tb-badge-dot" aria-hidden="true"></span>
+                <span><?php echo apply_filters('flch_topbar_notice', 'Ciclo 2026-I &nbsp;·&nbsp; Matrículas abiertas'); ?></span>
+            </div>
+
+            <div class="flch-tb-social" role="list" aria-label="Redes sociales FLCH">
+                <span class="flch-tb-social-label" aria-hidden="true">Síguenos</span>
+                <div class="flch-tb-social-links">
+                    <a href="https://www.facebook.com/letrassanmarcos"
+                       target="_blank" rel="noopener noreferrer"
+                       class="flch-tb-soc fb"
+                       role="listitem"
+                       aria-label="Facebook de Letras San Marcos">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        <div class="flch-tooltip" role="tooltip">@letrassanmarcos</div>
+                    </a>
+                    <a href="https://www.instagram.com/letrasunmsm/"
+                       target="_blank" rel="noopener noreferrer"
+                       class="flch-tb-soc ig"
+                       role="listitem"
+                       aria-label="Instagram de Letras UNMSM">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                        <div class="flch-tooltip" role="tooltip">@letrasunmsm</div>
+                    </a>
+                    <a href="https://www.youtube.com/@LetrasTV-p9j"
+                       target="_blank" rel="noopener noreferrer"
+                       class="flch-tb-soc yt"
+                       role="listitem"
+                       aria-label="YouTube de Letras TV">
+                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                        <div class="flch-tooltip" role="tooltip">LetrasTV</div>
+                    </a>
+                    <a href="https://pe.linkedin.com/school/letrasunmsm/"
+                       target="_blank" rel="noopener noreferrer"
+                       class="flch-tb-soc li"
+                       role="listitem"
+                       aria-label="LinkedIn de Letras UNMSM">
+                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        <div class="flch-tooltip" role="tooltip">Letras UNMSM</div>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Efecto de brillo inferior -->
-        <div class="top-bar-shine-bottom"></div>
+        <!-- VERSIÓN MÓVIL + TABLET (<1024px) - Scroll horizontal -->
+        <div class="flch-tb-scroll-track"
+             role="complementary"
+             aria-label="Información FLCH — desplaza horizontalmente"
+             x-ref="tbScrollTrack"
+             @scroll="tbUpdateFades($refs.tbScrollTrack)"
+             x-init="$nextTick(() => tbUpdateFades($refs.tbScrollTrack))">
+
+            <div class="flch-tb-fade-left" :style="tbAtStart ? 'opacity:0' : 'opacity:1'" aria-hidden="true"></div>
+
+            <div class="flch-tb-scroll-inner" role="list">
+
+                <a href="https://letras.unmsm.edu.pe/directorio/"
+                   target="_blank" rel="noopener noreferrer"
+                   class="flch-scroll-item"
+                   role="listitem"
+                   aria-label="Directorio FLCH UNMSM"
+                   @touchstart="tbStartPress('tipDir')"
+                   @touchend="tbEndPress('tipDir')"
+                   @touchcancel="tbEndPress('tipDir')">
+                    <div class="flch-scroll-icon" aria-hidden="true"><i class="fas fa-address-book"></i></div>
+                    <span class="flch-scroll-label flch-scroll-label-mobile-hide">Directorio</span>
+                    <div class="flch-tooltip" x-show="tipDir" role="tooltip" style="display:none">Directorio FLCH</div>
+                </a>
+
+                <a href="https://letras.unmsm.edu.pe/horarios-flch.php"
+                   target="_blank" rel="noopener noreferrer"
+                   class="flch-scroll-item"
+                   role="listitem"
+                   aria-label="Horarios académicos Ciclo 2026-I"
+                   @touchstart="tbStartPress('tipHor')"
+                   @touchend="tbEndPress('tipHor')"
+                   @touchcancel="tbEndPress('tipHor')">
+                    <div class="flch-scroll-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
+                    <span class="flch-scroll-label flch-scroll-label-mobile-hide">Horarios 2026-I</span>
+                    <div class="flch-tooltip" x-show="tipHor" role="tooltip" style="display:none">Horarios Ciclo 2026-I</div>
+                </a>
+
+                <a href="tel:+5101619700028001"
+                   class="flch-scroll-item"
+                   role="listitem"
+                   aria-label="Teléfono (01) 619-7000 anexo 2801"
+                   @touchstart="tbStartPress('tipTel')"
+                   @touchend="tbEndPress('tipTel')"
+                   @touchcancel="tbEndPress('tipTel')">
+                    <div class="flch-scroll-icon" aria-hidden="true"><i class="fas fa-phone-alt"></i></div>
+                    <span class="flch-scroll-label flch-scroll-label-mobile-hide">(01) 619-7000</span>
+                    <div class="flch-tooltip" x-show="tipTel" role="tooltip" style="display:none">(01) 619-7000 ext. 2801</div>
+                </a>
+
+                <a href="mailto:informatica.letras@unmsm.edu.pe"
+                   class="flch-scroll-item"
+                   role="listitem"
+                   aria-label="Correo: informatica.letras@unmsm.edu.pe"
+                   @touchstart="tbStartPress('tipEmail')"
+                   @touchend="tbEndPress('tipEmail')"
+                   @touchcancel="tbEndPress('tipEmail')">
+                    <div class="flch-scroll-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+                    <span class="flch-scroll-label flch-scroll-label-mobile-hide flch-scroll-email-val">informatica.letras…</span>
+                    <div class="flch-tooltip" x-show="tipEmail" role="tooltip" style="display:none">informatica.letras@unmsm.edu.pe</div>
+                </a>
+
+                <div class="flch-scroll-divider" aria-hidden="true"></div>
+
+                <a href="https://www.facebook.com/letrassanmarcos"
+                   target="_blank" rel="noopener noreferrer"
+                   class="flch-scroll-soc fb"
+                   role="listitem"
+                   aria-label="Facebook @letrassanmarcos"
+                   @touchstart="tbStartPress('tipFb')"
+                   @touchend="tbEndPress('tipFb')"
+                   @touchcancel="tbEndPress('tipFb')">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <div class="flch-tooltip" x-show="tipFb" role="tooltip" style="display:none">@letrassanmarcos</div>
+                </a>
+
+                <a href="https://www.instagram.com/letrasunmsm/"
+                   target="_blank" rel="noopener noreferrer"
+                   class="flch-scroll-soc ig"
+                   role="listitem"
+                   aria-label="Instagram @letrasunmsm"
+                   @touchstart="tbStartPress('tipIg')"
+                   @touchend="tbEndPress('tipIg')"
+                   @touchcancel="tbEndPress('tipIg')">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    <div class="flch-tooltip" x-show="tipIg" role="tooltip" style="display:none">@letrasunmsm</div>
+                </a>
+
+                <a href="https://www.youtube.com/@LetrasTV-p9j"
+                   target="_blank" rel="noopener noreferrer"
+                   class="flch-scroll-soc yt"
+                   role="listitem"
+                   aria-label="YouTube LetrasTV"
+                   @touchstart="tbStartPress('tipYt')"
+                   @touchend="tbEndPress('tipYt')"
+                   @touchcancel="tbEndPress('tipYt')">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <div class="flch-tooltip" x-show="tipYt" role="tooltip" style="display:none">LetrasTV</div>
+                </a>
+
+                <a href="https://pe.linkedin.com/school/letrasunmsm/"
+                   target="_blank" rel="noopener noreferrer"
+                   class="flch-scroll-soc li"
+                   role="listitem"
+                   aria-label="LinkedIn Letras UNMSM"
+                   @touchstart="tbStartPress('tipLi')"
+                   @touchend="tbEndPress('tipLi')"
+                   @touchcancel="tbEndPress('tipLi')">
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                    <div class="flch-tooltip" x-show="tipLi" role="tooltip" style="display:none">Letras UNMSM</div>
+                </a>
+
+            </div>
+
+            <div class="flch-tb-fade-right" :style="tbAtEnd ? 'opacity:0' : 'opacity:1'" aria-hidden="true"></div>
+        </div>
     </div>
 
     <!-- HEADER PRINCIPAL -->
@@ -844,7 +1172,7 @@
             </div>
         </div>
 
-        <!-- Barra de búsqueda - VERSIÓN PREMIUM -->
+        <!-- Barra de búsqueda -->
         <div class="search-bar overflow-hidden transition-all duration-500" 
              x-show="searchOpen" 
              x-transition:enter="transition ease-out duration-300"
@@ -858,7 +1186,6 @@
              x-cloak>
             <div class="container-custom py-6">
                 
-                <!-- Título de búsqueda -->
                 <div class="search-title">
                     <i class="fas fa-search"></i>
                     <span>¿Qué estás buscando en la Facultad de Letras?</span>
@@ -877,7 +1204,6 @@
                                name="s"
                                autocomplete="off">
                         
-                        <!-- Botón limpiar (solo aparece cuando hay texto) -->
                         <button type="button" 
                                 class="search-clear-btn"
                                 @click="$refs.searchInput.value = ''; $refs.searchInput.focus()"
@@ -886,7 +1212,6 @@
                             <i class="fas fa-times-circle"></i>
                         </button>
                         
-                        <!-- Botón buscar -->
                         <button type="submit" 
                                 class="search-submit-btn">
                             <i class="fas fa-search"></i>
@@ -895,7 +1220,6 @@
                     </div>
                 </form>
                 
-                <!-- Sugerencias de búsqueda -->
                 <div class="suggestions-container">
                     <span class="suggestions-label">
                         <i class="fas fa-lightbulb"></i>
@@ -913,7 +1237,6 @@
                     </div>
                 </div>
                 
-                <!-- Búsquedas populares -->
                 <div class="popular-searches">
                     <i class="fas fa-chart-line"></i>
                     <span>Búsquedas populares:</span>
@@ -951,7 +1274,6 @@
                 ));
                 ?>
 
-                <!-- Información de contacto en móvil -->
                 <div class="mt-8 pt-6 border-t border-white/10">
                     <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2">
                         <i class="fas fa-info-circle text-[#A88F1D]"></i>
@@ -1002,7 +1324,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Guardar búsquedas recientes en localStorage
             const searchForm = document.querySelector('.search-form');
             if (searchForm) {
                 searchForm.addEventListener('submit', function() {
@@ -1017,7 +1338,6 @@
                 });
             }
 
-            // Prevenir scroll cuando el menú móvil está abierto
             const checkMobileMenu = () => {
                 if (window.innerWidth >= 1024) {
                     document.body.style.overflow = '';
@@ -1026,8 +1346,7 @@
 
             window.addEventListener('resize', checkMobileMenu);
             
-            // Debug
-            console.log('Header FLCH cargado correctamente');
+            console.log('Header FLCH cargado correctamente - Versión Responsive Premium');
         });
     </script>
 
