@@ -731,11 +731,11 @@
                         rel="noopener noreferrer"
                         class="top-bar-item">
                         <div class="top-bar-icon-wrapper">
-                            <i class="fas fa-map-marker-alt top-bar-icon"></i>
+                            <i class="fas fa-clock top-bar-icon"></i>
                         </div>
                         <div>
-                            <span class="top-bar-label">CAMPUS</span>
-                            <span class="top-bar-value">Calle Germán Amézaga N° 375 - Lima</span>
+                            <span class="top-bar-label">HORARIOS ACADÉMICOS</span>
+                            <span class="top-bar-value">Conoce tu horario - 2026-1</span>
                         </div>
                     </a>
                 </div>
