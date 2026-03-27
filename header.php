@@ -3,11 +3,6 @@
  * Header template - FLCH UNMSM
  * Versión: Responsive Premium v3 — Mobile-First
  *
- * PROBLEMA DETECTADO EN CAPTURA MÓVIL:
- * - Top-bar: iconos contacto muy pequeños, sin etiqueta, mal contraste
- * - Top-bar: separación confusa entre contacto y redes sociales
- * - Solución: dos filas en móvil (contacto arriba, redes abajo) en lugar de scroll horizontal
- *
  * @package LetrasFLCH
  */
 ?>
@@ -83,7 +78,6 @@ body {
     background: var(--tb-bg);
     position: relative;
     z-index: 60;
-    /* Línea dorada superior animada */
     border-top: 2px solid transparent;
     border-image: linear-gradient(90deg, transparent, #A88F1D 30%, #D4AF37 50%, #A88F1D 70%, transparent) 1;
     animation: tb-in 0.5s cubic-bezier(0.22,1,0.36,1) both;
@@ -94,7 +88,6 @@ body {
     to   { opacity:1; transform:translateY(0); }
 }
 
-/* Separador inferior dorado sutil */
 .flch-topbar::after {
     content:'';
     position:absolute; bottom:0; left:0; right:0;
@@ -102,14 +95,9 @@ body {
     background:linear-gradient(90deg,transparent,var(--color-divider),transparent);
 }
 
-/* ================================================================
-   TOP BAR — FILA 1: CONTACTO + BADGE + REDES (desktop ≥1024px)
-   TOP BAR — FILA 1: REDES | FILA 2: CONTACTO (móvil/tablet)
-   ================================================================ */
-
 /* ── ROW DESKTOP ─────────────────────────────────── */
 .tb-desktop {
-    display: none; /* oculto por defecto, se activa en desktop */
+    display: none;
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -182,7 +170,6 @@ body {
 }
 .tb-item:active { transform: scale(0.97); }
 
-/* Icono circular dorado */
 .tb-icon {
     width: 28px; height: 28px;
     border-radius: 50%;
@@ -198,7 +185,6 @@ body {
 }
 .tb-icon i { color:#fff; font-size:0.72rem; }
 
-/* Textos */
 .tb-text { display:flex; flex-direction:column; line-height:1.2; }
 .tb-label {
     font-size: 0.54rem;
@@ -215,7 +201,6 @@ body {
 }
 .tb-item:hover .tb-value { color: var(--color-accent); }
 
-/* Email truncado */
 .tb-email-val {
     max-width: 200px;
     overflow: hidden;
@@ -224,9 +209,7 @@ body {
     display: block;
 }
 
-/* ================================================================
-   BADGE AVISO (desktop)
-   ================================================================ */
+/* BADGE AVISO (desktop) */
 .tb-badge {
     display: flex;
     align-items: center;
@@ -254,9 +237,7 @@ body {
     50%      { opacity:0.5; transform:scale(0.75); }
 }
 
-/* ================================================================
-   REDES SOCIALES — compartidas entre desktop y móvil
-   ================================================================ */
+/* REDES SOCIALES */
 .tb-social-group {
     display: flex;
     align-items: center;
@@ -294,9 +275,7 @@ body {
 .tb-soc.yt { background: #FF0000; }
 .tb-soc.li { background: #0077B5; }
 
-/* ================================================================
-   TOOLTIP — desktop hover / móvil long-press
-   ================================================================ */
+/* TOOLTIP */
 .tb-tooltip {
     position: absolute;
     bottom: calc(100% + 9px);
@@ -323,29 +302,19 @@ body {
     border:5px solid transparent;
     border-top-color:#1c1c1c;
 }
-/* Mostrar en hover (desktop) */
 .tb-item:hover .tb-tooltip,
 .tb-soc:hover .tb-tooltip {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
-/* Mostrar via Alpine x-show (móvil long-press) */
 
-/* ================================================================
-   MÓVIL — FILA SUPERIOR: REDES SOCIALES
-   Layout: etiqueta izq | redes derecha
-   ================================================================ */
-.tb-mobile-social {
-    /* hereda los estilos de arriba */
-}
-
+/* MÓVIL — FILA SUPERIOR: REDES SOCIALES */
 .tb-mob-social-inner {
     display: flex;
     align-items: center;
     gap: 0.45rem;
 }
 
-/* Texto "síguenos" lado izquierdo */
 .tb-mob-follow {
     font-size: 0.6rem;
     font-weight: 600;
@@ -354,10 +323,9 @@ body {
     color: rgba(255,255,255,0.38);
 }
 
-/* Redes en móvil: un poco más grandes para mejor tap target */
 .tb-mob-soc {
-    width: 34px; height: 34px; /* área visual */
-    min-width: 44px; min-height: 44px; /* área táctil real via padding */
+    width: 34px; height: 34px;
+    min-width: 44px; min-height: 44px;
     border-radius: 9px;
     display: flex; align-items: center; justify-content: center;
     color: #fff;
@@ -366,7 +334,6 @@ body {
     transition: transform 0.18s ease, filter 0.18s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.35);
     position: relative;
-    /* Ampliar tap target sin cambiar aspecto visual */
     padding: 5px;
 }
 .tb-mob-soc:active { transform: scale(0.9); }
@@ -375,10 +342,7 @@ body {
 .tb-mob-soc.yt { background: #FF0000; }
 .tb-mob-soc.li { background: #0077B5; }
 
-/* ================================================================
-   MÓVIL — FILA INFERIOR: CONTACTO
-   4 botones iguales, cada uno ocupa 25% del ancho
-   ================================================================ */
+/* MÓVIL — FILA INFERIOR: CONTACTO */
 .tb-mob-contact-btn {
     flex: 1;
     display: flex;
@@ -389,7 +353,7 @@ body {
     text-decoration: none;
     color: rgba(255,255,255,0.85);
     padding: 10px 4px;
-    min-height: 56px; /* buen tap target */
+    min-height: 56px;
     font-size: 0.6rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -412,7 +376,6 @@ body {
     transform: scale(0.97);
 }
 
-/* Icono circular en cada botón de contacto */
 .tb-mob-icon {
     width: 30px; height: 30px;
     border-radius: 50%;
@@ -429,7 +392,6 @@ body {
 }
 .tb-mob-icon i { color:#fff; font-size:0.72rem; }
 
-/* Etiqueta bajo el icono */
 .tb-mob-label {
     font-size: 0.58rem;
     font-weight: 600;
@@ -439,32 +401,13 @@ body {
     line-height: 1;
 }
 
-/* Focus accesible */
-.tb-mob-contact-btn:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: -2px;
-}
-.tb-mob-soc:focus-visible,
-.tb-soc:focus-visible,
-.tb-item:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 3px;
-    border-radius: 6px;
-}
-
-/* ================================================================
-   TABLET (768–1023px): una sola fila compacta con scroll
-   ================================================================ */
+/* TABLET (768–1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
-    /* Ocultar las dos filas móvil */
     .tb-mobile-social,
     .tb-mobile-contact { display: none !important; }
-
-    /* Mostrar fila tablet */
     .tb-tablet { display: flex !important; }
 }
 
-/* Fila tablet (por defecto oculta) */
 .tb-tablet {
     display: none;
     align-items: center;
@@ -488,7 +431,6 @@ body {
     min-width: 100%;
 }
 
-/* Items compactos en tablet */
 .tb-tab-item {
     display: flex;
     align-items: center;
@@ -523,7 +465,6 @@ body {
 }
 .tb-tab-icon i { color:#fff; font-size:0.65rem; }
 
-/* Separador y redes en tablet */
 .tb-tab-divider {
     width:1px; height:16px;
     background:var(--color-divider);
@@ -531,7 +472,6 @@ body {
     flex-shrink:0;
 }
 
-/* Redes en tablet */
 .tb-tab-soc {
     width:30px; height:30px;
     border-radius:7px;
@@ -548,7 +488,6 @@ body {
 .tb-tab-soc.yt { background:#FF0000; }
 .tb-tab-soc.li { background:#0077B5; }
 
-/* Fades de scroll en tablet */
 .tb-fade-r {
     position:absolute; right:0; top:0; bottom:0;
     width:28px;
@@ -586,7 +525,6 @@ body {
     .header-inner { padding: 0 1rem; height: 60px; }
 }
 
-/* Logo */
 .header-logo img {
     height: 44px;
     width: auto;
@@ -600,7 +538,6 @@ body {
 @media (min-width: 768px) { .header-logo img { height: 52px; } }
 @media (min-width: 1024px) { .header-logo img { height: 62px; } }
 
-/* Navegación desktop */
 nav.main-nav { display: none; }
 @media (min-width: 1024px) { nav.main-nav { display: block; } }
 
@@ -663,7 +600,6 @@ nav.main-nav { display: none; }
     padding-left: 1.75rem;
 }
 
-/* Botones de acción */
 .header-actions { display:flex; align-items:center; gap:0.5rem; }
 
 .header-btn {
@@ -685,13 +621,10 @@ nav.main-nav { display: none; }
     .header-btn { width: 36px; height: 36px; font-size: 0.9rem; }
 }
 
-/* Chevron flechas menú */
 .fa-chevron-down { font-size:0.65rem; transition:transform 0.2s ease; opacity:0.7; }
 li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
 
-/* ================================================================
-   BARRA DE BÚSQUEDA
-   ================================================================ */
+/* BARRA DE BÚSQUEDA */
 .search-bar {
     background: var(--color-primary);
     border-top: 1px solid rgba(168,143,29,0.25);
@@ -782,7 +715,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
 }
 
 /* ================================================================
-   ACCESIBILIDAD — prefers-reduced-motion
+   ACCESIBILIDAD
    ================================================================ */
 @media (prefers-reduced-motion: reduce) {
     .flch-topbar,
@@ -790,9 +723,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
     * { transition-duration: 0.01ms !important; }
 }
 
-/* ================================================================
-   SKIP LINK
-   ================================================================ */
 .skip-link {
     position:absolute;
     top:-100%; left:1rem;
@@ -811,22 +741,19 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
    MENÚ MÓVIL - ESTILOS CORREGIDOS
    ================================================================ */
 
-/* El botón de menú debe ser visible SOLO en móvil/tablet */
 @media (min-width: 1024px) {
     .menu-toggle {
         display: none !important;
     }
 }
 
-/* Asegurar que el botón se vea bien en móvil */
 .menu-toggle {
     display: flex;
 }
 
-/* Panel del menú móvil - posición corregida */
 .mobile-menu-panel {
     position: fixed;
-    top: calc(60px + 88px); /* altura header (60px) + altura top bar móvil (44px + 44px = 88px) */
+    top: calc(60px + 88px);
     left: 0;
     right: 0;
     background: var(--color-primary);
@@ -839,7 +766,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .mobile-menu-panel {
-        top: calc(64px + 46px); /* tablet: header 64px + top bar tablet 46px */
+        top: calc(64px + 46px);
         max-height: calc(100vh - 110px);
     }
 }
@@ -850,7 +777,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
     }
 }
 
-/* Scrollbar del panel */
 .mobile-menu-panel::-webkit-scrollbar {
     width: 5px;
 }
@@ -862,144 +788,169 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
     border-radius: 3px;
 }
 
-/* Estilos para los items del menú móvil */
 .mobile-nav {
-    padding: 1.25rem 1rem;
+    padding: 1rem;
 }
 
-.mobile-menu-list {
+.mobile-menu {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.mobile-menu-list li {
+.mobile-menu > li {
     margin: 0;
     padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
 }
 
-.mobile-menu-list > li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.mobile-menu-list a {
-    color: rgba(255, 255, 255, 0.9);
-    padding: 0.85rem 1rem;
+.mobile-menu a {
+    color: rgba(255, 255, 255, 0.92);
+    padding: 0.9rem 1rem;
     display: block;
-    transition: all 0.18s ease;
-    border-radius: 6px;
+    transition: all 0.2s ease;
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
 }
 
-.mobile-menu-list a:hover,
-.mobile-menu-list a:focus {
+.mobile-menu a:hover,
+.mobile-menu a:focus {
     background: #1E4A7A;
     color: var(--color-accent);
     padding-left: 1.5rem;
 }
 
-/* Submenús móvil */
-.mobile-menu-list ul.sub-menu {
-    margin-left: 1rem;
-    padding-left: 1rem;
-    border-left: 2px solid var(--color-accent);
-    background: rgba(0, 0, 0, 0.2);
-    list-style: none;
-}
-
-.mobile-menu-list ul.sub-menu li {
-    border-bottom: none;
-}
-
-.mobile-menu-list ul.sub-menu a {
-    padding: 0.7rem 1rem;
-    font-size: 0.85rem;
-    font-weight: 400;
-}
-
-/* Contenedor para items con submenú */
-.mobile-menu-list .menu-item-has-children {
+.mobile-menu .menu-item-has-children {
     position: relative;
 }
 
-.mobile-menu-list .menu-item-has-children > a {
+.mobile-menu .menu-item-has-children > a {
     padding-right: 2.5rem;
 }
 
-/* Botón toggle para submenús */
 .mobile-submenu-toggle {
     position: absolute;
     right: 0.5rem;
     top: 50%;
     transform: translateY(-50%);
-    background: transparent;
+    background: rgba(255, 255, 255, 0.08);
     border: none;
     color: rgba(255, 255, 255, 0.7);
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.8rem;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     border-radius: 6px;
     transition: all 0.2s ease;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
 }
 
 .mobile-submenu-toggle:hover {
-    background: rgba(168, 143, 29, 0.2);
-    color: var(--color-accent);
+    background: var(--color-accent);
+    color: white;
 }
 
-/* Contacto en menú móvil */
+.mobile-submenu-toggle i {
+    transition: transform 0.25s ease;
+}
+
+.mobile-submenu-toggle i.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.mobile-menu ul.sub-menu {
+    margin: 0;
+    padding: 0 0 0 1rem;
+    list-style: none;
+    background: rgba(0, 0, 0, 0.25);
+    border-left: 2px solid var(--color-accent);
+    display: none;
+}
+
+.mobile-menu ul.sub-menu.open {
+    display: block;
+}
+
+.mobile-menu ul.sub-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-menu ul.sub-menu li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu ul.sub-menu a {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.mobile-menu ul.sub-menu a:hover {
+    padding-left: 1.5rem;
+}
+
+.mobile-menu ul.sub-menu ul.sub-menu {
+    margin-left: 0.5rem;
+    border-left: 1px solid rgba(168, 143, 29, 0.4);
+}
+
 .mobile-contact-info {
-    margin-top: 2rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mobile-contact-title {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    color: #fff;
-    margin: 0 0 1rem 0;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .mobile-contact-title i {
-    color: var(--color-accent);
+    font-size: 0.8rem;
 }
 
 .mobile-contact-links {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    font-size: 0.875rem;
+    gap: 0.5rem;
 }
 
 .mobile-contact-link {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    color: rgba(255, 255, 255, 0.82);
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
-    transition: color 0.2s ease;
-    padding: 0.25rem 0;
+    transition: all 0.2s ease;
+    padding: 0.5rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
 }
 
 .mobile-contact-link i {
     color: var(--color-accent);
-    width: 1rem;
-    flex-shrink: 0;
+    width: 1.2rem;
+    font-size: 0.9rem;
 }
 
 .mobile-contact-link:hover {
     color: var(--color-accent);
+    background: rgba(168, 143, 29, 0.1);
+    padding-left: 0.8rem;
 }
 
-/* Ajustes para que el contenido principal no quede tapado */
 .site-main {
     position: relative;
     z-index: 1;
@@ -1011,7 +962,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
     x-data="{
         searchOpen:     false,
         mobileMenuOpen: false,
-        /* Tooltips táctiles para redes móvil */
         tip: {},
         startPress(k) { this.tip[k]=false; clearTimeout(this._t); this._t=setTimeout(()=>{ this.tip[k]=true; },500); },
         endPress(k)   { clearTimeout(this._t); setTimeout(()=>{ this.tip[k]=false; },1800); }
@@ -1020,7 +970,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
 
     <?php wp_body_open(); ?>
 
-    <!-- Skip link accesibilidad -->
     <a href="#main" class="skip-link">Saltar al contenido principal</a>
 
     <!-- ============================================================
@@ -1028,12 +977,10 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
          ============================================================ -->
     <div class="flch-topbar" role="complementary" aria-label="Contacto y redes sociales FLCH UNMSM">
 
-        <!-- ── DESKTOP (≥1024px): una sola fila completa ──────── -->
+        <!-- DESKTOP (≥1024px) -->
         <div class="tb-desktop">
 
-            <!-- Contacto izquierda -->
             <div class="tb-contact-group" role="list" aria-label="Información de contacto">
-
                 <a href="https://letras.unmsm.edu.pe/directorio/"
                    target="_blank" rel="noopener noreferrer"
                    class="tb-item" role="listitem"
@@ -1068,13 +1015,11 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                 </a>
             </div>
 
-            <!-- Badge central -->
             <div class="tb-badge" role="status" aria-live="polite">
                 <span class="tb-badge-dot" aria-hidden="true"></span>
                 <span><?php echo apply_filters('flch_topbar_notice', 'Ciclo 2026-I &nbsp;·&nbsp; Consulta tu horario'); ?></span>
             </div>
 
-            <!-- Redes sociales derecha -->
             <div class="tb-social-group" role="list" aria-label="Redes sociales FLCH">
                 <span class="tb-social-label" aria-hidden="true">Síguenos</span>
                 <a href="https://www.facebook.com/letrassanmarcos"
@@ -1108,32 +1053,27 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
             </div>
         </div>
 
-        <!-- ── TABLET (768–1023px): scroll horizontal compacto ── -->
+        <!-- TABLET (768–1023px) -->
         <div class="tb-tablet" role="complementary" aria-label="Información FLCH">
             <div class="tb-tablet-inner">
-
                 <a href="https://letras.unmsm.edu.pe/directorio/"
                    target="_blank" rel="noopener noreferrer"
                    class="tb-tab-item" aria-label="Directorio FLCH UNMSM">
                     <div class="tb-tab-icon" aria-hidden="true"><i class="fas fa-address-book"></i></div>
                     Directorio
                 </a>
-
                 <a href="mailto:informatica.letras@unmsm.edu.pe"
                    class="tb-tab-item" aria-label="Correo FLCH">
                     <div class="tb-tab-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
                     <span style="max-width:120px;overflow:hidden;text-overflow:ellipsis;display:block;">informatica.letras…</span>
                 </a>
-
                 <a href="https://letras.unmsm.edu.pe/horarios-flch.php"
                    target="_blank" rel="noopener noreferrer"
                    class="tb-tab-item" aria-label="Horarios 2026-I">
                     <div class="tb-tab-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
                     Horarios 2026-I
                 </a>
-
                 <div class="tb-tab-divider" aria-hidden="true"></div>
-
                 <a href="https://www.facebook.com/letrassanmarcos"
                    target="_blank" rel="noopener noreferrer"
                    class="tb-tab-soc fb" aria-label="Facebook">
@@ -1158,14 +1098,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
             <div class="tb-fade-r" aria-hidden="true"></div>
         </div>
 
-        <!-- ── MÓVIL (<768px): DOS FILAS CLARAS ─────────────── -->
-        <!--
-            FILA 1 (superior, oscura): "Síguenos" + 4 redes sociales grandes
-            FILA 2 (inferior, más oscura): 4 botones de contacto con icono + etiqueta
-            → Jerarquía visual clara, tap targets correctos, sin scroll
-        -->
-
-        <!-- FILA 1: Redes sociales -->
+        <!-- MÓVIL (<768px): DOS FILAS -->
         <div class="tb-mobile-social" role="list" aria-label="Redes sociales FLCH">
             <span class="tb-mob-follow" aria-hidden="true">Síguenos en</span>
             <div class="tb-mob-social-inner" role="list">
@@ -1216,9 +1149,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
             </div>
         </div>
 
-        <!-- FILA 2: Botones de contacto -->
         <div class="tb-mobile-contact" role="list" aria-label="Contacto FLCH">
-
             <a href="https://letras.unmsm.edu.pe/directorio/"
                target="_blank" rel="noopener noreferrer"
                class="tb-mob-contact-btn"
@@ -1229,7 +1160,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                 </div>
                 <span class="tb-mob-label">Directorio</span>
             </a>
-
             <a href="https://letras.unmsm.edu.pe/horarios-flch.php"
                target="_blank" rel="noopener noreferrer"
                class="tb-mob-contact-btn"
@@ -1240,7 +1170,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                 </div>
                 <span class="tb-mob-label">Horarios</span>
             </a>
-
             <a href="mailto:informatica.letras@unmsm.edu.pe"
                class="tb-mob-contact-btn"
                role="listitem"
@@ -1250,20 +1179,14 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                 </div>
                 <span class="tb-mob-label">Email</span>
             </a>
-
         </div>
 
     </div>
-    <!-- /flch-topbar -->
 
-
-    <!-- ============================================================
-         HEADER PRINCIPAL
-         ============================================================ -->
+    <!-- HEADER PRINCIPAL -->
     <header class="main-header" id="header">
         <div class="header-inner">
 
-            <!-- Logo -->
             <a href="<?php echo esc_url(home_url('/')); ?>"
                rel="home"
                class="header-logo"
@@ -1273,7 +1196,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                      width="200" height="62">
             </a>
 
-            <!-- Nav desktop -->
             <nav class="main-nav" aria-label="Menú principal">
                 <?php
                 wp_nav_menu(array(
@@ -1287,10 +1209,8 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                 ?>
             </nav>
 
-            <!-- Acciones -->
             <div class="header-actions">
 
-                <!-- Botón búsqueda -->
                 <button class="header-btn"
                         :class="{ 'active': searchOpen }"
                         @click="searchOpen = !searchOpen; if(searchOpen) $nextTick(() => $refs.searchInput.focus())"
@@ -1301,7 +1221,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                        style="transition:transform 0.25s ease"></i>
                 </button>
 
-                <!-- Botón menú móvil - visible solo en móvil/tablet -->
                 <button class="header-btn menu-toggle"
                         :class="{ 'active': mobileMenuOpen }"
                         @click="mobileMenuOpen = !mobileMenuOpen;
@@ -1316,7 +1235,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
 
         </div>
 
-        <!-- ── Barra de búsqueda ─────────────────────────── -->
+        <!-- Barra de búsqueda -->
         <div class="search-bar"
              x-show="searchOpen"
              x-transition:enter="transition ease-out duration-250"
@@ -1329,12 +1248,10 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
              role="search"
              x-cloak>
             <div class="container-custom" style="padding-top:1.25rem;padding-bottom:1.25rem;">
-
                 <div class="search-title">
                     <i class="fas fa-search"></i>
                     <span>¿Qué estás buscando en la Facultad de Letras?</span>
                 </div>
-
                 <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
                     <label for="search-input" class="sr-only">Buscar en el sitio</label>
                     <div class="search-input-wrapper">
@@ -1359,7 +1276,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                         </button>
                     </div>
                 </form>
-
                 <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.7rem;margin-top:0.9rem;">
                     <span style="color:rgba(255,255,255,0.55);font-size:0.78rem;">Sugerencias:</span>
                     <?php
@@ -1373,7 +1289,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
             </div>
         </div>
 
-        <!-- ── Menú móvil ────────────────────────────────── -->
+        <!-- Menú móvil -->
         <div class="mobile-menu-panel"
              x-show="mobileMenuOpen"
              x-transition:enter="transition ease-out duration-250"
@@ -1388,7 +1304,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'primary',
-                    'menu_class'     => 'mobile-menu-list',
+                    'menu_class'     => 'mobile-menu',
                     'container'      => false,
                     'depth'          => 3,
                     'fallback_cb'    => false,
@@ -1396,7 +1312,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                 ));
                 ?>
 
-                <!-- Contacto en menú móvil -->
                 <div class="mobile-contact-info">
                     <h3 class="mobile-contact-title">
                         <i class="fas fa-info-circle"></i> Contacto
@@ -1424,17 +1339,41 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script>
-    function toggleMobileSubmenu(button) {
-        const sub  = button.closest('li').querySelector('ul.sub-menu');
-        const icon = button.querySelector('i');
-        if (sub) {
-            sub.classList.toggle('hidden');
-            icon.classList.toggle('rotate-180');
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        /* Guardar búsquedas recientes */
+    document.addEventListener('DOMContentLoaded', function() {
+        // Manejar toggles de submenús móvil
+        const toggleButtons = document.querySelectorAll('.mobile-submenu-toggle');
+        
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const parentLi = this.closest('.menu-item-has-children');
+                const submenu = parentLi.querySelector('.sub-menu');
+                const icon = this.querySelector('i');
+                
+                if (submenu) {
+                    submenu.classList.toggle('open');
+                    if (icon) {
+                        icon.classList.toggle('rotate-180');
+                    }
+                }
+            });
+        });
+        
+        // Prevenir que los enlaces con submenú cierren el panel al hacer click
+        const menuItemsWithChildren = document.querySelectorAll('.mobile-menu .menu-item-has-children > a');
+        menuItemsWithChildren.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const toggle = this.nextElementSibling;
+                if (toggle && toggle.classList.contains('mobile-submenu-toggle')) {
+                    toggle.click();
+                }
+            });
+        });
+        
+        // Guardar búsquedas recientes
         const form = document.querySelector('form[role="search"]');
         if (form) {
             form.addEventListener('submit', function () {
@@ -1447,7 +1386,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
             });
         }
 
-        /* Restaurar overflow en resize */
+        // Restaurar overflow en resize
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) document.body.style.overflow = '';
         });
