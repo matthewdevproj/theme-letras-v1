@@ -904,15 +904,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                     <div class="tb-tooltip" role="tooltip">informatica.letras@unmsm.edu.pe</div>
                 </a>
 
-                <a href="tel:+51016197000" class="tb-item" role="listitem"
-                   aria-label="Teléfono (01) 619-7000 anexo 2801">
-                    <div class="tb-icon" aria-hidden="true"><i class="fas fa-phone-alt"></i></div>
-                    <div class="tb-text">
-                        <span class="tb-label">Teléfono</span>
-                        <span class="tb-value">(01) 619-7000 ext. 2801</span>
-                    </div>
-                </a>
-
                 <a href="https://letras.unmsm.edu.pe/horarios-flch.php"
                    target="_blank" rel="noopener noreferrer"
                    class="tb-item" role="listitem"
@@ -980,11 +971,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                    class="tb-tab-item" aria-label="Correo FLCH">
                     <div class="tb-tab-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
                     <span style="max-width:120px;overflow:hidden;text-overflow:ellipsis;display:block;">informatica.letras…</span>
-                </a>
-
-                <a href="tel:+51016197000" class="tb-tab-item" aria-label="Teléfono FLCH">
-                    <div class="tb-tab-icon" aria-hidden="true"><i class="fas fa-phone-alt"></i></div>
-                    (01) 619-7000
                 </a>
 
                 <a href="https://letras.unmsm.edu.pe/horarios-flch.php"
@@ -1101,16 +1087,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                     <i class="fas fa-clock"></i>
                 </div>
                 <span class="tb-mob-label">Horarios</span>
-            </a>
-
-            <a href="tel:+51016197000"
-               class="tb-mob-contact-btn"
-               role="listitem"
-               aria-label="Llamar al (01) 619-7000">
-                <div class="tb-mob-icon" aria-hidden="true">
-                    <i class="fas fa-phone-alt"></i>
-                </div>
-                <span class="tb-mob-label">Teléfono</span>
             </a>
 
             <a href="mailto:informatica.letras@unmsm.edu.pe"
@@ -1274,11 +1250,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                         <i class="fas fa-info-circle" style="color:#A88F1D;"></i> Contacto
                     </h3>
                     <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;">
-                        <a href="tel:+51016197000"
-                           style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.82);text-decoration:none;">
-                            <i class="fas fa-phone-alt" style="color:#A88F1D;width:1rem;"></i>
-                            (01) 619-7000 anexo 2801
-                        </a>
                         <a href="https://letras.unmsm.edu.pe/directorio/"
                            target="_blank" rel="noopener noreferrer"
                            style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.82);text-decoration:none;">
