@@ -782,52 +782,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
 }
 
 /* ================================================================
-   MENÚ MÓVIL PANEL
-   ================================================================ */
-.mobile-menu-panel {
-    position: fixed;
-    inset-x: 0;
-    top: 60px; /* altura header móvil */
-    background: var(--color-primary);
-    border-top: 1px solid rgba(168,143,29,0.25);
-    box-shadow: 0 15px 25px -8px rgba(0,0,0,0.4);
-    max-height: calc(100vh - 60px);
-    overflow-y: auto;
-    z-index: 49;
-}
-
-@media (min-width: 768px) {
-    .mobile-menu-panel { top: 64px; max-height: calc(100vh - 64px); }
-}
-
-/* Scrollbar del panel */
-.mobile-menu-panel::-webkit-scrollbar { width:5px; }
-.mobile-menu-panel::-webkit-scrollbar-track { background:rgba(255,255,255,0.04); }
-.mobile-menu-panel::-webkit-scrollbar-thumb { background:var(--color-accent); border-radius:3px; }
-
-.mobile-menu-panel a {
-    color: rgba(255,255,255,0.9);
-    padding: 0.8rem 1rem;
-    display: block;
-    transition: all 0.18s ease;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 0.93rem;
-}
-.mobile-menu-panel a:hover {
-    background: #1E4A7A;
-    color: var(--color-accent);
-    padding-left: 1.4rem;
-}
-.mobile-menu-panel ul ul {
-    margin-left: 1rem;
-    padding-left: 1rem;
-    border-left: 2px solid var(--color-accent);
-    background: rgba(0,0,0,0.2);
-}
-
-/* ================================================================
    ACCESIBILIDAD — prefers-reduced-motion
    ================================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -852,6 +806,204 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
     transition:top 0.2s;
 }
 .skip-link:focus { top:1rem; }
+
+/* ================================================================
+   MENÚ MÓVIL - ESTILOS CORREGIDOS
+   ================================================================ */
+
+/* El botón de menú debe ser visible SOLO en móvil/tablet */
+@media (min-width: 1024px) {
+    .menu-toggle {
+        display: none !important;
+    }
+}
+
+/* Asegurar que el botón se vea bien en móvil */
+.menu-toggle {
+    display: flex;
+}
+
+/* Panel del menú móvil - posición corregida */
+.mobile-menu-panel {
+    position: fixed;
+    top: calc(60px + 88px); /* altura header (60px) + altura top bar móvil (44px + 44px = 88px) */
+    left: 0;
+    right: 0;
+    background: var(--color-primary);
+    border-top: 1px solid rgba(168, 143, 29, 0.25);
+    box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.4);
+    max-height: calc(100vh - 148px);
+    overflow-y: auto;
+    z-index: 49;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .mobile-menu-panel {
+        top: calc(64px + 46px); /* tablet: header 64px + top bar tablet 46px */
+        max-height: calc(100vh - 110px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .mobile-menu-panel {
+        display: none !important;
+    }
+}
+
+/* Scrollbar del panel */
+.mobile-menu-panel::-webkit-scrollbar {
+    width: 5px;
+}
+.mobile-menu-panel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.04);
+}
+.mobile-menu-panel::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 3px;
+}
+
+/* Estilos para los items del menú móvil */
+.mobile-nav {
+    padding: 1.25rem 1rem;
+}
+
+.mobile-menu-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mobile-menu-list li {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.mobile-menu-list > li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-menu-list a {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.85rem 1rem;
+    display: block;
+    transition: all 0.18s ease;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.mobile-menu-list a:hover,
+.mobile-menu-list a:focus {
+    background: #1E4A7A;
+    color: var(--color-accent);
+    padding-left: 1.5rem;
+}
+
+/* Submenús móvil */
+.mobile-menu-list ul.sub-menu {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-accent);
+    background: rgba(0, 0, 0, 0.2);
+    list-style: none;
+}
+
+.mobile-menu-list ul.sub-menu li {
+    border-bottom: none;
+}
+
+.mobile-menu-list ul.sub-menu a {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+/* Contenedor para items con submenú */
+.mobile-menu-list .menu-item-has-children {
+    position: relative;
+}
+
+.mobile-menu-list .menu-item-has-children > a {
+    padding-right: 2.5rem;
+}
+
+/* Botón toggle para submenús */
+.mobile-submenu-toggle {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.mobile-submenu-toggle:hover {
+    background: rgba(168, 143, 29, 0.2);
+    color: var(--color-accent);
+}
+
+/* Contacto en menú móvil */
+.mobile-contact-info {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-contact-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-contact-title i {
+    color: var(--color-accent);
+}
+
+.mobile-contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.mobile-contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding: 0.25rem 0;
+}
+
+.mobile-contact-link i {
+    color: var(--color-accent);
+    width: 1rem;
+    flex-shrink: 0;
+}
+
+.mobile-contact-link:hover {
+    color: var(--color-accent);
+}
+
+/* Ajustes para que el contenido principal no quede tapado */
+.site-main {
+    position: relative;
+    z-index: 1;
+}
 </style>
 </head>
 
@@ -1149,8 +1301,8 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                        style="transition:transform 0.25s ease"></i>
                 </button>
 
-                <!-- Botón menú móvil -->
-                <button class="header-btn lg:hidden"
+                <!-- Botón menú móvil - visible solo en móvil/tablet -->
+                <button class="header-btn menu-toggle"
                         :class="{ 'active': mobileMenuOpen }"
                         @click="mobileMenuOpen = !mobileMenuOpen;
                                 document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''"
@@ -1222,7 +1374,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
         </div>
 
         <!-- ── Menú móvil ────────────────────────────────── -->
-        <div class="mobile-menu-panel lg:hidden"
+        <div class="mobile-menu-panel"
              x-show="mobileMenuOpen"
              x-transition:enter="transition ease-out duration-250"
              x-transition:enter-start="opacity-0 -translate-y-2"
@@ -1232,11 +1384,11 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
              x-transition:leave-end="opacity-0 -translate-y-2"
              @click.away="mobileMenuOpen=false"
              x-cloak>
-            <nav style="padding:1.25rem 1rem;" aria-label="Menú de navegación móvil">
+            <nav class="mobile-nav" aria-label="Menú de navegación móvil">
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'primary',
-                    'menu_class'     => 'space-y-1',
+                    'menu_class'     => 'mobile-menu-list',
                     'container'      => false,
                     'depth'          => 3,
                     'fallback_cb'    => false,
@@ -1245,20 +1397,20 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                 ?>
 
                 <!-- Contacto en menú móvil -->
-                <div style="margin-top:2rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.08);">
-                    <h3 style="font-size:0.8rem;font-weight:600;color:#fff;margin:0 0 1rem;display:flex;align-items:center;gap:0.5rem;">
-                        <i class="fas fa-info-circle" style="color:#A88F1D;"></i> Contacto
+                <div class="mobile-contact-info">
+                    <h3 class="mobile-contact-title">
+                        <i class="fas fa-info-circle"></i> Contacto
                     </h3>
-                    <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;">
+                    <div class="mobile-contact-links">
                         <a href="https://letras.unmsm.edu.pe/directorio/"
                            target="_blank" rel="noopener noreferrer"
-                           style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.82);text-decoration:none;">
-                            <i class="fas fa-address-book" style="color:#A88F1D;width:1rem;"></i>
+                           class="mobile-contact-link">
+                            <i class="fas fa-address-book"></i>
                             Directorio FLCH
                         </a>
                         <a href="mailto:informatica.letras@unmsm.edu.pe"
-                           style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.82);text-decoration:none;word-break:break-all;">
-                            <i class="fas fa-envelope" style="color:#A88F1D;width:1rem;flex-shrink:0;"></i>
+                           class="mobile-contact-link">
+                            <i class="fas fa-envelope"></i>
                             informatica.letras@unmsm.edu.pe
                         </a>
                     </div>
