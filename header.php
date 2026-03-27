@@ -919,7 +919,7 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
             <!-- Badge central -->
             <div class="tb-badge" role="status" aria-live="polite">
                 <span class="tb-badge-dot" aria-hidden="true"></span>
-                <span><?php echo apply_filters('flch_topbar_notice', 'Ciclo 2026-I &nbsp;·&nbsp; Matrículas abiertas'); ?></span>
+                <span><?php echo apply_filters('flch_topbar_notice', 'Ciclo 2026-I &nbsp;·&nbsp; Consulta tu horario'); ?></span>
             </div>
 
             <!-- Redes sociales derecha -->
@@ -1261,10 +1261,6 @@ li:hover > a .fa-chevron-down { transform:rotate(180deg); opacity:1; }
                             <i class="fas fa-envelope" style="color:#A88F1D;width:1rem;flex-shrink:0;"></i>
                             informatica.letras@unmsm.edu.pe
                         </a>
-                        <div style="display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.6);">
-                            <i class="fas fa-map-marker-alt" style="color:#A88F1D;width:1rem;"></i>
-                            Calle Germán Amézaga N° 375 — Lima
-                        </div>
                     </div>
                 </div>
             </nav>
