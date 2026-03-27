@@ -726,7 +726,7 @@
                     </a>
 
                     <!-- Ubicación -->
-                    <a href="https://maps.app.goo.gl/..."
+                    <a href="https://letras.unmsm.edu.pe/horarios-flch.php"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="top-bar-item">
