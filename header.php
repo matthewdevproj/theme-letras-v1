@@ -734,8 +734,8 @@
                             <i class="fas fa-clock top-bar-icon"></i>
                         </div>
                         <div>
-                            <span class="top-bar-label">HORARIOS ACADÉMICOS</span>
-                            <span class="top-bar-value">CONOCE TUS HORARIOS - CICLO 2026-I</span>
+                            <span class="top-bar-label">HORARIOS ACADÉMICOS | CICLO 2026 - I</span>
+                            <span class="top-bar-value">Conoce tus horarios</span>
                         </div>
                     </a>
                 </div>
