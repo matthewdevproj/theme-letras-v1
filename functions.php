@@ -182,3 +182,205 @@ function letras_flch_excerpt_more($more) {
     return '...';
 }
 add_filter('excerpt_more', 'letras_flch_excerpt_more');
+
+/**
+ * Configuración inicial del tema
+ */
+function letras_flch_setup() {
+    // Soporte para feeds automáticos
+    add_theme_support('automatic-feed-links');
+
+    // Soporte para HTML5 en formularios, galería, etc.
+    add_theme_support('html5', array(
+        'search-form',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'caption',
+        'style',
+        'script',
+    ));
+
+    // Tamaños de imagen personalizados
+    add_image_size('card-thumbnail', 800, 450, true);   // 16:9 para tarjetas
+    add_image_size('card-square', 400, 400, true);       // 1:1 cuadrado
+    add_image_size('archive-featured', 1200, 675, true); // 16:9 imagen destacada
+
+    // ---- Soporte para editor de bloques (Gutenberg) ----
+    add_theme_support( 'wp-block-styles' );       // Estilos opcionales de bloques core
+    add_theme_support( 'align-wide' );            // Alineaciones anchas y completas
+    add_theme_support( 'responsive-embeds' );     // Embeds responsivos
+    add_theme_support( 'editor-color-palette', array(
+        array(
+            'name'  => esc_html__( 'Azul institucional', 'letrasflch' ),
+            'slug'  => 'primary-dark',
+            'color' => '#143B63',
+        ),
+        array(
+            'name'  => esc_html__( 'Dorado', 'letrasflch' ),
+            'slug'  => 'accent-gold',
+            'color' => '#A88F1D',
+        ),
+        array(
+            'name'  => esc_html__( 'Blanco', 'letrasflch' ),
+            'slug'  => 'white',
+            'color' => '#FFFFFF',
+        ),
+        array(
+            'name'  => esc_html__( 'Gris claro', 'letrasflch' ),
+            'slug'  => 'gray-light',
+            'color' => '#F5F7FA',
+        ),
+    ) );
+}
+add_action('after_setup_theme', 'letras_flch_setup');
+
+/**
+ * Registrar áreas de widgets (sidebars)
+ */
+function letras_flch_widgets_init() {
+    $sidebar_defaults = array(
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    );
+
+    register_sidebar(array_merge($sidebar_defaults, array(
+        'name'        => esc_html__('Sidebar del Blog', 'letrasflch'),
+        'id'          => 'blog-sidebar',
+        'description' => esc_html__('Widgets para la página de listado de noticias.', 'letrasflch'),
+    )));
+
+    register_sidebar(array_merge($sidebar_defaults, array(
+        'name'        => esc_html__('Sidebar de Artículo', 'letrasflch'),
+        'id'          => 'post-sidebar',
+        'description' => esc_html__('Widgets para la vista de artículo individual.', 'letrasflch'),
+    )));
+
+    register_sidebar(array_merge($sidebar_defaults, array(
+        'name'        => esc_html__('Sidebar de Archivo', 'letrasflch'),
+        'id'          => 'archive-sidebar',
+        'description' => esc_html__('Widgets para las páginas de archivo (categoría, etiqueta, fecha).', 'letrasflch'),
+    )));
+}
+add_action('widgets_init', 'letras_flch_widgets_init');
+
+/**
+ * Encolar estilos y scripts del tema
+ */
+function letras_flch_enqueue_scripts() {
+    $theme_uri     = get_template_directory_uri();
+    $theme_version = wp_get_theme()->get('Version') ?: '1.0';
+
+    // Tailwind CSS (generado)
+    wp_enqueue_style(
+        'letras-tailwind',
+        $theme_uri . '/css/tailwind.css',
+        array(),
+        $theme_version
+    );
+
+    // CSS de variables del sistema de diseño
+    wp_enqueue_style(
+        'letras-variables',
+        $theme_uri . '/css/variables.css',
+        array(),
+        $theme_version
+    );
+
+    // CSS principal de componentes
+    wp_enqueue_style(
+        'letras-main',
+        $theme_uri . '/css/main.css',
+        array('letras-variables'),
+        $theme_version
+    );
+
+    // Hoja de estilos raíz del tema (style.css)
+    wp_enqueue_style(
+        'letras-theme',
+        get_stylesheet_uri(),
+        array('letras-tailwind', 'letras-main'),
+        $theme_version
+    );
+}
+add_action('wp_enqueue_scripts', 'letras_flch_enqueue_scripts');
+
+/**
+ * Devuelve la etiqueta legible de un tipo de contenido (post type).
+ *
+ * @param string $post_type  Slug del post type (default: post actual).
+ * @return string
+ */
+function letras_flch_get_post_type_label( $post_type = '' ) {
+    if ( empty( $post_type ) ) {
+        $post_type = get_post_type();
+    }
+    $obj = get_post_type_object( $post_type );
+    if ( $obj ) {
+        return $obj->labels->singular_name;
+    }
+    return ucfirst( $post_type );
+}
+
+/**
+ * Hace que los nombres de tamaño de imagen personalizados sean seleccionables en el editor.
+ *
+ * @param array $sizes
+ * @return array
+ */
+function letras_flch_custom_image_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'card-thumbnail'   => esc_html__( 'Tarjeta de noticia (16:9)', 'letrasflch' ),
+        'card-square'      => esc_html__( 'Tarjeta cuadrada', 'letrasflch' ),
+        'archive-featured' => esc_html__( 'Destacada de archivo (16:9)', 'letrasflch' ),
+    ) );
+}
+add_filter( 'image_size_names_choose', 'letras_flch_custom_image_sizes' );
+
+/**
+ * Emite el Schema.org WebSite (SearchAction) en <head>.
+ * Habilita el Sitelinks Search Box en Google Search.
+ */
+function letras_flch_schema_website() {
+    if ( ! is_front_page() ) {
+        return;
+    }
+    $schema = array(
+        '@context'        => 'https://schema.org',
+        '@type'           => 'WebSite',
+        'name'            => get_bloginfo( 'name' ),
+        'url'             => home_url( '/' ),
+        'potentialAction' => array(
+            '@type'       => 'SearchAction',
+            'target'      => array(
+                '@type'       => 'EntryPoint',
+                'urlTemplate' => home_url( '/?s={search_term_string}' ),
+            ),
+            'query-input' => 'required name=search_term_string',
+        ),
+    );
+    echo '<script type="application/ld+json">'
+         . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES )
+         . '</script>' . "\n";
+}
+add_action( 'wp_head', 'letras_flch_schema_website' );
+
+/**
+ * Emite el Schema.org BreadcrumbList.
+ * Llamar desde template-parts/breadcrumbs.php con do_action('letras_flch_breadcrumb_schema').
+ * Actualmente es un placeholder; la implementación real depende de la estructura
+ * de la función de breadcrumbs existente.
+ */
+function letras_flch_breadcrumb_schema_output() {
+    // Se implementa en breadcrumbs.php una vez integrado.
+}
+
+/**
+ * Número de posts relacionados a mostrar en single.php.
+ * Modificar con: define( 'LETRAS_RELATED_COUNT', 4 ) en wp-config.php.
+ */
+if ( ! defined( 'LETRAS_RELATED_COUNT' ) ) {
+    define( 'LETRAS_RELATED_COUNT', 3 );
+}

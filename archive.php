@@ -1,10 +1,12 @@
 <?php
 /**
- * The main template file (blog / posts page)
+ * The template for displaying archive pages
  *
- * Used when WordPress serves the blog posts page (is_home()).
- * For category/tag archives WordPress uses archive.php instead.
+ * Handles: category, tag, date, author archives.
+ * For the blog posts page (/noticias/ if set as static front page),
+ * WordPress uses home.php → index.php instead.
  *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  * @package LetrasFLCH
  */
 
@@ -13,52 +15,108 @@ get_header();
 $found_posts  = $wp_query->found_posts;
 $total_pages  = $wp_query->max_num_pages;
 $current_page = max( 1, get_query_var( 'paged' ) );
+
+/* ---- Determine archive type label ---- */
+if ( is_category() ) {
+    $archive_type  = esc_html__( 'Categoría', 'letrasflch' );
+    $archive_icon  = 'fas fa-folder-open';
+    $archive_label = single_cat_title( '', false );
+    $archive_desc  = category_description();
+} elseif ( is_tag() ) {
+    $archive_type  = esc_html__( 'Etiqueta', 'letrasflch' );
+    $archive_icon  = 'fas fa-tag';
+    $archive_label = single_tag_title( '', false );
+    $archive_desc  = tag_description();
+} elseif ( is_author() ) {
+    $archive_type  = esc_html__( 'Autor', 'letrasflch' );
+    $archive_icon  = 'far fa-user';
+    $archive_label = get_the_author();
+    $archive_desc  = get_the_author_meta( 'description' );
+} elseif ( is_year() ) {
+    $archive_type  = esc_html__( 'Archivo', 'letrasflch' );
+    $archive_icon  = 'far fa-calendar-alt';
+    $archive_label = get_the_date( 'Y' );
+    $archive_desc  = '';
+} elseif ( is_month() ) {
+    $archive_type  = esc_html__( 'Archivo', 'letrasflch' );
+    $archive_icon  = 'far fa-calendar-alt';
+    $archive_label = get_the_date( 'F Y' );
+    $archive_desc  = '';
+} elseif ( is_day() ) {
+    $archive_type  = esc_html__( 'Archivo', 'letrasflch' );
+    $archive_icon  = 'far fa-calendar-alt';
+    $archive_label = get_the_date();
+    $archive_desc  = '';
+} else {
+    $archive_type  = esc_html__( 'Noticias', 'letrasflch' );
+    $archive_icon  = 'fas fa-newspaper';
+    $archive_label = esc_html__( 'Noticias y Eventos', 'letrasflch' );
+    $archive_desc  = '';
+}
 ?>
 
-<!-- Page Header -->
+<!-- ================================================ -->
+<!-- PAGE HEADER                                        -->
+<!-- ================================================ -->
 <section class="page-header">
     <div class="container-custom">
+
         <div class="archive-header__eyebrow">
-            <i class="fas fa-newspaper" aria-hidden="true"></i>
-            <span><?php esc_html_e( 'Noticias', 'letrasflch' ); ?></span>
+            <i class="<?php echo esc_attr( $archive_icon ); ?>" aria-hidden="true"></i>
+            <span><?php echo $archive_type; ?></span>
         </div>
+
         <h1 class="page-title animate-fade-in-up">
-            <?php esc_html_e( 'Noticias y Eventos', 'letrasflch' ); ?>
+            <?php echo esc_html( $archive_label ); ?>
         </h1>
+
+        <?php if ( ! empty( $archive_desc ) ) : ?>
+            <p class="archive-header__desc"><?php echo wp_kses_post( $archive_desc ); ?></p>
+        <?php endif; ?>
+
         <p class="archive-header__count">
-            <?php printf(
+            <?php
+            printf(
                 esc_html( _n(
-                    '%s publicación',
-                    '%s publicaciones',
+                    '%s publicación encontrada',
+                    '%s publicaciones encontradas',
                     $found_posts,
                     'letrasflch'
                 ) ),
                 number_format_i18n( $found_posts )
-            ); ?>
-            <?php if ( $total_pages > 1 ) : ?>
-                &mdash; <?php printf(
+            );
+            if ( $total_pages > 1 ) {
+                echo ' &mdash; ';
+                printf(
                     esc_html__( 'Página %1$d de %2$d', 'letrasflch' ),
                     $current_page,
                     $total_pages
-                ); ?>
-            <?php endif; ?>
+                );
+            }
+            ?>
         </p>
+
         <?php get_template_part( 'template-parts/breadcrumbs' ); ?>
     </div>
 </section>
 
-<!-- Blog Content -->
+<!-- ================================================ -->
+<!-- MAIN CONTENT                                       -->
+<!-- ================================================ -->
 <main id="main" class="site-main archive-main" role="main">
     <div class="container-custom">
         <div class="archive-layout">
 
-            <!-- Posts Column -->
+            <!-- ---- Posts Column ---- -->
             <div class="archive-posts">
 
                 <?php if ( have_posts() ) : ?>
 
                     <?php
-                    // First post as featured hero
+                    /*
+                     * First post: displayed as a featured "hero" card.
+                     * Remaining posts fill the card grid below.
+                     */
                     the_post();
                     ?>
 
@@ -77,7 +135,7 @@ $current_page = max( 1, get_query_var( 'paged' ) );
                                 <div class="archive-featured__overlay" aria-hidden="true"></div>
                                 <span class="archive-featured__label">
                                     <i class="fas fa-star" aria-hidden="true"></i>
-                                    <?php esc_html_e( 'Reciente', 'letrasflch' ); ?>
+                                    <?php esc_html_e( 'Destacado', 'letrasflch' ); ?>
                                 </span>
                             </div>
                         <?php endif; ?>
@@ -164,6 +222,7 @@ $current_page = max( 1, get_query_var( 'paged' ) );
 
                 <?php else : ?>
 
+                    <!-- Empty state -->
                     <div class="archive-empty">
                         <div class="archive-empty__icon">
                             <i class="fas fa-newspaper" aria-hidden="true"></i>
@@ -172,37 +231,46 @@ $current_page = max( 1, get_query_var( 'paged' ) );
                             <?php esc_html_e( 'No se encontraron publicaciones', 'letrasflch' ); ?>
                         </h2>
                         <p class="archive-empty__text">
-                            <?php esc_html_e( 'Aún no hay publicaciones disponibles.', 'letrasflch' ); ?>
+                            <?php esc_html_e( 'En este momento no hay publicaciones disponibles en esta sección. Explora otras categorías o vuelve al inicio.', 'letrasflch' ); ?>
                         </p>
+                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <?php esc_html_e( 'Volver al inicio', 'letrasflch' ); ?>
+                        </a>
                     </div>
 
                 <?php endif; ?>
 
             </div><!-- /.archive-posts -->
 
-            <!-- Sidebar -->
+            <!-- ---- Sidebar ---- -->
             <aside class="sidebar archive-sidebar" aria-label="<?php esc_attr_e( 'Contenido relacionado', 'letrasflch' ); ?>">
 
-                <?php if ( is_active_sidebar( 'blog-sidebar' ) ) : ?>
-                    <?php dynamic_sidebar( 'blog-sidebar' ); ?>
+                <?php if ( is_active_sidebar( 'archive-sidebar' ) ) : ?>
+                    <?php dynamic_sidebar( 'archive-sidebar' ); ?>
                 <?php else : ?>
 
+                    <!-- Widget: Buscar -->
                     <div class="widget">
                         <h3 class="widget-title"><?php esc_html_e( 'Buscar', 'letrasflch' ); ?></h3>
                         <?php get_search_form(); ?>
                     </div>
 
+                    <!-- Widget: Categorías -->
                     <div class="widget">
                         <h3 class="widget-title"><?php esc_html_e( 'Categorías', 'letrasflch' ); ?></h3>
                         <ul>
                             <?php wp_list_categories( array(
                                 'title_li'   => '',
                                 'show_count' => true,
+                                'orderby'    => 'count',
+                                'order'      => 'DESC',
                                 'hide_empty' => true,
                             ) ); ?>
                         </ul>
                     </div>
 
+                    <!-- Widget: Archivo mensual -->
                     <div class="widget">
                         <h3 class="widget-title"><?php esc_html_e( 'Archivo', 'letrasflch' ); ?></h3>
                         <ul>
