@@ -135,7 +135,7 @@
                 <div class="flch-hero__buttons">
                     
                     <!-- CEID - Primario -->
-                    <a href="https://ceidletras.unmsm.edu.pe/" 
+                    <a href="https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/" 
                        class="flch-btn flch-btn--primary"
                        target="_blank"
                        rel="noopener noreferrer">
