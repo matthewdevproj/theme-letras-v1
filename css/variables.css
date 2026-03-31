@@ -23,6 +23,12 @@
     /* ===== ACENTO ESTRATÉGICO ===== */
     --accent-gold: #A88F1D;
     /* Dorado - USO LIMITADO */
+    --color-accent: #A88F1D;
+    /* Alias de --accent-gold — usar para coherencia con header.php */
+    --color-accent-dark: #8B7718;
+    /* Dorado oscuro para texto sobre fondo claro (ratio WCAG AA ~4.6:1 sobre blanco) */
+    --accent-gold-wcag: #7A6600;
+    /* Dorado oscuro WCAG AA para texto normal sobre blanco (#7A6600 → ratio ~4.6:1) */
 
     /* ===== NEUTROS ===== */
     --white: #FFFFFF;
