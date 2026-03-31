@@ -139,8 +139,8 @@
                        class="flch-btn flch-btn--primary"
                        target="_blank"
                        rel="noopener noreferrer">
-                        <span class="flch-btn__text">CEID</span>
-                        <span class="flch-btn__badge">Investigación</span>
+                        <span class="flch-btn__text">Examen de Suficiencia</span>
+                        <span class="flch-btn__badge">Idiomas</span>
                         <span class="flch-btn__icon" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -161,19 +161,6 @@
                         </span>
                     </a>
                     
-                    <!-- Suficiencia Idiomas - Secundario con borde claro -->
-                    <a href="https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/" 
-                       class="flch-btn flch-btn--secondary"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        <span class="flch-btn__text">Suficiencia</span>
-                        <span class="flch-btn__subtext">Idiomas</span>
-                        <span class="flch-btn__icon" aria-hidden="true">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                    </a>
                 </div>
                 
                 <!-- Indicador de scroll -->
