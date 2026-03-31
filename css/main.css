@@ -960,24 +960,45 @@ a:hover {
     color: var(--white);
 }
 
+/* Breadcrumbs — diseñado para fondo oscuro del .page-header */
 .breadcrumbs {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
-    font-size: var(--font-size-sm);
-    color: rgba(255, 255, 255, 0.7);
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: var(--font-size-xs);
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: var(--space-md);
 }
 
 .breadcrumbs a {
     color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color var(--transition-fast);
 }
 
 .breadcrumbs a:hover {
-    color: #F0CD6A; /* Gold aclarado para hover sobre fondo oscuro — alto contraste */
+    color: #F0CD6A; /* dorado claro — contraste alto sobre azul oscuro */
 }
 
-.breadcrumbs span {
-    color: rgba(255, 255, 255, 0.5);
+.breadcrumbs__sep {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.breadcrumbs__current {
+    color: rgba(255, 255, 255, 0.65);
+    font-style: italic;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .page-content {

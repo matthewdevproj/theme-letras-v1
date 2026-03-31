@@ -44,6 +44,8 @@ if ( $primary_cat ) {
     $schema['articleSection'] = $primary_cat->name;
 }
 ?>
+<main id="main" class="site-main" role="main">
+
 <script type="application/ld+json">
 <?php echo wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ); ?>
 </script>
@@ -310,5 +312,7 @@ if ( $primary_cat ) {
 </div><!-- /.single-layout -->
 
 <?php endwhile; ?>
+
+</main><!-- #main -->
 
 <?php get_footer(); ?>

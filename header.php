@@ -17,9 +17,6 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/tailwind.css">
 
     <?php wp_head(); ?>
 
@@ -85,8 +82,8 @@ body {
 }
 
 @keyframes tb-in {
-    from { opacity:0; transform:translateY(-100%); }
-    to   { opacity:1; transform:translateY(0); }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .flch-topbar::after {
@@ -497,6 +494,18 @@ body {
 }
 
 /* ================================================================
+   ADMIN BAR COMPATIBILITY
+   ================================================================ */
+.admin-bar .main-header {
+    top: 32px; /* desktop admin bar height */
+}
+@media screen and (max-width: 782px) {
+    .admin-bar .main-header {
+        top: 46px; /* mobile admin bar height */
+    }
+}
+
+/* ================================================================
    HEADER PRINCIPAL  —  Horizontal nav fix + UI refresh
    ================================================================ */
 .main-header {
@@ -505,7 +514,8 @@ body {
     border-bottom: 2px solid rgba(168,143,29,.25);
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 100; /* higher so mobile panel (absolute child) stacks above content */
+    overflow: visible; /* allow absolute mobile-menu-panel to extend below */
 }
 
 /* ── Inner layout: logo | nav | actions ── */
@@ -845,22 +855,22 @@ nav.main-nav {
 }
 
 .mobile-menu-panel {
-    position: fixed;
-    top: calc(60px + 88px);
+    /* Absolute to sticky .main-header — no hardcoded top offset needed */
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     background: var(--color-primary);
     border-top: 1px solid rgba(168, 143, 29, 0.25);
-    box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.4);
-    max-height: calc(100vh - 148px);
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.55);
+    max-height: calc(100dvh - 68px);
     overflow-y: auto;
-    z-index: 49;
+    z-index: 200;
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (max-width: 640px) {
     .mobile-menu-panel {
-        top: calc(64px + 46px);
-        max-height: calc(100vh - 110px);
+        max-height: calc(100dvh - 60px);
     }
 }
 
@@ -990,6 +1000,21 @@ nav.main-nav {
 .mobile-menu ul.sub-menu ul.sub-menu {
     margin-left: 0.5rem;
     border-left: 1px solid rgba(168, 143, 29, 0.4);
+}
+
+/* Mobile menu backdrop overlay — outside header, so z-index is root-level */
+.mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 99; /* below .main-header (100) → panel inside header stacks above */
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .mobile-backdrop { display: none !important; }
 }
 
 .mobile-contact-info {
@@ -1317,12 +1342,12 @@ nav.main-nav {
                 <button class="header-btn menu-toggle"
                         :class="{ 'active': mobileMenuOpen }"
                         @click="mobileMenuOpen = !mobileMenuOpen;
-                                document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''"
+                                document.documentElement.style.overflowY = mobileMenuOpen ? 'hidden' : '';"
                         aria-label="Abrir menú de navegación"
                         :aria-expanded="mobileMenuOpen">
-                    <i class="fas fa-bars"
-                       :style="mobileMenuOpen ? 'transform:rotate(90deg)' : ''"
-                       style="transition:transform 0.25s ease"></i>
+                    <i class="fas"
+                       :class="mobileMenuOpen ? 'fa-times' : 'fa-bars'"
+                       style="transition:transform 0.25s ease, opacity 0.2s ease"></i>
                 </button>
             </div>
 
@@ -1391,7 +1416,8 @@ nav.main-nav {
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-2"
-             @click.away="mobileMenuOpen=false"
+             role="dialog"
+             aria-label="Menú de navegación"
              x-cloak>
             <nav class="mobile-nav" aria-label="Menú de navegación móvil">
                 <?php
@@ -1428,45 +1454,69 @@ nav.main-nav {
 
     </header>
 
+    <!-- Mobile menu backdrop — controlled by same Alpine state on <body> -->
+    <div class="mobile-backdrop"
+         x-show="mobileMenuOpen"
+         @click="mobileMenuOpen = false; document.documentElement.style.overflowY = '';"
+         x-transition:enter="transition-opacity ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition-opacity ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         aria-hidden="true"
+         x-cloak>
+    </div>
+
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script>
+    /* ── toggleMobileSubmenu: global, llamado por el walker del menú móvil ── */
+    function toggleMobileSubmenu(btn) {
+        const parentLi = btn.closest('.menu-item-has-children');
+        if (!parentLi) return;
+        const submenu = parentLi.querySelector('.sub-menu');
+        const icon    = btn.querySelector('i');
+        if (submenu) {
+            const isOpen = submenu.classList.toggle('open');
+            if (icon) icon.classList.toggle('rotate-180', isOpen);
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
-        // Manejar toggles de submenús móvil
-        const toggleButtons = document.querySelectorAll('.mobile-submenu-toggle');
-        
-        toggleButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const parentLi = this.closest('.menu-item-has-children');
-                const submenu = parentLi.querySelector('.sub-menu');
-                const icon = this.querySelector('i');
-                
-                if (submenu) {
-                    submenu.classList.toggle('open');
-                    if (icon) {
-                        icon.classList.toggle('rotate-180');
-                    }
-                }
-            });
+
+        /* ── Submenús móvil: event delegation (también cubre el onclick del walker) ── */
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.mobile-submenu-toggle');
+            if (!btn) return;
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileSubmenu(btn);
         });
-        
-        // Prevenir que los enlaces con submenú cierren el panel al hacer click
-        const menuItemsWithChildren = document.querySelectorAll('.mobile-menu .menu-item-has-children > a');
-        menuItemsWithChildren.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const toggle = this.nextElementSibling;
-                if (toggle && toggle.classList.contains('mobile-submenu-toggle')) {
-                    toggle.click();
-                }
-            });
+
+        /* ── Prevenir navegación en ítems padre del menú móvil ── */
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('.mobile-menu .menu-item-has-children > a');
+            if (!link) return;
+            e.preventDefault();
+            const toggle = link.parentElement.querySelector('.mobile-submenu-toggle');
+            if (toggle) toggleMobileSubmenu(toggle);
         });
-        
-        // Guardar búsquedas recientes
+
+        /* ── Cerrar submenús al navegar (click en ítem hoja) ── */
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('.mobile-menu a');
+            if (!link || link.closest('.menu-item-has-children')) return;
+            // Cierra el panel Alpine
+            const bodyEl = document.querySelector('[x-data]');
+            if (bodyEl && bodyEl._x_dataStack) {
+                try { bodyEl._x_dataStack[0].mobileMenuOpen = false; } catch(err) {}
+            }
+            document.documentElement.style.overflowY = '';
+        });
+
+        /* ── Guardar búsquedas recientes ── */
         const form = document.querySelector('form[role="search"]');
         if (form) {
             form.addEventListener('submit', function () {
@@ -1479,12 +1529,20 @@ nav.main-nav {
             });
         }
 
-        // Restaurar overflow en resize
+        /* ── Restaurar overflow en resize a desktop ── */
         window.addEventListener('resize', () => {
-            if (window.innerWidth >= 1024) document.body.style.overflow = '';
+            if (window.innerWidth >= 1024) {
+                document.documentElement.style.overflowY = '';
+            }
+        }, { passive: true });
+
+        /* ── Escape key cierra menú y buscador ── */
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'Escape') return;
+            document.documentElement.style.overflowY = '';
         });
 
-        console.log('%cFLCH Header v3 — Responsive Premium', 'color:#A88F1D;font-weight:bold;');
+        console.log('%cFLCH Header v3 — Responsive Premium', 'color:#A88F1D;font-weight:bold;font-size:12px');
     });
     </script>
 

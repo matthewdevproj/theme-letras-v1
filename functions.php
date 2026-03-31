@@ -273,7 +273,23 @@ function letras_flch_enqueue_scripts() {
     $theme_uri     = get_template_directory_uri();
     $theme_version = wp_get_theme()->get('Version') ?: '1.0';
 
-    // Tailwind CSS (generado)
+    // Google Fonts — Poppins
+    wp_enqueue_style(
+        'letras-fonts',
+        'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap',
+        array(),
+        null  // null = no version in URL (managed by Google)
+    );
+
+    // Font Awesome 6 via CDN
+    wp_enqueue_style(
+        'letras-fontawesome',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+        array(),
+        '6.4.0'
+    );
+
+    // Tailwind CSS (generado localmente con build)
     wp_enqueue_style(
         'letras-tailwind',
         $theme_uri . '/css/tailwind.css',
@@ -285,7 +301,7 @@ function letras_flch_enqueue_scripts() {
     wp_enqueue_style(
         'letras-variables',
         $theme_uri . '/css/variables.css',
-        array(),
+        array('letras-tailwind'),
         $theme_version
     );
 
