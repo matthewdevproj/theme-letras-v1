@@ -6,8 +6,11 @@
  */
 
 get_header();
+?>
 
-// Verificar si estamos en la página de inicio
+<main id="main" class="site-main" role="main" tabindex="-1">
+
+<?php // Verificar si estamos en la página de inicio
 if (is_front_page()) : ?>
     
     <!-- Hero Section con Slider (solo en front page) -->
@@ -113,5 +116,7 @@ if (is_front_page()) : ?>
     </section>
 
 <?php endif; ?>
+
+</main><!-- #main -->
 
 <?php get_footer(); ?>

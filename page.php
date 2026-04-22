@@ -5,7 +5,10 @@
  * @package LetrasFLCH
  */
 
-get_header(); ?>
+get_header();
+?>
+
+<main id="main" class="site-main" role="main" tabindex="-1">
 
 <?php while (have_posts()) : the_post(); ?>
 
@@ -44,5 +47,7 @@ get_header(); ?>
 </section>
 
 <?php endwhile; ?>
+
+</main><!-- #main -->
 
 <?php get_footer(); ?>

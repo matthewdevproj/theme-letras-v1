@@ -103,7 +103,7 @@ if ( is_category() ) {
 <!-- ================================================ -->
 <!-- MAIN CONTENT                                       -->
 <!-- ================================================ -->
-<main id="main" class="site-main archive-main" role="main">
+<main id="main" class="site-main archive-main" role="main" tabindex="-1">
     <div class="container-custom">
         <div class="archive-layout">
 

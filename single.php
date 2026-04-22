@@ -44,7 +44,7 @@ if ( $primary_cat ) {
     $schema['articleSection'] = $primary_cat->name;
 }
 ?>
-<main id="main" class="site-main" role="main">
+<main id="main" class="site-main" role="main" tabindex="-1">
 
 <script type="application/ld+json">
 <?php echo wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ); ?>

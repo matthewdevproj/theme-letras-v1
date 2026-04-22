@@ -159,7 +159,7 @@ function letras_flch_highlight( $text, $query ) {
 <!-- ============================================================
      MAIN CONTENT
      ============================================================ -->
-<main id="main" class="site-main archive-main" role="main">
+<main id="main" class="site-main archive-main" role="main" tabindex="-1">
     <div class="container-custom">
 
         <?php if ( have_posts() ) : ?>

@@ -48,7 +48,7 @@ $current_page = max( 1, get_query_var( 'paged' ) );
 </section>
 
 <!-- Blog Content -->
-<main id="main" class="site-main archive-main" role="main">
+<main id="main" class="site-main archive-main" role="main" tabindex="-1">
     <div class="container-custom">
         <div class="archive-layout">
 

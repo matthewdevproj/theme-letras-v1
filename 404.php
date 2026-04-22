@@ -19,7 +19,7 @@ get_header();
 }
 </script>
 
-<main id="main" class="site-main page-404-main" role="main">
+<main id="main" class="site-main page-404-main" role="main" tabindex="-1">
     <div class="container-custom">
 
         <!-- ============================================================

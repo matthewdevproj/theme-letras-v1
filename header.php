@@ -15,12 +15,12 @@
 
     <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">
 
+    <meta name="theme-color" content="#0A1E3C">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <?php wp_head(); ?>
-
-    <meta name="theme-color" content="#0A1E3C">
 
 <style>
 /* ================================================================
@@ -1468,8 +1468,7 @@ nav.main-nav {
          x-cloak>
     </div>
 
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js is now enqueued via functions.php -->
 
     <script>
     /* ── toggleMobileSubmenu: global, llamado por el walker del menú móvil ── */
@@ -1546,4 +1545,4 @@ nav.main-nav {
     });
     </script>
 
-    <main id="main" class="site-main">
+    <!-- Cada template abre su propio <main id="main"> para evitar nesting inválido -->
