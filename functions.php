@@ -114,8 +114,7 @@ class Letras_FLCH_Walker_Nav extends Walker_Nav_Menu {
 class Letras_FLCH_Mobile_Walker_Nav extends Walker_Nav_Menu {
 
     public function start_lvl( &$output, $depth = 0, $args = null ) {
-        $output .= "\n" . str_repeat( "\t", $depth )
-            . "<ul class=\"sub-menu pl-4 mt-2 space-y-2 border-l-2 border-[#A88F1D]/30 hidden\">\n";
+        $output .= "\n" . str_repeat( "\t", $depth ) . "<ul class=\"sub-menu\">\n";
     }
 
     public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
@@ -128,26 +127,17 @@ class Letras_FLCH_Mobile_Walker_Nav extends Walker_Nav_Menu {
 
         $output .= $indent . '<li' . $li_cls . '>';
 
-        $atts = array(
-            'href'  => ! empty( $item->url ) ? $item->url : '#',
-            'class' => 'block py-2 px-3 text-white hover:text-[#A88F1D] transition-colors duration-200 rounded-lg',
-        );
-        $attrs = '';
-        foreach ( $atts as $k => $v ) {
-            $attrs .= ' ' . $k . '="' . esc_attr( $v ) . '"';
-        }
-
+        $href  = ! empty( $item->url ) ? esc_url( $item->url ) : '#';
         $title = $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
 
         $item_output = $args->before;
         if ( $has_children ) {
-            $item_output .= '<div class="flex items-center justify-between w-full">'
-                . '<a' . $attrs . ' class="flex-1">' . $title . '</a>'
-                . '<button class="mobile-submenu-toggle w-10 h-10 flex items-center justify-center text-white hover:text-[#A88F1D] focus:outline-none transition-colors duration-200" onclick="toggleMobileSubmenu(this);return false;" aria-expanded="false" aria-label="' . esc_attr__( 'Expandir submenú', 'letrasflch' ) . '">'
-                . '<i class="fas fa-chevron-down transition-transform duration-300" aria-hidden="true"></i>'
-                . '</button></div>';
+            $item_output .= '<a href="' . $href . '">' . $title . '</a>'
+                . '<button class="mobile-submenu-toggle" onclick="toggleMobileSubmenu(this);return false;" aria-expanded="false" aria-label="' . esc_attr__( 'Expandir submenú', 'letrasflch' ) . '">'
+                . '<i class="fas fa-chevron-down" aria-hidden="true"></i>'
+                . '</button>';
         } else {
-            $item_output .= '<a' . $attrs . '>' . $title . '</a>';
+            $item_output .= '<a href="' . $href . '">' . $title . '</a>';
         }
         $item_output .= $args->after;
 
@@ -218,9 +208,10 @@ function letras_flch_enqueue_scripts() {
     );
 
     // CSS pipeline: tailwind → variables → main → theme
-    wp_enqueue_style( 'letras-tailwind',   $uri . '/css/tailwind.css',   array(),                                    $version );
+    wp_enqueue_style( 'letras-tailwind',    $uri . '/css/tailwind.css',    array(),                                    $version );
     wp_enqueue_style( 'letras-variables',  $uri . '/css/variables.css',  array( 'letras-tailwind' ),                 $version );
     wp_enqueue_style( 'letras-main',       $uri . '/css/main.css',       array( 'letras-variables' ),                $version );
+    wp_enqueue_style( 'letras-responsive', $uri . '/css/responsive.css', array( 'letras-main' ),                     $version );
     wp_enqueue_style( 'letras-theme',      get_stylesheet_uri(),         array( 'letras-tailwind', 'letras-main' ),  $version );
 
     // Alpine.js — deferred so it does not block rendering
