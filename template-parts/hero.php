@@ -815,6 +815,17 @@
     .flch-hero__badge-text  { display: none; }   /* deja solo el ícono y el pulse */
 }
 
+/*
+ * Pantallas altas en mobile (≥750px de viewport, ej. iPhone XR/11/12/13/14).
+ * Con align-items: flex-start el contenido (~350px) queda anclado arriba
+ * y deja un hueco vacío de ~200px entre el botón y los dots de navegación.
+ * Centrar verticalmente elimina ese espacio extraño sin afectar pantallas
+ * cortas (≤736px) donde flex-start sigue siendo necesario.
+ */
+@media (max-width: 768px) and (min-height: 750px) {
+    .flch-hero__content { align-items: center; }
+}
+
 /* ── Reducción de movimiento ─────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
     *,*::before,*::after {
