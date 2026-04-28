@@ -729,101 +729,98 @@
     .flch-hero__light-sweep { display: none; }
 }
 
+/*
+ * Mobile: se mantiene el mismo feel que desktop —
+ * contenido alineado a la izquierda, centrado verticalmente.
+ * Sólo se ajustan tamaños tipográficos y se reserva espacio
+ * inferior para dots + divisor.
+ */
 @media (max-width: 768px) {
-    .flch-hero { min-height: 540px; height: 88vh; height: 88svh; }
+    .flch-hero { min-height: 560px; height: 90vh; height: 90svh; }
 
-    /* Anclar contenido arriba y reservar espacio inferior para dots + divisor */
     .flch-hero__content {
-        align-items:    flex-start;
-        padding-top:    clamp(3.5rem, 12vh, 6rem);
-        padding-bottom: 7.5rem;
+        align-items:    center;
+        padding-top:    0;
+        padding-bottom: 5.5rem;   /* espacio para dots + divisor */
+        padding-left:   clamp(1.25rem, 5vw, 2.5rem);
+        padding-right:  clamp(1.25rem, 5vw, 2.5rem);
     }
 
-    /* Centrar todo el bloque de texto en mobile */
-    .flch-hero__container { text-align: center; }
+    .flch-hero__container { max-width: 100%; }
 
-    .flch-hero__dots { bottom: 88px; gap: 0; }
+    .flch-hero__dots { bottom: 80px; gap: 0; }
     .flch-hero__dot  { width: 36px; height: 36px; }
 
-    /* Badge centrado y más compacto */
-    .flch-hero__badge-wrap  { margin-bottom: 1.2rem; justify-content: center; }
+    /* Badge */
+    .flch-hero__badge-wrap  { margin-bottom: 1rem; }
     .flch-hero__badge-text  { font-size: .65rem; letter-spacing: .1em; }
 
-    /* Título */
+    /* Título — misma lógica que desktop, escala con vw */
     .flch-hero__title      { margin-bottom: .75rem; }
-    .flch-hero__title-word { font-size: clamp(2rem, 7vw, 3.2rem); }
+    .flch-hero__title-word { font-size: clamp(2rem, 7.5vw, 3.5rem); }
 
-    /* Línea decorativa centrada */
-    .flch-hero__accent-line { margin: .75rem auto 1.25rem; }
+    /* Línea decorativa alineada a la izquierda (como desktop) */
+    .flch-hero__accent-line { margin: .75rem 0 1.25rem; }
 
     /* Descripción */
     .flch-hero__description-wrapper { margin-bottom: 1.5rem; }
     .flch-hero__description         { line-height: 1.65; }
 
-    /* Acciones centradas */
-    .flch-hero__actions  { flex-direction: column; align-items: center; gap: 1rem; }
-    .flch-hero__buttons  { justify-content: center; }
-    .flch-hero__scroll   { display: none; }
-    .flch-btn            { padding: 0 1.2rem; height: 44px; font-size: .82rem; min-width: 150px; }
+    /* Acciones — mantener row como desktop, scroll visible si caben */
+    .flch-hero__actions { flex-direction: row; align-items: flex-end; gap: 1rem; }
+    .flch-hero__buttons { flex-wrap: wrap; }
+    .flch-hero__scroll  { display: flex; }
+    .flch-btn           { padding: 0 1.2rem; height: 44px; font-size: .82rem; min-width: 150px; }
 
     .flch-hero__divider-inner { transform: skewY(-2.5deg) translateY(25px); }
 }
 
+/* Pantallas estrechas (≤480px): ajustes finos sin cambiar el estilo */
 @media (max-width: 480px) {
     .flch-hero { height: 92vh; height: 92svh; min-height: 520px; }
 
     .flch-hero__content {
-        padding-top:    clamp(3rem, 10vh, 5rem);
-        padding-bottom: 6.5rem;
+        padding-bottom: 5rem;
         padding-left:   1.25rem;
         padding-right:  1.25rem;
     }
 
-    /* Badge muy compacto */
+    /* Badge */
     .flch-hero__badge-wrap  { margin-bottom: .8rem; }
     .flch-hero__badge       { padding: 5px 14px; }
     .flch-hero__badge-text  { font-size: .6rem; letter-spacing: .07em; }
     .flch-hero__badge-icon  { width: 13px; height: 13px; }
 
-    /* Prefix reducido */
-    .flch-hero__title-prefix { font-size: .95rem; letter-spacing: .1em; margin-bottom: .2rem; }
+    /* Prefix */
+    .flch-hero__title-prefix { font-size: .9rem; letter-spacing: .1em; margin-bottom: .2rem; }
 
     /* Título */
     .flch-hero__title      { margin-bottom: .5rem; }
-    .flch-hero__title-word { font-size: clamp(1.85rem, 8.5vw, 2.6rem); }
+    .flch-hero__title-word { font-size: clamp(1.9rem, 8.5vw, 2.6rem); }
 
     /* Línea decorativa */
-    .flch-hero__accent-line { margin: .6rem auto 1rem; width: 80px; }
+    .flch-hero__accent-line { margin: .5rem 0 .9rem; width: 80px; }
 
-    /* Descripción reducida */
-    .flch-hero__description-wrapper { margin-bottom: 1.25rem; }
+    /* Descripción */
+    .flch-hero__description-wrapper { margin-bottom: 1.1rem; }
     .flch-hero__description         { font-size: .875rem; line-height: 1.6; }
 
-    /* Botones */
+    /* Acciones: apilar en columna y ocultar scroll en pantallas muy estrechas */
+    .flch-hero__actions { flex-direction: column; align-items: flex-start; gap: .75rem; }
     .flch-hero__buttons { flex-direction: column; width: 100%; }
-    .flch-btn { width: 100%; min-width: unset; justify-content: space-between; }
+    .flch-btn           { width: 100%; min-width: unset; justify-content: space-between; }
+    .flch-hero__scroll  { display: none; }
 
     /* Dots */
-    .flch-hero__dots      { bottom: 75px; padding: 2px 4px; }
+    .flch-hero__dots      { bottom: 68px; padding: 2px 4px; }
     .flch-hero__dot       { width: 32px; height: 32px; }
     .flch-hero__dot-inner { width: 7px; height: 7px; }
 }
 
 @media (max-width: 360px) {
-    .flch-hero__title-word { font-size: clamp(1.7rem, 9.5vw, 2.2rem); }
+    .flch-hero__title-word  { font-size: clamp(1.7rem, 9.5vw, 2.1rem); }
     .flch-hero__description { font-size: .825rem; }
-    .flch-hero__badge-text  { display: none; }   /* deja solo el ícono y el pulse */
-}
-
-/*
- * Pantallas altas en mobile (≥750px de viewport, ej. iPhone XR/11/12/13/14).
- * Con align-items: flex-start el contenido (~350px) queda anclado arriba
- * y deja un hueco vacío de ~200px entre el botón y los dots de navegación.
- * Centrar verticalmente elimina ese espacio extraño sin afectar pantallas
- * cortas (≤736px) donde flex-start sigue siendo necesario.
- */
-@media (max-width: 768px) and (min-height: 750px) {
-    .flch-hero__content { align-items: center; }
+    .flch-hero__badge-text  { display: none; }
 }
 
 /* ── Reducción de movimiento ─────────────────────────────── */
