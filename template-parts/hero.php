@@ -730,30 +730,89 @@
 }
 
 @media (max-width: 768px) {
-    .flch-hero { min-height: 580px; height: 85vh; }
+    .flch-hero { min-height: 540px; height: 88vh; height: 88svh; }
 
-    .flch-hero__dots {
-        bottom: 88px;    /* encima del divisor mobile */
-        gap:    0;
+    /* Anclar contenido arriba y reservar espacio inferior para dots + divisor */
+    .flch-hero__content {
+        align-items:    flex-start;
+        padding-top:    clamp(3.5rem, 12vh, 6rem);
+        padding-bottom: 7.5rem;
     }
-    .flch-hero__dot { width: 36px; height: 36px; }   /* área táctil algo menor en mobile */
 
-    .flch-hero__badge-wrap { margin-bottom: 1.4rem; }
-    .flch-hero__title-word { font-size: clamp(2rem, 6.5vw, 3.2rem); }
-    .flch-hero__accent-line { margin: 1rem 0 1.5rem; }
-    .flch-hero__actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    .flch-hero__scroll  { display: none; }
-    .flch-btn           { padding: 0 1.2rem; height: 44px; font-size: .82rem; min-width: 140px; }
+    /* Centrar todo el bloque de texto en mobile */
+    .flch-hero__container { text-align: center; }
+
+    .flch-hero__dots { bottom: 88px; gap: 0; }
+    .flch-hero__dot  { width: 36px; height: 36px; }
+
+    /* Badge centrado y más compacto */
+    .flch-hero__badge-wrap  { margin-bottom: 1.2rem; justify-content: center; }
+    .flch-hero__badge-text  { font-size: .65rem; letter-spacing: .1em; }
+
+    /* Título */
+    .flch-hero__title      { margin-bottom: .75rem; }
+    .flch-hero__title-word { font-size: clamp(2rem, 7vw, 3.2rem); }
+
+    /* Línea decorativa centrada */
+    .flch-hero__accent-line { margin: .75rem auto 1.25rem; }
+
+    /* Descripción */
+    .flch-hero__description-wrapper { margin-bottom: 1.5rem; }
+    .flch-hero__description         { line-height: 1.65; }
+
+    /* Acciones centradas */
+    .flch-hero__actions  { flex-direction: column; align-items: center; gap: 1rem; }
+    .flch-hero__buttons  { justify-content: center; }
+    .flch-hero__scroll   { display: none; }
+    .flch-btn            { padding: 0 1.2rem; height: 44px; font-size: .82rem; min-width: 150px; }
+
     .flch-hero__divider-inner { transform: skewY(-2.5deg) translateY(25px); }
 }
 
 @media (max-width: 480px) {
-    .flch-hero { height: 88vh; min-height: 560px; }
+    .flch-hero { height: 92vh; height: 92svh; min-height: 520px; }
+
+    .flch-hero__content {
+        padding-top:    clamp(3rem, 10vh, 5rem);
+        padding-bottom: 6.5rem;
+        padding-left:   1.25rem;
+        padding-right:  1.25rem;
+    }
+
+    /* Badge muy compacto */
+    .flch-hero__badge-wrap  { margin-bottom: .8rem; }
+    .flch-hero__badge       { padding: 5px 14px; }
+    .flch-hero__badge-text  { font-size: .6rem; letter-spacing: .07em; }
+    .flch-hero__badge-icon  { width: 13px; height: 13px; }
+
+    /* Prefix reducido */
+    .flch-hero__title-prefix { font-size: .95rem; letter-spacing: .1em; margin-bottom: .2rem; }
+
+    /* Título */
+    .flch-hero__title      { margin-bottom: .5rem; }
+    .flch-hero__title-word { font-size: clamp(1.85rem, 8.5vw, 2.6rem); }
+
+    /* Línea decorativa */
+    .flch-hero__accent-line { margin: .6rem auto 1rem; width: 80px; }
+
+    /* Descripción reducida */
+    .flch-hero__description-wrapper { margin-bottom: 1.25rem; }
+    .flch-hero__description         { font-size: .875rem; line-height: 1.6; }
+
+    /* Botones */
     .flch-hero__buttons { flex-direction: column; width: 100%; }
     .flch-btn { width: 100%; min-width: unset; justify-content: space-between; }
-    .flch-hero__dots { bottom: 80px; padding: 2px 4px; }
-    .flch-hero__dot  { width: 32px; height: 32px; }
+
+    /* Dots */
+    .flch-hero__dots      { bottom: 75px; padding: 2px 4px; }
+    .flch-hero__dot       { width: 32px; height: 32px; }
     .flch-hero__dot-inner { width: 7px; height: 7px; }
+}
+
+@media (max-width: 360px) {
+    .flch-hero__title-word { font-size: clamp(1.7rem, 9.5vw, 2.2rem); }
+    .flch-hero__description { font-size: .825rem; }
+    .flch-hero__badge-text  { display: none; }   /* deja solo el ícono y el pulse */
 }
 
 /* ── Reducción de movimiento ─────────────────────────────── */
