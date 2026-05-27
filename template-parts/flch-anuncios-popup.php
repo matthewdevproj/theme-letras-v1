@@ -31,7 +31,7 @@ $cfg = array(
 // ── Anuncios ───────────────────────────────────────────────
 $anuncios = array(
     array(
-        'imagen'      => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/05/Anuncio.jpeg',
+        'imagen'      => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/05/WhatsApp-Image-2026-05-27-at-08.42.21.jpeg',
         'alt'         => 'Ampliación de plazo para rectificación de matrícula',
         'link'        => '',
         'link_texto'  => 'Ver más',
