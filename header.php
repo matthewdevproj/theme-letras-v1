@@ -1435,7 +1435,7 @@ nav.main-nav {
                     'theme_location' => 'primary',
                     'menu_class'     => 'mobile-menu',
                     'container'      => false,
-                    'depth'          => 3,
+                    'depth'          => 0,
                     'fallback_cb'    => false,
                     'walker'         => new Letras_FLCH_Mobile_Walker_Nav()
                 ));
