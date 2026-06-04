@@ -1083,6 +1083,31 @@ nav.main-nav {
     position: relative;
     z-index: 1;
 }
+
+/* ================================================================
+   MEJORA: Mayor tiempo de respuesta al hover (UX)
+   ================================================================ */
+
+/* Los submenús tardan en ocultarse para facilitar el movimiento del mouse */
+.main-menu .sub-menu {
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.2s ease;
+    transition-delay: 0s, 0.2s, 0s;
+}
+
+/* Los submenús anidados también tienen el mismo retraso */
+.main-menu .sub-menu .sub-menu {
+    transition-delay: 0s, 0.2s, 0s;
+}
+
+/* Al hacer hover, aparecen inmediatamente (sin retraso) */
+.main-menu li:hover > .sub-menu,
+.main-menu .sub-menu li:hover > .sub-menu,
+.main-menu li:focus-within > .sub-menu,
+.main-menu .sub-menu li:focus-within > .sub-menu {
+    transition-delay: 0s, 0s, 0s;
+}
+
+
 </style>
 </head>
 
