@@ -650,6 +650,16 @@ nav.main-nav {
     transform: translateY(0);
     pointer-events: auto;
 }
+
+/* Mostrar submenús anidados (tercer nivel y superiores) */
+.main-menu .sub-menu li:hover > .sub-menu,
+.main-menu .sub-menu li:focus-within > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
 /* Nested sub-sub-menu */
 .main-menu .sub-menu .sub-menu {
     left: calc(100% + 4px);
