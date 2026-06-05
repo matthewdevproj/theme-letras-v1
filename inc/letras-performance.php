@@ -1,0 +1,302 @@
+<?php
+/**
+ * letras-performance.php
+ * Stack frontend global + optimizaciones de rendimiento
+ * letras.unmsm.edu.pe — Junio 2026
+ *
+ * Problemas resueltos (auditoría 2026-06-04):
+ *   #1 WP_DEBUG  → desactivado en wp-config.php (Paso 1)
+ *   #2 Gzip      → activado en .htaccess (Paso 2)
+ *   #3 Cache     → headers en .htaccess (Paso 2)
+ *   #4 FA x7     → desencolar duplicados (este archivo)
+ *   #5 XML-RPC   → bloqueado en .htaccess (Paso 2)
+ *   #6 Plugins desactivados → desencolar assets (este archivo)
+ *   #7 Bootstrap → desencolar de plugin inactivo (este archivo)
+ *
+ * Librería agregada:
+ *   GSAP 3.12.5 + ScrollTrigger (única faltante detectada)
+ *
+ * YA EXISTENTES (no re-registrar):
+ *   alpinejs, tablepress-datatables, swiper,
+ *   backbone, backbone-marionette, backbone-radio,
+ *   letras-tailwind
+ *
+ * @package letras-v1
+ * @version 2.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 1: FONT AWESOME — DEDUPLICACIÓN CRÍTICA
+   Problema #4: cargado 7 veces → ahorro ~500KB CSS
+
+   ESTRATEGIA:
+   - Mantener: ch-fontawesome (CDN 6.4.0) — ya funciona
+   - Mantener: elementor-icons-* — necesarios para Elementor
+   - Eliminar: letras-fontawesome (duplicado exacto de ch-)
+   - Eliminar: font-awesome de post-carousel (viejo, local)
+   - Eliminar: wpsm_tabs_r-font-awesome-front (plugin inactivo)
+   ══════════════════════════════════════════════════ */
+function letras_dedup_fontawesome() {
+    // letras-fontawesome = CDN idéntico a ch-fontawesome (DUPLICADO EXACTO)
+    wp_dequeue_style( 'letras-fontawesome' );
+    wp_deregister_style( 'letras-fontawesome' );
+
+    // font-awesome de post-carousel = versión local antigua
+    wp_dequeue_style( 'font-awesome' );
+    // No deregistrar globalmente — puede tener dependencias
+
+    // Font Awesome de tabs-responsive-DESACTIVADO
+    wp_dequeue_style( 'wpsm_tabs_r-font-awesome-front' );
+    wp_deregister_style( 'wpsm_tabs_r-font-awesome-front' );
+}
+add_action( 'wp_enqueue_scripts', 'letras_dedup_fontawesome', 100 );
+
+// Guardia: si ch-fontawesome fue desregistrado por algo, restaurar
+add_action( 'wp_enqueue_scripts', function() {
+    if ( ! wp_style_is( 'ch-fontawesome', 'registered' )
+      && ! wp_style_is( 'ch-fontawesome', 'enqueued' ) ) {
+        wp_enqueue_style(
+            'ch-fontawesome',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+            [],
+            '6.4.0'
+        );
+    }
+}, 200 );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 2: PLUGINS DESACTIVADOS — LIMPIAR ASSETS
+   Problema #6 y #7:
+   - responsive-tabs-DESACTIVADO → 168KB JS innecesario
+   - tabs-responsive-DESACTIVADO → 6.8MB + Bootstrap + FA
+   ══════════════════════════════════════════════════ */
+function letras_clean_inactive_plugin_assets() {
+    // responsive-tabs-DESACTIVADO (168KB JS)
+    wp_dequeue_script( 'rtbs-script' );
+    wp_deregister_script( 'rtbs-script' );
+    wp_dequeue_style( 'rtbs-style' );
+    wp_deregister_style( 'rtbs-style' );
+
+    // tabs-responsive-DESACTIVADO (6.8MB total)
+    // Bootstrap (~30KB CSS)
+    wp_dequeue_style( 'wpsm_tabs_r_bootstrap-front' );
+    wp_deregister_style( 'wpsm_tabs_r_bootstrap-front' );
+    // JS del plugin
+    wp_dequeue_script( 'wpsm_tabs_r_custom-js-front' );
+    wp_deregister_script( 'wpsm_tabs_r_custom-js-front' );
+}
+add_action( 'wp_enqueue_scripts', 'letras_clean_inactive_plugin_assets', 100 );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 3: LIMPIAR HEAD DE WORDPRESS
+   Elimina ~15KB (emojis) + meta tags que exponen info
+   ══════════════════════════════════════════════════ */
+// Emojis (~15KB + 1 petición HTTP)
+remove_action( 'wp_head',             'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles',     'print_emoji_styles' );
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles',  'print_emoji_styles' );
+remove_filter( 'the_content_feed',    'wp_staticize_emoji' );
+remove_filter( 'comment_text_rss',    'wp_staticize_emoji' );
+remove_filter( 'wp_mail',             'wp_staticize_emoji_for_email' );
+add_filter( 'tiny_mce_plugins', function( $plugins ) {
+    return is_array( $plugins )
+        ? array_diff( $plugins, [ 'wpemoji' ] ) : [];
+} );
+
+// Meta tags innecesarios
+remove_action( 'wp_head', 'rsd_link' );
+remove_action( 'wp_head', 'wlwmanifest_link' );
+remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+remove_action( 'wp_head', 'wp_generator' );
+add_filter( 'the_generator', '__return_empty_string' );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 4: RESOURCE HINTS
+   Reduce latencia de conexiones a dominios externos
+   ══════════════════════════════════════════════════ */
+function letras_resource_hints() {
+    if ( is_admin() ) return;
+    ?>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//cdn.datatables.net">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <?php
+}
+add_action( 'wp_head', 'letras_resource_hints', 1 );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 5: DEFER EN SCRIPTS NO CRÍTICOS
+   Mejora LCP — scripts de analytics no bloquean render
+   ══════════════════════════════════════════════════ */
+add_filter( 'script_loader_tag', function( $tag, $handle ) {
+    if ( is_admin() ) return $tag;
+
+    $defer_handles = [
+        'wp-statistics',        // WP Statistics analytics
+        'wps-js-tracker',       // WP Statistics tracker
+        'google_gtagjs',        // Site Kit GA
+        'google_tag',           // Site Kit Tag Manager
+        'wpcf7',                // Contact Form 7
+        'contact-form-7',       // CF7 alias
+    ];
+
+    if ( in_array( $handle, $defer_handles, true ) ) {
+        if ( strpos( $tag, ' defer' ) === false ) {
+            return str_replace( ' src=', ' defer src=', $tag );
+        }
+    }
+
+    return $tag;
+}, 10, 2 );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 6: REGISTRAR GSAP 3.12.5
+   Única librería que faltaba según auditoría.
+   API: gsap.to() gsap.fromTo() gsap.timeline()
+   NO usar TweenMax (eso es GSAP 2.x)
+   ══════════════════════════════════════════════════ */
+function letras_register_gsap() {
+    // GSAP Core 3.12.5
+    wp_register_script(
+        'gsap',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+        [],
+        '3.12.5',
+        true // footer
+    );
+
+    // ScrollTrigger — animaciones al hacer scroll
+    wp_register_script(
+        'gsap-scrolltrigger',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+        [ 'gsap' ],
+        '3.12.5',
+        true
+    );
+}
+add_action( 'wp_enqueue_scripts', 'letras_register_gsap', 5 );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 7: TAILWIND — CONFIGURACIÓN GLOBAL
+   letras-tailwind ya está registrado como archivo LOCAL
+   Este código inyecta la config FLCH cuando está encolado
+   Tokens de identidad: navy #143B63 + gold #A88F1D
+   ══════════════════════════════════════════════════ */
+add_action( 'wp_head', function() {
+    // Solo inyectar si Tailwind está activo en esta página
+    if ( ! wp_style_is( 'letras-tailwind', 'enqueued' )
+      && ! wp_script_is( 'tailwindcss', 'enqueued' ) ) {
+        return;
+    }
+    ?>
+    <script>
+    window.addEventListener('load', function() {
+        if (typeof tailwind === 'undefined') return;
+        tailwind.config = {
+            prefix: 'tw-',
+            corePlugins: { preflight: false },
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#143B63',
+                            dark:    '#0E2A48',
+                            mid:     '#1e5590',
+                            faint:   '#F0F5FB',
+                            subtle:  '#EEF2FF'
+                        },
+                        gold: {
+                            DEFAULT: '#A88F1D',
+                            dark:    '#8B7518',
+                            light:   '#C4A822',
+                            faint:   '#FEF9E6'
+                        }
+                    },
+                    fontFamily: {
+                        sans:  ['"DM Sans"', 'system-ui', 'sans-serif'],
+                        serif: ['"Libre Baskerville"', 'Georgia', 'serif']
+                    }
+                }
+            }
+        };
+    });
+    </script>
+    <?php
+}, 100 );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 8: PÁGINAS CON STACK COMPLETO
+   Activar GSAP en páginas que lo necesiten.
+   Agregar slugs según se modernicen páginas.
+   Alpine, DataTables, Tailwind ya están globales.
+   ══════════════════════════════════════════════════ */
+function letras_page_stacks() {
+    if ( is_admin() ) return;
+
+    $slug = get_post_field( 'post_name', get_the_ID() );
+
+    // Páginas con animaciones GSAP
+    $gsap_pages = [
+        'arte-flch',
+        'escuela-profesional-de-arte',  // Página principal Arte (ID 50607)
+        // Agregar más páginas modernizadas aquí:
+        // 'escuela-profesional-de-linguistica',
+        // 'escuela-profesional-de-comunicacion-social',
+        // 'escuela-profesional-de-filosofia',
+        // 'escuela-profesional-de-literatura',
+        // 'escuela-profesional-de-bibliotecologia',
+        // 'uviseg',
+    ];
+
+    if ( in_array( $slug, $gsap_pages, true ) ) {
+        wp_enqueue_script( 'gsap' );
+        wp_enqueue_script( 'gsap-scrolltrigger' );
+        // Alpine: ya global (alpinejs)
+        // DataTables: ya global (tablepress-datatables)
+        // Tailwind: ya global (letras-tailwind)
+        // Font Awesome: ya global (ch-fontawesome)
+    }
+}
+add_action( 'wp_enqueue_scripts', 'letras_page_stacks', 30 );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 9: SEGURIDAD ADICIONAL
+   Complementa lo del .htaccess
+   ══════════════════════════════════════════════════ */
+// XML-RPC ya bloqueado en .htaccess — doble seguro vía PHP
+add_filter( 'xmlrpc_enabled', '__return_false' );
+
+// Limitar revisiones de posts (reduce tamaño BD 3.35GB)
+if ( ! defined( 'WP_POST_REVISIONS' ) ) {
+    define( 'WP_POST_REVISIONS', 5 );
+}
+
+// Lazy loading nativo en imágenes
+add_filter( 'wp_lazy_loading_enabled', '__return_true' );
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN 10: GOOGLE FONTS — LETRAS FLCH
+   DM Sans + Libre Baskerville (identidad tipográfica)
+   Solo agrega si el tema no lo carga ya
+   ══════════════════════════════════════════════════ */
+function letras_google_fonts() {
+    // No duplicar si ya está registrado
+    if ( wp_style_is( 'letras-google-fonts', 'enqueued' )
+      || wp_style_is( 'letras-fonts', 'enqueued' ) ) {
+        return;
+    }
+
+    wp_enqueue_style(
+        'letras-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap',
+        [],
+        null
+    );
+}
+add_action( 'wp_enqueue_scripts', 'letras_google_fonts', 5 );
