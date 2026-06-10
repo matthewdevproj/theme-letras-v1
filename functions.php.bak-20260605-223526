@@ -193,18 +193,17 @@ function letras_flch_enqueue_scripts() {
     $uri     = get_template_directory_uri();
     $version = wp_get_theme()->get( 'Version' ) ?: '1.0';
 
-    // Google Fonts CONSOLIDADAS (DM Sans + Libre Baskerville) — UNA sola llamada
-    // display=swap previene FOIT (Flash of Invisible Text)
+    // Google Fonts — Poppins (display=swap avoids FOIT)
     wp_enqueue_style(
-        'letras-fonts-consolidated',
-        get_template_directory_uri() . '/css/fonts.css',
+        'letras-fonts',
+        'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap',
         array(), null
     );
 
     // Font Awesome 6 via CDN
     wp_enqueue_style(
         'letras-fontawesome',
-        '/assets/libs/fontawesome/all.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
         array(), '6.4.0'
     );
 
@@ -218,7 +217,7 @@ function letras_flch_enqueue_scripts() {
     // Alpine.js — deferred so it does not block rendering
     wp_enqueue_script(
         'alpinejs',
-        '/assets/libs/alpinejs/alpine.min.js',
+        'https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js',
         array(), '3.14.8', array( 'strategy' => 'defer', 'in_footer' => true )
     );
 }
@@ -246,17 +245,18 @@ function letras_flch_performance_cleanup() {
 add_action( 'init', 'letras_flch_performance_cleanup' );
 
 // DNS prefetch + preconnect for third-party origins
-// DISABLED: All resources are now local, no CDN dependencies
-// function letras_flch_resource_hints( $hints, $relation_type ) {
-//     if ( 'dns-prefetch' === $relation_type ) {
-//         // $hints[] = 'https://cdnjs.cloudflare.com';
-//         // $hints[] = 'https://cdn.jsdelivr.net';
-//     }
-//     if ( 'preconnect' === $relation_type ) {
-//     }
-//     return $hints;
-// }
-// add_filter( 'wp_resource_hints', 'letras_flch_resource_hints', 10, 2 );
+function letras_flch_resource_hints( $hints, $relation_type ) {
+    if ( 'dns-prefetch' === $relation_type ) {
+        $hints[] = 'https://cdnjs.cloudflare.com';
+        $hints[] = 'https://cdn.jsdelivr.net';
+    }
+    if ( 'preconnect' === $relation_type ) {
+        $hints[] = array( 'href' => 'https://fonts.googleapis.com' );
+        $hints[] = array( 'href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous' );
+    }
+    return $hints;
+}
+add_filter( 'wp_resource_hints', 'letras_flch_resource_hints', 10, 2 );
 
 // ═══════════════════════════════════════════════════════════
 // 6. FOOTER WIDGETS
@@ -432,65 +432,3 @@ $letras_perf = get_template_directory() . '/inc/letras-performance.php';
 if ( file_exists( $letras_perf ) ) {
     require_once $letras_perf;
 }
-
-/* ══════════════════════════════════════════════════
-   FIX ACCESIBILIDAD: Alt text automático en imágenes
-   Si una imagen no tiene alt, usa el título del adjunto
-   ══════════════════════════════════════════════════ */
-add_filter('wp_get_attachment_image_attributes', function($attr, $attachment) {
-    if(empty($attr['alt'])) {
-        $attr['alt'] = sanitize_text_field(
-            $attachment->post_excerpt
-            ?: $attachment->post_title
-            ?: 'Facultad de Letras y Ciencias Humanas - UNMSM'
-        );
-    }
-    return $attr;
-}, 10, 2);
-
-/* ══════════════════════════════════════════════════
-   FIX ACCESIBILIDAD: type="button" en botones sin tipo
-   Previene submit accidental de formularios
-   ══════════════════════════════════════════════════ */
-add_action('wp_footer', function() {
-    ?>
-    <script>
-    // Agregar type="button" a botones sin tipo (23 detectados en audit)
-    document.querySelectorAll('button:not([type])').forEach(function(btn) {
-        btn.setAttribute('type', 'button');
-    });
-    </script>
-    <?php
-}, 999);
-
-/* ══════════════════════════════════════════════════
-   SEGURIDAD: Ocultar versión de WordPress
-   ══════════════════════════════════════════════════ */
-remove_action('wp_head', 'wp_generator');
-add_filter('the_generator', '__return_empty_string');
-
-// Quitar versión de CSS y JS en el frontend
-add_filter('style_loader_src', function($src) {
-    if(strpos($src, 'ver=') !== false && !is_admin()) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-});
-add_filter('script_loader_src', function($src) {
-    if(strpos($src, 'ver=') !== false && !is_admin()) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-});
-
-/* ══════════════════════════════════════════════════
-   PERFORMANCE: Preconnect hints para assets críticos
-   ══════════════════════════════════════════════════ */
-add_action('wp_head', function() {
-    // All resources are now local, no CDN preconnect needed
-    // echo '<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>' . "\n";
-
-    // DNS prefetch para analytics
-    echo '<link rel="dns-prefetch" href="//www.google-analytics.com">' . "\n";
-    echo '<link rel="dns-prefetch" href="//www.googletagmanager.com">' . "\n";
-}, 1);

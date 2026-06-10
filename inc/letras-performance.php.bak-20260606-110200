@@ -59,7 +59,7 @@ add_action( 'wp_enqueue_scripts', function() {
       && ! wp_style_is( 'ch-fontawesome', 'enqueued' ) ) {
         wp_enqueue_style(
             'ch-fontawesome',
-            '/assets/libs/fontawesome/all.min.css',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
             [],
             '6.4.0'
         );
@@ -120,9 +120,12 @@ add_filter( 'the_generator', '__return_empty_string' );
 function letras_resource_hints() {
     if ( is_admin() ) return;
     ?>
-    //     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    //     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//cdn.datatables.net">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <?php
 }
 add_action( 'wp_head', 'letras_resource_hints', 1 );
@@ -162,7 +165,7 @@ function letras_register_gsap() {
     // GSAP Core 3.12.5
     wp_register_script(
         'gsap',
-        '/assets/libs/gsap/gsap.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
         [],
         '3.12.5',
         true // footer
@@ -171,7 +174,7 @@ function letras_register_gsap() {
     // ScrollTrigger — animaciones al hacer scroll
     wp_register_script(
         'gsap-scrolltrigger',
-        '/assets/libs/gsap/ScrollTrigger.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
         [ 'gsap' ],
         '3.12.5',
         true
@@ -252,8 +255,7 @@ function letras_page_stacks() {
         // 'uviseg',
     ];
 
-    // Cargar GSAP en home y páginas específicas
-    if ( is_front_page() || in_array( $slug, $gsap_pages, true ) ) {
+    if ( in_array( $slug, $gsap_pages, true ) ) {
         wp_enqueue_script( 'gsap' );
         wp_enqueue_script( 'gsap-scrolltrigger' );
         // Alpine: ya global (alpinejs)
@@ -284,21 +286,21 @@ add_filter( 'wp_lazy_loading_enabled', '__return_true' );
    DM Sans + Libre Baskerville (identidad tipográfica)
    Solo agrega si el tema no lo carga ya
    ══════════════════════════════════════════════════ */
-// DESACTIVADO (consolidado en functions.php): function letras_google_fonts() {
-// DESACTIVADO (consolidado en functions.php):     // No duplicar si ya está registrado
-// DESACTIVADO (consolidado en functions.php):     if ( wp_style_is( 'letras-google-fonts', 'enqueued' )
-// DESACTIVADO (consolidado en functions.php):       || wp_style_is( 'letras-fonts', 'enqueued' ) ) {
-// DESACTIVADO (consolidado en functions.php):         return;
-// DESACTIVADO (consolidado en functions.php):     }
-// DESACTIVADO (consolidado en functions.php): 
-// DESACTIVADO (consolidado en functions.php):     wp_enqueue_style(
-// DESACTIVADO (consolidado en functions.php):         'letras-google-fonts',
-// DESACTIVADO (consolidado en functions.php):         'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap',
-// DESACTIVADO (consolidado en functions.php):         [],
-// DESACTIVADO (consolidado en functions.php):         null
-// DESACTIVADO (consolidado en functions.php):     );
-// DESACTIVADO (consolidado en functions.php): }
-// DESACTIVADO (consolidado en functions.php): add_action( 'wp_enqueue_scripts', 'letras_google_fonts', 5 );
+function letras_google_fonts() {
+    // No duplicar si ya está registrado
+    if ( wp_style_is( 'letras-google-fonts', 'enqueued' )
+      || wp_style_is( 'letras-fonts', 'enqueued' ) ) {
+        return;
+    }
+
+    wp_enqueue_style(
+        'letras-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap',
+        [],
+        null
+    );
+}
+add_action( 'wp_enqueue_scripts', 'letras_google_fonts', 5 );
 
 /* ══════════════════════════════════════════════════
    SECCIÓN 11: DATATABLES AUTO-INIT
@@ -461,316 +463,3 @@ add_action('wp_head', function() {
     </style>
 ';
 }, 1);
-
-/* ══════════════════════════════════════════════════════════════
-   GSAP SCRIPTS — Home Animations, Page Transitions, Header Effects
-   Solo se cargan cuando GSAP está disponible
-   ══════════════════════════════════════════════════════════ */
-
-// 1. Home Animations (solo front page)
-add_action('wp_enqueue_scripts', function() {
-    if (!is_front_page()) return;
-
-    wp_enqueue_script(
-        'letras-home-animations',
-        get_template_directory_uri() . '/js/home-animations.js',
-        ['gsap', 'gsap-scrolltrigger'],
-        filemtime(get_template_directory() . '/js/home-animations.js'),
-        true
-    );
-}, 35);
-
-// 2. Page Transitions (GLOBAL en todo el sitio)
-add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
-
-    // Cargar GSAP si aún no está encolado (para transitions)
-    if (!wp_script_is('gsap', 'enqueued')) {
-        wp_enqueue_script('gsap');
-    }
-
-    // Encolar transitions en TODAS las páginas para experiencia fluida
-    wp_enqueue_script(
-        'letras-page-transitions',
-        get_template_directory_uri() . '/js/page-transitions.js',
-        ['gsap'],
-        filemtime(get_template_directory() . '/js/page-transitions.js'),
-        true
-    );
-}, 36);
-
-// 3. Header Effects (global con GSAP)
-add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
-
-    $slug = get_post_field('post_name', get_the_ID());
-    $gsap_pages = ['arte-flch', 'escuela-profesional-de-arte', 'linguistica-flch'];
-
-    if (is_front_page() || in_array($slug, $gsap_pages, true)) {
-        wp_enqueue_script(
-            'letras-header-effects',
-            get_template_directory_uri() . '/js/header-effects.js',
-            ['gsap', 'gsap-scrolltrigger'],
-            filemtime(get_template_directory() . '/js/header-effects.js'),
-            true
-        );
-    }
-}, 37);
-
-
-/* ══════════════════════════════════════════════════════════════
-   ALPINE COMPONENTS — Componentes globales del tema
-   Alpine ya está registrado como 'alpinejs' — NUNCA re-registrar
-   ══════════════════════════════════════════════════════════ */
-add_action('wp_footer', function() {
-    ?>
-    <script>
-    // Componentes Alpine para el tema
-    document.addEventListener('alpine:init', function() {
-
-        // ─── Back to Top Button ───────────────────────────────────
-        Alpine.data('backToTop', function() {
-            return {
-                visible: false,
-                init: function() {
-                    var self = this;
-                    var threshold = 300;
-
-                    window.addEventListener('scroll', function() {
-                        self.visible = window.scrollY > threshold;
-                    }, { passive: true });
-                },
-                scrollToTop: function() {
-                    if (typeof gsap !== 'undefined') {
-                        gsap.to(window, {
-                            scrollTo: { y: 0 },
-                            duration: 0.8,
-                            ease: 'power2.inOut'
-                        });
-                    } else {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                }
-            };
-        });
-
-        // ─── Animated Counter ─────────────────────────────────────
-        // Uso: <span x-data="counter(120, 2000)" x-text="value"></span>
-        Alpine.data('counter', function(target, duration) {
-            return {
-                target: target || 0,
-                duration: duration || 2000,
-                value: 0,
-                started: false,
-                start: function() {
-                    if (this.started) return;
-                    this.started = true;
-
-                    var self = this;
-                    var startTime = null;
-
-                    function animate(ts) {
-                        if (!startTime) startTime = ts;
-                        var progress = Math.min((ts - startTime) / self.duration, 1);
-                        var ease = 1 - Math.pow(1 - progress, 3);  // easeOutCubic
-                        self.value = Math.round(ease * self.target);
-                        if (progress < 1) requestAnimationFrame(animate);
-                    }
-
-                    // Activar con IntersectionObserver
-                    var obs = new IntersectionObserver(function(entries) {
-                        if (entries[0].isIntersecting) {
-                            requestAnimationFrame(animate);
-                            obs.disconnect();
-                        }
-                    }, { threshold: 0.5 });
-
-                    obs.observe(this.$el);
-                }
-            };
-        });
-
-        // ─── Read More / Show More ────────────────────────────────
-        // Uso: <div x-data="readMore(150)">
-        Alpine.data('readMore', function(limit) {
-            return {
-                limit: limit || 150,
-                expanded: false,
-                get truncated() {
-                    if (this.expanded) return this.$el.dataset.fullText || '';
-                    var text = this.$el.dataset.fullText || this.$el.textContent;
-                    return text.length > this.limit
-                        ? text.substring(0, this.limit) + '...'
-                        : text;
-                },
-                toggle: function() {
-                    this.expanded = !this.expanded;
-                }
-            };
-        });
-
-        // ─── Tooltip Component ────────────────────────────────────
-        // Uso: <button x-data="tooltip('Texto del tooltip')">
-        Alpine.data('tooltip', function(content) {
-            return {
-                content: content,
-                show: false,
-                toggle: function() { this.show = !this.show; },
-                hide: function() { this.show = false; }
-            };
-        });
-
-        // ─── Modal/Dialog Component ───────────────────────────────
-        Alpine.data('modal', function() {
-            return {
-                open: false,
-                show: function() {
-                    this.open = true;
-                    document.body.style.overflow = 'hidden';
-                },
-                close: function() {
-                    this.open = false;
-                    document.body.style.overflow = '';
-                },
-                escapeHandler: function(e) {
-                    if (e.key === 'Escape' && this.open) {
-                        this.close();
-                    }
-                }
-            };
-        });
-
-    }); // end alpine:init
-    </script>
-    <?php
-}, 15);
-
-/* ══════════════════════════════════════════════════════════════
-   NUEVOS SCRIPTS — Mejoras Junio 2026
-   Hero Enhanced, Lightbox GSAP, Arte Effects
-   Con soporte responsive completo (mobile, tablet, desktop)
-   ══════════════════════════════════════════════════════════ */
-
-// 4. Hero Enhanced (solo front page)
-add_action('wp_enqueue_scripts', function() {
-    if (!is_front_page()) return;
-
-    wp_enqueue_script(
-        'letras-hero-enhanced',
-        get_template_directory_uri() . '/js/hero-enhanced.js',
-        ['gsap', 'gsap-scrolltrigger'],
-        filemtime(get_template_directory() . '/js/hero-enhanced.js'),
-        true
-    );
-}, 38);
-
-// 5. Lightbox GSAP (global - galerías en cualquier página)
-add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
-
-    // Cargar en páginas con galerías
-    $has_gallery = (
-        has_shortcode(get_post_field('post_content', get_the_ID()), 'gallery') ||
-        is_singular() ||
-        is_page()
-    );
-
-    if ($has_gallery || is_front_page()) {
-        wp_enqueue_script(
-            'letras-lightbox',
-            get_template_directory_uri() . '/js/lightbox.js',
-            ['gsap'],
-            filemtime(get_template_directory() . '/js/lightbox.js'),
-            true
-        );
-    }
-}, 40);
-
-// 6. Arte FLCH Effects (solo página arte-flch)
-add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
-
-    $slug = get_post_field('post_name', get_the_ID());
-    $arte_pages = [
-        'arte-flch',
-        'escuela-profesional-de-arte',
-        'arte'
-    ];
-
-    if (in_array($slug, $arte_pages, true)) {
-        wp_enqueue_script(
-            'letras-arte-effects',
-            get_template_directory_uri() . '/js/arte-flch-effects.js',
-            ['gsap', 'gsap-scrolltrigger'],
-            filemtime(get_template_directory() . '/js/arte-flch-effects.js'),
-            true
-        );
-    }
-}, 41);
-
-
-/* ══════════════════════════════════════════════════════════════
-   SECCIÓN 12: ADMIN BAR COMPATIBILITY FIX
-   Fix para espacio blanco de 262px cuando admin está logueado
-   Implementado: 2026-06-08
-   ══════════════════════════════════════════════════════════ */
-
-add_action('wp_head', function() {
-    if (!is_admin_bar_showing()) return;
-
-    ?>
-    <style id="flch-admin-bar-fix">
-    /* Admin bar compensation - prevents 262px white space */
-    body.admin-bar .main-header {
-        top: 32px !important;
-    }
-
-    @media screen and (max-width: 782px) {
-        body.admin-bar .main-header {
-            top: 46px !important;
-        }
-    }
-
-    /* Fix Elementor full-height sections */
-    body.admin-bar #ar,
-    body.admin-bar .elementor-section-height-full {
-        min-height: calc(100vh - 32px) !important;
-    }
-
-    @media screen and (max-width: 782px) {
-        body.admin-bar #ar,
-        body.admin-bar .elementor-section-height-full {
-            min-height: calc(100vh - 46px) !important;
-        }
-    }
-
-    /* Elementor sticky elements */
-    body.admin-bar .elementor-sticky--effects {
-        top: 32px !important;
-    }
-
-    @media screen and (max-width: 782px) {
-        body.admin-bar .elementor-sticky--effects {
-            top: 46px !important;
-        }
-    }
-
-    /* Mobile menu panel height compensation */
-    body.admin-bar .mobile-menu-panel {
-        max-height: calc(100dvh - 60px - 46px) !important;
-    }
-
-    @media screen and (min-width: 641px) and (max-width: 782px) {
-        body.admin-bar .mobile-menu-panel {
-            max-height: calc(100dvh - 68px - 46px) !important;
-        }
-    }
-
-    @media screen and (min-width: 783px) {
-        body.admin-bar .mobile-menu-panel {
-            max-height: calc(100dvh - 76px - 32px) !important;
-        }
-    }
-    </style>
-    <?php
-}, 999); // Priority 999 para override cualquier otro CSS

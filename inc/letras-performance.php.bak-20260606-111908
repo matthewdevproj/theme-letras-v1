@@ -59,7 +59,7 @@ add_action( 'wp_enqueue_scripts', function() {
       && ! wp_style_is( 'ch-fontawesome', 'enqueued' ) ) {
         wp_enqueue_style(
             'ch-fontawesome',
-            '/assets/libs/fontawesome/all.min.css',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
             [],
             '6.4.0'
         );
@@ -120,9 +120,12 @@ add_filter( 'the_generator', '__return_empty_string' );
 function letras_resource_hints() {
     if ( is_admin() ) return;
     ?>
-    //     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    //     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//cdn.datatables.net">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <?php
 }
 add_action( 'wp_head', 'letras_resource_hints', 1 );
@@ -162,7 +165,7 @@ function letras_register_gsap() {
     // GSAP Core 3.12.5
     wp_register_script(
         'gsap',
-        '/assets/libs/gsap/gsap.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
         [],
         '3.12.5',
         true // footer
@@ -171,7 +174,7 @@ function letras_register_gsap() {
     // ScrollTrigger — animaciones al hacer scroll
     wp_register_script(
         'gsap-scrolltrigger',
-        '/assets/libs/gsap/ScrollTrigger.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
         [ 'gsap' ],
         '3.12.5',
         true
@@ -284,21 +287,21 @@ add_filter( 'wp_lazy_loading_enabled', '__return_true' );
    DM Sans + Libre Baskerville (identidad tipográfica)
    Solo agrega si el tema no lo carga ya
    ══════════════════════════════════════════════════ */
-// DESACTIVADO (consolidado en functions.php): function letras_google_fonts() {
-// DESACTIVADO (consolidado en functions.php):     // No duplicar si ya está registrado
-// DESACTIVADO (consolidado en functions.php):     if ( wp_style_is( 'letras-google-fonts', 'enqueued' )
-// DESACTIVADO (consolidado en functions.php):       || wp_style_is( 'letras-fonts', 'enqueued' ) ) {
-// DESACTIVADO (consolidado en functions.php):         return;
-// DESACTIVADO (consolidado en functions.php):     }
-// DESACTIVADO (consolidado en functions.php): 
-// DESACTIVADO (consolidado en functions.php):     wp_enqueue_style(
-// DESACTIVADO (consolidado en functions.php):         'letras-google-fonts',
-// DESACTIVADO (consolidado en functions.php):         'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap',
-// DESACTIVADO (consolidado en functions.php):         [],
-// DESACTIVADO (consolidado en functions.php):         null
-// DESACTIVADO (consolidado en functions.php):     );
-// DESACTIVADO (consolidado en functions.php): }
-// DESACTIVADO (consolidado en functions.php): add_action( 'wp_enqueue_scripts', 'letras_google_fonts', 5 );
+function letras_google_fonts() {
+    // No duplicar si ya está registrado
+    if ( wp_style_is( 'letras-google-fonts', 'enqueued' )
+      || wp_style_is( 'letras-fonts', 'enqueued' ) ) {
+        return;
+    }
+
+    wp_enqueue_style(
+        'letras-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap',
+        [],
+        null
+    );
+}
+add_action( 'wp_enqueue_scripts', 'letras_google_fonts', 5 );
 
 /* ══════════════════════════════════════════════════
    SECCIÓN 11: DATATABLES AUTO-INIT
@@ -480,23 +483,23 @@ add_action('wp_enqueue_scripts', function() {
     );
 }, 35);
 
-// 2. Page Transitions (GLOBAL en todo el sitio)
+// 2. Page Transitions (global, solo si GSAP se carga)
 add_action('wp_enqueue_scripts', function() {
+    // Verificar si GSAP está siendo encolado
     if (is_admin()) return;
 
-    // Cargar GSAP si aún no está encolado (para transitions)
-    if (!wp_script_is('gsap', 'enqueued')) {
-        wp_enqueue_script('gsap');
-    }
+    $slug = get_post_field('post_name', get_the_ID());
+    $gsap_pages = ['arte-flch', 'escuela-profesional-de-arte', 'linguistica-flch'];
 
-    // Encolar transitions en TODAS las páginas para experiencia fluida
-    wp_enqueue_script(
-        'letras-page-transitions',
-        get_template_directory_uri() . '/js/page-transitions.js',
-        ['gsap'],
-        filemtime(get_template_directory() . '/js/page-transitions.js'),
-        true
-    );
+    if (is_front_page() || in_array($slug, $gsap_pages, true)) {
+        wp_enqueue_script(
+            'letras-page-transitions',
+            get_template_directory_uri() . '/js/page-transitions.js',
+            ['gsap'],
+            filemtime(get_template_directory() . '/js/page-transitions.js'),
+            true
+        );
+    }
 }, 36);
 
 // 3. Header Effects (global con GSAP)
@@ -645,132 +648,3 @@ add_action('wp_footer', function() {
     <?php
 }, 15);
 
-/* ══════════════════════════════════════════════════════════════
-   NUEVOS SCRIPTS — Mejoras Junio 2026
-   Hero Enhanced, Lightbox GSAP, Arte Effects
-   Con soporte responsive completo (mobile, tablet, desktop)
-   ══════════════════════════════════════════════════════════ */
-
-// 4. Hero Enhanced (solo front page)
-add_action('wp_enqueue_scripts', function() {
-    if (!is_front_page()) return;
-
-    wp_enqueue_script(
-        'letras-hero-enhanced',
-        get_template_directory_uri() . '/js/hero-enhanced.js',
-        ['gsap', 'gsap-scrolltrigger'],
-        filemtime(get_template_directory() . '/js/hero-enhanced.js'),
-        true
-    );
-}, 38);
-
-// 5. Lightbox GSAP (global - galerías en cualquier página)
-add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
-
-    // Cargar en páginas con galerías
-    $has_gallery = (
-        has_shortcode(get_post_field('post_content', get_the_ID()), 'gallery') ||
-        is_singular() ||
-        is_page()
-    );
-
-    if ($has_gallery || is_front_page()) {
-        wp_enqueue_script(
-            'letras-lightbox',
-            get_template_directory_uri() . '/js/lightbox.js',
-            ['gsap'],
-            filemtime(get_template_directory() . '/js/lightbox.js'),
-            true
-        );
-    }
-}, 40);
-
-// 6. Arte FLCH Effects (solo página arte-flch)
-add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
-
-    $slug = get_post_field('post_name', get_the_ID());
-    $arte_pages = [
-        'arte-flch',
-        'escuela-profesional-de-arte',
-        'arte'
-    ];
-
-    if (in_array($slug, $arte_pages, true)) {
-        wp_enqueue_script(
-            'letras-arte-effects',
-            get_template_directory_uri() . '/js/arte-flch-effects.js',
-            ['gsap', 'gsap-scrolltrigger'],
-            filemtime(get_template_directory() . '/js/arte-flch-effects.js'),
-            true
-        );
-    }
-}, 41);
-
-
-/* ══════════════════════════════════════════════════════════════
-   SECCIÓN 12: ADMIN BAR COMPATIBILITY FIX
-   Fix para espacio blanco de 262px cuando admin está logueado
-   Implementado: 2026-06-08
-   ══════════════════════════════════════════════════════════ */
-
-add_action('wp_head', function() {
-    if (!is_admin_bar_showing()) return;
-
-    ?>
-    <style id="flch-admin-bar-fix">
-    /* Admin bar compensation - prevents 262px white space */
-    body.admin-bar .main-header {
-        top: 32px !important;
-    }
-
-    @media screen and (max-width: 782px) {
-        body.admin-bar .main-header {
-            top: 46px !important;
-        }
-    }
-
-    /* Fix Elementor full-height sections */
-    body.admin-bar #ar,
-    body.admin-bar .elementor-section-height-full {
-        min-height: calc(100vh - 32px) !important;
-    }
-
-    @media screen and (max-width: 782px) {
-        body.admin-bar #ar,
-        body.admin-bar .elementor-section-height-full {
-            min-height: calc(100vh - 46px) !important;
-        }
-    }
-
-    /* Elementor sticky elements */
-    body.admin-bar .elementor-sticky--effects {
-        top: 32px !important;
-    }
-
-    @media screen and (max-width: 782px) {
-        body.admin-bar .elementor-sticky--effects {
-            top: 46px !important;
-        }
-    }
-
-    /* Mobile menu panel height compensation */
-    body.admin-bar .mobile-menu-panel {
-        max-height: calc(100dvh - 60px - 46px) !important;
-    }
-
-    @media screen and (min-width: 641px) and (max-width: 782px) {
-        body.admin-bar .mobile-menu-panel {
-            max-height: calc(100dvh - 68px - 46px) !important;
-        }
-    }
-
-    @media screen and (min-width: 783px) {
-        body.admin-bar .mobile-menu-panel {
-            max-height: calc(100dvh - 76px - 32px) !important;
-        }
-    }
-    </style>
-    <?php
-}, 999); // Priority 999 para override cualquier otro CSS

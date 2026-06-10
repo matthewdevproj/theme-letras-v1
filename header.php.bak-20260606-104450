@@ -15,8 +15,10 @@
 
     <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">
 
-    <meta name="theme-color" content="#143B63">
+    <meta name="theme-color" content="#0A1E3C">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <?php wp_head(); ?>
 
@@ -24,14 +26,14 @@
 /* ================================================================
    FLCH HEADER — RESPONSIVE PREMIUM v3
    Mobile-First approach
-   Paleta: Azul marino #143B63 · Dorado #A88F1D
+   Paleta: Azul marino #0A1E3C · Dorado #A88F1D
    ================================================================ */
 
 :root {
-    --color-primary:      #143B63;
-    --color-primary-mid:  #1e5590;
+    --color-primary:      #0A1E3C;
+    --color-primary-mid:  #0D2545;
     --color-primary-light:#143B63;
-    --color-accent:       #A88F1D; /* dorado — WCAG AA sobre fondo oscuro (#143B63) = 4.97:1 */
+    --color-accent:       #A88F1D; /* dorado — WCAG AA sobre fondo oscuro (#0A1E3C) = 4.97:1 */
     --color-accent-dark:  #8B7718;
     --color-accent-wcag:  #7A6600; /* dorado oscuro — WCAG AA sobre blanco = 5.1:1 */
     --color-accent-glow:  rgba(168,143,29,0.35);
@@ -44,7 +46,7 @@
 
 body {
     margin: 0;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #333;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -507,9 +509,9 @@ body {
    HEADER PRINCIPAL  —  Horizontal nav fix + UI refresh
    ================================================================ */
 .main-header {
-    background: linear-gradient(180deg, #143B63 0%, #0f2549 100%);
+    background: linear-gradient(180deg, #0A1E3C 0%, #0f2549 100%);
     box-shadow: 0 2px 16px rgba(0,0,0,.35);
-    /* border-bottom: 2px solid rgba(168,143,29,.25); */ /* Comentado: doble underline */
+    border-bottom: 2px solid rgba(168,143,29,.25);
     position: sticky;
     top: 0;
     z-index: 100; /* higher so mobile panel (absolute child) stacks above content */
@@ -766,7 +768,7 @@ nav.main-nav {
     padding: 0.9rem 8rem 0.9rem 1.25rem !important;
     width: 100%;
     font-size: 0.95rem;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
 }
 .search-input:focus {
@@ -789,7 +791,7 @@ nav.main-nav {
     cursor: pointer;
     display: flex; align-items:center; gap:0.4rem;
     font-size: 0.875rem;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Poppins', sans-serif;
     transition: all 0.25s ease;
 }
 .search-submit-btn:hover {
@@ -1579,64 +1581,3 @@ nav.main-nav {
     </script>
 
     <!-- Cada template abre su propio <main id="main"> para evitar nesting inválido -->
-<!-- ══════════════════════════════════════════════════════════════
-     TOP BAR HIDE-ON-SCROLL — Mobile UX Improvement
-     Solo activo en mobile (≤1024px)
-     ══════════════════════════════════════════════════════════ -->
-<script>
-(function() {
-    'use strict';
-    
-    // Solo ejecutar en mobile
-    if (window.innerWidth > 1024) return;
-    
-    let lastScroll = 0;
-    let ticking = false;
-    const topbar = document.querySelector('.flch-topbar');
-    
-    if (!topbar) return;
-    
-    // Hacer top bar sticky en mobile
-    topbar.style.position = 'sticky';
-    topbar.style.top = '0';
-    topbar.style.zIndex = '100';
-    topbar.style.transition = 'transform 0.3s ease';
-    
-    function updateTopBar() {
-        const currentScroll = window.pageYOffset;
-        
-        // Scroll down: ocultar (después de 100px)
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            topbar.style.transform = 'translateY(-100%)';
-        } 
-        // Scroll up: mostrar
-        else if (currentScroll < lastScroll) {
-            topbar.style.transform = 'translateY(0)';
-        }
-        
-        // Si estamos arriba del todo, siempre mostrar
-        if (currentScroll < 50) {
-            topbar.style.transform = 'translateY(0)';
-        }
-        
-        lastScroll = currentScroll;
-        ticking = false;
-    }
-    
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            window.requestAnimationFrame(updateTopBar);
-            ticking = true;
-        }
-    }, { passive: true });
-    
-    // Re-mostrar al resize si volvemos a desktop
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 1024 && topbar) {
-            topbar.style.transform = 'translateY(0)';
-            topbar.style.position = '';
-        }
-    }, { passive: true });
-})();
-</script>
-

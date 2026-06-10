@@ -1,0 +1,341 @@
+<!-- ═══════════════════════════════════════════════════════
+     LINGÜÍSTICA FLCH — Widget Moderno v1
+     Basado en arte-flch v7 | Stack: Alpine + Tailwind + GSAP
+     ══════════════════════════════════════════════════════ -->
+<style>
+:root{
+  --n:#143B63;--nd:#0E2A48;--nm:#1e5590;--nf:#F0F5FB;--ns:#EEF2FF;
+  --g:#A88F1D;--gd:#8B7518;--gl:#C4A822;--gf:#FEF9E6;
+  --w:#FFFFFF;--k:#64748b;--kd:#475569;--bd:#E2E8F0;
+  --r14:14px;--r20:1.25rem;--t:.2s cubic-bezier(.4,0,.2,1);
+  --s1:0 1px 3px rgba(0,0,0,.1);--s2:0 4px 6px rgba(0,0,0,.1);
+  --s3:0 10px 15px rgba(0,0,0,.1);
+}
+#lg{font-family:'DM Sans',sans-serif;background:#F8FAFC;margin:0;padding:0}
+#lg *{box-sizing:border-box}
+#lg [x-cloak]{display:none!important}
+
+/* HERO */
+#lg .h{
+  background:linear-gradient(140deg,#143B63 0%,#0E2A48 58%,#091d34 100%);
+  padding:3.25rem 2.5rem 2.75rem;position:relative;overflow:hidden;
+  border-radius:0 0 1.75rem 1.75rem;
+}
+#lg .eb{display:flex;align-items:center;gap:9px;margin-bottom:.875rem}
+#lg .eb span:first-child{width:22px;height:2px;background:var(--g);border-radius:2px}
+#lg .eb span:last-child{color:var(--g);font-size:.6875rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase}
+#lg .h h1{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,5vw,3.125rem);
+  font-weight:700;color:var(--w);line-height:1.12;margin-bottom:.75rem}
+#lg .h p{font-size:1.0625rem;color:rgba(255,255,255,.72);
+  max-width:500px;line-height:1.65;margin-bottom:2rem}
+
+/* CTAs */
+#lg .ca{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2.25rem}
+#lg .ca a{display:inline-flex;align-items:center;gap:7px;padding:.75rem 1.75rem;
+  border-radius:9999px;font-size:.9rem;text-decoration:none;font-weight:700}
+#lg .ca a:first-child{background:var(--g);color:var(--w);
+  box-shadow:0 2px 14px rgba(168,143,29,.38)}
+#lg .ca a:last-child{background:transparent;color:var(--w);font-weight:600;
+  border:1.5px solid rgba(255,255,255,.32)}
+
+/* Quick strip */
+#lg .hq{display:flex;gap:.875rem;flex-wrap:wrap}
+#lg .hq button{display:flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;padding:.625rem 1.125rem;color:rgba(255,255,255,.88);
+  font-size:.825rem;font-weight:500;cursor:pointer;font-family:inherit}
+
+/* NAV PILLS */
+#lg .nv{background:rgba(255,255,255,.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:50}
+#lg .nv>div{max-width:980px;margin:0 auto;padding:.375rem 1.5rem;
+  display:flex;gap:3px;flex-wrap:wrap;justify-content:center}
+#lg .tab{padding:.5rem 1.25rem;border-radius:9999px;font-size:.8125rem;
+  border:none;cursor:pointer;font-family:inherit;transition:all var(--t)}
+#lg .tab.on{background:var(--n);color:var(--w);font-weight:600}
+#lg .tab:not(.on){background:transparent;color:var(--k)}
+
+/* MAIN */
+#lg .M{max-width:980px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+#lg .S{display:none}
+#lg .S.on{display:block}
+
+/* Secciones */
+#lg .ey{font-size:.6875rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--g);margin-bottom:.375rem}
+#lg .tt{font-family:'Libre Baskerville',serif;font-size:1.75rem;
+  font-weight:700;color:var(--n);margin-bottom:2rem}
+
+/* Cards Misión/Visión */
+#lg .gd{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.75rem}
+#lg .cd{background:var(--w);border-radius:1.25rem;border:1px solid var(--bd);
+  border-top:3px solid var(--g);padding:1.75rem}
+#lg .ic{width:44px;height:44px;background:var(--gf);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+#lg .ic i{color:var(--g);font-size:1.125rem}
+
+/* Datos y contacto */
+#lg .inf{background:var(--nf);border-radius:1.25rem;padding:1.5rem;
+  border-left:3px solid var(--g)}
+#lg .rw{display:flex;justify-content:space-between;padding:.5rem 0;
+  border-bottom:1px solid var(--bd)}
+#lg .rw:last-child{border-bottom:none}
+
+/* Tabla */
+#lg .tw{overflow-x:auto;border-radius:var(--r20);border:1px solid var(--bd);
+  background:var(--w);box-shadow:var(--s2)}
+#lg .tbl{width:100%;border-collapse:collapse;font-size:.875rem;min-width:600px}
+#lg .tbl thead th{background:var(--n);color:var(--w);padding:.875rem 1rem;
+  font-weight:600;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
+  text-align:left}
+#lg .tbl td{padding:.825rem 1rem;border-bottom:1px solid var(--bd);vertical-align:middle}
+#lg .tbl tr:last-child td{border-bottom:none}
+#lg .tbl tr:hover td{background:var(--nf)}
+
+@media (max-width:768px){
+  #lg .gd{grid-template-columns:1fr}
+  #lg .h{padding:2rem 1.5rem}
+  #lg .h h1{font-size:1.75rem}
+  #lg .M{padding:2rem 1.5rem 3rem}
+}
+</style>
+
+<div id="lg" x-data="{ tab: 'presentacion' }">
+  <!-- HERO -->
+  <header class="h">
+    <!-- Eyebrow -->
+    <div class="eb">
+      <span></span>
+      <span>Facultad de Letras y Ciencias Humanas · UNMSM</span>
+    </div>
+
+    <!-- Título -->
+    <h1>Escuela Profesional<br>de Lingüística</h1>
+
+    <!-- Subtítulo -->
+    <p>Formando profesionales en el estudio científico del lenguaje humano, sus estructuras, evolución y aplicaciones en la sociedad peruana y latinoamericana.</p>
+
+    <!-- CTAs -->
+    <div class="ca">
+      <a href="https://letras.unmsm.edu.pe/escuelas/linguistica-flch/plan-de-estudio-e-p-linguistica/" target="_blank">
+        <i class="fas fa-file-alt" style="font-size:.8rem"></i>
+        Plan de Estudios
+      </a>
+      <a href="mailto:linguistica@unmsm.edu.pe">
+        <i class="fas fa-envelope" style="font-size:.8rem"></i>
+        Escríbenos
+      </a>
+    </div>
+
+    <!-- Quick strip -->
+    <div class="hq">
+      <button @click="tab='plan'">
+        <i class="fas fa-file-alt" style="font-size:.75rem;opacity:.75"></i>
+        Plan Curricular
+      </button>
+      <button @click="tab='docentes'">
+        <i class="fas fa-chalkboard-teacher" style="font-size:.75rem;opacity:.75"></i>
+        Plana Docente
+      </button>
+      <button @click="tab='silabos'">
+        <i class="fas fa-folder-open" style="font-size:.75rem;opacity:.75"></i>
+        Sílabos
+      </button>
+    </div>
+  </header>
+
+  <!-- NAV PILLS -->
+  <nav class="nv">
+    <div>
+      <template x-for="t in [
+        {s:'presentacion',l:'Presentación'},
+        {s:'historia',l:'Historia'},
+        {s:'plan',l:'Plan Curricular'},
+        {s:'docentes',l:'Plana Docente'},
+        {s:'silabos',l:'Sílabos'},
+        {s:'comunidad',l:'Comunidad'},
+        {s:'egresados',l:'Egresados'}
+      ]" :key="t.s">
+        <button @click="tab=t.s;window.scrollTo({top:0,behavior:'smooth'})"
+                :class="tab===t.s?'tab on':'tab'"
+                x-text="t.l">
+        </button>
+      </template>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="M">
+
+    <!-- PRESENTACIÓN -->
+    <div :class="tab==='presentacion'?'S on':'S'">
+
+      <!-- Misión/Visión -->
+      <div class="gd">
+        <div class="cd">
+          <div class="ic"><i class="fas fa-bullseye"></i></div>
+          <p class="ey">Misión</p>
+          <p style="font-family:'Libre Baskerville',serif;font-size:.9rem;line-height:1.8;color:#334155">
+            Formar profesionales en Lingüística con sólidos conocimientos científicos y humanísticos, capaces de investigar, analizar y describir el lenguaje en sus diversas manifestaciones, contribuyendo al desarrollo cultural y lingüístico del país.
+          </p>
+        </div>
+        <div class="cd">
+          <div class="ic"><i class="fas fa-eye"></i></div>
+          <p class="ey">Visión</p>
+          <p style="font-family:'Libre Baskerville',serif;font-size:.9rem;line-height:1.8;color:#334155">
+            Ser una Escuela Profesional líder en investigación lingüística a nivel nacional e internacional, reconocida por la calidad de sus egresados y su aporte al conocimiento de las lenguas del Perú y de América Latina.
+          </p>
+        </div>
+      </div>
+
+      <!-- Datos y contacto -->
+      <div class="gd">
+        <div class="inf">
+          <p class="ey" style="color:var(--n);margin-bottom:1rem">Datos académicos</p>
+          <div class="rw">
+            <span style="font-size:.8125rem;color:var(--k)">Duración</span>
+            <span style="font-size:.875rem;font-weight:500">5 años · 10 semestres</span>
+          </div>
+          <div class="rw">
+            <span style="font-size:.8125rem;color:var(--k)">Grado</span>
+            <span style="font-size:.875rem;font-weight:500">Bachiller en Lingüística</span>
+          </div>
+          <div class="rw">
+            <span style="font-size:.8125rem;color:var(--k)">Título</span>
+            <span style="font-size:.875rem;font-weight:500">Licenciado(a) en Lingüística</span>
+          </div>
+        </div>
+        <div style="background:var(--w);border-radius:1.25rem;padding:1.5rem;border:1px solid var(--bd)">
+          <p class="ey" style="color:var(--n);margin-bottom:1rem">Contacto</p>
+          <div style="display:flex;gap:.875rem;align-items:flex-start;margin-bottom:.875rem">
+            <div style="width:38px;height:38px;border-radius:50%;background:#dcfce7;
+                        display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="fas fa-envelope" style="color:#15803d;font-size:.875rem"></i>
+            </div>
+            <div>
+              <p style="font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;
+                        color:#94a3b8;font-weight:700;margin-bottom:2px">Email</p>
+              <a href="mailto:linguistica@unmsm.edu.pe"
+                 style="font-size:.875rem;font-weight:600;color:var(--n);text-decoration:none">
+                linguistica@unmsm.edu.pe
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORIA -->
+    <div :class="tab==='historia'?'S on':'S'">
+      <p class="ey">Reseña histórica</p>
+      <h2 class="tt">Historia de la Escuela</h2>
+      <p style="line-height:1.8;color:#334155;margin-bottom:1rem">
+        La Escuela Profesional de Lingüística de la Universidad Nacional Mayor de San Marcos tiene una larga tradición en la formación de lingüistas e investigadores del lenguaje.
+      </p>
+      <p style="line-height:1.8;color:#334155">
+        Desde su creación, ha contribuido significativamente al estudio y documentación de las lenguas del Perú, especialmente las lenguas indígenas andinas y amazónicas.
+      </p>
+    </div>
+
+    <!-- PLAN CURRICULAR -->
+    <div :class="tab==='plan'?'S on':'S'">
+      <p class="ey">Planes de estudio</p>
+      <h2 class="tt">Plan Curricular</h2>
+      <div style="background:var(--w);border:1px solid var(--bd);border-radius:var(--r14);
+                  padding:1.5rem;margin-bottom:1rem">
+        <h3 style="font-size:1.125rem;font-weight:600;color:var(--n);margin-bottom:.5rem">
+          Plan de Estudios 2018
+        </h3>
+        <p style="color:var(--k);font-size:.875rem;line-height:1.6;margin-bottom:1rem">
+          Estructura curricular actualizada con enfoque en lingüística descriptiva,
+          sociolingüística y psicolingüística.
+        </p>
+        <a href="https://letras.unmsm.edu.pe/escuelas/linguistica-flch/plan-de-estudio-e-p-linguistica/"
+           style="display:inline-flex;align-items:center;gap:.5rem;color:var(--g);
+                  font-weight:600;text-decoration:none;font-size:.875rem">
+          <i class="fas fa-download"></i>
+          Ver plan completo
+        </a>
+      </div>
+    </div>
+
+    <!-- PLANA DOCENTE -->
+    <div :class="tab==='docentes'?'S on':'S'">
+      <p class="ey">Equipo académico</p>
+      <h2 class="tt">Plana Docente</h2>
+      <div class="tw">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Docente</th>
+              <th style="text-align:center">Categoría</th>
+              <th style="text-align:center">Grado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:500">Nombre del docente</td>
+              <td style="text-align:center;color:var(--k)">Principal</td>
+              <td style="text-align:center;color:var(--k)">Doctor</td>
+            </tr>
+            <!-- Más filas aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SÍLABOS -->
+    <div :class="tab==='silabos'?'S on':'S'">
+      <p class="ey">Documentos académicos</p>
+      <h2 class="tt">Sílabos</h2>
+      <p style="color:var(--k);margin-bottom:1.5rem">
+        Descarga los sílabos de los cursos de la Escuela Profesional de Lingüística.
+      </p>
+      <div style="background:var(--w);border:1px solid var(--bd);border-radius:var(--r14);
+                  padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;
+                  gap:1rem;box-shadow:var(--s1);text-decoration:none;transition:all var(--t)">
+        <div style="display:flex;align-items:center;gap:.875rem">
+          <div style="width:42px;height:42px;background:var(--nf);border-radius:10px;
+                      display:flex;align-items:center;justify-content:center">
+            <i class="fas fa-file-pdf" style="color:var(--n);font-size:1.125rem"></i>
+          </div>
+          <div>
+            <p style="font-weight:600;color:var(--n);font-size:.9375rem">Sílabos 2024</p>
+            <p style="color:var(--k);font-size:.8125rem">Programación académica</p>
+          </div>
+        </div>
+        <a href="#" style="color:var(--g);font-weight:600;text-decoration:none;font-size:.875rem">
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- COMUNIDAD -->
+    <div :class="tab==='comunidad'?'S on':'S'">
+      <p class="ey">Organización interna</p>
+      <h2 class="tt">Comunidad</h2>
+      <p style="color:var(--k)">Información sobre la organización estudiantil y académica.</p>
+    </div>
+
+    <!-- EGRESADOS -->
+    <div :class="tab==='egresados'?'S on':'S'">
+      <p class="ey">Vinculación</p>
+      <h2 class="tt">Egresados</h2>
+      <p style="color:var(--k)">Información y recursos para egresados de Lingüística.</p>
+    </div>
+
+  </div>
+
+  <!-- GSAP animations -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if(typeof gsap === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.fromTo('#lg header > *',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: .6, stagger: .12, ease: 'power2.out', delay: .1 }
+    );
+  });
+  </script>
+</div>

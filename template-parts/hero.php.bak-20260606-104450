@@ -736,7 +736,7 @@
  * inferior para dots + divisor.
  */
 @media (max-width: 768px) {
-    .flch-hero { min-height: 480px; height: 70vh; height: 70svh; max-height: 650px; }
+    .flch-hero { min-height: 560px; height: 90vh; height: 90svh; }
 
     .flch-hero__content {
         align-items:    center;
@@ -777,7 +777,7 @@
 
 /* Pantallas estrechas (≤480px): ajustes finos sin cambiar el estilo */
 @media (max-width: 480px) {
-    .flch-hero { height: 65vh; height: 65svh; min-height: 450px; max-height: 580px; }
+    .flch-hero { height: 92vh; height: 92svh; min-height: 520px; }
 
     .flch-hero__content {
         padding-bottom: 5rem;

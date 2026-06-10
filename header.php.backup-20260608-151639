@@ -17,6 +17,8 @@
 
     <meta name="theme-color" content="#143B63">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <?php wp_head(); ?>
 
@@ -509,7 +511,7 @@ body {
 .main-header {
     background: linear-gradient(180deg, #143B63 0%, #0f2549 100%);
     box-shadow: 0 2px 16px rgba(0,0,0,.35);
-    /* border-bottom: 2px solid rgba(168,143,29,.25); */ /* Comentado: doble underline */
+    border-bottom: 2px solid rgba(168,143,29,.25);
     position: sticky;
     top: 0;
     z-index: 100; /* higher so mobile panel (absolute child) stacks above content */
