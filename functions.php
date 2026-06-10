@@ -409,13 +409,13 @@ add_filter( 'wp_get_attachment_image_attributes', function ( $attrs, $attachment
 // 11. POPUP DE ANUNCIOS (pre-integration hook)
 // ═══════════════════════════════════════════════════════════
 
-function letras_flch_anuncios_popup() {
-    if ( is_admin() ) {
-        return;
-    }
-    get_template_part( 'template-parts/flch-anuncios-popup' );
-}
-add_action( 'wp_footer', 'letras_flch_anuncios_popup', 20 );
+//function letras_flch_anuncios_popup() {
+//    if ( is_admin() ) {
+//        return;
+//    }
+//    get_template_part( 'template-parts/flch-anuncios-popup' );
+//}
+//add_action( 'wp_footer', 'letras_flch_anuncios_popup', 20 );
 
 // ═══════════════════════════════════════════════════════════
 // 12. STACK FRONTEND GLOBAL + OPTIMIZACIONES
