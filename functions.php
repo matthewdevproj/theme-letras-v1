@@ -191,6 +191,7 @@ add_action( 'widgets_init', 'letras_flch_widgets_init' );
 
 function letras_flch_enqueue_scripts() {
     $uri     = get_template_directory_uri();
+    $dir     = get_template_directory();
     $version = wp_get_theme()->get( 'Version' ) ?: '1.0';
 
     // Google Fonts CONSOLIDADAS (DM Sans + Libre Baskerville) — UNA sola llamada
@@ -214,12 +215,30 @@ function letras_flch_enqueue_scripts() {
     wp_enqueue_style( 'letras-main',       $uri . '/css/main.css',       array( 'letras-variables' ),                $version );
     wp_enqueue_style( 'letras-responsive', $uri . '/css/responsive.css', array( 'letras-main' ),                     $version );
     wp_enqueue_style( 'letras-theme',      get_stylesheet_uri(),         array( 'letras-tailwind', 'letras-main' ),  $version );
+    wp_enqueue_style(
+        'letras-modern-ui',
+        $uri . '/css/modern-ui.css',
+        array( 'letras-theme', 'letras-responsive' ),
+        file_exists( $dir . '/css/modern-ui.css' ) ? filemtime( $dir . '/css/modern-ui.css' ) : $version
+    );
 
-    // Alpine.js — deferred so it does not block rendering
+    wp_enqueue_script(
+        'letras-theme-stack',
+        $uri . '/js/theme-stack.js',
+        array(),
+        file_exists( $dir . '/js/theme-stack.js' ) ? filemtime( $dir . '/js/theme-stack.js' ) : $version,
+        array( 'strategy' => 'defer', 'in_footer' => true )
+    );
+
+    // Alpine.js — deferred so it does not block rendering.
+    // theme-stack.js is intentionally loaded first so Alpine components
+    // can register during the alpine:init event.
     wp_enqueue_script(
         'alpinejs',
-        '/assets/libs/alpinejs/alpine.min.js',
-        array(), '3.14.8', array( 'strategy' => 'defer', 'in_footer' => true )
+        $uri . '/js/vendor/alpine.min.js',
+        array( 'letras-theme-stack' ),
+        file_exists( $dir . '/js/vendor/alpine.min.js' ) ? filemtime( $dir . '/js/vendor/alpine.min.js' ) : '3.14.8',
+        array( 'strategy' => 'defer', 'in_footer' => true )
     );
 }
 add_action( 'wp_enqueue_scripts', 'letras_flch_enqueue_scripts' );
@@ -468,20 +487,6 @@ add_action('wp_footer', function() {
    ══════════════════════════════════════════════════ */
 remove_action('wp_head', 'wp_generator');
 add_filter('the_generator', '__return_empty_string');
-
-// Quitar versión de CSS y JS en el frontend
-add_filter('style_loader_src', function($src) {
-    if(strpos($src, 'ver=') !== false && !is_admin()) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-});
-add_filter('script_loader_src', function($src) {
-    if(strpos($src, 'ver=') !== false && !is_admin()) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-});
 
 /* ══════════════════════════════════════════════════
    PERFORMANCE: Preconnect hints para assets críticos

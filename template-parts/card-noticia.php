@@ -13,7 +13,7 @@ $categories = get_the_category();
 $cat        = $categories ? $categories[0] : null;
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'flch-card flch-card--news' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'flch-card flch-card--news' ); ?> data-flch-component="news-card" data-flch-animate="fade-up">
 
     <!-- Imagen destacada + badge de categoría -->
     <div class="flch-card__media">

@@ -3,6 +3,8 @@ module.exports = {
   content: [
     './**/*.php',
     './src/js/**/*.js',
+    './js/**/*.js',
+    './inc/widgets/**/*.html',
     './template-parts/**/*.php'
   ],
   theme: {
@@ -63,6 +65,9 @@ module.exports = {
         },
       },
     },
+  },
+  corePlugins: {
+    preflight: false,
   },
   plugins: [],
 }

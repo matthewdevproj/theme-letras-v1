@@ -120,8 +120,6 @@ add_filter( 'the_generator', '__return_empty_string' );
 function letras_resource_hints() {
     if ( is_admin() ) return;
     ?>
-    //     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    //     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//cdn.datatables.net">
     <?php
 }
@@ -159,21 +157,24 @@ add_filter( 'script_loader_tag', function( $tag, $handle ) {
    NO usar TweenMax (eso es GSAP 2.x)
    ══════════════════════════════════════════════════ */
 function letras_register_gsap() {
+    $uri = get_template_directory_uri();
+    $dir = get_template_directory();
+
     // GSAP Core 3.12.5
     wp_register_script(
         'gsap',
-        '/assets/libs/gsap/gsap.min.js',
+        $uri . '/js/vendor/gsap.min.js',
         [],
-        '3.12.5',
+        file_exists( $dir . '/js/vendor/gsap.min.js' ) ? filemtime( $dir . '/js/vendor/gsap.min.js' ) : '3.12.5',
         true // footer
     );
 
     // ScrollTrigger — animaciones al hacer scroll
     wp_register_script(
         'gsap-scrolltrigger',
-        '/assets/libs/gsap/ScrollTrigger.min.js',
+        $uri . '/js/vendor/ScrollTrigger.min.js',
         [ 'gsap' ],
-        '3.12.5',
+        file_exists( $dir . '/js/vendor/ScrollTrigger.min.js' ) ? filemtime( $dir . '/js/vendor/ScrollTrigger.min.js' ) : '3.12.5',
         true
     );
 }
@@ -541,7 +542,7 @@ add_action('wp_footer', function() {
                     }, { passive: true });
                 },
                 scrollToTop: function() {
-                    if (typeof gsap !== 'undefined') {
+                    if (typeof gsap !== 'undefined' && gsap.plugins && gsap.plugins.ScrollToPlugin) {
                         gsap.to(window, {
                             scrollTo: { y: 0 },
                             duration: 0.8,

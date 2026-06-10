@@ -103,7 +103,7 @@ if ( $primary_cat ) {
 <div class="single-layout container-custom">
 
     <!-- ---- MAIN ARTICLE ---- -->
-    <article id="post-<?php the_ID(); ?>" <?php post_class( 'single-article' ); ?>>
+    <article id="post-<?php the_ID(); ?>" <?php post_class( 'single-article' ); ?> data-flch-component="single-article" data-flch-animate="fade-up">
 
         <!-- Featured Image -->
         <?php if ( has_post_thumbnail() ) : ?>

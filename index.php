@@ -63,7 +63,7 @@ $current_page = max( 1, get_query_var( 'paged' ) );
                     ?>
 
                     <!-- Featured Article -->
-                    <article id="post-<?php the_ID(); ?>" <?php post_class( 'archive-featured group' ); ?>>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class( 'archive-featured group' ); ?> data-flch-component="featured-post" data-flch-animate="fade-up">
 
                         <?php if ( has_post_thumbnail() ) : ?>
                             <div class="archive-featured__image">
