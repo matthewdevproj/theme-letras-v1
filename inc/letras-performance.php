@@ -50,6 +50,14 @@ function letras_dedup_fontawesome() {
     // Font Awesome de tabs-responsive-DESACTIVADO
     wp_dequeue_style( 'wpsm_tabs_r-font-awesome-front' );
     wp_deregister_style( 'wpsm_tabs_r-font-awesome-front' );
+
+    // Font Awesome de Elementor (duplicado - conflicto con versión local)
+    wp_dequeue_style( 'font-awesome-5-all' );
+    wp_deregister_style( 'font-awesome-5-all' );
+
+    // Font Awesome 4 shims de Elementor (no necesario con FA 6)
+    wp_dequeue_style( 'font-awesome-4-shim' );
+    wp_deregister_style( 'font-awesome-4-shim' );
 }
 add_action( 'wp_enqueue_scripts', 'letras_dedup_fontawesome', 100 );
 
@@ -59,7 +67,7 @@ add_action( 'wp_enqueue_scripts', function() {
       && ! wp_style_is( 'ch-fontawesome', 'enqueued' ) ) {
         wp_enqueue_style(
             'ch-fontawesome',
-            '/assets/libs/fontawesome/all.min.css',
+            get_site_url() . '/assets/libs/fontawesome/all.min.css',
             [],
             '6.4.0'
         );
@@ -241,8 +249,6 @@ function letras_page_stacks() {
 
     // Páginas con animaciones GSAP
     $gsap_pages = [
-        'arte-flch',
-        'escuela-profesional-de-arte',  // Página principal Arte (ID 50607)
         'linguistica-flch',  // Lingüística (ID 40672)
         // Agregar más páginas modernizadas aquí:
         // 'escuela-profesional-de-linguistica',
@@ -505,7 +511,7 @@ add_action('wp_enqueue_scripts', function() {
     if (is_admin()) return;
 
     $slug = get_post_field('post_name', get_the_ID());
-    $gsap_pages = ['arte-flch', 'escuela-profesional-de-arte', 'linguistica-flch'];
+    $gsap_pages = ['linguistica-flch'];
 
     if (is_front_page() || in_array($slug, $gsap_pages, true)) {
         wp_enqueue_script(
@@ -687,27 +693,9 @@ add_action('wp_enqueue_scripts', function() {
     }
 }, 40);
 
-// 6. Arte FLCH Effects (solo página arte-flch)
-add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
-
-    $slug = get_post_field('post_name', get_the_ID());
-    $arte_pages = [
-        'arte-flch',
-        'escuela-profesional-de-arte',
-        'arte'
-    ];
-
-    if (in_array($slug, $arte_pages, true)) {
-        wp_enqueue_script(
-            'letras-arte-effects',
-            get_template_directory_uri() . '/js/arte-flch-effects.js',
-            ['gsap', 'gsap-scrolltrigger'],
-            filemtime(get_template_directory() . '/js/arte-flch-effects.js'),
-            true
-        );
-    }
-}, 41);
+// 6. Arte FLCH Effects — REMOVIDO
+// Las animaciones personalizadas de arte-flch han sido eliminadas
+// Se mantienen las animaciones generales del tema (GSAP global)
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -775,3 +763,35 @@ add_action('wp_head', function() {
     </style>
     <?php
 }, 999); // Priority 999 para override cualquier otro CSS
+
+/* ══════════════════════════════════════════════════════════════
+   SECCIÓN 13: LIMPIEZA ADICIONAL DE ELEMENTOR Y PLUGINS
+   Optimizaciones críticas de rendimiento
+   ══════════════════════════════════════════════════════════ */
+
+add_action('wp_enqueue_scripts', function() {
+    if (is_admin()) return;
+
+    // 1. FontAwesome 4 Shims JS (no necesario con FA 6)
+    wp_dequeue_script('font-awesome-4-shim');
+    wp_deregister_script('font-awesome-4-shim');
+
+    // 2. TinyMCE en frontend (NUNCA debería estar aquí - ~400KB)
+    wp_dequeue_script('wp-tinymce');
+    wp_dequeue_script('wp-tinymce-root');
+    wp_deregister_script('wp-tinymce');
+    wp_deregister_script('wp-tinymce-root');
+
+    // 3. Elementor Icons - solo cargar si se detecta uso de Elementor
+    global $post;
+    if ($post) {
+        $is_elementor_page = get_post_meta($post->ID, '_elementor_edit_mode', true);
+        $has_elementor_shortcode = has_shortcode($post->post_content, 'elementor-template');
+
+        // Si NO es página de Elementor, eliminar sus iconos
+        if (!$is_elementor_page && !$has_elementor_shortcode) {
+            wp_dequeue_style('elementor-icons');
+        }
+    }
+
+}, 999); // Prioridad alta para override todo

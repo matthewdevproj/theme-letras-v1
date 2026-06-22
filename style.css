@@ -4921,13 +4921,11 @@ body.admin-bar .main-header {
 }
 
 /* Fix para widgets Elementor con altura viewport completa */
-body.admin-bar #ar,
 body.admin-bar .elementor-section-height-full {
     min-height: calc(100vh - 32px) !important;
 }
 
 @media screen and (max-width: 782px) {
-    body.admin-bar #ar,
     body.admin-bar .elementor-section-height-full {
         min-height: calc(100vh - 46px) !important;
     }
@@ -4960,4 +4958,11 @@ body.admin-bar .mobile-menu-panel {
         max-height: calc(100dvh - 76px - 32px) !important;
     }
 }
+
+/* ════════════════════════════════════════════════════════════
+   NOTA: Recursos movidos a archivos dedicados
+   - .main-menu: Ya no necesita overrides (Tailwind reconfigurado)
+   - FontAwesome fix: Movido a css/fontawesome-fix.css
+   Fecha: 2026-06-18
+   ═══════════════════════════════════════════════════════════ */
 

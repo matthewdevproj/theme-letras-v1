@@ -6,6 +6,13 @@
  */
 
 // ═══════════════════════════════════════════════════════════
+// 0. CONFIGURACIÓN GENERAL
+// ═══════════════════════════════════════════════════════════
+
+// ACTIVAR HEADER MODERNO: Cambiar a true para usar header-modern.php
+define('LETRAS_USE_MODERN_HEADER', true);
+
+// ═══════════════════════════════════════════════════════════
 // 1. THEME SETUP
 // ═══════════════════════════════════════════════════════════
 
@@ -56,10 +63,8 @@ class Letras_FLCH_Walker_Nav extends Walker_Nav_Menu {
 
     public function start_lvl( &$output, $depth = 0, $args = null ) {
         $indent = str_repeat( "\t", $depth );
-        $cls    = $depth === 0
-            ? 'sub-menu absolute left-0 top-full mt-0 bg-[#0A1E3C] border border-[#A88F1D]/30 rounded-lg shadow-xl py-2 min-w-[250px] z-50'
-            : 'sub-menu absolute left-full top-0 ml-2 bg-[#0A1E3C] border border-[#A88F1D]/30 rounded-lg shadow-xl py-2 min-w-[250px] z-50';
-        $output .= "\n{$indent}<ul class=\"{$cls}\">\n";
+        // Clases eliminadas - los estilos están en css/header.css
+        $output .= "\n{$indent}<ul class=\"sub-menu\">\n";
     }
 
     public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
@@ -67,19 +72,17 @@ class Letras_FLCH_Walker_Nav extends Walker_Nav_Menu {
         $classes      = empty( $item->classes ) ? array() : (array) $item->classes;
         $has_children = in_array( 'menu-item-has-children', $classes, true );
 
-        $li_cls = array_filter( array( 'relative', $has_children ? 'group' : '' ) );
+        // Clases eliminadas - los estilos están en css/header.css
+        $li_cls = array_filter( array( $has_children ? 'has-dropdown' : '' ) );
         $li_cls = apply_filters( 'nav_menu_css_class', $li_cls, $item, $args, $depth );
         $li_cls = $li_cls ? ' class="' . esc_attr( implode( ' ', $li_cls ) ) . '"' : '';
 
         $output .= $indent . '<li' . $li_cls . '>';
 
-        if ( $depth === 0 ) {
-            $link_cls = 'block px-4 py-2 text-sm font-medium text-white hover:text-[#A88F1D] hover:bg-white/5 rounded-lg transition-all duration-200';
-        } else {
-            $link_cls = 'block px-4 py-2 text-sm text-white hover:text-[#A88F1D] hover:bg-[#1E4A7A] transition-all duration-200 whitespace-nowrap';
-        }
+        // Clases eliminadas - los estilos están en css/header.css
+        $link_cls = '';
         if ( $has_children && $depth === 0 ) {
-            $link_cls .= ' flex items-center gap-1';
+            $link_cls = 'has-children'; // Clase semántica para referencia
         }
 
         $atts = array(
@@ -108,6 +111,84 @@ class Letras_FLCH_Walker_Nav extends Walker_Nav_Menu {
 
     public function end_lvl( &$output, $depth = 0, $args = null ) {
         $output .= str_repeat( "\t", $depth ) . "</ul>\n";
+    }
+}
+
+class Modern_Nav_Walker extends Walker_Nav_Menu {
+
+    public function start_lvl( &$output, $depth = 0, $args = null ) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n{$indent}<ul class=\"sub-menu\">\n";
+    }
+
+    public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+        $indent = $depth ? str_repeat("\t", $depth) : '';
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $has_children = in_array('menu-item-has-children', $classes);
+
+        // Clases del <li>
+        $li_classes = array('relative');
+        if ($has_children) {
+            $li_classes[] = 'group';
+            $li_classes[] = 'has-dropdown';
+        }
+        $li_classes = apply_filters('nav_menu_css_class', $li_classes, $item, $args, $depth);
+        $li_class = implode(' ', array_filter($li_classes));
+
+        // Clases del <a>
+        if ($depth === 0) {
+            $link_class = 'px-4 py-2 text-sm font-medium text-white/90 hover:text-gold-400 transition-colors rounded-lg hover:bg-white/5 flex items-center gap-1';
+        } else {
+            $link_class = 'block px-4 py-3 text-sm text-gray-700 hover:bg-navy-50 hover:text-navy-900 transition-colors';
+        }
+
+        $output .= $indent . '<li class="' . esc_attr($li_class) . '">';
+
+        // Atributos del link
+        $atts = array(
+            'href' => !empty($item->url) ? $item->url : '#',
+            'class' => $link_class,
+        );
+        if (!empty($item->attr_title)) {
+            $atts['title'] = $item->attr_title;
+        }
+        if (!empty($item->target)) {
+            $atts['target'] = $item->target;
+        }
+
+        $attributes = '';
+        foreach ($atts as $attr => $value) {
+            if (!empty($value)) {
+                $attributes .= ' ' . $attr . '="' . esc_attr($value) . '"';
+            }
+        }
+
+        $item_output = $args->before;
+        $item_output .= '<a' . $attributes . '>';
+        $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+
+        // Icono de dropdown para todos los niveles
+        if ($has_children) {
+            if ($depth === 0) {
+                $item_output .= ' <i class="ml-1 text-xs fas fa-chevron-down transition-transform duration-200"></i>';
+            } else {
+                $item_output .= ' <i class="ml-auto text-xs fas fa-chevron-right transition-transform duration-200"></i>';
+            }
+        }
+
+        $item_output .= '</a>';
+        $item_output .= $args->after;
+
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+    }
+
+    public function end_el( &$output, $item, $depth = 0, $args = null ) {
+        $output .= "</li>\n";
+    }
+
+    public function end_lvl( &$output, $depth = 0, $args = null ) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "{$indent}</ul>\n";
     }
 }
 
@@ -202,25 +283,73 @@ function letras_flch_enqueue_scripts() {
         array(), null
     );
 
-    // Font Awesome 6 via CDN
+    // Font Awesome 6 (local)
     wp_enqueue_style(
         'letras-fontawesome',
-        '/assets/libs/fontawesome/all.min.css',
+        get_site_url() . '/assets/libs/fontawesome/all.min.css',
         array(), '6.4.0'
     );
 
-    // CSS pipeline: tailwind → variables → main → theme
-    wp_enqueue_style( 'letras-tailwind',    $uri . '/css/tailwind.css',    array(),                                    $version );
-    wp_enqueue_style( 'letras-variables',  $uri . '/css/variables.css',  array( 'letras-tailwind' ),                 $version );
-    wp_enqueue_style( 'letras-main',       $uri . '/css/main.css',       array( 'letras-variables' ),                $version );
-    wp_enqueue_style( 'letras-responsive', $uri . '/css/responsive.css', array( 'letras-main' ),                     $version );
-    wp_enqueue_style( 'letras-theme',      get_stylesheet_uri(),         array( 'letras-tailwind', 'letras-main' ),  $version );
+    // FontAwesome global fix (asegura rendering correcto)
+    wp_enqueue_style(
+        'letras-fontawesome-fix',
+        $uri . '/css/fontawesome-fix.css',
+        array( 'letras-fontawesome' ),
+        $version
+    );
+
+    // CSS pipeline: variables → tailwind → main → header → theme → responsive → modern-ui
+    wp_enqueue_style( 'letras-variables',  $uri . '/css/variables.css',  array(),                                    $version );
+    wp_enqueue_style(
+        'letras-tailwind',
+        $uri . '/css/tailwind.css',
+        array( 'letras-variables' ),
+        file_exists( $dir . '/css/tailwind.css' ) ? filemtime( $dir . '/css/tailwind.css' ) : $version
+    );
+    wp_enqueue_style( 'letras-main',       $uri . '/css/main.css',       array( 'letras-tailwind' ),                 $version );
+    wp_enqueue_style(
+        'letras-header',
+        $uri . '/css/header.css',
+        array( 'letras-main' ),
+        file_exists( $dir . '/css/header.css' ) ? filemtime( $dir . '/css/header.css' ) : $version
+    );
+    wp_enqueue_style( 'letras-theme',      get_stylesheet_uri(),         array( 'letras-header' ),                   $version );
+    wp_enqueue_style( 'letras-responsive', $uri . '/css/responsive.css', array( 'letras-theme' ),                    $version );
     wp_enqueue_style(
         'letras-modern-ui',
         $uri . '/css/modern-ui.css',
         array( 'letras-theme', 'letras-responsive' ),
         file_exists( $dir . '/css/modern-ui.css' ) ? filemtime( $dir . '/css/modern-ui.css' ) : $version
     );
+
+    // Header Moderno CSS (opcional - solo si se usa header-modern.php)
+    if (defined('LETRAS_USE_MODERN_HEADER') && LETRAS_USE_MODERN_HEADER) {
+        // Mantener header.css para estilos del topbar original
+        // header.css ya está encolado arriba, solo agregamos los modernos
+
+        wp_enqueue_style(
+            'letras-header-modern',
+            $uri . '/css/header-modern.css',
+            array( 'letras-header' ),
+            file_exists( $dir . '/css/header-modern.css' ) ? filemtime( $dir . '/css/header-modern.css' ) : $version
+        );
+
+        // Override final para asegurar estilos correctos
+        wp_enqueue_style(
+            'letras-header-modern-override',
+            $uri . '/css/header-modern-override.css',
+            array( 'letras-header-modern' ),
+            file_exists( $dir . '/css/header-modern-override.css' ) ? filemtime( $dir . '/css/header-modern-override.css' ) : $version
+        );
+
+        // Menú profesional UI/UX
+        wp_enqueue_style(
+            'letras-menu-professional',
+            $uri . '/css/menu-professional.css',
+            array( 'letras-header-modern-override' ),
+            file_exists( $dir . '/css/menu-professional.css' ) ? filemtime( $dir . '/css/menu-professional.css' ) : $version
+        );
+    }
 
     wp_enqueue_script(
         'letras-theme-stack',
@@ -240,6 +369,17 @@ function letras_flch_enqueue_scripts() {
         file_exists( $dir . '/js/vendor/alpine.min.js' ) ? filemtime( $dir . '/js/vendor/alpine.min.js' ) : '3.14.8',
         array( 'strategy' => 'defer', 'in_footer' => true )
     );
+
+    // Header Moderno JS (opcional - solo si se usa header-modern.php)
+    if (defined('LETRAS_USE_MODERN_HEADER') && LETRAS_USE_MODERN_HEADER) {
+        wp_enqueue_script(
+            'letras-header-modern',
+            $uri . '/js/header-modern.js',
+            array( 'gsap', 'gsap-scrolltrigger' ),
+            file_exists( $dir . '/js/header-modern.js' ) ? filemtime( $dir . '/js/header-modern.js' ) : $version,
+            array( 'strategy' => 'defer', 'in_footer' => true )
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'letras_flch_enqueue_scripts' );
 
@@ -499,3 +639,10 @@ add_action('wp_head', function() {
     echo '<link rel="dns-prefetch" href="//www.google-analytics.com">' . "\n";
     echo '<link rel="dns-prefetch" href="//www.googletagmanager.com">' . "\n";
 }, 1);
+
+/* ══════════════════════════════════════════════════
+   DIAGNÓSTICO DE RECURSOS (solo para admins)
+   Uso: ?diagnostico=1 en cualquier URL
+   ══════════════════════════════════════════════════ */
+require_once get_template_directory() . '/inc/diagnostico-recursos.php';
+/* Cache bust - jue 18 jun 2026 15:40:55 -05 */

@@ -352,49 +352,10 @@
   .footer-bottom-links a {
     @apply text-xs text-secondary-muted hover:text-white;
   }
-  
-  /* Navegación desktop */
-  .main-menu {
-    @apply flex gap-8;
-  }
-  
-  .main-menu > li {
-    @apply relative;
-  }
-  
-  .main-menu > li > a {
-    @apply block px-0 py-2 text-sm font-medium text-white uppercase border-b-2 border-transparent transition-colors hover:border-accent-gold;
-  }
-  
-  .main-menu .sub-menu {
-    @apply invisible absolute left-1/2 -translate-x-1/2 translate-y-2 min-w-[240px] bg-white shadow-lg rounded-sm opacity-0 transition-all duration-300 py-2 z-50 border-t-3 border-accent-gold group-hover:visible group-hover:opacity-100 group-hover:translate-y-0;
-  }
-  
-  .main-menu .sub-menu li {
-    @apply relative;
-  }
-  
-  .main-menu .sub-menu a {
-    @apply block px-6 py-3 text-sm text-gray-text transition-all hover:bg-gray-50 hover:text-primary-dark hover:pl-8;
-  }
-  
-  .main-menu .sub-menu .sub-menu {
-    @apply left-full top-0 -translate-x-0 translate-y-0;
-  }
-  
-  /* Navegación móvil */
-  .mobile-menu {
-    @apply absolute top-full left-0 w-full bg-primary-dark border-t border-white/10;
-  }
-  
-  .mobile-menu a {
-    @apply block py-3 text-white hover:text-accent-gold transition-colors;
-  }
-  
-  .mobile-menu .sub-menu {
-    @apply pl-4 mt-2 space-y-2;
-  }
-  
+
+  /* NOTA: .main-menu y .mobile-menu se definen en header.php
+     NO los incluimos aquí para evitar conflictos de especificidad */
+
   /* Paginación */
   .pagination {
     @apply flex justify-center gap-2 mt-16;

@@ -1,0 +1,499 @@
+/* ════════════════════════════════════════════════════════════
+   MENÚ PROFESIONAL - FLCH UNMSM
+   UI/UX Premium - Desktop & Mobile
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+    --menu-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --menu-bg: #143B63;
+    --menu-hover: rgba(255, 255, 255, 0.1);
+    --submenu-bg: #0A1E3C;
+    --accent-gold: #A88F1D;
+}
+
+/* ══════════════════════════════════════════════════════════
+   DESKTOP MENU - Horizontal Navigation
+   ══════════════════════════════════════════════════════════ */
+
+/* Contenedor principal del menú */
+.nav-modern {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Items del menú principal */
+.nav-modern > li {
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* Links del menú principal */
+.nav-modern > li > a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.625rem 1rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+    position: relative !important;
+    white-space: nowrap !important;
+}
+
+/* Hover state con efecto sutil */
+.nav-modern > li > a:hover {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Active state */
+.nav-modern > li.current-menu-item > a,
+.nav-modern > li.current-menu-ancestor > a {
+    background: rgba(255, 255, 255, 0.12) !important;
+    font-weight: 600 !important;
+}
+
+/* Underline effect on hover */
+.nav-modern > li > a::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 2px !important;
+    background: var(--accent-gold) !important;
+    transition: all 0.3s ease !important;
+    transform: translateX(-50%) !important;
+}
+
+.nav-modern > li > a:hover::after {
+    width: 80% !important;
+}
+
+/* Chevron icons */
+.nav-modern > li > a > i {
+    font-size: 0.625rem !important;
+    transition: transform 0.2s ease !important;
+    opacity: 0.8 !important;
+}
+
+.nav-modern > li:hover > a > i {
+    transform: rotate(180deg) !important;
+    opacity: 1 !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SUBMENUS - Dropdown con animación profesional
+   ══════════════════════════════════════════════════════════ */
+
+.nav-modern .sub-menu {
+    position: absolute !important;
+    top: calc(100% + 0.5rem) !important;
+    left: 0 !important;
+    min-width: auto !important;
+    width: max-content !important;
+    max-width: 450px !important;
+    background: var(--submenu-bg) !important;
+    border: 1px solid rgba(168, 143, 29, 0.2) !important;
+    border-radius: 10px !important;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-8px) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 1000 !important;
+    list-style: none !important;
+    padding: 0.5rem !important;
+    margin: 0 !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Show submenu on hover */
+.nav-modern > li:hover > .sub-menu,
+.nav-modern .sub-menu > li:hover > .sub-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+/* Submenu items */
+.nav-modern .sub-menu > li {
+    position: relative !important;
+    display: block !important;
+    list-style: none !important;
+    margin: 0 !important;
+}
+
+.nav-modern .sub-menu > li > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 1rem !important;
+    padding: 0.625rem 1rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+    white-space: normal !important;
+    line-height: 1.5 !important;
+}
+
+.nav-modern .sub-menu > li > a:hover {
+    background: rgba(168, 143, 29, 0.15) !important;
+    color: var(--accent-gold) !important;
+    transform: translateX(4px) !important;
+}
+
+/* Active submenu item */
+.nav-modern .sub-menu > li.current-menu-item > a {
+    background: rgba(168, 143, 29, 0.2) !important;
+    color: var(--accent-gold) !important;
+    font-weight: 500 !important;
+}
+
+/* Chevron in submenu */
+.nav-modern .sub-menu > li > a > i {
+    flex-shrink: 0 !important;
+    font-size: 0.625rem !important;
+    opacity: 0.6 !important;
+    transition: all 0.2s ease !important;
+}
+
+.nav-modern .sub-menu > li:hover > a > i {
+    opacity: 1 !important;
+    transform: translateX(3px) !important;
+}
+
+/* Nested submenus (3rd level) */
+.nav-modern .sub-menu .sub-menu {
+    top: -0.5rem !important;
+    left: calc(100% + 0.5rem) !important;
+    transform: translateX(-8px) !important;
+}
+
+.nav-modern .sub-menu > li:hover > .sub-menu {
+    transform: translateX(0) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MOBILE MENU - Full-screen overlay
+   ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+    /* Hide desktop nav */
+    .nav-modern {
+        display: none !important;
+    }
+}
+
+/* Mobile menu container */
+.mobile-menu-container {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: linear-gradient(180deg, #143B63 0%, #0A1E3C 100%) !important;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3) !important;
+    z-index: 9999 !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+}
+
+/* Mobile menu header */
+.mobile-menu-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 1.25rem 1.5rem !important;
+    border-bottom: 1px solid rgba(168, 143, 29, 0.2) !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.mobile-menu-title {
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin: 0 !important;
+}
+
+.mobile-menu-close {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: none !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.mobile-menu-close:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Mobile nav */
+.mobile-nav-modern {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 1rem !important;
+}
+
+.mobile-nav-modern > li {
+    margin-bottom: 0.5rem !important;
+}
+
+.mobile-nav-modern > li > a,
+.mobile-nav-modern .sub-menu > li > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 1rem 1.25rem !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 0.9375rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.2s ease !important;
+    position: relative !important;
+}
+
+.mobile-nav-modern > li > a:active {
+    transform: scale(0.98) !important;
+}
+
+.mobile-nav-modern > li.current-menu-item > a {
+    background: rgba(168, 143, 29, 0.2) !important;
+    color: var(--accent-gold) !important;
+    font-weight: 600 !important;
+}
+
+/* Toggle button for submenu */
+.mobile-submenu-toggle {
+    width: 2rem !important;
+    height: 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: none !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0 !important;
+}
+
+.mobile-submenu-toggle:active {
+    transform: scale(0.95) !important;
+}
+
+.mobile-submenu-toggle i {
+    font-size: 0.75rem !important;
+    transition: transform 0.3s ease !important;
+}
+
+.mobile-submenu-toggle[aria-expanded="true"] i {
+    transform: rotate(180deg) !important;
+}
+
+/* Mobile submenu */
+.mobile-nav-modern .sub-menu {
+    list-style: none !important;
+    margin: 0.5rem 0 0 0 !important;
+    padding: 0 0 0 1rem !important;
+    border-left: 2px solid rgba(168, 143, 29, 0.3) !important;
+    display: none !important;
+}
+
+.mobile-nav-modern .sub-menu.is-open {
+    display: block !important;
+}
+
+.mobile-nav-modern .sub-menu > li {
+    margin-bottom: 0.375rem !important;
+}
+
+.mobile-nav-modern .sub-menu > li > a {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.mobile-nav-modern .sub-menu > li > a:hover {
+    background: rgba(168, 143, 29, 0.15) !important;
+    color: var(--accent-gold) !important;
+}
+
+/* Backdrop */
+.mobile-menu-backdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    z-index: 9998 !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+/* Hamburger button */
+.mobile-menu-button {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.375rem !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.mobile-menu-button:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.mobile-menu-button span {
+    width: 1.25rem !important;
+    height: 2px !important;
+    background: white !important;
+    border-radius: 2px !important;
+    transition: all 0.3s ease !important;
+}
+
+.mobile-menu-button.is-open span:nth-child(1) {
+    transform: translateY(0.5rem) rotate(45deg) !important;
+}
+
+.mobile-menu-button.is-open span:nth-child(2) {
+    opacity: 0 !important;
+}
+
+.mobile-menu-button.is-open span:nth-child(3) {
+    transform: translateY(-0.5rem) rotate(-45deg) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ACCESSIBILITY & FOCUS STATES
+   ══════════════════════════════════════════════════════════ */
+
+.nav-modern a:focus-visible,
+.mobile-nav-modern a:focus-visible,
+.mobile-menu-close:focus-visible,
+.mobile-submenu-toggle:focus-visible {
+    outline: 2px solid var(--accent-gold) !important;
+    outline-offset: 2px !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════════════════════ */
+
+/* Slide in from right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Fade in backdrop */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Stagger animation for mobile menu items */
+.mobile-nav-modern > li {
+    animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.mobile-nav-modern > li:nth-child(1) { animation-delay: 0.05s; }
+.mobile-nav-modern > li:nth-child(2) { animation-delay: 0.1s; }
+.mobile-nav-modern > li:nth-child(3) { animation-delay: 0.15s; }
+.mobile-nav-modern > li:nth-child(4) { animation-delay: 0.2s; }
+.mobile-nav-modern > li:nth-child(5) { animation-delay: 0.25s; }
+.mobile-nav-modern > li:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+    .mobile-menu-container {
+        max-width: 100% !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .mobile-menu-button,
+    .mobile-menu-container,
+    .mobile-menu-backdrop {
+        display: none !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
+   PERFORMANCE OPTIMIZATIONS
+   ══════════════════════════════════════════════════════════ */
+
+.nav-modern,
+.nav-modern *,
+.mobile-nav-modern,
+.mobile-nav-modern * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    will-change: auto;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
