@@ -24,7 +24,7 @@
         document.body.classList.add('gsap-fallback');
     }, 3000);
 
-    function waitForGSAP(cb, attempts) {
+    var waitForGSAP = (window.flchGSAP && window.flchGSAP.waitForGSAP) || function(cb, attempts) {
         attempts = attempts || 0;
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             clearTimeout(gsapTimeout);
@@ -35,7 +35,7 @@
         } else {
             console.warn('GSAP no disponible después de 3s');
         }
-    }
+    };
 
     waitForGSAP(function() {
 

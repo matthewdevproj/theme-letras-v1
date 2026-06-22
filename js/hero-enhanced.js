@@ -11,7 +11,7 @@
 (function() {
     'use strict';
 
-    function waitForGSAP(cb, attempts) {
+    var waitForGSAP = (window.flchGSAP && window.flchGSAP.waitForGSAP) || function(cb, attempts) {
         attempts = attempts || 0;
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
@@ -19,9 +19,9 @@
         } else if (attempts < 60) {
             setTimeout(function() { waitForGSAP(cb, attempts + 1); }, 50);
         } else {
-            console.warn('Hero Enhanced: GSAP no disponible');
+            console.warn('hero-enhanced: GSAP no disponible después de 3s');
         }
-    }
+    };
 
     waitForGSAP(function() {
 

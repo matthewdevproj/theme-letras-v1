@@ -140,6 +140,41 @@
                     }
                 };
             });
+
+            Alpine.data('flchHome', function () {
+                return {
+                    news: [
+                        { id:1, cat:'Convocatoria', date:'3 marzo 2026', title:'Becas de movilidad estudiantil 2026-I', excerpt:'Postula a los programas de intercambio nacional e internacional para estudiantes de pregrado.', img:'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=900' },
+                        { id:2, cat:'Evento', date:'28 febrero 2026', title:'Coloquio Internacional de Lingüística Andina', excerpt:'Tres días de mesas, conferencias y diálogo sobre las lenguas originarias del Perú.', img:'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=900' },
+                        { id:3, cat:'Investigación', date:'15 febrero 2026', title:'Nueva revista científica indexada de la Facultad', excerpt:'La FLCH suma una publicación arbitrada a su producción intelectual en humanidades.', img:'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=900' },
+                        { id:4, cat:'Convocatoria', date:'10 febrero 2026', title:'Concurso de ensayo «Letras Vivas» 2026', excerpt:'Abierta la recepción de trabajos para estudiantes de las diez escuelas profesionales.', img:'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=900' },
+                        { id:5, cat:'Evento', date:'5 febrero 2026', title:'Ciclo de Cine Club Letras: cine peruano', excerpt:'Proyecciones y conversatorios cada jueves en el auditorio de la Facultad.', img:'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=900' },
+                        { id:6, cat:'Investigación', date:'30 enero 2026', title:'Grupo de estudio en Filosofía de la mente', excerpt:'Convocatoria a estudiantes interesados en sumarse a la línea de investigación 2026.', img:'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=900' },
+                    ],
+                    newsCats: ['Todas','Convocatoria','Evento','Investigación'],
+                    newsFilter: 'Todas',
+                    modal: null,
+                    filteredNews: function () {
+                        return this.newsFilter === 'Todas'
+                            ? this.news
+                            : this.news.filter(function (n) { return n.cat === this.newsFilter; }.bind(this));
+                    },
+                    newsCount: function (c) {
+                        return c === 'Todas'
+                            ? this.news.length
+                            : this.news.filter(function (n) { return n.cat === c; }).length;
+                    },
+                    trapFocus: function (e) {
+                        var panel = this.$refs.modalPanel;
+                        if (!panel || !this.modal) return;
+                        var focusable = panel.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                        if (!focusable.length) return;
+                        var first = focusable[0], last = focusable[focusable.length - 1];
+                        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+                    },
+                };
+            });
         });
     }
 

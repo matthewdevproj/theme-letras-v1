@@ -172,27 +172,11 @@ div[x-show="topbarVisible"],
 }
 
 /* ══════════════════════════════════════════════════════════
-   BUSCADOR
+   BUSCADOR (header only)
    ══════════════════════════════════════════════════════════ */
-button[aria-label="Buscar"],
-button[aria-label="Menú"] {
-    padding: 0.625rem !important;
-    border-radius: 0.5rem !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    background: transparent !important;
-    border: none !important;
-    cursor: pointer !important;
-    transition: all 0.2s !important;
-}
 
-button[aria-label="Buscar"]:hover,
-button[aria-label="Menú"]:hover {
-    color: #A8861C !important;
-    background-color: rgba(255, 255, 255, 0.05) !important;
-}
-
-/* Search bar */
-input[type="search"] {
+/* Search bar (header only) */
+.header-modern input[type="search"] {
     width: 100% !important;
     padding: 1rem 3rem 1rem 1.5rem !important;
     background-color: rgba(255, 255, 255, 0.1) !important;
@@ -203,17 +187,17 @@ input[type="search"] {
     transition: all 0.2s !important;
 }
 
-input[type="search"]:focus {
+.header-modern input[type="search"]:focus {
     border-color: #A8861C !important;
     box-shadow: 0 0 0 2px rgba(168, 143, 29, 0.3) !important;
 }
 
-input[type="search"]::placeholder {
+.header-modern input[type="search"]::placeholder {
     color: rgba(255, 255, 255, 0.5) !important;
 }
 
-/* Search button */
-button[type="submit"] {
+/* Search button (header only) */
+.header-modern button[type="submit"] {
     position: absolute !important;
     right: 0.75rem !important;
     top: 50% !important;
@@ -231,7 +215,7 @@ button[type="submit"] {
     transition: all 0.2s !important;
 }
 
-button[type="submit"]:hover {
+.header-modern button[type="submit"]:hover {
     background-color: #8B7718 !important;
 }
 

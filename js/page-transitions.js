@@ -42,7 +42,7 @@
         document.body.appendChild(overlay);
     }
 
-    function waitForGSAP(cb, n) {
+    var waitForGSAP = (window.flchGSAP && window.flchGSAP.waitForGSAP) || function(cb, n) {
         n = n || 0;
         if (typeof gsap !== "undefined") {
             cb();
@@ -51,7 +51,7 @@
         } else {
             console.warn("Page transitions: GSAP no disponible");
         }
-    }
+    };
 
     waitForGSAP(function() {
         createOverlay();

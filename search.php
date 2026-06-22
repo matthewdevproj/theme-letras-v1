@@ -242,7 +242,7 @@ function letras_flch_highlight( $text, $query ) {
 
                                 <!-- Read more -->
                                 <a href="<?php the_permalink(); ?>"
-                                   class="card-noticia__readmore"
+                                   class="search-result-item__link"
                                    aria-label="<?php echo esc_attr( sprintf(
                                        __( 'Leer: %s', 'letrasflch' ),
                                        get_the_title()

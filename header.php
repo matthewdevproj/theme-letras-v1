@@ -106,27 +106,37 @@
             </nav>
 
             <!-- Actions -->
-            <div class="flex items-center gap-3">
-                <button @click="search = !search" class="header-btn hidden sm:flex">
+            <div class="flex items-center gap-3" style="flex-shrink: 0;">
+                <button @click="search = !search"
+                        class="header-btn hidden sm:flex"
+                        :aria-expanded="search"
+                        aria-controls="header-search-panel"
+                        aria-label="Abrir búsqueda">
                     <i class="fas fa-search"></i>
                 </button>
                 <button x-data="flchTheme" @click="toggle()"
                         class="header-btn"
                         :aria-label="isDark ? 'Activar modo claro' : 'Activar modo oscuro'"
+                        :aria-pressed="isDark"
                         :title="isDark ? 'Modo claro' : 'Modo oscuro'">
                     <i :class="isDark ? 'fas fa-sun' : 'fas fa-moon'"></i>
                 </button>
-                <button @click="mobile = !mobile" class="header-btn lg:hidden" :class="{'is-open': mobile}">
+                <button @click="mobile = !mobile"
+                        class="header-btn lg:hidden"
+                        :class="{'is-open': mobile}"
+                        :aria-expanded="mobile"
+                        aria-controls="mobile-menu-panel"
+                        aria-label="Abrir menú de navegación">
                     <span></span><span></span><span></span>
                 </button>
             </div>
         </div>
 
         <!-- Search -->
-        <div x-show="search" x-transition class="search-bar" style="display:none"
+        <div id="header-search-panel" x-show="search" x-transition class="search-bar" style="display:none"
              x-effect="if (search) $nextTick(() => $refs.searchInput.focus())">
             <div class="max-w-3xl mx-auto px-4 py-6">
-                <form method="get" action="<?php echo home_url('/'); ?>">
+                <form role="search" method="get" action="<?php echo home_url('/'); ?>">
                     <input x-ref="searchInput" type="search" name="s" placeholder="Buscar..." class="search-input" autocomplete="off">
                     <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
                 </form>
@@ -135,8 +145,8 @@
     </header>
 
     <!-- MOBILE MENU -->
-    <div x-show="mobile" @click="mobile=false" class="mobile-backdrop" style="display:none"></div>
-    <div x-show="mobile" x-transition class="mobile-menu" style="display:none">
+    <div x-show="mobile" @click="mobile=false" class="mobile-backdrop" style="display:none" aria-hidden="true"></div>
+    <div id="mobile-menu-panel" x-show="mobile" x-transition class="mobile-menu" style="display:none">
         <div class="mobile-header">
             <h2>Menú</h2>
             <button @click="mobile=false"><i class="fas fa-times"></i></button>

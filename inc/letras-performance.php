@@ -530,6 +530,35 @@ add_action('wp_enqueue_scripts', function() {
 
 
 /* ══════════════════════════════════════════════════════════════
+   GSAP UTILITY — Shared waitForGSAP for all JS files
+   ══════════════════════════════════════════════════════════ */
+add_action('wp_footer', function() {
+    ?>
+    <script id="flch-gsap-utility">
+    window.flchGSAP = window.flchGSAP || {};
+    window.flchGSAP.waitForGSAP = function(cb, attempts, maxAttempts, checkScrollTrigger) {
+        attempts = attempts || 0;
+        maxAttempts = maxAttempts || 60;
+        var ready = typeof gsap !== 'undefined';
+        if (checkScrollTrigger !== false) {
+            ready = ready && typeof ScrollTrigger !== 'undefined';
+        }
+        if (ready) {
+            gsap.registerPlugin(ScrollTrigger);
+            cb();
+        } else if (attempts < maxAttempts) {
+            setTimeout(function() {
+                window.flchGSAP.waitForGSAP(cb, attempts + 1, maxAttempts, checkScrollTrigger);
+            }, 50);
+        } else {
+            console.warn('flchGSAP: GSAP no disponible después de ' + (maxAttempts * 50) + 'ms');
+        }
+    };
+    </script>
+    <?php
+}, 14); // Before Alpine components (15)
+
+/* ══════════════════════════════════════════════════════════════
    ALPINE COMPONENTS — Componentes globales del tema
    Alpine ya está registrado como 'alpinejs' — NUNCA re-registrar
    ══════════════════════════════════════════════════════════ */
@@ -662,20 +691,9 @@ add_action('wp_footer', function() {
    Con soporte responsive completo (mobile, tablet, desktop)
    ══════════════════════════════════════════════════════════ */
 
-// 4. Hero Enhanced (solo front page)
-// DESACTIVADO: hero.php ya maneja su propia animación CSS + slider JS.
-// hero-enhanced.js duplica la animación y causa conflicto con CSS keyframes.
-// add_action('wp_enqueue_scripts', function() {
-//     if (!is_front_page()) return;
-//
-//     wp_enqueue_script(
-//         'letras-hero-enhanced',
-//         get_template_directory_uri() . '/js/hero-enhanced.js',
-//         ['gsap', 'gsap-scrolltrigger'],
-//         filemtime(get_template_directory() . '/js/hero-enhanced.js'),
-//         true
-//     );
-// }, 38);
+// 4. Hero Enhanced — DESACTIVADO
+// hero.php maneja animación CSS inline + hero-enhanced.js está obsoleto.
+// Se mantiene el archivo por referencia pero no se enqueúa.
 
 // 5. Lightbox GSAP (global - galerías en cualquier página)
 add_action('wp_enqueue_scripts', function() {

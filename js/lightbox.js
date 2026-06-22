@@ -13,7 +13,7 @@
 (function() {
     'use strict';
 
-    function waitForGSAP(cb, attempts) {
+    var waitForGSAP = (window.flchGSAP && window.flchGSAP.waitForGSAP) || function(cb, attempts) {
         attempts = attempts || 0;
         if (typeof gsap !== 'undefined') {
             cb();
@@ -22,7 +22,7 @@
         } else {
             console.warn('Lightbox: GSAP no disponible');
         }
-    }
+    };
 
     waitForGSAP(function() {
 

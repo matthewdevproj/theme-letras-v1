@@ -1520,29 +1520,6 @@ a:hover {
     overflow: hidden;
 }
 
-/* Leer más */
-.card-noticia__readmore {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    color: var(--accent-gold-wcag); /* #7A6600 — WCAG AA sobre blanco */
-    text-decoration: none;
-    margin-top: auto;
-    transition: gap var(--transition-fast), color var(--transition-fast);
-}
-
-.card-noticia__readmore:hover {
-    color: var(--accent-gold-wcag);
-    gap: 10px;
-}
-
-.card-noticia__readmore i {
-    font-size: 11px;
-    transition: transform var(--transition-fast);
-}
-
 /* =====================================================
    ARCHIVE PAGE LAYOUT
    Used in: archive.php, index.php

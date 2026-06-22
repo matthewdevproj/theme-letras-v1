@@ -8,7 +8,7 @@
 (function() {
     'use strict';
 
-    function waitForGSAP(cb, attempts) {
+    var waitForGSAP = (window.flchGSAP && window.flchGSAP.waitForGSAP) || function(cb, attempts) {
         attempts = attempts || 0;
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
@@ -16,7 +16,7 @@
         } else if (attempts < 40) {
             setTimeout(function() { waitForGSAP(cb, attempts + 1); }, 50);
         }
-    }
+    };
 
     waitForGSAP(function() {
 

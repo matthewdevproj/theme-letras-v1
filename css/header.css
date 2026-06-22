@@ -485,23 +485,6 @@ body {
     overflow: visible !important;
 }
 
-/* ── Inner layout: logo | nav | actions ── */
-.header-inner {
-    max-width: var(--container-max, 1300px);
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    /* explicit horizontal flex — prevents any override from stacking items */
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    height: 68px;
-}
-@media (min-width: 1024px) { .header-inner { height: 76px; } }
-@media (max-width: 640px)  { .header-inner { padding: 0 1rem; height: 60px; gap: 0.75rem; } }
-
 /* ── Logo ── */
 .header-logo { flex-shrink: 0; }
 .header-logo img {
@@ -654,13 +637,6 @@ nav.main-nav {
 }
 
 /* ── Header action buttons (search + hamburger) ── */
-.header-actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.4rem;
-    flex-shrink: 0;
-}
 .header-btn {
     width: 40px; height: 40px;
     border-radius: 8px;
