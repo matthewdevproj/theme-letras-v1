@@ -114,8 +114,10 @@
                         aria-label="Abrir búsqueda">
                     <i class="fas fa-search"></i>
                 </button>
-                <button x-data="flchTheme" @click="toggle()"
+                <button x-data="flchTheme"
+                        @click="toggle()"
                         class="header-btn"
+                        :class="{'active': isDark}"
                         :aria-label="isDark ? 'Activar modo claro' : 'Activar modo oscuro'"
                         :aria-pressed="isDark"
                         :title="isDark ? 'Modo claro' : 'Modo oscuro'">

@@ -360,6 +360,14 @@ function letras_flch_enqueue_scripts() {
             array( 'letras-header-modern-override' ),
             file_exists( $dir . '/css/menu-professional.css' ) ? filemtime( $dir . '/css/menu-professional.css' ) : $version
         );
+
+        // Mejoras de accesibilidad y performance
+        wp_enqueue_style(
+            'letras-a11y',
+            $uri . '/css/a11y-improvements.css',
+            array( 'letras-menu-professional' ),
+            file_exists( $dir . '/css/a11y-improvements.css' ) ? filemtime( $dir . '/css/a11y-improvements.css' ) : $version
+        );
     }
 
     wp_enqueue_script(
@@ -656,4 +664,84 @@ add_action('wp_head', function() {
    Uso: ?diagnostico=1 en cualquier URL
    ══════════════════════════════════════════════════ */
 require_once get_template_directory() . '/inc/diagnostico-recursos.php';
+/* ══════════════════════════════════════════════════
+   LOCALIZAR NOTICIAS PARA ALPINE.JS
+   Envía noticias reales de WordPress al frontend
+   ══════════════════════════════════════════════════ */
+add_action('wp_enqueue_scripts', 'letras_flch_localize_news');
+function letras_flch_localize_news() {
+    // Solo en front page
+    if (!is_front_page()) {
+        return;
+    }
+
+    // Query de noticias de la categoría "Noticias"
+    $news_query = new WP_Query(array(
+        'post_type'      => 'post',
+        'posts_per_page' => 10,
+        'post_status'    => 'publish',
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+        'category_name'  => 'noticias',
+    ));
+
+    $news_data = array();
+    $categories = array('Todas');
+
+    if ($news_query->have_posts()) {
+        while ($news_query->have_posts()) {
+            $news_query->the_post();
+
+            // Obtener categoría principal
+            $cats = get_the_category();
+            $cat_name = !empty($cats) ? $cats[0]->name : 'Sin categoría';
+
+            // Agregar categoría única al array
+            if (!in_array($cat_name, $categories)) {
+                $categories[] = $cat_name;
+            }
+
+            // Thumbnail con fallback a data URI SVG
+            $thumb = get_the_post_thumbnail_url(get_the_ID(), 'card-thumbnail');
+            if (!$thumb) {
+                // SVG placeholder incrustado (mejor performance que imagen externa)
+                $thumb = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450"%3E%3Crect fill="%23143B63" width="800" height="450"/%3E%3Ctext fill="rgba(255,255,255,0.3)" font-family="system-ui" font-size="24" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EFLCH UNMSM%3C/text%3E%3C/svg%3E';
+            }
+
+            $news_data[] = array(
+                'id'      => get_the_ID(),
+                'cat'     => $cat_name,
+                'date'    => get_the_date('j F Y'),
+                'title'   => get_the_title(),
+                'excerpt' => wp_trim_words(get_the_excerpt(), 20, '...'),
+                'img'     => $thumb,
+                'url'     => get_permalink(),
+            );
+        }
+        wp_reset_postdata();
+    }
+
+    // Fallback si no hay noticias
+    if (empty($news_data)) {
+        $news_data = array(
+            array(
+                'id'      => 1,
+                'cat'     => 'Aviso',
+                'date'    => date('j F Y'),
+                'title'   => 'Bienvenido al sitio de la Facultad',
+                'excerpt' => 'Pronto publicaremos noticias y eventos académicos.',
+                'img'     => get_template_directory_uri() . '/images/placeholder-news.jpg',
+                'url'     => home_url('/'),
+            )
+        );
+        $categories = array('Todas', 'Aviso');
+    }
+
+    // Pasar datos a JavaScript
+    wp_localize_script('letras-theme-stack', 'letrasNewsData', array(
+        'news'       => $news_data,
+        'categories' => $categories,
+    ));
+}
+
 /* Cache bust - jue 18 jun 2026 15:40:55 -05 */

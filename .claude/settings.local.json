@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:letras.unmsm.edu.pe)"
+      "WebFetch(domain:letras.unmsm.edu.pe)",
+      "Bash(cat)",
+      "Read(//tmp/**)"
     ]
   }
 }

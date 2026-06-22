@@ -48,7 +48,7 @@
 
 			<!-- Featured card -->
 			<template x-if="filteredNews()[0]">
-				<a href="#" @click.prevent="modal = filteredNews()[0]"
+				<a :href="filteredNews()[0].url"
 				   class="flch-noticias__featured">
 					<div class="flch-noticias__featured-img">
 						<img :src="filteredNews()[0].img"
@@ -73,7 +73,7 @@
 			<!-- Side list -->
 			<div class="flch-noticias__list">
 				<template x-for="n in filteredNews().slice(1,4)" :key="n.id">
-					<a href="#" @click.prevent="modal = n"
+					<a :href="n.url"
 					   class="flch-noticias__list-item">
 						<div class="flch-noticias__list-thumb">
 							<img :src="n.img" :alt="n.title" loading="lazy">

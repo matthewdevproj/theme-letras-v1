@@ -1,0 +1,178 @@
+/* ==========================================================================
+   MEJORAS DE ACCESIBILIDAD — FLCH UNMSM
+   Auditoría Senior Frontend — Junio 2026
+   ========================================================================== */
+
+/* ── Focus visible mejorado ─────────────────────────────────── */
+*:focus-visible {
+    outline: 3px solid var(--flch-gold, #A8861C);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Para links dentro de texto, outline más sutil */
+p a:focus-visible,
+li a:focus-visible {
+    outline: 2px solid var(--flch-gold, #A8861C);
+    outline-offset: 1px;
+    background: rgba(168, 134, 28, 0.1);
+}
+
+/* ── Contraste mejorado en dark mode ────────────────────────── */
+:root.dark .flch-hero__centro-desc {
+    color: rgba(255, 255, 255, 0.80); /* Incrementar para mejor legibilidad */
+}
+
+:root.dark .flch-hero__centros-panel {
+    background: linear-gradient(180deg, #0D2747 0%, #081521 100%);
+    border-color: rgba(229, 193, 88, 0.25);
+}
+
+:root.dark .flch-hero__centro-card {
+    border-right-color: rgba(255, 255, 255, 0.12);
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+:root.dark .flch-hero__centro-card:hover {
+    background: rgba(229, 193, 88, 0.08);
+}
+
+:root.dark .flch-hero__centro-icon {
+    background: rgba(229, 193, 88, 0.20);
+    color: #E5C158;
+}
+
+:root.dark .flch-hero__centro-cta {
+    color: #E5C158;
+}
+
+:root.dark .flch-noticias__list-date,
+:root.dark .flch-noticias__featured-excerpt {
+    color: rgba(255, 255, 255, 0.70);
+}
+
+/* ── Reducción de movimiento ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ── Skip link mejorado ──────────────────────────────────────── */
+.skip-link:focus {
+    z-index: 100000;
+    transform: translateY(0);
+}
+
+/* ── Mejora de legibilidad ───────────────────────────────────── */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── ARIA: Ocultar visualmente pero mantener accesible ────────── */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ── Botones: área de click mínima 44x44px (WCAG AAA) ─────────── */
+button,
+.header-btn,
+a.flch-btn {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+/* ── Links: subrayado visible en hover (accesibilidad) ─────────── */
+main a:not(.flch-btn):not(.flch-noticias__featured):not(.flch-noticias__list-item):hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+/* ── Errores de formulario visibles ─────────────────────────────── */
+input:invalid:not(:focus),
+textarea:invalid:not(:focus) {
+    border-color: #DC2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* ── Prefers contrast ────────────────────────────────────────────── */
+@media (prefers-contrast: high) {
+    * {
+        border-color: currentColor !important;
+    }
+
+    .flch-hero__centro-card {
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    }
+
+    button, a.flch-btn {
+        border: 2px solid currentColor !important;
+    }
+}
+
+/* ── Dark mode: ajustes de contraste WCAG AA ──────────────────── */
+:root.dark {
+    /* Asegurar ratios de contraste mínimos */
+    --flch-gold: #E5C158; /* Más claro para mejor contraste en fondo oscuro */
+}
+
+:root.dark .flch-noticias__tab.is-active {
+    background: rgba(229, 193, 88, 0.2);
+    color: #E5C158;
+    border-color: #E5C158;
+}
+
+:root.dark .flch-escuelas__card-name {
+    color: #FFFFFF; /* Asegurar contraste máximo */
+}
+
+/* ── Optimización de performance ────────────────────────────────── */
+/* Contenido below-the-fold lazy rendering */
+.flch-noticias,
+.flch-escuelas {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+}
+
+/* Espacio superior para que no se superponga con centros de producción */
+.flch-noticias {
+    padding-top: 160px; /* Incrementado para el panel flotante más arriba */
+}
+
+@media (max-width: 768px) {
+    .flch-noticias {
+        padding-top: 120px; /* Incrementado en tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .flch-noticias {
+        padding-top: 100px; /* Incrementado en móvil */
+    }
+}
+
+/* ── Imágenes: aspect-ratio para evitar CLS ───────────────────── */
+.flch-noticias__featured-img img,
+.flch-noticias__list-thumb img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.flch-hero__bg {
+    content-visibility: auto;
+}

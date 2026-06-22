@@ -1,10 +1,9 @@
 <?php
 /**
- * Template part: Hero editorial FLCH — alineado con Dossier CODICE + Handoff
+ * Template part: Hero editorial FLCH — Modernizado
  *
- * Hero de portada con enfoque editorial: fondo cinematográfico,
- * tipografía humanista, indicadores institucionales y panel de
- * Centros de Producción que monta sobre el borde inferior.
+ * Hero de portada con enfoque editorial moderno: jerarquía visual clara,
+ * espaciado optimizado, y panel de centros integrado naturalmente.
  *
  * @package LetrasFLCH
  */
@@ -26,12 +25,6 @@
 	<div class="flch-hero__content">
 		<div class="flch-hero__container">
 
-			<!-- Tagline -->
-			<div class="flch-hero__tagline">
-				<span class="flch-hero__tagline-line" aria-hidden="true"></span>
-				Investigación · Humanidades · Cultura
-			</div>
-
 			<!-- Subtitle -->
 			<div class="flch-hero__subtitle">Facultad de</div>
 
@@ -40,33 +33,9 @@
 				Letras <span class="flch-hero__title-amp">&amp;</span> Ciencias Humanas
 			</h1>
 
-			<!-- Description -->
-			<p class="flch-hero__description">
-				Formación, investigación y producción intelectual en humanidades.
-				Casa de estudios de nuestro Premio Nobel
-				<span class="flch-hero__desc-highlight">Mario Vargas Llosa</span>
-				— hoy una facultad que moderniza su enseñanza sin renunciar a
-				su tradición crítica.
-			</p>
-
-			<!-- CTAs -->
-			<div class="flch-hero__actions">
-				<a href="https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/"
-				   class="flch-btn flch-btn--pill flch-btn--primary"
-				   target="_blank" rel="noopener noreferrer">
-					Examen de Suficiencia · Idiomas
-					<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-						<path d="M5 12h14m-7-7 7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</a>
-				<a href="#escuelas" class="flch-btn flch-btn--pill flch-btn--outline">
-					Conoce las Escuelas
-				</a>
-			</div>
-
 			<!-- Stats -->
 			<div class="flch-hero__stats" x-data="{}">
-				<template x-for="s in [{i:'fa-graduation-cap',v:'10',l:'Escuelas profesionales'},{i:'fa-compass',v:'4',l:'Centros de producción'},{i:'fa-flask',v:'I+D',l:'Investigación'},{i:'fa-landmark',v:'1551',l:'Decana de América'}]" :key="s.l">
+				<template x-for="s in [{i:'fa-graduation-cap',v:'10',l:'Escuelas profesionales'},{i:'fa-flask',v:'I+D',l:'Investigación'}]" :key="s.l">
 					<div class="flch-hero__stat">
 						<i class="fa-solid" :class="s.i" aria-hidden="true"></i>
 						<span class="flch-hero__stat-value" x-text="s.v"></span>
@@ -78,22 +47,21 @@
 		</div>
 	</div>
 
-	<!-- ── Centros de Producción · panel-pedestal ─────────────── -->
+	<!-- ── Centros de Producción ─────────────── -->
 	<div class="flch-hero__centros">
 		<div class="flch-hero__centros-panel" x-data="{}">
 			<div class="flch-hero__centros-header">
-				<i class="fa-solid fa-compass" aria-hidden="true"></i>
-				Centros de Producción
-				<span class="flch-hero__centros-sub">Accesos estratégicos de la Facultad</span>
+				<i class="fa-solid fa-grid-2" aria-hidden="true"></i>
+				Nuestros Centros
 			</div>
 			<div class="flch-hero__centros-grid">
-				<template x-for="c in [{i:'fa-user-graduate',t:'Posgrado',d:'Maestrías y doctorados en humanidades, lingüística y comunicación.',ct:'Ver programas',h:'#'},{i:'fa-language',t:'Centro de Idiomas',d:'Cursos y certificación en lenguas modernas y originarias.',ct:'Inscríbete',h:'#'},{i:'fa-certificate',t:'Examen de Suficiencia',d:'Acredita tu dominio de idiomas con la OESI de la Facultad.',ct:'Programa tu examen',h:'https://letras.unmsm.edu.pe/horarios-flch.php'},{i:'fa-hands-holding-circle',t:'CERSEU',d:'Extensión, responsabilidad social y educación continua.',ct:'Conoce más',h:'#'}]" :key="c.t">
+				<template x-for="c in [{i:'fa-language',t:'Centro de Idiomas',d:'Cursos certificados en lenguas modernas y originarias',h:'https://ceidletras.unmsm.edu.pe/'},{i:'fa-certificate',t:'OESI',d:'Acredita tu dominio de idiomas extranjeros',h:'https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/'},{i:'fa-user-graduate',t:'Posgrado',d:'Maestrías y doctorados acreditados internacionalmente',h:'https://posgradoletras.unmsm.edu.pe/'},{i:'fa-hands-holding-circle',t:'CERSEU',d:'Responsabilidad social y educación continua',h:'https://letras.unmsm.edu.pe/cerseu/'}]" :key="c.t">
 					<a :href="c.h" class="flch-hero__centro-card">
 						<span class="flch-hero__centro-icon"><i class="fa-solid" :class="c.i"></i></span>
 						<h3 class="flch-hero__centro-title" x-text="c.t"></h3>
 						<p class="flch-hero__centro-desc" x-text="c.d"></p>
 						<span class="flch-hero__centro-cta">
-							<span x-text="c.ct"></span>
+							<span>Explorar</span>
 							<i class="fa-solid fa-arrow-right"></i>
 						</span>
 					</a>
@@ -104,7 +72,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════════
-     CSS — v4 (editorial)
+     CSS — v5 (modernizado)
 ═════════════════════════════════════════════════════════════════ -->
 <style>
 /* ── Hero ─────────────────────────────────────────────────── */
@@ -144,7 +112,7 @@
 	z-index: 2; pointer-events: none;
 }
 
-/* ── Ampersand decorativo ─────────────────────────────────── */
+/* ── Ampersand decorativo (reducido para menos distracción) ─── */
 .flch-hero__ampersand {
 	position:         absolute;
 	right:            -2vw;
@@ -153,9 +121,9 @@
 	z-index:          3;
 	font-family:      var(--flch-font-disp, 'Newsreader', serif);
 	font-style:       italic;
-	font-size:        54vh;
+	font-size:        40vh;
 	line-height:      1;
-	color:            rgba(214,182,85,.06);
+	color:            rgba(214,182,85,.04);
 	pointer-events:   none;
 	user-select:      none;
 }
@@ -183,109 +151,68 @@
 	z-index:     5;
 	max-width:   var(--container-max, 1300px);
 	margin:      0 auto;
-	padding:     5.5rem 2.5rem 8rem;
-	min-height:  80vh;
+	padding:     3rem 2.5rem 3rem;
+	min-height:  auto;
 	display:     flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 .flch-hero__container {
 	max-width: 900px;
 }
 
-/* ── Tagline ──────────────────────────────────────────────── */
-.flch-hero__tagline {
-	display:         flex;
-	align-items:     center;
-	gap:             12px;
-	font-size:       clamp(11px, 1vw, 12.5px);
-	font-weight:     700;
-	letter-spacing:  .2em;
-	text-transform:  uppercase;
-	color:           var(--flch-gold, #A8861C);
-	margin-bottom:   1.5rem;
-}
-.flch-hero__tagline-line {
-	display:       block;
-	width:         32px;
-	height:        1px;
-	background:    var(--flch-gold, #A8861C);
-	flex-shrink:   0;
-}
-
 /* ── Subtitle ──────────────────────────────────────────────── */
 .flch-hero__subtitle {
 	font-family:    var(--flch-font-disp, 'Newsreader', serif);
 	font-style:     italic;
-	font-size:      clamp(22px, 2.4vw, 30px);
-	color:          rgba(255,255,255,.85);
-	margin-bottom:  4px;
+	font-size:      clamp(20px, 2.2vw, 28px);
+	color:          rgba(255,255,255,.75);
+	margin-bottom:  8px;
 }
 
 /* ── Title ────────────────────────────────────────────────── */
 .flch-hero__title {
 	font-family:    var(--flch-font-disp, 'Newsreader', serif);
 	font-weight:    600;
-	font-size:      clamp(46px, 7vw, 100px);
-	line-height:    .94;
+	font-size:      clamp(42px, 6.5vw, 92px);
+	line-height:    1;
 	letter-spacing: -.02em;
 	color:          #fff;
 	text-shadow:    0 2px 36px rgba(0,0,0,.35);
-	margin-bottom:  1.75rem;
+	margin-bottom:  2rem;
 	max-width:      15ch;
 }
 .flch-hero__title-amp {
 	font-style: italic;
 }
 
-/* ── Description ──────────────────────────────────────────── */
-.flch-hero__description {
-	font-size:      clamp(16px, 1.5vw, 20px);
-	line-height:    1.7;
-	color:          rgba(255,255,255,.85);
-	max-width:      42em;
-	margin-bottom:  2.25rem;
-}
-.flch-hero__desc-highlight {
-	color:       var(--flch-gold, #A8861C);
-	font-weight: 600;
-}
-
-/* ── Actions ──────────────────────────────────────────────── */
-.flch-hero__actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 14px;
-	margin-bottom: 3rem;
-}
-
-/* ── Stats ────────────────────────────────────────────────── */
+/* ── Stats (ahora después del título) ─────────────────────── */
 .flch-hero__stats {
 	display:         flex;
 	flex-wrap:       wrap;
-	gap:             2.5rem;
+	gap:             2rem;
 	align-items:     center;
-	border-top:      1px solid rgba(255,255,255,.15);
-	padding-top:     26px;
+	padding-top:     1.5rem;
+	border-top:      1px solid rgba(255,255,255,.12);
 }
 
 .flch-hero__stat {
 	display:     flex;
 	align-items: center;
-	gap:         14px;
+	gap:         12px;
 }
 
 .flch-hero__stat i {
-	font-size: 20px;
-	width:     24px;
+	font-size: 18px;
+	width:     22px;
 	text-align: center;
 	color:     var(--flch-gold, #A8861C);
 }
 
 .flch-hero__stat-value {
 	font-family:    var(--flch-font-disp, 'Newsreader', serif);
-	font-size:      1.5rem;
+	font-size:      1.4rem;
 	font-weight:    600;
 	line-height:    1.2;
 	color:          #fff;
@@ -293,7 +220,7 @@
 }
 
 .flch-hero__stat-label {
-	font-size:     11.5px;
+	font-size:     11px;
 	font-weight:   600;
 	letter-spacing: .02em;
 	text-transform: uppercase;
@@ -302,34 +229,34 @@
 	line-height:   1.2;
 }
 
-/* ── Centros de Producción ──────────────────────────────────── */
+/* ── Centros de Producción (flujo natural, sin margin negativo) ─ */
 .flch-hero__centros {
 	position: relative;
-	z-index: 10;
+	z-index: 6;
 	max-width: var(--container-max, 1300px);
-	margin: -72px auto 0;
-	padding: 0 2.5rem;
+	margin: 0 auto;
+	padding: 0 2.5rem 4rem;
 }
 
 .flch-hero__centros-panel {
 	position:       relative;
 	overflow:       hidden;
-	border-radius:  22px;
-	border:         1px solid rgba(214,182,85,.20);
-	box-shadow:     0 34px 80px rgba(8,18,32,.45);
-	background:     linear-gradient(180deg, #103155 0%, #0B2036 100%);
+	border-radius:  18px;
+	border:         1px solid rgba(214,182,85,.18);
+	box-shadow:     0 24px 60px rgba(8,18,32,.4),
+	                0 4px 12px rgba(0,0,0,.1);
+	background:     linear-gradient(180deg, rgba(16,49,85,.95) 0%, rgba(11,32,54,.98) 100%);
+	backdrop-filter: blur(20px);
 }
 
 .flch-hero__centros-panel::before {
-	content:       '¶';
+	content:       '';
 	position:      absolute;
-	right:         16px;
-	top:           -20px;
-	font-family:   var(--flch-font-disp, 'Newsreader', serif);
-	font-style:    italic;
-	font-size:     160px;
-	line-height:   1;
-	color:         rgba(214,182,85,.06);
+	right:         0;
+	bottom:        0;
+	width:         200px;
+	height:        200px;
+	background:    radial-gradient(circle, rgba(214,182,85,.08) 0%, transparent 70%);
 	pointer-events: none;
 }
 
@@ -337,47 +264,88 @@
 	display:         flex;
 	align-items:     center;
 	gap:             10px;
-	padding:         16px 28px;
-	border-bottom:   1px solid rgba(255,255,255,.10);
-	font-size:       12px;
+	padding:         20px 28px;
+	border-bottom:   1px solid rgba(255,255,255,.08);
+	font-size:       13px;
 	font-weight:     700;
-	letter-spacing:  .16em;
+	letter-spacing:  .12em;
 	text-transform:  uppercase;
 	color:           var(--flch-gold, #A8861C);
 }
-.flch-hero__centros-header i { font-size: 14px; }
-.flch-hero__centros-sub {
-	margin-left: auto;
-	font-size:   12.5px;
-	font-weight: 500;
-	letter-spacing: 0;
-	text-transform: none;
-	color:       rgba(255,255,255,.50);
-	display:     none;
-}
-@media (min-width: 640px) { .flch-hero__centros-sub { display: inline; } }
+.flch-hero__centros-header i { font-size: 15px; }
 
 .flch-hero__centros-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0;
+}
+
+/* Desktop: 4 columnas */
+@media (min-width: 1200px) {
+	.flch-hero__centros-grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+/* Tablet landscape: 2 columnas */
+@media (max-width: 1199px) and (min-width: 769px) {
+	.flch-hero__centros-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.flch-hero__centro-card:nth-child(2n) {
+		border-right: none;
+	}
+}
+
+/* Tablet portrait: 2 columnas */
+@media (max-width: 768px) and (min-width: 481px) {
+	.flch-hero__centros-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* Móvil: 1 columna */
+@media (max-width: 480px) {
+	.flch-hero__centros-grid {
+		grid-template-columns: 1fr;
+	}
 }
 
 .flch-hero__centro-card {
 	position:       relative;
 	display:        flex;
 	flex-direction: column;
-	padding:        28px 26px;
-	min-height:     206px;
+	padding:        32px 28px;
+	min-height:     200px;
 	color:          #fff;
 	text-decoration: none;
-	border-right:   1px solid rgba(255,255,255,.07);
-	border-top:     1px solid rgba(255,255,255,.07);
-	transition:     background .25s ease;
+	border-right:   1px solid rgba(255,255,255,.06);
+	transition:     all .3s cubic-bezier(.4,0,.2,1);
 }
+
+.flch-hero__centro-card::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(135deg, rgba(214,182,85,.08) 0%, transparent 50%);
+	opacity: 0;
+	transition: opacity .3s ease;
+}
+
+.flch-hero__centro-card:hover::before {
+	opacity: 1;
+}
+
 .flch-hero__centro-card:hover {
-	background: rgba(255,255,255,.05);
+	background: rgba(255,255,255,.03);
+	transform:  translateY(-4px);
 }
+
 .flch-hero__centro-card:last-child {
+	border-right: none;
+}
+
+.flch-hero__centro-card:nth-child(4) {
 	border-right: none;
 }
 
@@ -385,30 +353,36 @@
 	display:         flex;
 	align-items:     center;
 	justify-content: center;
-	width:           52px;
-	height:          52px;
-	border-radius:   13px;
-	background:      rgba(214,182,85,.15);
+	width:           48px;
+	height:          48px;
+	border-radius:   12px;
+	background:      rgba(214,182,85,.12);
 	color:           var(--flch-gold, #A8861C);
-	font-size:       21px;
-	margin-bottom:   18px;
+	font-size:       20px;
+	margin-bottom:   16px;
+	transition:      all .3s ease;
+}
+
+.flch-hero__centro-card:hover .flch-hero__centro-icon {
+	background:      rgba(214,182,85,.18);
+	transform:       scale(1.05);
 }
 
 .flch-hero__centro-title {
 	font-family:    var(--flch-font-disp, 'Newsreader', serif);
 	font-size:      1.25rem;
 	font-weight:    600;
-	line-height:    1.25;
+	line-height:    1.3;
 	margin-bottom:  8px;
 	color:          #fff;
 }
 
 .flch-hero__centro-desc {
-	font-size:      13.5px;
-	line-height:    1.4;
-	color:          rgba(255,255,255,.60);
-	margin-bottom:  16px;
-	flex:           1;
+	font-size:      14px;
+	line-height:    1.6;
+	color:          rgba(255,255,255,.7);
+	margin-bottom:  auto;
+	padding-bottom: 16px;
 }
 
 .flch-hero__centro-cta {
@@ -418,28 +392,36 @@
 	display:        inline-flex;
 	align-items:    center;
 	gap:            8px;
+	transition:     gap .3s ease;
 }
-.flch-hero__centro-cta i { font-size: 11px; }
 
-/* ── Animaciones ──────────────────────────────────────────── */
-.flch-hero__tagline,
+.flch-hero__centro-card:hover .flch-hero__centro-cta {
+	gap: 12px;
+}
+
+.flch-hero__centro-cta i {
+	font-size: 11px;
+	transition: transform .3s ease;
+}
+
+.flch-hero__centro-card:hover .flch-hero__centro-cta i {
+	transform: translateX(2px);
+}
+
+/* ── Animaciones (optimizadas) ────────────────────────────── */
 .flch-hero__subtitle,
 .flch-hero__title,
-.flch-hero__description,
-.flch-hero__actions,
 .flch-hero__stats,
 .flch-hero .flch-hero__centros-panel {
 	opacity:     0;
-	transform:   translateY(28px);
-	animation:   flchFadeUp .85s cubic-bezier(.22,1,.36,1) forwards;
+	transform:   translateY(20px);
+	animation:   flchFadeUp .7s cubic-bezier(.22,1,.36,1) forwards;
 }
-.flch-hero__tagline           { animation-delay: .10s; }
-.flch-hero__subtitle          { animation-delay: .18s; }
-.flch-hero__title             { animation-delay: .26s; }
-.flch-hero__description       { animation-delay: .34s; }
-.flch-hero__actions           { animation-delay: .42s; }
-.flch-hero__stats             { animation-delay: .50s; }
-.flch-hero .flch-hero__centros-panel { animation-delay: .60s; }
+
+.flch-hero__subtitle          { animation-delay: .1s; }
+.flch-hero__title             { animation-delay: .2s; }
+.flch-hero__stats             { animation-delay: .3s; }
+.flch-hero .flch-hero__centros-panel { animation-delay: .4s; }
 
 @keyframes flchFadeUp {
 	to { opacity: 1; transform: none; }
@@ -448,73 +430,89 @@
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 1024px) {
 	.flch-hero__vert-label { display: none; }
-	.flch-hero__ampersand  { font-size: 30vh; }
+	.flch-hero__ampersand  { font-size: 28vh; opacity: .8; }
 }
 
 @media (max-width: 768px) {
 	.flch-hero__content {
-		padding-left:  1.5rem;
-		padding-right: 1.5rem;
-		padding-bottom: 8rem;
-		min-height: 70vh;
+		padding: 2.5rem 1.5rem 2.5rem;
 	}
 	.flch-hero__centros {
-		padding-left:  1.25rem;
-		padding-right: 1.25rem;
-		margin-top: -60px;
+		padding: 0 1.25rem 3rem;
 	}
 	.flch-hero__centros-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
 	.flch-hero__centro-card {
 		min-height: 180px;
-		padding: 20px 18px;
+		padding: 26px 22px;
 	}
 	.flch-hero__centro-card:nth-child(2n) {
 		border-right: none;
+	}
+	.flch-hero__centro-card:nth-child(n+3) {
+		border-top: 1px solid rgba(255,255,255,.06);
 	}
 }
 
 @media (max-width: 480px) {
 	.flch-hero__content {
-		padding-left:  1.25rem;
-		padding-right: 1.25rem;
-		min-height: 65vh;
-		padding-top: 4rem;
-		padding-bottom: 7rem;
+		padding: 2rem 1.25rem 2rem;
 	}
-	.flch-hero__ampersand { font-size: 20vh; }
-	.flch-hero__stats     { gap: 1.25rem; padding-top: 20px; }
+	.flch-hero__ampersand { font-size: 18vh; }
+	.flch-hero__stats     { gap: 1.5rem; padding-top: 1.25rem; }
 	.flch-hero__stat      { gap: 10px; }
 	.flch-hero__stat i    { font-size: 16px; width: 20px; }
-	.flch-hero__centros   { margin-top: -48px; }
+	.flch-hero__centros   {
+		padding: 0 1rem 2.5rem;
+	}
 	.flch-hero__centros-grid {
 		grid-template-columns: 1fr;
 	}
 	.flch-hero__centro-card {
 		border-right: none;
 		min-height: unset;
+		padding: 26px 22px;
 	}
-	.flch-hero__actions { flex-direction: column; }
+	.flch-hero__centro-card:not(:first-child) {
+		border-top: 1px solid rgba(255,255,255,.06);
+	}
+	.flch-hero__centro-title {
+		font-size: 1.15rem;
+	}
+	.flch-hero__centro-desc {
+		font-size: 13px;
+	}
 }
 
 @media (max-width: 360px) {
 	.flch-hero__title { font-size: 36px; }
-	.flch-hero__description { font-size: 15px; }
 }
 
 /* ── Reduced motion ────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-	.flch-hero__tagline,
 	.flch-hero__subtitle,
 	.flch-hero__title,
-	.flch-hero__description,
-	.flch-hero__actions,
 	.flch-hero__stats,
 	.flch-hero .flch-hero__centros-panel {
 		opacity: 1;
 		transform: none;
 		animation: none;
+	}
+
+	.flch-hero__centro-card,
+	.flch-hero__centro-icon,
+	.flch-hero__centro-cta,
+	.flch-hero__centro-cta i {
+		transition: none;
+	}
+}
+
+/* ── Performance: simplificar backdrop-filter en móvil ──────── */
+@media (max-width: 768px) {
+	.flch-hero__centros-panel {
+		backdrop-filter: none;
+		background: rgba(11,32,54,.98);
 	}
 }
 </style>
