@@ -39,7 +39,7 @@ function letras_flch_setup() {
     add_theme_support( 'responsive-embeds' );
     add_theme_support( 'editor-color-palette', array(
         array( 'name' => esc_html__( 'Azul institucional', 'letrasflch' ), 'slug' => 'primary-dark',  'color' => '#143B63' ),
-        array( 'name' => esc_html__( 'Dorado',             'letrasflch' ), 'slug' => 'accent-gold',   'color' => '#A88F1D' ),
+        array( 'name' => esc_html__( 'Dorado',             'letrasflch' ), 'slug' => 'accent-gold',   'color' => '#A8861C' ),
         array( 'name' => esc_html__( 'Blanco',             'letrasflch' ), 'slug' => 'white',          'color' => '#FFFFFF' ),
         array( 'name' => esc_html__( 'Gris claro',         'letrasflch' ), 'slug' => 'gray-light',     'color' => '#F5F7FA' ),
     ) );
@@ -149,6 +149,10 @@ class Modern_Nav_Walker extends Walker_Nav_Menu {
             'href' => !empty($item->url) ? $item->url : '#',
             'class' => $link_class,
         );
+        // aria-current para navegación por teclado
+        if (in_array('current-menu-item', $classes)) {
+            $atts['aria-current'] = 'page';
+        }
         if (!empty($item->attr_title)) {
             $atts['title'] = $item->attr_title;
         }
@@ -211,14 +215,17 @@ class Letras_FLCH_Mobile_Walker_Nav extends Walker_Nav_Menu {
         $href  = ! empty( $item->url ) ? esc_url( $item->url ) : '#';
         $title = $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
 
+        // aria-current para navegación por teclado
+        $aria_current = in_array( 'current-menu-item', $classes, true ) ? ' aria-current="page"' : '';
+
         $item_output = $args->before;
         if ( $has_children ) {
-            $item_output .= '<a href="' . $href . '">' . $title . '</a>'
+            $item_output .= '<a href="' . $href . '"' . $aria_current . '>' . $title . '</a>'
                 . '<button class="mobile-submenu-toggle" onclick="toggleMobileSubmenu(this);return false;" aria-expanded="false" aria-label="' . esc_attr__( 'Expandir submenú', 'letrasflch' ) . '">'
                 . '<i class="fas fa-chevron-down" aria-hidden="true"></i>'
                 . '</button>';
         } else {
-            $item_output .= '<a href="' . $href . '">' . $title . '</a>';
+            $item_output .= '<a href="' . $href . '"' . $aria_current . '>' . $title . '</a>';
         }
         $item_output .= $args->after;
 
@@ -275,12 +282,16 @@ function letras_flch_enqueue_scripts() {
     $dir     = get_template_directory();
     $version = wp_get_theme()->get( 'Version' ) ?: '1.0';
 
-    // Google Fonts CONSOLIDADAS (DM Sans + Libre Baskerville) — UNA sola llamada
-    // display=swap previene FOIT (Flash of Invisible Text)
+    // Google Fonts CODICE (Hanken Grotesk + Newsreader) — CDN + autoalojadas
+    wp_enqueue_style(
+        'letras-fonts-cdn',
+        'https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap',
+        array(), null
+    );
     wp_enqueue_style(
         'letras-fonts-consolidated',
         get_template_directory_uri() . '/css/fonts.css',
-        array(), null
+        array('letras-fonts-cdn'), null
     );
 
     // Font Awesome 6 (local)

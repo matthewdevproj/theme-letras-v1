@@ -24,7 +24,7 @@
 |----------------|----------------------|------------------------------|
 | Tailwind CSS   | clases tw-           | prefix tw- obligatorio       |
 | Font Awesome   | fas fa-* fab fa-*    | Iconos disponibles           |
-| Google Fonts   | font-family en CSS   | DM Sans + Libre Baskerville  |
+| Google Fonts   | font-family en CSS   | Hanken Grotesk + Newsreader  |
 
 ---
 
@@ -121,17 +121,17 @@ add_action('wp_enqueue_scripts', function() {
 /* Colores institucionales */
 --navy:       #143B63;  /* Azul principal */
 --navy-dark:  #0E2A48;  /* Azul oscuro */
---gold:       #A88F1D;  /* Dorado */
+--gold:       #A8861C;  /* Dorado CODICE */
 --gold-light: #C4A822;  /* Dorado claro */
 
 /* Con Tailwind (prefix tw-) */
 .tw-text-navy { color: #143B63; }
-.tw-bg-gold { background: #A88F1D; }
-.tw-text-gold { color: #A88F1D; }
+.tw-bg-gold { background: #A8861C; }
+.tw-text-gold { color: #A8861C; }
 
 /* Tipografía */
-font-family: 'DM Sans', sans-serif;      /* UI, body text */
-font-family: 'Libre Baskerville', serif; /* Headings */
+font-family: 'Hanken Grotesk', sans-serif; /* UI, body text */
+font-family: 'Newsreader', serif;          /* Headings, editorial */
 ```
 
 ---
@@ -156,11 +156,11 @@ Copiar este template para modernizar cualquier escuela:
   <!-- Hero Navy + Gold -->
   <header style="background:linear-gradient(140deg,#143B63,#0E2A48,#091d34);
                  padding:3rem 2.5rem;border-radius:0 0 1.5rem 1.5rem">
-    <p style="color:#A88F1D;font-size:.7rem;font-weight:700;
+    <p style="color:#A8861C;font-size:.7rem;font-weight:700;
               letter-spacing:.16em;text-transform:uppercase">
       Facultad de Letras y Ciencias Humanas · UNMSM
     </p>
-    <h1 style="font-family:'Libre Baskerville',serif;
+    <h1 style="font-family:'Newsreader',serif;
                font-size:2.5rem;color:#fff;margin:.5rem 0 1rem">
       ESCUELA PROFESIONAL DE [NOMBRE]
     </h1>
@@ -193,7 +193,7 @@ Copiar este template para modernizar cualquier escuela:
     
     <!-- Presentación -->
     <div x-show="tab==='presentacion'" style="display:none">
-      <h2 style="font-family:'Libre Baskerville',serif;font-size:1.8rem;
+      <h2 style="font-family:'Newsreader',serif;font-size:1.8rem;
                  color:#143B63;margin-bottom:1rem">
         Presentación
       </h2>
@@ -204,7 +204,7 @@ Copiar este template para modernizar cualquier escuela:
 
     <!-- Historia -->
     <div x-show="tab==='historia'" style="display:none">
-      <h2 style="font-family:'Libre Baskerville',serif;font-size:1.8rem;
+      <h2 style="font-family:'Newsreader',serif;font-size:1.8rem;
                  color:#143B63;margin-bottom:1rem">
         Historia
       </h2>

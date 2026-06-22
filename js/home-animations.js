@@ -184,7 +184,7 @@
         });
 
         /* ─── 5. HOVER AVANZADO en cards ───────────────────────────────
-           Efectos visuales profesionales con GSAP */
+           Efectos visuales sutiles con GSAP */
 
         var cards = document.querySelectorAll(cardSelectors);
         var isMobile = window.innerWidth < 768;
@@ -197,32 +197,6 @@
 
             // Skip hover effects en mobile
             if (isMobile) return;
-
-            // Crear overlay de brillo (shine effect)
-            var shine = document.createElement('div');
-            shine.className = 'card-shine';
-            shine.style.cssText = [
-                'position: absolute',
-                'top: 0',
-                'left: -100%',
-                'width: 50%',
-                'height: 100%',
-                'background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)',
-                'pointer-events: none',
-                'z-index: 2',
-                'transform: skewX(-20deg)'
-            ].join('; ');
-
-            if (img && img.parentElement) {
-                var mediaContainer = img.parentElement;
-                var mediaStyle = window.getComputedStyle(mediaContainer);
-
-                if (mediaStyle.position === 'static') {
-                    mediaContainer.style.position = 'relative';
-                }
-                mediaContainer.style.overflow = 'hidden';
-                mediaContainer.appendChild(shine);
-            }
 
             // HOVER IN
             card.addEventListener('mouseenter', function(e) {
@@ -246,23 +220,11 @@
                 // Badge color shift (Navy → Gold)
                 if (badge) {
                     gsap.to(badge, {
-                        backgroundColor: '#A88F1D',
+                        backgroundColor: '#A8861C',
                         color: '#fff',
                         duration: 0.3,
                         ease: 'power2.out'
                     });
-                }
-
-                // Shine effect
-                if (shine) {
-                    gsap.fromTo(shine,
-                        { left: '-100%' },
-                        {
-                            left: '150%',
-                            duration: 0.8,
-                            ease: 'power2.inOut'
-                        }
-                    );
                 }
             });
 
@@ -291,38 +253,6 @@
                     });
                 }
             });
-
-            // Efecto 3D con mouse move (parallax suave)
-            card.addEventListener('mousemove', function(e) {
-                var rect = card.getBoundingClientRect();
-                var x = e.clientX - rect.left;
-                var y = e.clientY - rect.top;
-                var centerX = rect.width / 2;
-                var centerY = rect.height / 2;
-
-                var rotateX = (y - centerY) / 80;  // Reducido para efecto sutil
-                var rotateY = (centerX - x) / 80;
-
-                gsap.to(card, {
-                    rotationX: rotateX,
-                    rotationY: rotateY,
-                    transformPerspective: 1000,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-
-            card.addEventListener('mouseleave', function() {
-                gsap.to(card, {
-                    rotationX: 0,
-                    rotationY: 0,
-                    duration: 0.5,
-                    ease: 'power2.inOut'
-                });
-            });
-
-            // Asegurar transform-style para efecto 3D
-            card.style.transformStyle = 'preserve-3d';
         });
 
         /* ─── 6. FOOTER reveal ─────────────────────────────────────────

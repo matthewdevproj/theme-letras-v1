@@ -1,11 +1,11 @@
 /* ════════════════════════════════════════════════════════════
    HEADER MODERNO - OVERRIDE CON COLORES ORIGINALES
-   Colores: #143B63 (azul institucional) + #A88F1D (dorado)
+   Colores: #143B63 (azul institucional) + #A8861C (dorado)
    ═══════════════════════════════════════════════════════════ */
 
 :root {
     --color-primary: #143B63;
-    --color-accent: #A88F1D;
+    --color-accent: #A8861C;
     --tb-bg: #111111;
 }
 
@@ -142,7 +142,7 @@ div[x-show="topbarVisible"],
 
 .nav-modern .sub-menu > li > a:hover {
     background-color: rgba(168, 143, 29, 0.15) !important;
-    color: #A88F1D !important;
+    color: #A8861C !important;
 }
 
 /* Iconos de chevron en submenus */
@@ -187,7 +187,7 @@ button[aria-label="Menú"] {
 
 button[aria-label="Buscar"]:hover,
 button[aria-label="Menú"]:hover {
-    color: #A88F1D !important;
+    color: #A8861C !important;
     background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
@@ -204,7 +204,7 @@ input[type="search"] {
 }
 
 input[type="search"]:focus {
-    border-color: #A88F1D !important;
+    border-color: #A8861C !important;
     box-shadow: 0 0 0 2px rgba(168, 143, 29, 0.3) !important;
 }
 
@@ -224,7 +224,7 @@ button[type="submit"] {
     align-items: center !important;
     justify-content: center !important;
     border-radius: 9999px !important;
-    background-color: #A88F1D !important;
+    background-color: #A8861C !important;
     color: #143B63 !important;
     border: none !important;
     cursor: pointer !important;

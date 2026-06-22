@@ -75,7 +75,7 @@
             'position: absolute',
             'top: ' + (isMobile ? '10px' : '20px'),
             'right: ' + (isMobile ? '10px' : '20px'),
-            'background: rgba(168,143,29,0.9)',
+            'background: rgba(168,134,28,0.9)',
             'color: white',
             'border: none',
             'width: ' + (isMobile ? '40px' : '50px'),
@@ -93,12 +93,11 @@
 
         closeBtn.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.1)';
-            this.style.background = 'rgba(168,143,29,1)';
+            this.style.background = 'rgba(168,134,28,1)';
         });
 
         closeBtn.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-            this.style.background = 'rgba(168,143,29,0.9)';
+            this.style.background = 'rgba(168,134,28,0.9)';
         });
 
         // Navegación (flechas)
@@ -153,7 +152,7 @@
             'padding: 8px 16px',
             'border-radius: 20px',
             'font-size: 14px',
-            'font-family: "DM Sans", sans-serif',
+            'font-family: "Hanken Grotesk", sans-serif',
             'z-index: 100001',
             'display: none'
         ].join('; ');

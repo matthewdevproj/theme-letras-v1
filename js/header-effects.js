@@ -85,7 +85,7 @@
                 'left: 0',
                 'width: 0%',
                 'height: 3px',
-                'background: linear-gradient(90deg, #A88F1D 0%, #C4A822 100%)',
+                'background: linear-gradient(90deg, #A8861C 0%, #C4A822 100%)',
                 'z-index: 10001',
                 'transform-origin: left',
                 'pointer-events: none',
@@ -147,7 +147,7 @@
                 'transform: translateX(-50%) scaleX(0)',
                 'width: 80%',
                 'height: 3px',
-                'background: linear-gradient(90deg, #A88F1D, #C4A822)',
+                'background: linear-gradient(90deg, #A8861C, #C4A822)',
                 'border-radius: 2px',
                 'transform-origin: center',
                 'pointer-events: none',
@@ -196,30 +196,6 @@
                 gsap.set(indicator, { scaleX: 1 });
             }
         });
-
-        /* ─── 4. Parallax suave en hero (opcional) ────────────────────
-           Solo si hay un hero en la página */
-
-        var hero = document.querySelector(
-            '.flch-hero, .hero-section, .main-banner, section.elementor-top-section:first-of-type'
-        );
-
-        if (hero && window.innerWidth > 768) {
-            var heroImg = hero.querySelector('.flch-hero__slide-bg, .hero-bg, img');
-
-            if (heroImg) {
-                gsap.to(heroImg, {
-                    yPercent: 30,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: hero,
-                        start: 'top top',
-                        end: 'bottom top',
-                        scrub: 1
-                    }
-                });
-            }
-        }
 
         console.log('✅ LETRAS Header Effects cargados');
 

@@ -17,11 +17,11 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   line-height: 1.6;
   font-size: 16px;
-  color: var(--gray-700);
-  background: var(--gray-50);
+  color: var(--ink);
+  background: var(--bg);
 }
 
 ul.sub-menu {
@@ -66,72 +66,72 @@ select {
 
 :root {
   /* ═══════════════════════════════════════════════════
-     FLCH Design System — Modernización Junio 2026
-     Colores institucionales, tipografía y espaciado
+     CODICE Design System — Julio 2026
+     Basado en Dossier CODICE v1
      ═══════════════════════════════════════════════════ */
 
-  /* Navy — Color institucional principal */
-  --navy: #143B63;
-  --navy-dark: #0E2A48;
-  --navy-mid: #1e5590;
-  --navy-faint: #F0F5FB;
-  --navy-subtle: #EEF2FF;
+  /* CODICE tokens (reflejo de variables.css) */
+  --navy:          #143B63;
+  --navy-dark:     #0E2A48;
+  --navy-mid:      #1e5590;
+  --navy-faint:    #F0F5FB;
+  --navy-subtle:   #EEF2FF;
 
-  /* Gold — Acento institucional */
-  --gold: #A88F1D;
-  --gold-dark: #8B7518;
-  --gold-light: #C4A822;
-  --gold-faint: #FEF9E6;
+  /* Gold CODICE (#A8861C vs legacy #A8861C) */
+  --gold:          #A8861C;
+  --gold-dark:     #8B7518;
+  --gold-light:    #C4A822;
+  --gold-faint:    #FEF9E6;
 
   /* Compatibilidad con variables legacy */
-  --primary-dark: var(--navy);
-  --accent-gold: var(--gold);
+  --primary-dark:  var(--navy);
+  --accent-gold:   var(--gold);
 
-  /* Grises y neutros */
-  --gray-50: #F8FAFC;
-  --gray-100: #F1F5F9;
-  --gray-200: #E2E8F0;
-  --gray-300: #CBD5E1;
-  --gray-400: #94A3B8;
-  --gray-500: #64748B;
-  --gray-600: #475569;
-  --gray-700: #334155;
-  --gray-800: #1E293B;
-  --gray-900: #0F172A;
+  /* Grises y neutros (sobre papel #F7F5EF) */
+  --gray-50:       #F7F5EF;
+  --gray-100:      #EFEDE6;
+  --gray-200:      #E2E0D8;
+  --gray-300:      #C5C2B9;
+  --gray-400:      #9A978E;
+  --gray-500:      #6E6B64;
+  --gray-600:      #4A4740;
+  --gray-700:      #34312B;
+  --gray-800:      #1F1C17;
+  --gray-900:      #0C1521;
 
-  /* Secundarios (heredados, mantener por compatibilidad) */
-  --secondary-1: #2457A6;
-  --secondary-2: #69BCE2;
-  --secondary-3: #7FA9CC;
-  --secondary-4: #B3B0CC;
+  /* Secundarios CODICE */
+  --secondary-1:   var(--azul);
+  --secondary-2:   #69BCE2;
+  --secondary-3:   #7FA9CC;
+  --secondary-4:   #B3B0CC;
 
   /* Aliases comunes */
-  --white: #FFFFFF;
-  --light-bg: var(--gray-50);
-  --border-light: var(--gray-200);
-  --primary-text: var(--gray-700);
+  --white:         #FFFFFF;
+  --light-bg:      var(--bg);
+  --border-light:  var(--gray-200);
+  --primary-text:  var(--ink);
 
-  /* Tipografía — Google Fonts cargadas en letras-performance.php */
-  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: 'Libre Baskerville', Georgia, serif;
+  /* Tipografía CODICE */
+  --font-sans:     var(--font-body);
+  --font-serif:    var(--font-display);
 
-  /* Espaciado (mantener compatibilidad) */
-  --space-unit: 8px;
-  --space-sm: calc(var(--space-unit) * 2);   /* 16px */
-  --space-md: calc(var(--space-unit) * 4);   /* 32px */
-  --space-lg: calc(var(--space-unit) * 6);   /* 48px */
-  --space-xl: calc(var(--space-unit) * 8);   /* 64px */
+  /* Espaciado CODICE (base 4px) */
+  --space-unit:    4px;
+  --space-sm:      16px;
+  --space-md:      32px;
+  --space-lg:      48px;
+  --space-xl:      64px;
 
   /* Sombras */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-sm:     0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md:     0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg:     0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl:     0 20px 25px -5px rgba(0, 0, 0, 0.1);
 
   /* Transiciones */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast:  150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:  200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:  300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 table td,
@@ -4094,7 +4094,7 @@ a.bt_descargar {
 
 .mobile-menu a:hover {
     background-color: #1e4a7a;
-    color: #A88F1D;
+    color: #A8861C;
 }
 
 /* Submenús en móvil */
@@ -4118,7 +4118,7 @@ a.bt_descargar {
 }
 
 .mobile-submenu-toggle:hover {
-    color: #A88F1D;
+    color: #A8861C;
 }
 
 .mobile-submenu-toggle i {
@@ -4152,7 +4152,7 @@ ul.bt_menu {
 /* Asegurar que los submenús se vean correctamente */
 .main-menu .sub-menu {
     border-radius: 0;
-    border-top: 2px solid #A88F1D;
+    border-top: 2px solid #A8861C;
 }
 
 .main-menu .sub-menu a {
@@ -4551,7 +4551,7 @@ ul.bt_menu {
     bottom: 0;
     width: 40px;
     height: 2px;
-    background-color: #A88F1D;
+    background-color: #A8861C;
 }
 
 .footer-widget p {
@@ -4580,7 +4580,7 @@ ul.bt_menu {
 }
 
 .footer-menu a:hover {
-    color: #A88F1D;
+    color: #A8861C;
 }
 
 .footer-contact li {
@@ -4593,7 +4593,7 @@ ul.bt_menu {
 }
 
 .footer-contact i {
-    color: #A88F1D;
+    color: #A8861C;
     font-size: 16px;
     margin-top: 3px;
     min-width: 20px;
@@ -4606,7 +4606,7 @@ ul.bt_menu {
 }
 
 .footer-contact a:hover {
-    color: #A88F1D;
+    color: #A8861C;
 }
 
 .social-links {
@@ -4629,7 +4629,7 @@ ul.bt_menu {
 }
 
 .social-links a:hover {
-    background-color: #A88F1D;
+    background-color: #A8861C;
     transform: translateY(-3px);
 }
 
@@ -4662,7 +4662,7 @@ ul.bt_menu {
 }
 
 .footer-bottom-links a:hover {
-    color: #A88F1D;
+    color: #A8861C;
 }
 
 .whatsapp-float {
@@ -4882,7 +4882,7 @@ table tr:hover td {
 }
 
 /* ═══════════════════════════════════════════════════
-   FIX: DM Sans como fuente base — Override Elementor
+   FIX: Hanken Grotesk + Newsreader — Override Elementor (CODICE)
    ═══════════════════════════════════════════════════ */
 
 body,
@@ -4890,7 +4890,7 @@ body,
 .elementor *,
 p, h1, h2, h3, h4, h5, h6,
 .entry-content, .site-content {
-  font-family: var(--font-sans, 'DM Sans', sans-serif) !important;
+  font-family: var(--font-body, 'Hanken Grotesk', sans-serif) !important;
 }
 
 /* Headings principales con serif */
@@ -4898,7 +4898,7 @@ h1.entry-title,
 .site-title,
 .page-title,
 .elementor-heading-title {
-  font-family: var(--font-serif, 'Libre Baskerville', serif) !important;
+  font-family: var(--font-display, 'Newsreader', serif) !important;
 }
 
 /* ════════════════════════════════════════════════════════════

@@ -192,7 +192,7 @@ add_action( 'wp_enqueue_scripts', 'letras_register_gsap', 5 );
    SECCIÓN 7: TAILWIND — CONFIGURACIÓN GLOBAL
    letras-tailwind ya está registrado como archivo LOCAL
    Este código inyecta la config FLCH cuando está encolado
-   Tokens de identidad: navy #143B63 + gold #A88F1D
+   Tokens de identidad: navy #143B63 + gold #A8861C (CODICE)
    ══════════════════════════════════════════════════ */
 add_action( 'wp_head', function() {
     // Solo inyectar si Tailwind está activo en esta página
@@ -218,15 +218,15 @@ add_action( 'wp_head', function() {
                             subtle:  '#EEF2FF'
                         },
                         gold: {
-                            DEFAULT: '#A88F1D',
+                            DEFAULT: '#A8861C',
                             dark:    '#8B7518',
                             light:   '#C4A822',
                             faint:   '#FEF9E6'
                         }
                     },
                     fontFamily: {
-                        sans:  ['"DM Sans"', 'system-ui', 'sans-serif'],
-                        serif: ['"Libre Baskerville"', 'Georgia', 'serif']
+                        sans:  ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
+                        serif: ['"Newsreader"', 'Georgia', 'serif']
                     }
                 }
             }
@@ -287,9 +287,9 @@ if ( ! defined( 'WP_POST_REVISIONS' ) ) {
 add_filter( 'wp_lazy_loading_enabled', '__return_true' );
 
 /* ══════════════════════════════════════════════════
-   SECCIÓN 10: GOOGLE FONTS — LETRAS FLCH
-   DM Sans + Libre Baskerville (identidad tipográfica)
-   Solo agrega si el tema no lo carga ya
+   SECCIÓN 10: GOOGLE FONTS — CODICE
+   Hanken Grotesk + Newsreader (identidad tipográfica)
+   Ahora cargado desde functions.php (fonts.css + CDN)
    ══════════════════════════════════════════════════ */
 // DESACTIVADO (consolidado en functions.php): function letras_google_fonts() {
 // DESACTIVADO (consolidado en functions.php):     // No duplicar si ya está registrado
@@ -418,7 +418,7 @@ function letras_datatables_helper() {
 add_action( 'wp_footer', 'letras_datatables_helper', 999 );
 
 /* ══════════════════════════════════════════════════════════════
-   FIX ELEMENTOR — Eliminar Roboto y forzar DM Sans globalmente
+   FIX ELEMENTOR — Eliminar Roboto y forzar fuentes CODICE
    Problema: Kit de Elementor cargaba Roboto desde Google Fonts
    causando inconsistencias en redes lentas o con bloqueo.
    Solución: Override de variables CSS de Elementor en wp_head
@@ -435,35 +435,35 @@ add_filter('elementor/frontend/print_google_fonts', function($fonts) {
     return $fonts;
 }, 10, 1);
 
-// Forzar variables FLCH en Elementor (priority 1 = antes que Elementor CSS)
+// Forzar variables CODICE en Elementor (priority 1 = antes que Elementor CSS)
 add_action('wp_head', function() {
     echo '<style id="flch-elementor-override">
-    /* Override variables globales de Elementor con identidad FLCH */
+    /* Override variables globales de Elementor con identidad CODICE */
     :root {
-        --e-global-typography-primary-font-family: "DM Sans" !important;
-        --e-global-typography-secondary-font-family: "Libre Baskerville" !important;
-        --e-global-typography-text-font-family: "DM Sans" !important;
-        --e-global-typography-accent-font-family: "DM Sans" !important;
+        --e-global-typography-primary-font-family: "Hanken Grotesk" !important;
+        --e-global-typography-secondary-font-family: "Newsreader" !important;
+        --e-global-typography-text-font-family: "Hanken Grotesk" !important;
+        --e-global-typography-accent-font-family: "Hanken Grotesk" !important;
         --e-global-color-primary: #143B63 !important;
         --e-global-color-secondary: #0E2A48 !important;
-        --e-global-color-text: #334155 !important;
-        --e-global-color-accent: #A88F1D !important;
+        --e-global-color-text: #1A2230 !important;
+        --e-global-color-accent: #A8861C !important;
     }
     
-    /* Aplicar DM Sans a elementos de Elementor como fallback final */
+    /* Aplicar Hanken Grotesk a elementos de Elementor */
     .elementor-widget-container,
     .elementor-heading-title,
     .elementor-text-editor,
     .elementor-widget-text-editor,
     body.elementor-page {
-        font-family: "DM Sans", -apple-system, BlinkMacSystemFont, 
+        font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, 
                      "Segoe UI", sans-serif !important;
     }
     
-    /* Headings con Libre Baskerville */
+    /* Headings con Newsreader (editorial) */
     .elementor-heading-title.elementor-size-default,
     .elementor-heading-title.elementor-size-large {
-        font-family: "Libre Baskerville", Georgia, serif !important;
+        font-family: "Newsreader", Georgia, serif !important;
     }
     </style>
 ';
@@ -504,6 +504,10 @@ add_action('wp_enqueue_scripts', function() {
         filemtime(get_template_directory() . '/js/page-transitions.js'),
         true
     );
+
+    wp_localize_script('letras-page-transitions', 'flchTransition', [
+        'logoUrl' => get_template_directory_uri() . '/images/logo-blanco-letras.png',
+    ]);
 }, 36);
 
 // 3. Header Effects (global con GSAP)
@@ -659,17 +663,19 @@ add_action('wp_footer', function() {
    ══════════════════════════════════════════════════════════ */
 
 // 4. Hero Enhanced (solo front page)
-add_action('wp_enqueue_scripts', function() {
-    if (!is_front_page()) return;
-
-    wp_enqueue_script(
-        'letras-hero-enhanced',
-        get_template_directory_uri() . '/js/hero-enhanced.js',
-        ['gsap', 'gsap-scrolltrigger'],
-        filemtime(get_template_directory() . '/js/hero-enhanced.js'),
-        true
-    );
-}, 38);
+// DESACTIVADO: hero.php ya maneja su propia animación CSS + slider JS.
+// hero-enhanced.js duplica la animación y causa conflicto con CSS keyframes.
+// add_action('wp_enqueue_scripts', function() {
+//     if (!is_front_page()) return;
+//
+//     wp_enqueue_script(
+//         'letras-hero-enhanced',
+//         get_template_directory_uri() . '/js/hero-enhanced.js',
+//         ['gsap', 'gsap-scrolltrigger'],
+//         filemtime(get_template_directory() . '/js/hero-enhanced.js'),
+//         true
+//     );
+// }, 38);
 
 // 5. Lightbox GSAP (global - galerías en cualquier página)
 add_action('wp_enqueue_scripts', function() {

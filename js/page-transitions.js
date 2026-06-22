@@ -1,46 +1,46 @@
-/**
- * LETRAS FLCH - Page Transitions v2
- * CORRECCION CRITICA: El overlay ya NO bloquea la pagina al cargar.
- * Solo aparece durante la transicion de SALIDA (al navegar a otra pagina).
- */
 (function() {
     "use strict";
 
     var DOMAIN = window.location.hostname;
     var transitioning = false;
+    var overlay = null;
 
-    // Crear overlay OCULTO desde el inicio (opacity:0)
-    var overlay = document.createElement("div");
-    overlay.id = "flch-transition-overlay";
-    overlay.style.cssText = [
-        "position: fixed",
-        "inset: 0",
-        "background: linear-gradient(135deg, #143B63 0%, #0E2A48 100%)",
-        "z-index: 99999",
-        "pointer-events: none",
-        "opacity: 0",
-        "display: flex",
-        "align-items: center",
-        "justify-content: center"
-    ].join("; ");
+    function createOverlay() {
+        if (overlay) return;
 
-    var spinner = document.createElement("div");
-    spinner.style.cssText = [
-        "width: 60px",
-        "height: 60px",
-        "border: 4px solid rgba(168,143,29,0.2)",
-        "border-top-color: #A88F1D",
-        "border-right-color: #A88F1D",
-        "border-radius: 50%",
-        "animation: flch-spin 0.8s linear infinite"
-    ].join("; ");
+        overlay = document.createElement("div");
+        overlay.id = "flch-page-overlay";
+        overlay.style.cssText = [
+            "position: fixed",
+            "inset: 0",
+            "z-index: 99999",
+            "background: linear-gradient(135deg, #0A1E3C 0%, #143B63 50%, #0C1521 100%)",
+            "display: flex",
+            "flex-direction: column",
+            "align-items: center",
+            "justify-content: center",
+            "gap: 2rem",
+            "opacity: 0",
+            "pointer-events: none",
+            "transition: opacity 0.2s ease"
+        ].join("; ");
 
-    overlay.appendChild(spinner);
-    document.body.appendChild(overlay);
+        var img = document.createElement("img");
+        img.src = (window.flchTransition && flchTransition.logoUrl) || "";
+        img.alt = "FLCH";
+        img.style.cssText = "width: 260px; height: auto; opacity: 0.95;";
 
-    var st = document.createElement("style");
-    st.textContent = "@keyframes flch-spin { to { transform: rotate(360deg); } }";
-    document.head.appendChild(st);
+        var barWrap = document.createElement("div");
+        barWrap.style.cssText = "width: 120px; height: 2px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden;";
+
+        var bar = document.createElement("div");
+        bar.style.cssText = "width: 0%; height: 100%; background: #A8861C; border-radius: 2px; transition: width 0.3s ease;";
+        barWrap.appendChild(bar);
+
+        overlay.appendChild(img);
+        overlay.appendChild(barWrap);
+        document.body.appendChild(overlay);
+    }
 
     function waitForGSAP(cb, n) {
         n = n || 0;
@@ -54,14 +54,15 @@
     }
 
     waitForGSAP(function() {
+        createOverlay();
 
-        // Body: fade-in muy suave (NO desde opacity:0 - siempre visible)
+        // Body fade-in on page load
         gsap.fromTo("body",
-            { y: 8 },
-            { y: 0, duration: 0.4, ease: "power2.out", clearProps: "all" }
+            { y: 10, opacity: 0.97 },
+            { y: 0, opacity: 1, duration: 0.35, ease: "power2.out", clearProps: "all" }
         );
 
-        // Interceptar clicks en links internos para transicion de SALIDA
+        // Intercept internal links for exit transition
         document.addEventListener("click", function(e) {
             if (transitioning) return;
             var link = e.target.closest("a[href]");
@@ -88,26 +89,36 @@
             transitioning = true;
             overlay.style.pointerEvents = "all";
 
+            var bar = overlay.querySelector("div:last-child div");
+            if (bar) bar.style.width = "70%";
+
             gsap.to(overlay, {
                 opacity: 1,
-                duration: 0.35,
-                ease: "power3.in",
+                duration: 0.2,
+                ease: "power2.in",
                 onComplete: function() {
-                    window.location.href = href;
+                    if (bar) bar.style.width = "100%";
+                    setTimeout(function() {
+                        window.location.href = href;
+                    }, 120);
                 }
             });
-            gsap.to("body", { opacity: 0, y: -15, duration: 0.35, ease: "power2.in" });
         });
 
         window.addEventListener("pageshow", function(e) {
             if (e.persisted) {
                 transitioning = false;
-                overlay.style.pointerEvents = "none";
-                gsap.to(overlay, { opacity: 0, duration: 0.3 });
-                gsap.to("body", { opacity: 1, y: 0, duration: 0.3, clearProps: "all" });
+                if (overlay) {
+                    overlay.style.pointerEvents = "none";
+                    gsap.to(overlay, { opacity: 0, duration: 0.25, ease: "power2.out" });
+                }
+                gsap.fromTo("body",
+                    { y: 10, opacity: 0.97 },
+                    { y: 0, opacity: 1, duration: 0.3, ease: "power2.out", clearProps: "all" }
+                );
             }
         });
 
-        console.log("LETRAS Page Transitions v2: activas (overlay solo en exit)");
+        console.log("LETRAS Page Transitions v4: overlay con logo FLCH");
     });
 })();

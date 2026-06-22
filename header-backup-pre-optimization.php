@@ -98,7 +98,7 @@
 
             <!-- Logo -->
             <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="header-logo">
-                <img src="https://letras.unmsm.edu.pe/wp-content/uploads/2022/09/LOGO-BLANCO-LETRAS-WEB_2.png"
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/images/logo-blanco-letras.png' ); ?>"
                      alt="FLCH UNMSM"
                      width="200" height="62">
             </a>

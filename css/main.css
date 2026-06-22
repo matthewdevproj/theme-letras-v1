@@ -3,44 +3,40 @@
    Variables inline (fix @import relativo)
    ======================================== */
 
-/* ===== DESIGN TOKENS - LETRAS FLCH ===== */
+/* ===== DESIGN TOKENS - CODICE ===== */
 :root {
-    /* ===== COLORES PRIMARIOS ===== */
-    --primary-dark: #143B63;
-    --primary-text: #3A3A3A;
-
-    /* ===== COLORES SECUNDARIOS ===== */
-    --secondary-blue: #2457A6;
+    /* CODICE tokens — single source of truth en variables.css */
+    --primary-dark: var(--azuld, #143B63);
+    --primary-text: var(--ink, #1A2230);
+    --secondary-blue: var(--azul, #2457A6);
     --secondary-light: #69BCE2;
     --secondary-muted: #7FA9CC;
     --secondary-lavender: #B3B0CC;
-
-    /* ===== ACENTO ESTRATÉGICO ===== */
-    --accent-gold: #A88F1D;
-    --color-accent: #A88F1D;
+    --accent-gold: var(--gold, #A8861C);
+    --color-accent: var(--gold, #A8861C);
     --color-accent-dark: #8B7718;
     --accent-gold-wcag: #7A6600;
 
-    /* ===== NEUTROS ===== */
+    /* Neutros CODICE */
     --white: #FFFFFF;
-    --white-soft: #F5F7FA;
-    --gray-light: #E5E9F0;
-    --gray-medium: #CED4DA;
-    --gray-dark: #6C757D;
-    --black: #212529;
+    --white-soft: var(--bg, #F7F5EF);
+    --gray-light: #E2E0D8;
+    --gray-medium: #9A978E;
+    --gray-dark: #6E6B64;
+    --black: var(--ink, #1A2230);
 
-    /* ===== ESPACIADO BASE ===== */
-    --space-unit: 8px;
-    --space-xs: calc(var(--space-unit) * 1);
-    --space-sm: calc(var(--space-unit) * 2);
-    --space-md: calc(var(--space-unit) * 3);
-    --space-lg: calc(var(--space-unit) * 4);
-    --space-xl: calc(var(--space-unit) * 6);
-    --space-2xl: calc(var(--space-unit) * 8);
-    --space-3xl: calc(var(--space-unit) * 10);
+    /* Espaciado CODICE (base 4px) */
+    --space-unit: 4px;
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
+    --space-3xl: 80px;
 
-    /* ===== TIPOGRAFÍA ===== */
-    --font-primary: 'DM Sans', sans-serif;  /* FIX: Poppins → DM Sans */
+    /* Tipografía CODICE */
+    --font-primary: var(--font-body, 'Hanken Grotesk', sans-serif);
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -51,24 +47,24 @@
     --font-size-3xl: 2.5rem;
     --font-size-4xl: 3rem;
 
-    /* ===== BORDES ===== */
+    /* Bordes */
     --border-radius-sm: 4px;
     --border-radius-md: 8px;
     --border-radius-lg: 12px;
     --border-radius-full: 9999px;
 
-    /* ===== SOMBRAS ===== */
+    /* Sombras */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-    --shadow-gold: 0 4px 16px rgba(168, 143, 29, 0.2);
+    --shadow-gold: 0 4px 16px rgba(168, 134, 28, 0.2);
 
-    /* ===== TRANSICIONES ===== */
+    /* Transiciones */
     --transition-fast: 0.2s ease;
     --transition-base: 0.3s ease;
     --transition-slow: 0.5s ease;
 
-    /* ===== Z-INDEX ===== */
+    /* Z-index */
     --z-dropdown: 100;
     --z-sticky: 200;
     --z-fixed: 300;
@@ -153,7 +149,7 @@ a:hover {
 
 /* ===== LAYOUT ===== */
 .container {
-    max-width: 1280px;
+    max-width: var(--container-max, 1300px);
     margin: 0 auto;
     padding: 0 var(--space-lg);
 }
@@ -1559,7 +1555,7 @@ a:hover {
     gap: var(--space-xs);
     font-size: var(--font-size-xs);
     font-weight: 700;
-    color: var(--accent-gold); /* #A88F1D sobre azul #0A1E3C → 4.97:1 WCAG AA ✓ */
+    color: var(--accent-gold); /* #A8861C sobre azul #0A1E3C → 4.97:1 WCAG AA ✓ */
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: var(--space-sm);
@@ -3291,10 +3287,10 @@ article.type-post:hover img {
 .post-card h3,
 .sp-post-title,
 article.type-post .entry-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #143B63;
+  color: var(--azuld, #143B63);
   line-height: 1.4;
   margin-bottom: 0.5rem;
 }
@@ -3375,9 +3371,9 @@ footer .social-link,
 }
 .site-footer .social-icons a:hover,
 footer .social-link:hover {
-  background: #A88F1D;
+  background: #A8861C;
   color: #fff;
-  border-color: #A88F1D;
+  border-color: #A8861C;
   transform: translateY(-2px);
 }
 
@@ -3385,7 +3381,7 @@ footer .social-link:hover {
 footer h3,
 footer h4,
 .site-footer .widget-title {
-  font-family: 'Libre Baskerville', serif;
+  font-family: var(--font-display, 'Newsreader', serif);
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -3517,7 +3513,7 @@ footer h4,
 }
 
 .flch-card__title a:hover {
-    color: #A88F1D;
+    color: #A8861C;
 }
 
 .flch-card__excerpt {
@@ -3560,7 +3556,7 @@ footer h4,
 
 /* Secondary: Gold background */
 .flch-btn--secondary {
-    background: linear-gradient(135deg, #A88F1D, #C4A822);
+    background: linear-gradient(135deg, #A8861C, #C4A822);
     color: #143B63;
     font-weight: 700;
 }
@@ -3671,12 +3667,12 @@ a:not(.flch-btn):not(.flch-card__img-link) {
 }
 
 main a:not(.flch-btn):hover {
-    text-decoration-color: #A88F1D;
+    text-decoration-color: #A8861C;
 }
 
 /* Focus visible consistente */
 *:focus-visible {
-    outline: 2px solid #A88F1D;
+    outline: 2px solid #A8861C;
     outline-offset: 2px;
     border-radius: 2px;
 }
@@ -4352,7 +4348,7 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: #A88F1D !important;
+    border-color: #A8861C !important;
     box-shadow: 0 0 0 3px rgba(168, 143, 29, 0.1) !important;
     outline: none;
 }
@@ -4381,7 +4377,7 @@ nav a,
 nav a:hover,
 .menu a:hover,
 .elementor-nav-menu a:hover {
-    color: #A88F1D !important;
+    color: #A8861C !important;
 }
 
 /* Íconos con transición */

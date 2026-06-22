@@ -34,7 +34,7 @@ html, body {
 
 .mobile-menu .menu-item-has-children > a:hover {
     background: #1E4A7A;
-    color: #A88F1D;
+    color: #A8861C;
     padding-left: 1.5rem;
 }
 
@@ -45,7 +45,7 @@ html, body {
     padding: 0 0 0 1rem;
     list-style: none;
     background: rgba(0, 0, 0, 0.25);
-    border-left: 2px solid #A88F1D;
+    border-left: 2px solid #A8861C;
 }
 
 .mobile-menu ul.sub-menu.open {
@@ -72,15 +72,15 @@ html, body {
 }
 
 .mobile-menu ul.sub-menu a:hover {
-    color: #A88F1D;
-    background: rgba(168, 143, 29, 0.08);
+    color: #A8861C;
+    background: rgba(168, 134, 28, 0.08);
     padding-left: 1.5rem;
 }
 
 /* Sub-sub-menú */
 .mobile-menu ul.sub-menu ul.sub-menu {
     margin-left: 0.5rem;
-    border-left: 1px solid rgba(168, 143, 29, 0.4);
+    border-left: 1px solid rgba(168, 134, 28, 0.4);
     padding-left: 0.75rem;
 }
 
@@ -109,7 +109,7 @@ html, body {
 
 .mobile-submenu-toggle:hover,
 .mobile-submenu-toggle:focus-visible {
-    background: #A88F1D;
+    background: #A8861C;
     color: #fff;
     outline: none;
 }

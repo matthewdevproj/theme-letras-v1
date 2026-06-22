@@ -182,7 +182,7 @@
 
 .mobile-nav-modern > li > a:hover {
     background: rgba(255, 255, 255, 0.1);
-    color: #A88F1D;
+    color: #A8861C;
 }
 
 .mobile-nav-modern .sub-menu {
@@ -228,7 +228,7 @@
 
 .mobile-submenu-toggle:hover {
     background: rgba(255, 255, 255, 0.1);
-    color: #A88F1D;
+    color: #A8861C;
 }
 
 .mobile-submenu-toggle i {
@@ -243,9 +243,9 @@
 .bg-navy-800 { background-color: #0A1E3C !important; }
 .bg-navy-900 { background-color: #051220 !important; }
 .bg-navy-50 { background-color: #E6EBF0 !important; }
-.text-gold-400 { color: #A88F1D !important; }
-.border-gold-400 { border-color: #A88F1D !important; }
-.hover\:text-gold-400:hover { color: #A88F1D !important; }
+.text-gold-400 { color: #A8861C !important; }
+.border-gold-400 { border-color: #A8861C !important; }
+.hover\:text-gold-400:hover { color: #A8861C !important; }
 .hover\:bg-gold-500:hover { background-color: #8F7A18 !important; }
 
 /* Fix para asegurar background del header */
@@ -295,6 +295,6 @@ header.header-modern * {
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
-    outline: 2px solid #A88F1D;
+    outline: 2px solid #A8861C;
     outline-offset: 2px;
 }

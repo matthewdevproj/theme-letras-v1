@@ -8,11 +8,11 @@
   }
   
   body {
-    @apply font-sans text-gray-text antialiased;
+    @apply font-body text-gray-text antialiased bg-bg;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold text-primary-dark;
+    @apply font-display font-semibold text-primary-dark;
   }
   
   h1 {
@@ -43,7 +43,7 @@
 @layer components {
   /* Container */
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 md:px-6;
+    @apply max-w-container mx-auto px-4 md:px-6;
   }
   
   /* Botones */
@@ -508,6 +508,63 @@
   
   .animate-delay-600 {
     animation-delay: 600ms;
+  }
+
+  /* ═══════════════════════════════════
+     DARK MODE — Component Overrides
+     ═══════════════════════════════════ */
+  :root.dark .card {
+    @apply bg-gray-800 border-gray-700;
+  }
+
+  :root.dark .widget {
+    @apply bg-gray-800 border-gray-700;
+  }
+
+  :root.dark .page-header {
+    @apply bg-gray-900 border-gray-700;
+  }
+
+  :root.dark .pagination a,
+  :root.dark .pagination span {
+    @apply bg-gray-800 border-gray-700 text-gray-100;
+  }
+
+  :root.dark .pagination a:hover,
+  :root.dark .pagination span.current {
+    @apply bg-accent-gold border-accent-gold text-white;
+  }
+
+  :root.dark .post-categories a {
+    @apply bg-gray-700 text-gray-100;
+  }
+
+  :root.dark .post-tags a {
+    @apply bg-gray-700 text-gray-100;
+  }
+
+  :root.dark .post-navigation {
+    @apply border-gray-700;
+  }
+
+  :root.dark .post-navigation a {
+    @apply text-gray-100;
+  }
+
+  :root.dark .breadcrumbs a {
+    @apply text-gray-100;
+  }
+
+  :root.dark .widget ul li a {
+    @apply border-gray-700 text-gray-300;
+  }
+
+  :root.dark .footer-widget p {
+    @apply text-gray-400;
+  }
+
+  :root.dark .footer-widget h4::after {
+    @apply bg-accent-gold;
   }
 }
 

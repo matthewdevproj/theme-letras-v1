@@ -67,11 +67,11 @@ get_header();
 
             <!-- CTA buttons -->
             <div class="page-404__ctas">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flch-btn flch-btn--primary">
                     <i class="fas fa-home" aria-hidden="true"></i>
                     <?php esc_html_e( 'Ir al inicio', 'letrasflch' ); ?>
                 </a>
-                <a href="javascript:history.back()" class="btn btn-outline-dark">
+                <a href="javascript:history.back()" class="flch-btn flch-btn--outline">
                     <i class="fas fa-arrow-left" aria-hidden="true"></i>
                     <?php esc_html_e( 'Volver atrás', 'letrasflch' ); ?>
                 </a>

@@ -385,12 +385,12 @@ function letras_flch_highlight( $text, $query ) {
                 <!-- CTAs -->
                 <div class="search-no-results__actions">
                     <a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ?: home_url( '/' ) ); ?>"
-                       class="btn btn-primary">
+                       class="flch-btn flch-btn--primary">
                         <i class="fas fa-newspaper" aria-hidden="true"></i>
                         <?php esc_html_e( 'Ver todas las noticias', 'letrasflch' ); ?>
                     </a>
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>"
-                       class="btn btn-outline-dark">
+                       class="flch-btn flch-btn--outline">
                         <i class="fas fa-home" aria-hidden="true"></i>
                         <?php esc_html_e( 'Ir al inicio', 'letrasflch' ); ?>
                     </a>

@@ -25,7 +25,7 @@ get_header();
 <!-- Page Content -->
 <section class="py-16">
     <div class="container-custom">
-        <div class="max-w-4xl mx-auto">
+        <div class="page-content-reading">
             <?php if (has_post_thumbnail() && !get_post_meta(get_the_ID(), 'hide_featured_image', true)) : ?>
                 <div class="mb-8 overflow-hidden rounded-lg aspect-video">
                     <?php the_post_thumbnail('large', ['class' => 'w-full h-full object-cover']); ?>

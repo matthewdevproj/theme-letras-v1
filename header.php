@@ -88,7 +88,7 @@
 
             <!-- Logo -->
             <a href="<?php echo home_url('/'); ?>" class="header-logo flex-shrink-0">
-                <img src="https://letras.unmsm.edu.pe/wp-content/uploads/2022/09/LOGO-BLANCO-LETRAS-WEB_2.png"
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/images/logo-blanco-letras.png' ); ?>"
                      alt="FLCH"
                      width="200"
                      height="62"
@@ -110,6 +110,12 @@
                 <button @click="search = !search" class="header-btn hidden sm:flex">
                     <i class="fas fa-search"></i>
                 </button>
+                <button x-data="flchTheme" @click="toggle()"
+                        class="header-btn"
+                        :aria-label="isDark ? 'Activar modo claro' : 'Activar modo oscuro'"
+                        :title="isDark ? 'Modo claro' : 'Modo oscuro'">
+                    <i :class="isDark ? 'fas fa-sun' : 'fas fa-moon'"></i>
+                </button>
                 <button @click="mobile = !mobile" class="header-btn lg:hidden" :class="{'is-open': mobile}">
                     <span></span><span></span><span></span>
                 </button>
@@ -117,10 +123,11 @@
         </div>
 
         <!-- Search -->
-        <div x-show="search" x-transition class="search-bar" style="display:none">
+        <div x-show="search" x-transition class="search-bar" style="display:none"
+             x-effect="if (search) $nextTick(() => $refs.searchInput.focus())">
             <div class="max-w-3xl mx-auto px-4 py-6">
                 <form method="get" action="<?php echo home_url('/'); ?>">
-                    <input type="search" name="s" placeholder="Buscar..." class="search-input">
+                    <input x-ref="searchInput" type="search" name="s" placeholder="Buscar..." class="search-input" autocomplete="off">
                     <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>

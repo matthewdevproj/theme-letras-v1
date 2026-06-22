@@ -60,7 +60,7 @@ variables → FA fix → Tailwind → main → header → style → responsive �
 :root {
   /* Colores institucionales */
   --navy: #143B63;
-  --gold: #A88F1D;
+  --gold: #A8861C;
   
   /* Sistema de colores */
   --navy-dark: #0E2A48;
@@ -90,7 +90,7 @@ module.exports = {
     extend: {
       colors: {
         primary: { dark: '#143B63' },
-        accent: { gold: '#A88F1D' }
+        accent: { gold: '#A8861C' }
       }
     }
   },
@@ -179,7 +179,7 @@ Esto conflictúa con nuestro `.main-menu` custom en `header.css`.
 /* Variables locales */
 :root {
   --color-primary: #143B63;
-  --color-accent: #A88F1D;
+  --color-accent: #A8861C;
   --tb-bg: #111111;
 }
 

@@ -113,6 +113,33 @@
                     close: function () { this.open = false; }
                 };
             });
+
+            Alpine.data('flchTheme', function () {
+                return {
+                    isDark: false,
+                    init: function () {
+                        var stored = localStorage.getItem('flch-theme');
+                        if (stored === 'dark') {
+                            this.isDark = true;
+                        } else if (stored === 'light') {
+                            this.isDark = false;
+                        } else {
+                            this.isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        }
+                        this.apply();
+                    },
+                    toggle: function () {
+                        this.isDark = !this.isDark;
+                        this.apply();
+                    },
+                    apply: function () {
+                        var root = document.documentElement;
+                        root.classList.toggle('dark', this.isDark);
+                        root.style.colorScheme = this.isDark ? 'dark' : 'light';
+                        localStorage.setItem('flch-theme', this.isDark ? 'dark' : 'light');
+                    }
+                };
+            });
         });
     }
 

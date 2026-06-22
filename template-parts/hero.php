@@ -364,10 +364,10 @@
 :root {
     --flch-primary:       #0A1E3C;
     --flch-primary-dark:  #051020;
-    --flch-gold:          #C6A43F;
-    --flch-gold-light:    #DAB95C;
-    --flch-gold-dark:     #9A7E2F;
-    --flch-gold-dim:      rgba(198,164,63,.15);
+    --flch-gold:          #A8861C;
+    --flch-gold-light:    #C6A43F;
+    --flch-gold-dark:     #8B7718;
+    --flch-gold-dim:      rgba(168,134,28,.15);
     --flch-w:             #fff;
     --flch-w90:           rgba(255,255,255,.9);
     --flch-w80:           rgba(255,255,255,.8);
@@ -377,9 +377,9 @@
     --flch-w10:           rgba(255,255,255,.1);
     --flch-over-deep:     rgba(5,16,32,.85);
     --flch-over-mid:      rgba(10,26,53,.70);
-    --flch-shadow-gold:   0 10px 30px rgba(198,164,63,.30);
-    --flch-font-ui:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --flch-font-disp:     'Cormorant Garamond', 'Times New Roman', serif;
+    --flch-shadow-gold:   0 10px 30px rgba(168,134,28,.30);
+    --flch-font-ui:       'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --flch-font-disp:     'Newsreader', Georgia, Times, serif;
     --flch-ease:          cubic-bezier(0.4,0,0.2,1);
     --flch-ease-out:      cubic-bezier(0,0,0.2,1);
 }
@@ -388,8 +388,8 @@
 .flch-hero {
     position:    relative;
     width:       100%;
-    height:      min(90vh, 900px);
-    min-height:  650px;
+    height:      min(65vh, 700px);
+    min-height:  500px;
     overflow:    hidden;
     background:  var(--flch-primary);
     color:       var(--flch-w);

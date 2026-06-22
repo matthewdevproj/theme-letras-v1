@@ -233,7 +233,7 @@ if ( is_category() ) {
                         <p class="archive-empty__text">
                             <?php esc_html_e( 'En este momento no hay publicaciones disponibles en esta sección. Explora otras categorías o vuelve al inicio.', 'letrasflch' ); ?>
                         </p>
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary">
+                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flch-btn flch-btn--outline">
                             <i class="fas fa-home" aria-hidden="true"></i>
                             <?php esc_html_e( 'Volver al inicio', 'letrasflch' ); ?>
                         </a>

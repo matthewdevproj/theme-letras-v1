@@ -85,6 +85,10 @@ if ( $primary_cat ) {
                     <?php the_author(); ?>
                 </a>
             </span>
+            <span class="single-header__meta-item">
+                <i class="far fa-clock" aria-hidden="true"></i>
+                <span><?php echo esc_html( ceil( str_word_count( wp_strip_all_tags( get_the_content() ) ) / 200 ) . ' min de lectura' ); ?></span>
+            </span>
             <?php if ( $categories && count( $categories ) > 1 ) : ?>
                 <span class="single-header__meta-item">
                     <i class="fas fa-tags" aria-hidden="true"></i>
