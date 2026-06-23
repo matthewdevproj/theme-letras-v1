@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <script>(function(){var t;try{t=localStorage.getItem('flch-theme')}catch(e){}if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')})()</script>
+    <script>(function(){var t;try{t=localStorage.getItem('flch-theme')}catch(e){}if(t==='dark')document.documentElement.classList.add('dark')})()</script>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">

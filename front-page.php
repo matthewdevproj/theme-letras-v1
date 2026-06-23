@@ -31,10 +31,7 @@ if (is_front_page()) : ?>
     <!-- N.º 04 — Revistas académicas indexadas -->
     <?php get_template_part('template-parts/home/revistas'); ?>
 
-    <!-- N.º 05 — Agenda académica y cultural -->
-    <?php get_template_part('template-parts/home/agenda'); ?>
-
-    <!-- N.º 06 — Facultad en cifras -->
+    <!-- N.º 05 — Facultad en cifras -->
     <?php get_template_part('template-parts/home/facultad-cifras'); ?>
 
     <!-- N.º 07 — Comunidad FLCH -->

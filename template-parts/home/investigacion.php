@@ -35,23 +35,8 @@
 			</template>
 		</div>
 
-		<div class="flch-investigacion__bottom">
-			<div class="flch-investigacion__pubs reveal">
-				<h3 class="flch-investigacion__subtitle">Publicaciones recientes</h3>
-				<div class="flch-investigacion__pubs-list">
-					<template x-for="p in publicaciones" :key="p.title">
-						<a href="#" class="flch-investigacion__pub-item">
-							<span class="flch-investigacion__pub-year" x-text="p.year"></span>
-							<span class="flch-investigacion__pub-body">
-								<span class="flch-investigacion__pub-title" x-text="p.title"></span>
-								<span class="flch-investigacion__pub-author" x-text="p.author"></span>
-							</span>
-							<i class="fa-solid fa-arrow-up-right-from-square"></i>
-						</a>
-					</template>
-				</div>
-			</div>
-			<div class="flch-investigacion__lineas reveal">
+		<div class="flch-investigacion__bottom reveal">
+			<div class="flch-investigacion__lineas">
 				<h3 class="flch-investigacion__subtitle">L&iacute;neas de investigaci&oacute;n</h3>
 				<div class="flch-investigacion__lineas-list">
 					<template x-for="l in lineas" :key="l">
@@ -192,63 +177,13 @@
 	font-size: 11px;
 }
 .flch-investigacion__bottom {
-	display: grid;
-	grid-template-columns: 1.4fr 1fr;
-	gap: 1.75rem;
-	align-items: start;
-}
-@media (max-width: 1024px) {
-	.flch-investigacion__bottom { grid-template-columns: 1fr; }
+	display: block;
 }
 .flch-investigacion__subtitle {
 	font-family: var(--font-display, 'Newsreader', serif);
 	font-size: 23px;
 	font-weight: 600;
 	margin: 0 0 1.125rem;
-}
-.flch-investigacion__pubs-list {
-	display: flex;
-	flex-direction: column;
-	border-top: 1px solid rgba(255,255,255,.15);
-}
-.flch-investigacion__pub-item {
-	display: flex;
-	align-items: center;
-	gap: 1.125rem;
-	padding: 1rem 0;
-	border-bottom: 1px solid rgba(255,255,255,.15);
-	text-decoration: none;
-	color: #fff;
-	transition: padding-left .3s ease;
-}
-.flch-investigacion__pub-item:hover {
-	padding-left: 0.5rem;
-}
-.flch-investigacion__pub-year {
-	font-family: var(--font-display, 'Newsreader', serif);
-	font-style: italic;
-	font-size: 14px;
-	color: var(--gold, #D6B655);
-	width: 46px;
-	flex-shrink: 0;
-}
-.flch-investigacion__pub-body {
-	flex: 1;
-}
-.flch-investigacion__pub-title {
-	display: block;
-	font-size: 1rem;
-	font-weight: 600;
-	line-height: 1.3;
-}
-.flch-investigacion__pub-author {
-	font-size: 13px;
-	color: rgba(255,255,255,.5);
-}
-.flch-investigacion__pub-item > i {
-	font-size: 13px;
-	color: rgba(255,255,255,.4);
-	flex-shrink: 0;
 }
 .flch-investigacion__lineas {
 	background: rgba(255,255,255,.04);
@@ -286,7 +221,6 @@
 @media (prefers-reduced-motion: reduce) {
 	.reveal { opacity: 1 !important; transform: none !important; }
 	.flch-investigacion__card { transition: none; }
-	.flch-investigacion__pub-item { transition: none; }
 	.flch-investigacion__tag { transition: none; }
 }
 </style>

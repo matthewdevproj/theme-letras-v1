@@ -1,7 +1,7 @@
 <?php
 /**
  * Sección N.º 04 — Revistas académicas indexadas
- * Handoff: horizontal scrollable shelf con navegación
+ * Handoff: horizontal scrollable shelf with journal covers
  *
  * @package LetrasFLCH
  */
@@ -36,10 +36,10 @@
 
 		<div x-ref="shelf" class="flch-revistas__shelf">
 			<template x-for="r in revistas" :key="r.name">
-				<a href="#" class="flch-revistas__card"
-				   :style="'background:linear-gradient(155deg,'+r.c1+','+r.c2+')'">
-					<div class="flch-revistas__card-visual">
-						<span class="flch-revistas__card-issn" x-text="r.issn"></span>
+				<a :href="r.href" target="_blank" rel="noopener noreferrer" class="flch-revistas__card">
+					<div class="flch-revistas__card-cover"
+					     :style="'background-image:url('+r.cover+')'">
+						<div class="flch-revistas__card-overlay"></div>
 						<span class="flch-revistas__card-logo" x-text="r.short"></span>
 					</div>
 					<div class="flch-revistas__card-info">
@@ -158,25 +158,23 @@
 	border-color: var(--gold, #D6B655);
 	box-shadow: 0 16px 40px rgba(0,0,0,.35);
 }
-.flch-revistas__card-visual {
+.flch-revistas__card-cover {
 	aspect-ratio: 3/4;
 	position: relative;
+	background-size: cover;
+	background-position: center;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	align-items: flex-end;
 	padding: 1.25rem;
 }
-.flch-revistas__card-issn {
-	align-self: flex-end;
-	font-size: 10px;
-	font-weight: 700;
-	letter-spacing: 0.04em;
-	color: #fff;
-	background: rgba(0,0,0,.3);
-	padding: 4px 10px;
-	border-radius: 4px;
+.flch-revistas__card-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(0deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.2) 50%, transparent 100%);
 }
 .flch-revistas__card-logo {
+	position: relative;
+	z-index: 1;
 	font-family: var(--font-display, 'Newsreader', serif);
 	font-style: italic;
 	font-size: 34px;
@@ -216,7 +214,6 @@
 @media (prefers-reduced-motion: reduce) {
 	.reveal { opacity: 1 !important; transform: none !important; }
 	.flch-revistas__card,
-	.flch-revistas__card-info,
 	.flch-revistas__nav-btn { transition: none !important; }
 }
 </style>

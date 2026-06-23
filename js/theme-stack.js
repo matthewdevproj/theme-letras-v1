@@ -123,10 +123,8 @@
                         var stored = localStorage.getItem('flch-theme');
                         if (stored === 'dark') {
                             this.isDark = true;
-                        } else if (stored === 'light') {
-                            this.isDark = false;
                         } else {
-                            this.isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                            this.isDark = false;
                         }
                         this.apply();
                     },
@@ -230,11 +228,11 @@
                     lineas: ['Lenguas originarias','Crítica literaria','Filosofía política','Comunicación y sociedad','Patrimonio cultural','Estudios de género'],
 
                     revistas: [
-                        { short:'Letras', name:'Letras (Lima)', field:'Humanidades · Scielo', issn:'ISSN 2071-5072', c1:'#2457A6', c2:'#0E2742' },
-                        { short:'L&S', name:'Lengua y Sociedad', field:'Lingüística', issn:'ISSN 1729-9721', c1:'#7A1F2B', c2:'#3A0E15' },
-                        { short:'E&P', name:'Escritura y Pensamiento', field:'Literatura', issn:'ISSN 1561-0837', c1:'#1F6E5A', c2:'#0C3429' },
-                        { short:'Tesis', name:'Tesis (Lima)', field:'Posgrado', issn:'ISSN 2519-7843', c1:'#8A5A18', c2:'#3F280A' },
-                        { short:'Azul', name:'Revista Azul', field:'Cultura', issn:'ISSN', c1:'#3A4C8A', c2:'#161E3D' },
+                        { short:'Letras', name:'Letras (Lima)', field:'Humanidades · Scielo', issn:'ISSN 2071-5072', cover:'https://revistaletras.unmsm.edu.pe/public/journals/1/cover_issue_150_es.png', href:'https://revistaletras.unmsm.edu.pe/index.php/le/issue/view/150' },
+                        { short:'L&S', name:'Lengua y Sociedad', field:'Lingüística', issn:'ISSN 1729-9721', cover:'https://revistasinvestigacion.unmsm.edu.pe/public/journals/40/cover_issue_1836_es.png', href:'https://revistasinvestigacion.unmsm.edu.pe/index.php/lys/issue/view/1836' },
+                        { short:'E&P', name:'Escritura y Pensamiento', field:'Literatura', issn:'ISSN 1561-0837', cover:'https://revistasinvestigacion.unmsm.edu.pe/public/journals/21/cover_issue_1855_es.jpg', href:'https://revistasinvestigacion.unmsm.edu.pe/index.php/ayp/issue/view/1855' },
+                        { short:'Tesis', name:'Tesis (Lima)', field:'Posgrado', issn:'ISSN 2519-7843', cover:'https://revistasinvestigacion.unmsm.edu.pe/public/journals/36/cover_issue_1868_es.png', href:'https://revistasinvestigacion.unmsm.edu.pe/index.php/tesis/issue/view/1868' },
+                        { short:'Azul', name:'Revista Azul', field:'Cultura', issn:'ISSN', cover:'https://revistaazulletras.unmsm.edu.pe/public/journals/1/cover_issue_2_es.png', href:'https://revistaazulletras.unmsm.edu.pe/index.php/azul/issue/view/2' },
                     ],
 
                     agenda: [
