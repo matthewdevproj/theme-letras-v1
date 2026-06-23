@@ -391,8 +391,9 @@
 
 .flch-hero__centros-grid {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 0;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1px;
+	background: rgba(255,255,255,.07);
 }
 
 .flch-hero__centro-card {
@@ -403,14 +404,8 @@
 	min-height:     206px;
 	color:          #fff;
 	text-decoration: none;
-	border-right:   1px solid rgba(255,255,255,.06);
-	border-top:     1px solid rgba(255,255,255,.06);
+	background:     linear-gradient(180deg, #103155 0%, #0B2036 100%);
 	transition:     all .3s cubic-bezier(.4,0,.2,1);
-}
-
-.flch-hero__centro-card:last-child,
-.flch-hero__centro-card:nth-child(4) {
-	border-right: none;
 }
 
 .flch-hero__centro-card:hover {
@@ -496,9 +491,6 @@
 	.flch-hero__centros-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	.flch-hero__centro-card:nth-child(2n) {
-		border-right: none;
-	}
 }
 
 @media (max-width: 768px) {
@@ -515,12 +507,6 @@
 	.flch-hero__centro-card {
 		min-height: 180px;
 		padding: 26px 22px;
-	}
-	.flch-hero__centro-card:nth-child(2n) {
-		border-right: none;
-	}
-	.flch-hero__centro-card:nth-child(n+3) {
-		border-top: 1px solid rgba(255,255,255,.06);
 	}
 	.flch-hero__stats {
 		gap: 1.5rem;
@@ -547,12 +533,8 @@
 		grid-template-columns: 1fr;
 	}
 	.flch-hero__centro-card {
-		border-right: none;
 		min-height: unset;
 		padding: 26px 22px;
-	}
-	.flch-hero__centro-card:not(:first-child) {
-		border-top: 1px solid rgba(255,255,255,.06);
 	}
 	.flch-hero__centro-title {
 		font-size: 1.15rem;

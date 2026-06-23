@@ -212,6 +212,52 @@
                         { n:'10', name:'Lenguas, Traducci\u00f3n e Interpretaci\u00f3n', desc:'Di\u00e1logo intercultural en varias lenguas.', img:'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800', href:'https://letras.unmsm.edu.pe/escuelas/lenguas-traduccion-e-interpretacion-flch/' },
                     ],
 
+                    adn: ['Humanidades','Investigación','Producción intelectual','Cultura','Patrimonio','Pensamiento crítico'],
+
+                    institutos: [
+                        { icon:'fa-solid fa-flask', name:'Institutos de Investigación', desc:'Centros que articulan la investigación humanística.', cta:'Explorar' },
+                        { icon:'fa-solid fa-diagram-project', name:'Proyectos destacados', desc:'Líneas con financiamiento y colaboración.', cta:'Ver proyectos' },
+                        { icon:'fa-solid fa-feather-pointed', name:'Producción intelectual', desc:'Libros, ensayos y ponencias de la comunidad.', cta:'Ver catálogo' },
+                        { icon:'fa-solid fa-scroll', name:'Patrimonio documental', desc:'Archivos, fondos y memoria de las humanidades.', cta:'Descubrir' },
+                    ],
+
+                    publicaciones: [
+                        { year:'2026', title:'Oralidad y memoria en la sierra central', author:'Instituto de Investigaciones Lingüísticas' },
+                        { year:'2025', title:'Vargas Llosa: archivo y crítica', author:'Instituto de Literatura' },
+                        { year:'2025', title:'Filosofía política en el Perú contemporáneo', author:'Departamento de Filosofía' },
+                    ],
+
+                    lineas: ['Lenguas originarias','Crítica literaria','Filosofía política','Comunicación y sociedad','Patrimonio cultural','Estudios de género'],
+
+                    revistas: [
+                        { short:'Letras', name:'Letras (Lima)', field:'Humanidades · Scielo', issn:'ISSN 2071-5072', c1:'#2457A6', c2:'#0E2742' },
+                        { short:'L&S', name:'Lengua y Sociedad', field:'Lingüística', issn:'ISSN 1729-9721', c1:'#7A1F2B', c2:'#3A0E15' },
+                        { short:'E&P', name:'Escritura y Pensamiento', field:'Literatura', issn:'ISSN 1561-0837', c1:'#1F6E5A', c2:'#0C3429' },
+                        { short:'Tesis', name:'Tesis (Lima)', field:'Posgrado', issn:'ISSN 2519-7843', c1:'#8A5A18', c2:'#3F280A' },
+                        { short:'Azul', name:'Revista Azul', field:'Cultura', issn:'ISSN', c1:'#3A4C8A', c2:'#161E3D' },
+                    ],
+
+                    agenda: [
+                        { type:'Congreso', date:'14 abr 2026', time:'9:00 a.m.', title:'Congreso Internacional de Estudios Literarios', place:'Auditorio FLCH' },
+                        { type:'Sustentación', date:'22 abr 2026', time:'4:00 p.m.', title:'Sustentación de tesis doctoral en Lingüística', place:'Sala de Grados' },
+                        { type:'Libro', date:'8 may 2026', time:'6:30 p.m.', title:'Presentación de libro: nueva narrativa peruana', place:'Sala Raúl Porras' },
+                        { type:'Cultural', date:'17 may 2026', time:'7:00 p.m.', title:'Recital de poesía — Casa de Letras', place:'Patio Central' },
+                    ],
+
+                    stats: [
+                        { value:10, suffix:'', label:'Escuelas profesionales' },
+                        { value:475, suffix:'', label:'Años de trayectoria' },
+                        { value:300, suffix:'+', label:'Docentes' },
+                        { value:6, suffix:'', label:'Revistas indexadas' },
+                    ],
+
+                    logros: [
+                        { icon:'fa-solid fa-award', label:'Premio Nobel Vargas Llosa' },
+                        { icon:'fa-solid fa-masks-theater', label:'Cine Club & Teatro' },
+                        { icon:'fa-solid fa-book-open', label:'Recitales y coloquios' },
+                        { icon:'fa-solid fa-globe', label:'Movilidad internacional' },
+                    ],
+
                     animate: function () {
                         var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
                         var reveals = document.querySelectorAll('.reveal');

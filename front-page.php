@@ -13,25 +13,31 @@ get_header();
 <?php // Verificar si estamos en la página de inicio
 if (is_front_page()) : ?>
     
-    <!-- Hero Section con Slider (solo en front page) -->
+    <!-- Hero Section (solo en front page) -->
     <?php get_template_part('template-parts/hero'); ?>
 
-    <!-- Noticias Destacadas — editorial layout -->
+    <!-- ADN de la Facultad -->
+    <?php get_template_part('template-parts/home/adn-facultad'); ?>
+
+    <!-- N.º 01 — Noticias Destacadas -->
     <?php get_template_part('template-parts/home/noticias'); ?>
 
-    <!-- Escuelas Profesionales — editorial grid -->
+    <!-- N.º 02 — Escuelas Profesionales -->
     <?php get_template_part('template-parts/home/escuelas'); ?>
 
-    <!-- N.º 03 — El corazón de la Facultad -->
-    <?php get_template_part('template-parts/home/corazon-facultad'); ?>
+    <!-- N.º 03 — Investigación y producción académica -->
+    <?php get_template_part('template-parts/home/investigacion'); ?>
 
-    <!-- N.º 04 — Producción intelectual -->
-    <?php get_template_part('template-parts/home/produccion-intelectual'); ?>
+    <!-- N.º 04 — Revistas académicas indexadas -->
+    <?php get_template_part('template-parts/home/revistas'); ?>
+
+    <!-- N.º 05 — Agenda académica y cultural -->
+    <?php get_template_part('template-parts/home/agenda'); ?>
 
     <!-- N.º 06 — Facultad en cifras -->
     <?php get_template_part('template-parts/home/facultad-cifras'); ?>
 
-    <!-- N.º 07 — Comunidad de humanidades -->
+    <!-- N.º 07 — Comunidad FLCH -->
     <?php get_template_part('template-parts/home/comunidad-humanidades'); ?>
 
     <!-- Aquí va el contenido de tu página de inicio (editor) -->
