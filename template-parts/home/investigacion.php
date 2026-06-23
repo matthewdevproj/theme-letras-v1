@@ -15,29 +15,13 @@
 	<div class="flch-investigacion__inner">
 		<div class="flch-investigacion__header reveal">
 			<div>
-				<div class="flch-investigacion__eyebrow">
-					<span class="flch-investigacion__num">N.&#186; 03 —</span>
-					El coraz&oacute;n de la Facultad
-				</div>
-				<h2 class="flch-investigacion__title" id="investigacion-title">Investigaci&oacute;n y producci&oacute;n acad&eacute;mica</h2>
+				<h2 class="flch-investigacion__title" id="investigacion-title">Grupos de investigaci&oacute;n</h2>
 			</div>
-			<p class="flch-investigacion__desc">Institutos, proyectos y l&iacute;neas que sostienen el liderazgo intelectual de la FLCH en el Per&uacute; y la regi&oacute;n.</p>
-		</div>
-
-		<div class="flch-investigacion__grid">
-			<template x-for="i in institutos" :key="i.name">
-				<a href="#" class="flch-investigacion__card">
-					<span class="flch-investigacion__card-icon"><i :class="i.icon"></i></span>
-					<h3 class="flch-investigacion__card-title" x-text="i.name"></h3>
-					<p class="flch-investigacion__card-desc" x-text="i.desc"></p>
-					<span class="flch-investigacion__card-cta"><span x-text="i.cta"></span> <i class="fa-solid fa-arrow-right"></i></span>
-				</a>
-			</template>
+			<p class="flch-investigacion__desc">Conoce nuestros grupos de investigaci&oacute;n.</p>
 		</div>
 
 		<div class="flch-investigacion__bottom reveal">
 			<div class="flch-investigacion__lineas">
-				<h3 class="flch-investigacion__subtitle">L&iacute;neas de investigaci&oacute;n</h3>
 				<div class="flch-investigacion__lineas-list">
 					<template x-for="l in lineas" :key="l">
 						<span class="flch-investigacion__tag"><i class="fa-solid fa-circle"></i><span x-text="l"></span></span>

@@ -41,33 +41,14 @@
 				Formación crítica · Investigación de frontera · Compromiso social
 			</p>
 
-			<div class="flch-hero__stats reveal">
-				<template x-for="(s, i) in heroStats" :key="s.label">
-					<template x-if="i > 0">
-						<div class="flch-hero__stat-divider" aria-hidden="true"></div>
-					</template>
-					<div class="flch-hero__stat">
-						<div class="flch-hero__stat-icon-wrap">
-							<i class="fa-solid" :class="s.icon" aria-hidden="true"></i>
-						</div>
-						<div class="flch-hero__stat-body">
-							<span class="flch-hero__stat-value" x-text="s.value"></span>
-							<span class="flch-hero__stat-label" x-text="s.label"></span>
-						</div>
-					</div>
-				</template>
-			</div>
+			
 
 		</div>
 	</div>
 
 	<div class="flch-hero__centros">
 		<div class="flch-hero__centros-panel reveal">
-			<div class="flch-hero__centros-header">
-				<i class="fa-solid fa-compass" aria-hidden="true"></i>
-				Centros de Producción
-				<span class="flch-hero__centros-header-note">Accesos estratégicos de la Facultad</span>
-			</div>
+			
 			<div class="flch-hero__centros-grid">
 				<template x-for="c in centros" :key="c.title">
 					<a :href="c.href" class="flch-hero__centro-card"
