@@ -1,6 +1,6 @@
 <?php
 /**
- * Sección Escuelas Profesionales — Portada FLCH
+ * Sección Carreras de Pregrado — Portada FLCH
  *
  * Índice editorial interactivo con Alpine.js:
  * columna izquierda = índice numerado con hover state
@@ -21,10 +21,10 @@
 			<div>
 				<div class="flch-escuelas__eyebrow">
 					<span class="flch-escuelas__eyebrow-num">N.º 02 —</span>
-					Oferta académica de pregrado
+					Oferta académica
 				</div>
 				<h2 class="flch-escuelas__title" id="escuelas-title">
-					Índice de Escuelas <span class="flch-escuelas__title-accent">Profesionales</span>
+					Carreras de <span class="flch-escuelas__title-accent">Pregrado</span>
 				</h2>
 			</div>
 			<p class="flch-escuelas__subtitle">
