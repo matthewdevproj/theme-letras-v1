@@ -95,31 +95,32 @@
             '.elementor-post'
         ].join(', ');
 
-        ScrollTrigger.batch(cardSelectors, {
-            onEnter: function(elements) {
-                gsap.fromTo(elements,
-                    {
-                        opacity: 0,
-                        y: 40,
-                        willChange: 'opacity, transform'
-                    },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.6,
-                        stagger: 0.1,
-                        ease: 'power2.out',
-                        clearProps: 'all',  // CRÍTICO
-                        onComplete: function() {
-                            elements.forEach(function(el) {
-                                el.classList.add('gsap-card');
-                            });
+        var cards = document.querySelectorAll(cardSelectors);
+        cards.forEach(function(card) {
+            ScrollTrigger.create({
+                trigger: card,
+                start: 'top 85%',
+                once: true,
+                onEnter: function() {
+                    gsap.fromTo(card,
+                        {
+                            opacity: 0,
+                            y: 40,
+                            willChange: 'opacity, transform'
+                        },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.6,
+                            ease: 'power2.out',
+                            clearProps: 'all',
+                            onComplete: function() {
+                                card.classList.add('gsap-card');
+                            }
                         }
-                    }
-                );
-            },
-            start: 'top 85%',
-            once: true
+                    );
+                }
+            });
         });
 
         /* ─── 3. SECCIONES ELEMENTOR — Fade in general ─────────────────

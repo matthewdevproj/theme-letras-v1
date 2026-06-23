@@ -13,12 +13,12 @@ $categories = get_the_category();
 $cat        = $categories ? $categories[0] : null;
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'flch-card flch-card--news' ); ?> data-flch-component="news-card" data-flch-animate="fade-up">
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'flch-card flch-card--news' ); ?> data-flch-animate="fade-up">
 
     <!-- Imagen destacada + badge de categoría -->
     <div class="flch-card__media">
         <?php if ( has_post_thumbnail() ) : ?>
-            <a href="<?php the_permalink(); ?>"
+            <a href="<?php echo esc_url( get_permalink() ); ?>"
                tabindex="-1"
                aria-hidden="true"
                class="flch-card__img-link">
@@ -29,7 +29,7 @@ $cat        = $categories ? $categories[0] : null;
                 ] ); ?>
             </a>
         <?php else : ?>
-            <a href="<?php the_permalink(); ?>"
+            <a href="<?php echo esc_url( get_permalink() ); ?>"
                class="flch-card__img-link flch-card__img-placeholder"
                tabindex="-1"
                aria-hidden="true">
@@ -58,8 +58,8 @@ $cat        = $categories ? $categories[0] : null;
 
         <!-- Título -->
         <h2 class="flch-card__title">
-            <a href="<?php the_permalink(); ?>">
-                <?php the_title(); ?>
+            <a href="<?php echo esc_url( get_permalink() ); ?>">
+                <?php echo esc_html( get_the_title() ); ?>
             </a>
         </h2>
 
@@ -69,7 +69,7 @@ $cat        = $categories ? $categories[0] : null;
         </p>
 
         <!-- Leer más con botón FLCH -->
-        <a href="<?php the_permalink(); ?>"
+        <a href="<?php echo esc_url( get_permalink() ); ?>"
            class="flch-btn flch-btn--outline"
            aria-label="<?php echo esc_attr( sprintf(
                /* translators: %s: título del artículo */

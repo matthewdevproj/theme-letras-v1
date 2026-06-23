@@ -121,11 +121,11 @@ if ( is_category() ) {
                     ?>
 
                     <!-- Featured Article -->
-                    <article id="post-<?php the_ID(); ?>" <?php post_class( 'archive-featured group' ); ?> data-flch-component="featured-post" data-flch-animate="fade-up">
+                    <article id="post-<?php the_ID(); ?>" <?php post_class( 'archive-featured group' ); ?> data-flch-animate="fade-up">
 
                         <?php if ( has_post_thumbnail() ) : ?>
                             <div class="archive-featured__image">
-                                <a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
+                                <a href="<?php echo esc_url( get_permalink() ); ?>" tabindex="-1" aria-hidden="true">
                                     <?php the_post_thumbnail( 'large', [
                                         'class'   => 'archive-featured__img',
                                         'loading' => 'eager',
@@ -154,8 +154,8 @@ if ( is_category() ) {
                             <?php endif; ?>
 
                             <h2 class="archive-featured__title">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_title(); ?>
+                                <a href="<?php echo esc_url( get_permalink() ); ?>">
+                                    <?php echo esc_html( get_the_title() ); ?>
                                 </a>
                             </h2>
 
@@ -168,7 +168,7 @@ if ( is_category() ) {
                                 </span>
                                 <span>
                                     <i class="far fa-user" aria-hidden="true"></i>
-                                    <?php the_author(); ?>
+                                    <?php echo esc_html( get_the_author() ); ?>
                                 </span>
                             </div>
 

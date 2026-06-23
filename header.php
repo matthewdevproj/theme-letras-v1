@@ -11,6 +11,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+    <script>(function(){var t;try{t=localStorage.getItem('flch-theme')}catch(e){}if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')})()</script>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">
@@ -64,13 +65,13 @@
                     <div class="tb-icon"><i class="fas fa-clock"></i></div>
                     <div class="tb-text">
                         <span class="tb-label">Horarios</span>
-                        <span class="tb-value">2026-I</span>
+                        <span class="tb-value"><?php echo esc_html( date('Y') . '-I' ); ?></span>
                     </div>
                 </a>
             </div>
             <div class="tb-badge">
                 <span class="tb-badge-dot"></span>
-                <span>Ciclo 2026-I</span>
+                <span>Ciclo <?php echo esc_html( date('Y') ); ?>-I</span>
             </div>
             <div class="tb-social-group">
                 <span class="tb-social-label">Síguenos</span>
@@ -87,7 +88,7 @@
         <div class="header-container max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
 
             <!-- Logo -->
-            <a href="<?php echo home_url('/'); ?>" class="header-logo flex-shrink-0">
+            <a href="<?php echo esc_url( home_url('/') ); ?>" class="header-logo flex-shrink-0">
                 <img src="<?php echo esc_url( get_template_directory_uri() . '/images/logo-blanco-letras.png' ); ?>"
                      alt="FLCH"
                      width="200"
@@ -138,7 +139,7 @@
         <div id="header-search-panel" x-show="search" x-transition class="search-bar" style="display:none"
              x-effect="if (search) $nextTick(() => $refs.searchInput.focus())">
             <div class="max-w-3xl mx-auto px-4 py-6">
-                <form role="search" method="get" action="<?php echo home_url('/'); ?>">
+                <form role="search" method="get" action="<?php echo esc_url( home_url('/') ); ?>">
                     <input x-ref="searchInput" type="search" name="s" placeholder="Buscar..." class="search-input" autocomplete="off">
                     <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
                 </form>

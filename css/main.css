@@ -3779,71 +3779,8 @@ html {
 }
 
 /* ─── HERO RESPONSIVE ────────────────────────────────────────── */
-
-/* Mobile: Hero altura reducida, texto más pequeño */
-@media (max-width: 767px) {
-    .flch-hero,
-    .elementor-slideshow,
-    section.hero-section {
-        min-height: 65vh !important;
-        max-height: 70vh !important;
-    }
-    
-    .flch-hero h1,
-    .hero-title,
-    .elementor-slide-heading {
-        font-size: 1.75rem !important;
-        line-height: 1.2 !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    .flch-hero p,
-    .hero-description,
-    .elementor-slide-description {
-        font-size: 0.9375rem !important;
-        line-height: 1.5 !important;
-        margin-bottom: 1.25rem !important;
-    }
-    
-    .flch-hero__badge,
-    .hero-badge {
-        font-size: 0.75rem !important;
-        padding: 0.375rem 0.75rem !important;
-    }
-    
-    .flch-btn,
-    .elementor-button {
-        padding: 0.75rem 1.5rem !important;
-        font-size: 0.9375rem !important;
-    }
-}
-
-/* Tablet: Hero altura media */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .flch-hero,
-    .elementor-slideshow,
-    section.hero-section {
-        min-height: 75vh !important;
-        max-height: 80vh !important;
-    }
-    
-    .flch-hero h1,
-    .hero-title,
-    .elementor-slide-heading {
-        font-size: 2.25rem !important;
-        line-height: 1.15 !important;
-    }
-}
-
-/* Desktop: Hero altura completa */
-@media (min-width: 1024px) {
-    .flch-hero,
-    .elementor-slideshow,
-    section.hero-section {
-        min-height: 85vh !important;
-        max-height: 92vh !important;
-    }
-}
+/* Note: Hero styles are now in template-parts/hero.php (inline).
+   These old rules are removed to prevent !important conflicts. */
 
 /* ─── HEADER RESPONSIVE ──────────────────────────────────────── */
 
@@ -3885,32 +3822,6 @@ html {
         justify-content: center;
     }
     
-    .flch-hero__buttons,
-    .hero-cta {
-        flex-direction: column;
-        gap: 0.75rem;
-        width: 100%;
-    }
-    
-    .flch-hero__buttons .flch-btn,
-    .hero-cta .flch-btn {
-        width: 100%;
-    }
-}
-
-/* Tablet y Desktop: Botones inline */
-@media (min-width: 768px) {
-    .flch-btn {
-        padding: 0.75rem 1.75rem;
-        font-size: 1rem;
-        width: auto;
-    }
-    
-    .flch-hero__buttons,
-    .hero-cta {
-        flex-direction: row;
-        gap: 1rem;
-    }
 }
 
 /* ─── ARTE-FLCH EFFECTS RESPONSIVE ───────────────────────────── */

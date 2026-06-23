@@ -5,9 +5,8 @@
    ================================================================ */
 
 /* ── Overflow horizontal global ── */
-html, body {
-    overflow-x: hidden;
-}
+/* NOTA: No aplicar overflow-x:hidden en html/body porque rompe
+   position:sticky y position:fixed. Se aplica en contenedores específicos. */
 
 /* ================================================================
    MENÚ MÓVIL — correcciones de visualización

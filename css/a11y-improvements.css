@@ -137,33 +137,11 @@ textarea:invalid:not(:focus) {
     border-color: #E5C158;
 }
 
-:root.dark .flch-escuelas__card-name {
-    color: #FFFFFF; /* Asegurar contraste máximo */
-}
-
 /* ── Optimización de performance ────────────────────────────────── */
 /* Contenido below-the-fold lazy rendering */
-.flch-noticias,
-.flch-escuelas {
+.flch-noticias {
     content-visibility: auto;
     contain-intrinsic-size: 0 500px;
-}
-
-/* Espacio superior para que no se superponga con centros de producción */
-.flch-noticias {
-    padding-top: 160px; /* Incrementado para el panel flotante más arriba */
-}
-
-@media (max-width: 768px) {
-    .flch-noticias {
-        padding-top: 120px; /* Incrementado en tablet */
-    }
-}
-
-@media (max-width: 480px) {
-    .flch-noticias {
-        padding-top: 100px; /* Incrementado en móvil */
-    }
 }
 
 /* ── Imágenes: aspect-ratio para evitar CLS ───────────────────── */

@@ -487,16 +487,16 @@ add_action('wp_enqueue_scripts', function() {
     );
 }, 35);
 
-// 2. Page Transitions (GLOBAL en todo el sitio)
+// 2. Page Transitions (global - skip 404, search, admin)
 add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
+    if (is_admin() || is_404() || is_search()) return;
 
     // Cargar GSAP si aún no está encolado (para transitions)
     if (!wp_script_is('gsap', 'enqueued')) {
         wp_enqueue_script('gsap');
     }
 
-    // Encolar transitions en TODAS las páginas para experiencia fluida
+    // Encolar transitions para experiencia fluida entre páginas
     wp_enqueue_script(
         'letras-page-transitions',
         get_template_directory_uri() . '/js/page-transitions.js',

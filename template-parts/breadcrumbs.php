@@ -21,7 +21,7 @@ if ( is_front_page() ) {
 
     <?php if ( is_category() ) : ?>
 
-        <span><?php single_cat_title(); ?></span>
+        <span><?php echo esc_html( single_cat_title( '', false ) ); ?></span>
 
     <?php elseif ( is_single() ) : ?>
 
@@ -36,7 +36,7 @@ if ( is_front_page() ) {
             <span class="breadcrumbs__sep" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
         <?php endif; ?>
 
-        <span class="breadcrumbs__current" aria-current="page"><?php the_title(); ?></span>
+        <span class="breadcrumbs__current" aria-current="page"><?php echo esc_html( get_the_title() ); ?></span>
 
     <?php elseif ( is_page() ) : ?>
 
@@ -50,7 +50,7 @@ if ( is_front_page() ) {
             <span class="breadcrumbs__sep" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
         <?php endforeach; ?>
 
-        <span class="breadcrumbs__current" aria-current="page"><?php the_title(); ?></span>
+        <span class="breadcrumbs__current" aria-current="page"><?php echo esc_html( get_the_title() ); ?></span>
 
     <?php elseif ( is_search() ) : ?>
 
@@ -61,13 +61,13 @@ if ( is_front_page() ) {
     <?php elseif ( is_tag() ) : ?>
 
         <span class="breadcrumbs__current">
-            <?php printf( esc_html__( 'Etiqueta: %s', 'letrasflch' ), single_tag_title( '', false ) ); ?>
+            <?php printf( esc_html__( 'Etiqueta: %s', 'letrasflch' ), esc_html( single_tag_title( '', false ) ) ); ?>
         </span>
 
     <?php elseif ( is_author() ) : ?>
 
         <span class="breadcrumbs__current">
-            <?php printf( esc_html__( 'Autor: %s', 'letrasflch' ), get_the_author() ); ?>
+            <?php printf( esc_html__( 'Autor: %s', 'letrasflch' ), esc_html( get_the_author() ) ); ?>
         </span>
 
     <?php elseif ( is_day() ) : ?>

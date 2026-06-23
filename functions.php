@@ -12,6 +12,9 @@
 // ACTIVAR HEADER MODERNO: Cambiar a true para usar header-modern.php
 define('LETRAS_USE_MODERN_HEADER', true);
 
+// WhatsApp number for contact button
+define('LETRAS_WHATSAPP_NUMBER', '51982086285');
+
 // ═══════════════════════════════════════════════════════════
 // 1. THEME SETUP
 // ═══════════════════════════════════════════════════════════
@@ -332,6 +335,12 @@ function letras_flch_enqueue_scripts() {
         array( 'letras-theme', 'letras-responsive' ),
         file_exists( $dir . '/css/modern-ui.css' ) ? filemtime( $dir . '/css/modern-ui.css' ) : $version
     );
+    wp_enqueue_style(
+        'letras-footer',
+        $uri . '/css/footer.css',
+        array( 'letras-modern-ui' ),
+        file_exists( $dir . '/css/footer.css' ) ? filemtime( $dir . '/css/footer.css' ) : $version
+    );
 
     // Header Moderno CSS (opcional - solo si se usa header-modern.php)
     if (defined('LETRAS_USE_MODERN_HEADER') && LETRAS_USE_MODERN_HEADER) {
@@ -365,7 +374,15 @@ function letras_flch_enqueue_scripts() {
         wp_enqueue_style(
             'letras-a11y',
             $uri . '/css/a11y-improvements.css',
-            array( 'letras-menu-professional' ),
+            array( 'letras-menu-professional', 'letras-modern-ui' ),
+            file_exists( $dir . '/css/a11y-improvements.css' ) ? filemtime( $dir . '/css/a11y-improvements.css' ) : $version
+        );
+    } else {
+        // Sin header moderno: igual cargar a11y (último en cascada)
+        wp_enqueue_style(
+            'letras-a11y',
+            $uri . '/css/a11y-improvements.css',
+            array( 'letras-modern-ui' ),
             file_exists( $dir . '/css/a11y-improvements.css' ) ? filemtime( $dir . '/css/a11y-improvements.css' ) : $version
         );
     }
@@ -407,12 +424,6 @@ add_action( 'wp_enqueue_scripts', 'letras_flch_enqueue_scripts' );
 // ═══════════════════════════════════════════════════════════
 
 function letras_flch_performance_cleanup() {
-    // Remove emoji detection script/styles (saves ~15 KB)
-    remove_action( 'wp_head',             'print_emoji_detection_script', 7 );
-    remove_action( 'wp_print_styles',     'print_emoji_styles' );
-    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-    remove_action( 'admin_print_styles',  'print_emoji_styles' );
-
     // Remove shortlink and WP generator tag from <head>
     remove_action( 'wp_head', 'wp_shortlink_wp_head', 10 );
     remove_action( 'wp_head', 'wp_generator' );

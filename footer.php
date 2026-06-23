@@ -16,8 +16,44 @@
 <!-- ═══════════════════════════════════════════════════════════
      ESTILOS DEL FOOTER (inline, antes del HTML que estilizan)
 ════════════════════════════════════════════════════════════ -->
-<link rel="stylesheet" id="flch-footer-styles" href="<?php echo esc_url( get_template_directory_uri() . '/css/footer.css' ); ?>">
-
+<style>
+.flch-themetoggle {
+	position: fixed;
+	left: 24px;
+	bottom: 90px;
+	z-index: 90;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 1px solid rgba(0,0,0,.1);
+	background: var(--flch-surface, #FFFFFF);
+	color: var(--flch-ink, #1A2230);
+	display: grid;
+	place-items: center;
+	font-size: 18px;
+	box-shadow: 0 8px 24px rgba(0,0,0,.15);
+	cursor: pointer;
+	transition: all .25s ease;
+}
+:root.dark .flch-themetoggle {
+	border-color: rgba(255,255,255,.1);
+	background: var(--flch-surface-dark, #0D2747);
+	color: var(--flch-ink, #E8E6E0);
+}
+.flch-themetoggle:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 32px rgba(0,0,0,.2);
+}
+@media (max-width: 768px) {
+	.flch-themetoggle {
+		width: 44px;
+		height: 44px;
+		font-size: 16px;
+		left: 16px;
+		bottom: 80px;
+	}
+}
+</style>
 </main><!-- #main -->
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -251,7 +287,7 @@
 </footer>
 
 <!-- ─── Botón WhatsApp ─────────────────────────────────────── -->
-<a href="https://wa.me/51982086285?text=Hola,%20deseo%20informaci%C3%B3n%20sobre%20la%20facultad"
+<a href="https://wa.me/<?php echo esc_attr( LETRAS_WHATSAPP_NUMBER ); ?>?text=Hola,%20deseo%20informaci%C3%B3n%20sobre%20la%20facultad"
    class="flch-whatsapp"
    target="_blank"
    rel="noopener noreferrer"
@@ -263,6 +299,16 @@
     </div>
     <span class="flch-whatsapp__tooltip" role="tooltip"><?php esc_html_e( '¿Necesitas ayuda?', 'letrasflch' ); ?></span>
 </a>
+
+<!-- ─── Botón Tema claro/oscuro ──────────────────────────── -->
+<button x-data="flchTheme"
+		@click="toggle()"
+		class="flch-themetoggle"
+		type="button"
+		:aria-label="isDark ? 'Activar modo claro' : 'Activar modo oscuro'"
+		:title="isDark ? 'Modo claro' : 'Modo oscuro'">
+	<i :class="isDark ? 'fas fa-sun' : 'fa-solid fa-moon'" aria-hidden="true"></i>
+</button>
 
 <!-- ─── Botón Volver arriba ───────────────────────────────── -->
 <button id="flch-back-to-top"

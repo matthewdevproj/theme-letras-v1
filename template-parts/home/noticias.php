@@ -16,7 +16,7 @@
 	<div class="flch-noticias__container">
 
 		<!-- Header -->
-		<div class="flch-noticias__header">
+		<div class="flch-noticias__header reveal">
 			<div>
 				<div class="flch-noticias__eyebrow">
 					<span class="flch-noticias__eyebrow-num">N.º 01 —</span>
@@ -31,7 +31,7 @@
 		</div>
 
 		<!-- Filter buttons -->
-		<div class="flch-noticias__tabs" role="group" aria-label="Filtrar noticias por categoría">
+		<div class="flch-noticias__tabs reveal" role="group" aria-label="Filtrar noticias por categoría">
 			<template x-for="t in newsCats" :key="t">
 				<button @click="newsFilter = t"
 					class="flch-noticias__tab"
@@ -44,7 +44,7 @@
 		</div>
 
 		<!-- Grid two-column -->
-		<div class="flch-noticias__grid">
+		<div class="flch-noticias__grid reveal">
 
 			<!-- Featured card -->
 			<template x-if="filteredNews()[0]">

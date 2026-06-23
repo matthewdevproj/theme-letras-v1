@@ -63,11 +63,11 @@ $current_page = max( 1, get_query_var( 'paged' ) );
                     ?>
 
                     <!-- Featured Article -->
-                    <article id="post-<?php the_ID(); ?>" <?php post_class( 'archive-featured group' ); ?> data-flch-component="featured-post" data-flch-animate="fade-up">
+                    <article id="post-<?php the_ID(); ?>" <?php post_class( 'archive-featured group' ); ?> data-flch-animate="fade-up">
 
                         <?php if ( has_post_thumbnail() ) : ?>
                             <div class="archive-featured__image">
-                                <a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
+                                <a href="<?php echo esc_url( get_permalink() ); ?>" tabindex="-1" aria-hidden="true">
                                     <?php the_post_thumbnail( 'large', [
                                         'class'   => 'archive-featured__img',
                                         'loading' => 'eager',
@@ -96,8 +96,8 @@ $current_page = max( 1, get_query_var( 'paged' ) );
                             <?php endif; ?>
 
                             <h2 class="archive-featured__title">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_title(); ?>
+                                <a href="<?php echo esc_url( get_permalink() ); ?>">
+                                    <?php echo esc_html( get_the_title() ); ?>
                                 </a>
                             </h2>
 
@@ -110,7 +110,7 @@ $current_page = max( 1, get_query_var( 'paged' ) );
                                 </span>
                                 <span>
                                     <i class="far fa-user" aria-hidden="true"></i>
-                                    <?php the_author(); ?>
+                                    <?php echo esc_html( get_the_author() ); ?>
                                 </span>
                             </div>
 
@@ -118,7 +118,7 @@ $current_page = max( 1, get_query_var( 'paged' ) );
                                 <?php echo esc_html( wp_trim_words( get_the_excerpt(), 35, '...' ) ); ?>
                             </p>
 
-                            <a href="<?php the_permalink(); ?>" class="archive-featured__link">
+                            <a href="<?php echo esc_url( get_permalink() ); ?>" class="archive-featured__link">
                                 <?php esc_html_e( 'Leer artículo completo', 'letrasflch' ); ?>
                                 <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>

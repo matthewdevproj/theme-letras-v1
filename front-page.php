@@ -41,15 +41,15 @@ if (is_front_page()) : ?>
             <h1 class="page-title animate-fade-in-up">
                 <?php
                 if (is_home()) {
-                    echo 'Noticias y Eventos';
+                    esc_html_e( 'Noticias y Eventos', 'letrasflch' );
                 } elseif (is_category()) {
-                    single_cat_title();
+                    echo esc_html( single_cat_title( '', false ) );
                 } elseif (is_tag()) {
-                    single_tag_title();
+                    echo esc_html( single_tag_title( '', false ) );
                 } elseif (is_author()) {
-                    the_author();
+                    echo esc_html( get_the_author() );
                 } elseif (is_date()) {
-                    echo 'Archivo: ' . get_the_date('F Y');
+                    echo 'Archivo: ' . esc_html( get_the_date('F Y') );
                 } else {
                     echo 'Blog';
                 }

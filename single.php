@@ -67,7 +67,7 @@ if ( $primary_cat ) {
 
         <!-- Título -->
         <h1 class="page-title single-header__title animate-fade-in-up">
-            <?php the_title(); ?>
+            <?php echo esc_html( get_the_title() ); ?>
         </h1>
 
         <!-- Meta -->
@@ -82,7 +82,7 @@ if ( $primary_cat ) {
                 <i class="far fa-user" aria-hidden="true"></i>
                 <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
                    rel="author">
-                    <?php the_author(); ?>
+                    <?php echo esc_html( get_the_author() ); ?>
                 </a>
             </span>
             <span class="single-header__meta-item">
@@ -107,7 +107,7 @@ if ( $primary_cat ) {
 <div class="single-layout container-custom">
 
     <!-- ---- MAIN ARTICLE ---- -->
-    <article id="post-<?php the_ID(); ?>" <?php post_class( 'single-article' ); ?> data-flch-component="single-article" data-flch-animate="fade-up">
+    <article id="post-<?php the_ID(); ?>" <?php post_class( 'single-article' ); ?> data-flch-animate="fade-up">
 
         <!-- Featured Image -->
         <?php if ( has_post_thumbnail() ) : ?>
