@@ -193,7 +193,7 @@
                     centros: [
                         { icon:'fa-user-graduate', title:'Posgrado', desc:'Maestr\u00edas y doctorados en humanidades, ling\u00fc\u00edstica y comunicaci\u00f3n.', cta:'Ver programas', href:'https://posgradoletras.unmsm.edu.pe/' },
                         { icon:'fa-language', title:'Centro de Idiomas', desc:'Cursos y certificaci\u00f3n en lenguas modernas y originarias.', cta:'Inscr\u00edbete', href:'https://ceidletras.unmsm.edu.pe/' },
-                        { icon:'fa-certificate', title:'Examen de Suficiencia', desc:'Acredita tu dominio de idiomas con la OESI de la Facultad.', cta:'Programa tu examen', href:'https://letras.unmsm.edu.pe/horarios-flch.php' },
+                        { icon:'fa-certificate', title:'Examen de Suficiencia', desc:'Acredita tu dominio de idiomas con la OESI de la Facultad.', cta:'Programa tu examen', href:'https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/' },
                         { icon:'fa-hands-holding-circle', title:'CERSEU', desc:'Extensi\u00f3n, responsabilidad social y educaci\u00f3n continua.', cta:'Conoce m\u00e1s', href:'https://letras.unmsm.edu.pe/cerseu/' },
                     ],
 
