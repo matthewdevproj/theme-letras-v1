@@ -15,7 +15,7 @@
 
 	<!-- ── Fondo ─────────────────────────────────────────────── -->
 	<div class="flch-hero__bg"
-		 style="background-image:url('<?php echo esc_url( get_template_directory_uri() . '/images/hero-fallback.jpg' ); ?>')"
+		 style="background-image:url('https://letras.unmsm.edu.pe/wp-content/uploads/2025/12/DJI_0007-Trim-frame-at-0m5s.jpg')"
 		 role="img"
 		 aria-label="Vista aérea del campus universitario"></div>
 	<div class="flch-hero__overlay" aria-hidden="true"></div>

@@ -22,6 +22,18 @@ if (is_front_page()) : ?>
     <!-- Escuelas Profesionales — editorial grid -->
     <?php get_template_part('template-parts/home/escuelas'); ?>
 
+    <!-- N.º 03 — El corazón de la Facultad -->
+    <?php get_template_part('template-parts/home/corazon-facultad'); ?>
+
+    <!-- N.º 04 — Producción intelectual -->
+    <?php get_template_part('template-parts/home/produccion-intelectual'); ?>
+
+    <!-- N.º 06 — Facultad en cifras -->
+    <?php get_template_part('template-parts/home/facultad-cifras'); ?>
+
+    <!-- N.º 07 — Comunidad de humanidades -->
+    <?php get_template_part('template-parts/home/comunidad-humanidades'); ?>
+
     <!-- Aquí va el contenido de tu página de inicio (editor) -->
     <div class="container-custom py-16">
         <?php
