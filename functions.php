@@ -59,6 +59,23 @@ function letras_flch_setup() {
 add_action( 'after_setup_theme', 'letras_flch_setup' );
 
 // ═══════════════════════════════════════════════════════════
+// FIX: Font Awesome en Vista Previa de Elementor
+// ═══════════════════════════════════════════════════════════
+add_action( 'elementor/preview/enqueue_styles', function() {
+    // Asegurar Font Awesome en preview de Elementor
+    if ( ! wp_style_is( 'ch-fontawesome', 'done' ) && ! wp_style_is( 'ch-fontawesome', 'enqueued' ) ) {
+        echo '<link rel="stylesheet" id="ch-fontawesome-preview-css" href="' .
+             esc_url( home_url( '/assets/libs/fontawesome/all.min.css' ) ) .
+             '?ver=6.4.0" media="all" />' . "\n";
+    }
+
+    // Asegurar iconos de Elementor en preview
+    if ( ! wp_style_is( 'elementor-icons', 'enqueued' ) ) {
+        wp_enqueue_style( 'elementor-icons' );
+    }
+}, 1 );
+
+// ═══════════════════════════════════════════════════════════
 // 2. MENU WALKERS
 // ═══════════════════════════════════════════════════════════
 

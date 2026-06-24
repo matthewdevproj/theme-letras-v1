@@ -62,12 +62,15 @@ function letras_dedup_fontawesome() {
 add_action( 'wp_enqueue_scripts', 'letras_dedup_fontawesome', 100 );
 
 // Guardia: si ch-fontawesome fue desregistrado por algo, restaurar
+// Plugin ch-v4 ya lo carga en wp_head con prioridad 5
+// Este hook actúa como fallback solo si el plugin no lo cargó
 add_action( 'wp_enqueue_scripts', function() {
     if ( ! wp_style_is( 'ch-fontawesome', 'registered' )
-      && ! wp_style_is( 'ch-fontawesome', 'enqueued' ) ) {
+      && ! wp_style_is( 'ch-fontawesome', 'enqueued' )
+      && ! wp_style_is( 'ch-fontawesome', 'done' ) ) {
         wp_enqueue_style(
             'ch-fontawesome',
-            get_site_url() . '/assets/libs/fontawesome/all.min.css',
+            home_url( '/assets/libs/fontawesome/all.min.css' ),
             [],
             '6.4.0'
         );

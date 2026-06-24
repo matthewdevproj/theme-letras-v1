@@ -4966,3 +4966,47 @@ body.admin-bar .mobile-menu-panel {
    Fecha: 2026-06-18
    ═══════════════════════════════════════════════════════════ */
 
+
+/* ════════════════════════════════════════════════════════════
+   FIX CRÍTICO: Proteger Font Awesome de sobrescritura del tema
+   Problema: Líneas 4888-4894 sobrescriben font-family en TODOS
+   los elementos incluyendo <i class="fas/far/fab">
+   Solución: Excluir iconos de Font Awesome del selector global
+   Fecha: 2026-06-23 18:30
+   ═══════════════════════════════════════════════════════════ */
+
+/* Proteger font-family de íconos Font Awesome */
+i.fas, i.far, i.fab, i.fal, i.fad,
+[class^="fa-"], [class*=" fa-"],
+.fa, .fas, .far, .fab, .fal, .fad {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important; /* Solid icons */
+}
+
+/* Brand icons necesitan su propia font-family */
+i.fab, .fab {
+    font-family: "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
+}
+
+/* Regular icons */
+i.far, .far {
+    font-weight: 400 !important;
+}
+
+/* Asegurar que NO se aplique font-family del tema a iconos */
+body i.fas, body i.far, body i.fab,
+.elementor-widget-container i.fas,
+.elementor-widget-container i.far,
+.elementor-widget-container i.fab,
+.elementor * i.fas,
+.elementor * i.far,
+.elementor * i.fab {
+    font-family: "Font Awesome 6 Free" !important;
+}
+
+.elementor * i.fab,
+body i.fab {
+    font-family: "Font Awesome 6 Brands" !important;
+}
+
