@@ -312,7 +312,8 @@
             '.flch-gallery a'
         ].join(', ');
 
-        var galleryLinks = document.querySelectorAll(gallerySelectors);
+        // gsap-utils: toArray handles dedup and returns clean array
+        var galleryLinks = gsap.utils.toArray(gallerySelectors);
 
         galleryLinks.forEach(function(link, linkIndex) {
             // Deshabilitar lightbox de Elementor si existe

@@ -47,13 +47,9 @@
             '.hero-section',
             '.main-banner',
             'section.elementor-top-section:first-of-type'
-        ];
+        ].join(', ');
 
-        var hero = null;
-        for (var i = 0; i < heroSelectors.length; i++) {
-            hero = document.querySelector(heroSelectors[i]);
-            if (hero) break;
-        }
+        var hero = gsap.utils.toArray(heroSelectors)[0];
 
         if (hero) {
             var heroElements = hero.querySelectorAll(
@@ -95,38 +91,30 @@
             '.elementor-post'
         ].join(', ');
 
-        var cards = document.querySelectorAll(cardSelectors);
-        cards.forEach(function(card) {
-            ScrollTrigger.create({
-                trigger: card,
-                start: 'top 85%',
-                once: true,
-                onEnter: function() {
-                    gsap.fromTo(card,
-                        {
-                            opacity: 0,
-                            y: 40,
-                            willChange: 'opacity, transform'
-                        },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.6,
-                            ease: 'power2.out',
-                            clearProps: 'all',
-                            onComplete: function() {
-                                card.classList.add('gsap-card');
-                            }
+        // gsap-scrolltrigger: batch cards — one trigger per card, staggered on enter
+        ScrollTrigger.batch(cardSelectors, {
+            start: 'top 85%',
+            once: true,
+            onEnter: function(batch) {
+                gsap.fromTo(batch,
+                    { opacity: 0, y: 40 },
+                    {
+                        opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
+                        stagger: 0.08,
+                        clearProps: 'all',
+                        onComplete: function() {
+                            batch.forEach(function(card) { card.classList.add('gsap-card'); });
                         }
-                    );
-                }
-            });
+                    }
+                );
+            }
         });
 
         /* ─── 3. SECCIONES ELEMENTOR — Fade in general ─────────────────
            Todas las secciones que no son el hero */
 
-        var sections = document.querySelectorAll(
+        // gsap-utils: toArray for consistent array methods
+        var sections = gsap.utils.toArray(
             'section.elementor-section:not(:first-of-type)'
         );
 
@@ -155,7 +143,7 @@
         /* ─── 4. CONTADORES ESTADÍSTICOS ───────────────────────────────
            Busca [data-count] o clases .counter-number */
 
-        var counters = document.querySelectorAll(
+        var counters = gsap.utils.toArray(
             '[data-count], .counter-number, .stat-number, .count-up'
         );
 
@@ -187,10 +175,11 @@
         /* ─── 5. HOVER AVANZADO en cards ───────────────────────────────
            Efectos visuales sutiles con GSAP */
 
-        var cards = document.querySelectorAll(cardSelectors);
+        // gsap-utils: avoid re-query — use toArray for array methods
+        var hoverCards = gsap.utils.toArray(cardSelectors);
         var isMobile = window.innerWidth < 768;
 
-        cards.forEach(function(card) {
+        hoverCards.forEach(function(card) {
             var img = card.querySelector('img');
             var badge = card.querySelector(
                 '.flch-badge, .post-badge, .category-badge, .sp-post-cat a'
@@ -259,7 +248,7 @@
         /* ─── 6. FOOTER reveal ─────────────────────────────────────────
            Footer entra suavemente */
 
-        var footer = document.querySelector('footer.site-footer, footer[role="contentinfo"]');
+        var footer = gsap.utils.toArray('footer.site-footer, footer[role="contentinfo"]')[0];
         if (footer) {
             gsap.fromTo(footer,
                 { opacity: 0, y: 30 },

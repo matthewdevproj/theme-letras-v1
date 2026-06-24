@@ -30,40 +30,17 @@
             'header[role="banner"]'
         ];
 
-        var header = null;
-        for (var i = 0; i < headerSelectors.length; i++) {
-            header = document.querySelector(headerSelectors[i]);
-            if (header) break;
-        }
+        // gsap-utils: toArray finds all matches, grab first
+        var header = gsap.utils.toArray(headerSelectors.join(', '))[0];
 
         if (header) {
+            // gsap-performance: avoid creating tweens on every scroll update
+            // Use CSS transitions with toggleClass instead of GSAP onUpdate
+            // The 'is-scrolled' class triggers CSS transition defined in style.css
             ScrollTrigger.create({
                 start: 'top -80',
                 end: 99999,
-                toggleClass: { className: 'is-scrolled', targets: header },
-                onUpdate: function(self) {
-                    if (self.direction === 1 && self.scroll() > 80) {
-                        // Scrolling down
-                        gsap.to(header, {
-                            backgroundColor: 'rgba(20, 59, 99, 0.95)',
-                            backdropFilter: 'blur(16px) saturate(180%)',
-                            webkitBackdropFilter: 'blur(16px) saturate(180%)',
-                            boxShadow: '0 2px 24px rgba(20,59,99,0.15)',
-                            duration: 0.3,
-                            ease: 'power2.out'
-                        });
-                    } else if (self.scroll() < 80) {
-                        // At top
-                        gsap.to(header, {
-                            backgroundColor: 'rgba(20, 59, 99, 1)',
-                            backdropFilter: 'blur(0px)',
-                            webkitBackdropFilter: 'blur(0px)',
-                            boxShadow: 'none',
-                            duration: 0.4,
-                            ease: 'power2.inOut'
-                        });
-                    }
-                }
+                toggleClass: { className: 'is-scrolled', targets: header }
             });
         }
 
@@ -118,18 +95,8 @@
             'header nav ul > li > a'
         ];
 
-        var navLinks = [];
-        navSelectors.forEach(function(sel) {
-            var found = document.querySelectorAll(sel);
-            if (found.length) {
-                navLinks = navLinks.concat(Array.from(found));
-            }
-        });
-
-        // Eliminar duplicados
-        navLinks = navLinks.filter(function(link, index, self) {
-            return self.indexOf(link) === index;
-        });
+        // gsap-utils: toArray handles selector, dedup, and scoping
+        var navLinks = gsap.utils.toArray(navSelectors.join(', '));
 
         navLinks.forEach(function(link) {
             // Skip si ya tiene indicador o es submenu
@@ -162,39 +129,36 @@
 
             link.appendChild(indicator);
 
-            // Hover in
-            link.addEventListener('mouseenter', function() {
-                gsap.to(indicator, {
-                    scaleX: 1,
-                    duration: 0.4,
-                    ease: 'power2.out'
-                });
+            // gsap-performance: create tween once, play/reverse on hover
+            // instead of creating new tweens on every mouseenter/mouseleave
+            var isActivePage = function() {
+                return link.classList.contains('current-menu-item') ||
+                    link.parentElement.classList.contains('current-menu-item') ||
+                    link.getAttribute('aria-current') === 'page';
+            };
+
+            var hoverTween = gsap.to(indicator, {
+                scaleX: 1,
+                duration: 0.4,
+                ease: 'power2.out',
+                paused: true,
+                reversed: true
             });
 
-            // Hover out
-            link.addEventListener('mouseleave', function() {
-                // No ocultar si es página activa
-                var isActive = (
-                    link.classList.contains('current-menu-item') ||
-                    link.parentElement.classList.contains('current-menu-item') ||
-                    link.getAttribute('aria-current') === 'page'
-                );
+            // Mostrar en página activa desde el inicio
+            if (isActivePage()) {
+                hoverTween.progress(1);
+            }
 
-                if (!isActive) {
-                    gsap.to(indicator, {
-                        scaleX: 0,
-                        duration: 0.3,
-                        ease: 'power2.in'
-                    });
+            link.addEventListener('mouseenter', function() {
+                hoverTween.play();
+            });
+
+            link.addEventListener('mouseleave', function() {
+                if (!isActivePage()) {
+                    hoverTween.reverse();
                 }
             });
-
-            // Mostrar en página activa
-            if (link.classList.contains('current-menu-item') ||
-                link.parentElement.classList.contains('current-menu-item') ||
-                link.getAttribute('aria-current') === 'page') {
-                gsap.set(indicator, { scaleX: 1 });
-            }
         });
 
         console.log('✅ LETRAS Header Effects cargados');

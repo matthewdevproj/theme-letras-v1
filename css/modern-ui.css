@@ -23,7 +23,7 @@
     --flch-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── Dark mode overrides for flch-* variables ─────────────── */
+/* â”€â”€ Dark mode overrides for flch-* variables â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root.dark {
     --flch-navy: #7FA9CC;
     --flch-navy-900: #0C1521;
@@ -95,7 +95,7 @@ body {
         box-shadow 220ms var(--flch-ease);
 }
 
-/* ── Header inner container — force horizontal no-wrap ─── */
+/* â”€â”€ Header inner container â€” force horizontal no-wrap â”€â”€â”€ */
 .header-container {
     display: flex !important;
     flex-direction: row !important;
@@ -436,7 +436,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Primary — Gold filled (CODICE) */
+/* Primary â€” Gold filled (CODICE) */
 .flch-btn--primary,
 .btn-primary {
     background: var(--gold, #A8861C);
@@ -453,7 +453,7 @@ body {
     box-shadow: 0 8px 20px rgba(168, 134, 28, 0.3);
 }
 
-/* Outline — Navy border (CODICE) */
+/* Outline â€” Navy border (CODICE) */
 .flch-btn--outline {
     background: transparent;
     border-color: var(--flch-navy, #143B63);
@@ -466,7 +466,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Outline Dark — for dark backgrounds (e.g. hero, dark sections) */
+/* Outline Dark â€” for dark backgrounds (e.g. hero, dark sections) */
 .flch-btn--outline-dark {
     background: transparent;
     border-color: rgba(255,255,255,0.6);
@@ -494,9 +494,9 @@ body {
     color: #fff !important;
 }
 
-/* ══════════════════════════════════════════════════
-   SEARCH RESULTS — CODICE
-   ══════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SEARCH RESULTS â€” CODICE
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .search-result-item {
     display: flex;
@@ -629,9 +629,9 @@ body {
     border-radius: 2px;
 }
 
-/* ══════════════════════════════════════════════════
-   404 PAGE — CODICE
-   ══════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   404 PAGE â€” CODICE
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .page-404 {
     text-align: center;
@@ -698,9 +698,9 @@ body {
     margin-bottom: 3rem;
 }
 
-/* ══════════════════════════════════════════════════
-   WIDGET POSTS LIST — Sidebar
-   ══════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WIDGET POSTS LIST â€” Sidebar
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .widget-posts-list {
     list-style: none;
@@ -757,9 +757,9 @@ body {
     color: var(--flch-muted, #6E6B64);
 }
 
-/* ══════════════════════════════════════════════════
-   SEARCH NO RESULTS — CODICE
-   ══════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SEARCH NO RESULTS â€” CODICE
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .search-no-results {
     text-align: center;
@@ -849,9 +849,9 @@ body {
     font-size: 0.7rem;
 }
 
-/* ══════════════════════════════════════════════════
-   SEARCH BAR — Search results page
-   ══════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SEARCH BAR â€” Search results page
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .search-bar-section {
     background: var(--flch-surface-soft, #F7F5EF);
@@ -1123,11 +1123,11 @@ body {
     }
 }
 
-/* ══════════════════════════════════════════════════
-   READING OPTIMIZATIONS — CODICE
-   ══════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   READING OPTIMIZATIONS â€” CODICE
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* Ancho de lectura editorial (66ch máximo) */
+/* Ancho de lectura editorial (66ch mÃ¡ximo) */
 .single-content,
 .page-content-reading {
     max-width: var(--reading-max, 66ch);
@@ -1135,9 +1135,9 @@ body {
     margin-right: auto;
 }
 
-/* ══════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ARCHIVE EMPTY STATE
-   ══════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .archive-empty {
     text-align: center;
@@ -1164,9 +1164,9 @@ body {
     margin-bottom: 2rem;
 }
 
-/* ══════════════════════════════════════════════════
-   BREADCRUMBS — CODICE
-   ══════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   BREADCRUMBS â€” CODICE
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .breadcrumbs {
     display: flex;
@@ -1197,9 +1197,9 @@ body {
     margin: 0 0.15rem;
 }
 
-/* ══════════════════════════════════════════════════
-   DARK MODE — Component Overrides
-   ══════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   DARK MODE â€” Component Overrides
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* Cards & surfaces */
 :root.dark .flch-card,
@@ -1302,7 +1302,7 @@ body {
     color: #E8E6E0;
 }
 
-/* Hero (already dark) — adjust badge */
+/* Hero (already dark) â€” adjust badge */
 :root.dark .hero-badge {
     background: rgba(255,255,255,0.1);
 }
@@ -1364,7 +1364,7 @@ body {
     background: linear-gradient(135deg, #051020 0%, #0A1E3C 50%, #0C1521 100%);
 }
 
-/* ── Sidebar widgets dark mode ───────────────────────────── */
+/* â”€â”€ Sidebar widgets dark mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root.dark .widget {
     background: var(--flch-surface, #0D2747);
     border-color: var(--flch-border, #2D3748);
@@ -1386,7 +1386,7 @@ body {
     border-color: var(--flch-border, #2D3748);
 }
 
-/* ── 404 page dark mode ──────────────────────────────────── */
+/* â”€â”€ 404 page dark mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root.dark .page-404__title {
     color: var(--flch-ink, #E8E6E0);
 }
@@ -1403,7 +1403,7 @@ body {
     color: var(--flch-muted, #94A3B8);
 }
 
-/* ── Archive dark mode ────────────────────────────────────── */
+/* â”€â”€ Archive dark mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root.dark .archive-featured {
     background: var(--flch-surface, #0D2747);
     border-color: var(--flch-border, #2D3748);
@@ -1447,7 +1447,7 @@ body {
     color: var(--flch-muted, #94A3B8);
 }
 
-/* ── Search bar dark mode ─────────────────────────────────── */
+/* â”€â”€ Search bar dark mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root.dark .search-bar-section {
     background: var(--flch-surface-soft, #0C1521);
     border-color: var(--flch-border, #2D3748);
@@ -1546,12 +1546,12 @@ body {
     color: #f0efe7;
 }
 
-/* ── Related posts dark mode ─────────────────────────── */
+/* â”€â”€ Related posts dark mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root.dark .related-posts__title {
     color: var(--flch-ink, #E8E6E0);
 }
 
-/* ── Button size variant — Pill (editorial CTAs) ─────────── */
+/* â”€â”€ Button size variant â€” Pill (editorial CTAs) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-btn--pill {
     padding: 14px 32px;
     font-size: 0.95rem;
@@ -1587,9 +1587,9 @@ body {
     .flch-btn--pill { padding: 14px 22px; font-size: 14px; width: 100%; justify-content: center; }
 }
 
-/* ══════════════════════════════════════════════════════════════
-   NOTICIAS DESTACADAS — editorial handoff
-   ══════════════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   NOTICIAS DESTACADAS â€” editorial handoff
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .flch-noticias {
     background: var(--flch-surface-soft, #F7F5EF);
     padding: 5rem 0 2rem;
@@ -1604,7 +1604,7 @@ body {
     padding: 0 2.5rem;
 }
 
-/* ── Header ──────────────────────────────────────────────── */
+/* â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__header {
     display: flex;
     align-items: flex-end;
@@ -1654,7 +1654,7 @@ body {
     gap: 12px;
 }
 
-/* ── Tabs ────────────────────────────────────────────────── */
+/* â”€â”€ Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__tabs {
     display: flex;
     flex-wrap: wrap;
@@ -1701,7 +1701,7 @@ body {
     font-weight: 700;
 }
 
-/* ── Grid ────────────────────────────────────────────────── */
+/* â”€â”€ Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1714,7 +1714,7 @@ body {
     }
 }
 
-/* ── Featured card ────────────────────────────────────────── */
+/* â”€â”€ Featured card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__featured {
     display: flex;
     flex-direction: column;
@@ -1770,7 +1770,7 @@ body {
     flex: 1;
 }
 
-/* ── Date ────────────────────────────────────────────────── */
+/* â”€â”€ Date â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__date {
     font-size: 12.5px;
     color: var(--flch-muted, #6E6B64);
@@ -1787,7 +1787,7 @@ body {
     color: var(--flch-gold, #A8861C);
 }
 
-/* ── Featured title ────────────────────────────────────────── */
+/* â”€â”€ Featured title â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__featured-title {
     font-family: var(--flch-font-disp, 'Newsreader', serif);
     font-weight: 600;
@@ -1824,7 +1824,7 @@ body {
     font-size: 12px;
 }
 
-/* ── Side list ────────────────────────────────────────────── */
+/* â”€â”€ Side list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__list {
     display: flex;
     flex-direction: column;
@@ -1919,7 +1919,7 @@ body {
     color: #f0efe7;
 }
 
-/* ── Load more ────────────────────────────────────────────── */
+/* â”€â”€ Load more â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__more {
     text-align: center;
     margin-top: 3rem;
@@ -1944,7 +1944,7 @@ body {
     color: #fff;
 }
 
-/* ── Modal ────────────────────────────────────────────────── */
+/* â”€â”€ Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-noticias__modal-overlay {
     position: fixed;
     inset: 0;
@@ -2051,7 +2051,7 @@ body {
     color: #cbd5e1;
 }
 
-/* ── Modal transitions ───────────────────────────────────── */
+/* â”€â”€ Modal transitions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .flch-modal-enter {
     transition: all .25s cubic-bezier(.22,1,.36,1);
 }
@@ -2064,7 +2064,7 @@ body {
     transform: scale(1) translateY(0);
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
+/* â”€â”€ Responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width: 768px) {
     .flch-noticias {
         padding: 3rem 0 1.5rem;
@@ -2102,4 +2102,569 @@ body {
         width: 100%;
         justify-content: center;
     }
+}
+ /* ================================================================
+   RESPONSIVE â€” FLCH UNMSM
+   Complementa los estilos inline de header.php y main.css
+   Mobile-first: breakpoints 640 / 768 / 1024 / 1280
+   ================================================================ */
+
+/* â”€â”€ Overflow horizontal global â”€â”€ */
+/* NOTA: No aplicar overflow-x:hidden en html/body porque rompe
+   position:sticky y position:fixed. Se aplica en contenedores especÃ­ficos. */
+
+/* ================================================================
+   MENÃš MÃ“VIL â€” correcciones de visualizaciÃ³n
+   ================================================================ */
+
+/* Ãtem con hijos: el botÃ³n toggle es absoluto sobre el <a> */
+.mobile-menu .menu-item-has-children {
+    position: relative;
+}
+
+/* Link del Ã­tem padre â€” deja espacio para el botÃ³n toggle */
+.mobile-menu .menu-item-has-children > a {
+    padding-right: 3rem;
+    display: block;
+    color: rgba(255, 255, 255, 0.92);
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    padding-left: 1rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.mobile-menu .menu-item-has-children > a:hover {
+    background: #1E4A7A;
+    color: #A8861C;
+    padding-left: 1.5rem;
+}
+
+/* Sub-menÃº: oculto por defecto, visible con .open */
+.mobile-menu ul.sub-menu {
+    display: none;
+    margin: 0;
+    padding: 0 0 0 1rem;
+    list-style: none;
+    background: rgba(0, 0, 0, 0.25);
+    border-left: 2px solid #A8861C;
+}
+
+.mobile-menu ul.sub-menu.open {
+    display: block;
+}
+
+.mobile-menu ul.sub-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.mobile-menu ul.sub-menu li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu ul.sub-menu a {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    display: block;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+}
+
+.mobile-menu ul.sub-menu a:hover {
+    color: #A8861C;
+    background: rgba(168, 134, 28, 0.08);
+    padding-left: 1.5rem;
+}
+
+/* Sub-sub-menÃº */
+.mobile-menu ul.sub-menu ul.sub-menu {
+    margin-left: 0.5rem;
+    border-left: 1px solid rgba(168, 134, 28, 0.4);
+    padding-left: 0.75rem;
+}
+
+/* BotÃ³n toggle â€” absolutamente posicionado sobre el link */
+.mobile-submenu-toggle {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    width: 36px;
+    height: 36px;
+    min-width: 44px;
+    min-height: 44px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    transition: background 0.2s ease, color 0.2s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-submenu-toggle:hover,
+.mobile-submenu-toggle:focus-visible {
+    background: #A8861C;
+    color: #fff;
+    outline: none;
+}
+
+.mobile-submenu-toggle i {
+    transition: transform 0.25s ease;
+    pointer-events: none;
+}
+
+.mobile-submenu-toggle i.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* ================================================================
+   TIPOGRAFÃA RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 640px) {
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.15rem; }
+    h4 { font-size: 1rem; }
+
+    p  { font-size: 0.925rem; }
+}
+
+/* ================================================================
+   LAYOUT â€” CONTENIDO PRINCIPAL
+   ================================================================ */
+
+@media (max-width: 768px) {
+    /* Sidebars debajo del contenido en mobile */
+    .archive-layout,
+    .single-layout {
+        display: block !important;
+    }
+
+    .archive-layout > *,
+    .single-layout > * {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Sidebar al final */
+    .sidebar-area {
+        margin-top: 2rem;
+        border-top: 1px solid #E5E9F0;
+        padding-top: 1.5rem;
+    }
+}
+
+/* ================================================================
+   GRID DE TARJETAS
+   ================================================================ */
+
+@media (max-width: 640px) {
+    .grid-cards {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+    .grid-cards {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* ================================================================
+   CARD NOTICIA â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 640px) {
+    .card-noticia {
+        border-radius: 10px;
+    }
+
+    .card-noticia__img-wrap {
+        height: 180px;
+    }
+
+    .card-noticia__body {
+        padding: 1rem;
+    }
+
+    .card-noticia__title {
+        font-size: 0.95rem;
+    }
+}
+
+/* ================================================================
+   ARCHIVE FEATURED â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 768px) {
+    .archive-featured {
+        flex-direction: column !important;
+    }
+
+    .archive-featured__img {
+        width: 100% !important;
+        height: 220px !important;
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+    .archive-featured__body {
+        padding: 1.25rem !important;
+    }
+}
+
+/* ================================================================
+   BARRA DE BÃšSQUEDA â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 640px) {
+    .search-input {
+        font-size: 0.875rem !important;
+        padding: 0.75rem 5rem 0.75rem 1rem !important;
+    }
+
+    .search-submit-btn {
+        padding: 0.45rem 0.75rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    .search-clear-btn {
+        right: 4rem !important;
+    }
+
+    .suggestion-link {
+        font-size: 0.72rem;
+        padding: 0.28rem 0.7rem;
+    }
+}
+
+/* ================================================================
+   IMÃGENES RESPONSIVE
+   ================================================================ */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.wp-post-image,
+.attachment-full,
+.size-full {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ================================================================
+   TABLAS â€” SCROLL HORIZONTAL EN MOBILE
+   ================================================================ */
+
+.entry-content table,
+.post-content table,
+article table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ================================================================
+   BOTONES â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 640px) {
+    .btn,
+    .btn-primary,
+    .btn-card {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.875rem;
+    }
+
+    /* Botones de ancho completo en pantallas muy pequeÃ±as */
+    .btn-full-mobile {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ================================================================
+   PAGINACIÃ“N â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 480px) {
+    .pagination {
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        justify-content: center;
+    }
+
+    .pagination .page-numbers {
+        min-width: 36px;
+        min-height: 36px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ================================================================
+   WIDGETS / SIDEBAR â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 768px) {
+    .widget {
+        margin-bottom: 1.5rem;
+    }
+
+    .widget-title {
+        font-size: 0.95rem;
+    }
+}
+
+/* ================================================================
+   FOOTER â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 768px) {
+    /* Stack columnas de footer */
+    footer .grid,
+    footer [class*="grid-"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    footer .flex {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 640px) {
+    footer {
+        padding-bottom: 1rem;
+    }
+}
+
+/* ================================================================
+   HERO / SLIDER â€” MOBILE
+   (El componente .flch-hero tiene sus propios estilos en hero.php)
+   ================================================================ */
+
+/* ================================================================
+   ACCESIBILIDAD â€” TOUCH TARGETS
+   ================================================================ */
+
+@media (max-width: 1024px) {
+    /* Garantiza targets tÃ¡ctiles mÃ­nimos (WCAG 2.5.5) */
+    a,
+    button,
+    input[type="submit"],
+    input[type="button"],
+    select,
+    [role="button"] {
+        min-height: 44px;
+    }
+
+    /* Excluir links de texto corridos */
+    p a,
+    .entry-content a,
+    .post-content a,
+    .widget a {
+        min-height: unset;
+    }
+}
+
+/* ================================================================
+   CONTENEDOR CUSTOM â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 480px) {
+    .container-custom,
+    .container {
+        padding-left: 0.875rem;
+        padding-right: 0.875rem;
+    }
+}
+
+/* ================================================================
+   PAGE HEADER â€” MOBILE
+   ================================================================ */
+
+@media (max-width: 640px) {
+    .page-header {
+        padding: 2rem 0 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+}
+ /* ==========================================================================
+   MEJORAS DE ACCESIBILIDAD â€” FLCH UNMSM
+   AuditorÃ­a Senior Frontend â€” Junio 2026
+   ========================================================================== */
+
+/* â”€â”€ Focus visible mejorado â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+*:focus-visible {
+    outline: 3px solid var(--flch-gold, #A8861C);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Para links dentro de texto, outline mÃ¡s sutil */
+p a:focus-visible,
+li a:focus-visible {
+    outline: 2px solid var(--flch-gold, #A8861C);
+    outline-offset: 1px;
+    background: rgba(168, 134, 28, 0.1);
+}
+
+/* â”€â”€ Contraste mejorado en dark mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+:root.dark .flch-hero__centro-desc {
+    color: rgba(255, 255, 255, 0.80); /* Incrementar para mejor legibilidad */
+}
+
+:root.dark .flch-hero__centros-panel {
+    background: linear-gradient(180deg, #0D2747 0%, #081521 100%);
+    border-color: rgba(229, 193, 88, 0.25);
+}
+
+:root.dark .flch-hero__centro-card {
+    border-right-color: rgba(255, 255, 255, 0.12);
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+:root.dark .flch-hero__centro-card:hover {
+    background: rgba(229, 193, 88, 0.08);
+}
+
+:root.dark .flch-hero__centro-icon {
+    background: rgba(229, 193, 88, 0.20);
+    color: #E5C158;
+}
+
+:root.dark .flch-hero__centro-cta {
+    color: #E5C158;
+}
+
+:root.dark .flch-noticias__list-date,
+:root.dark .flch-noticias__featured-excerpt {
+    color: rgba(255, 255, 255, 0.70);
+}
+
+/* â”€â”€ ReducciÃ³n de movimiento â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* â”€â”€ Skip link mejorado â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.skip-link:focus {
+    z-index: 100000;
+    transform: translateY(0);
+}
+
+/* â”€â”€ Mejora de legibilidad â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* â”€â”€ ARIA: Ocultar visualmente pero mantener accesible â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* â”€â”€ Botones: Ã¡rea de click mÃ­nima 44x44px (WCAG AAA) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+button,
+.header-btn,
+a.flch-btn {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+/* â”€â”€ Links: subrayado visible en hover (accesibilidad) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+main a:not(.flch-btn):not(.flch-noticias__featured):not(.flch-noticias__list-item):hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+/* â”€â”€ Errores de formulario visibles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+input:invalid:not(:focus),
+textarea:invalid:not(:focus) {
+    border-color: #DC2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* â”€â”€ Prefers contrast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (prefers-contrast: high) {
+    * {
+        border-color: currentColor !important;
+    }
+
+    .flch-hero__centro-card {
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    }
+
+    button, a.flch-btn {
+        border: 2px solid currentColor !important;
+    }
+}
+
+/* â”€â”€ Dark mode: ajustes de contraste WCAG AA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+:root.dark {
+    /* Asegurar ratios de contraste mÃ­nimos */
+    --flch-gold: #E5C158; /* MÃ¡s claro para mejor contraste en fondo oscuro */
+}
+
+:root.dark .flch-noticias__tab.is-active {
+    background: rgba(229, 193, 88, 0.2);
+    color: #E5C158;
+    border-color: #E5C158;
+}
+
+/* â”€â”€ OptimizaciÃ³n de performance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Contenido below-the-fold lazy rendering */
+.flch-noticias {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+}
+
+/* â”€â”€ ImÃ¡genes: aspect-ratio para evitar CLS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.flch-noticias__featured-img img,
+.flch-noticias__list-thumb img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.flch-hero__bg {
+    content-visibility: auto;
 }

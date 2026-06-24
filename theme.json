@@ -1,0 +1,311 @@
+{
+  "version": 2,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary-dark",
+          "name": "Azul institucional",
+          "color": "#143B63"
+        },
+        {
+          "slug": "navy-dark",
+          "name": "Azul oscuro",
+          "color": "#0E2A48"
+        },
+        {
+          "slug": "navy-mid",
+          "name": "Azul medio",
+          "color": "#1e5590"
+        },
+        {
+          "slug": "navy-faint",
+          "name": "Azul tenue",
+          "color": "#F0F5FB"
+        },
+        {
+          "slug": "accent-gold",
+          "name": "Dorado",
+          "color": "#A8861C"
+        },
+        {
+          "slug": "gold-dark",
+          "name": "Dorado oscuro",
+          "color": "#8B7518"
+        },
+        {
+          "slug": "gold-wcag",
+          "name": "Dorado accesible",
+          "color": "#7A6600"
+        },
+        {
+          "slug": "bg",
+          "name": "Papel",
+          "color": "#F7F5EF"
+        },
+        {
+          "slug": "ink",
+          "name": "Tinta",
+          "color": "#1A2230"
+        },
+        {
+          "slug": "white",
+          "name": "Blanco",
+          "color": "#FFFFFF"
+        },
+        {
+          "slug": "accent-2",
+          "name": "Carmesí",
+          "color": "#6E1226"
+        },
+        {
+          "slug": "success",
+          "name": "Éxito",
+          "color": "#1F8A5B"
+        },
+        {
+          "slug": "gray-100",
+          "name": "Gris 100",
+          "color": "#EFEDE6"
+        },
+        {
+          "slug": "gray-200",
+          "name": "Gris 200",
+          "color": "#E2E0D8"
+        },
+        {
+          "slug": "gray-text",
+          "name": "Gris texto",
+          "color": "#34312B"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "hero-gradient",
+          "name": "Hero institucional",
+          "gradient": "linear-gradient(135deg, #143B63 0%, #2457A6 100%)"
+        }
+      ],
+      "duotone": [],
+      "custom": false,
+      "link": true
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "body",
+          "name": "Hanken Grotesk",
+          "fontFamily": "'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        },
+        {
+          "slug": "display",
+          "name": "Newsreader",
+          "fontFamily": "'Newsreader', Georgia, 'Times New Roman', serif"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "small",
+          "name": "Small",
+          "size": "0.8125rem"
+        },
+        {
+          "slug": "body",
+          "name": "Body",
+          "size": "1rem"
+        },
+        {
+          "slug": "lead",
+          "name": "Lead",
+          "size": "1.1875rem"
+        },
+        {
+          "slug": "h4",
+          "name": "H4",
+          "size": "1.5rem"
+        },
+        {
+          "slug": "h3",
+          "name": "H3",
+          "size": "2rem"
+        },
+        {
+          "slug": "h2",
+          "name": "H2",
+          "size": "2.625rem"
+        },
+        {
+          "slug": "h1",
+          "name": "H1",
+          "size": "3.5rem"
+        }
+      ],
+      "dropCap": false
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "units": ["px", "rem", "em", "%", "vh", "vw"]
+    },
+    "layout": {
+      "contentSize": "66ch",
+      "wideSize": "1300px"
+    },
+    "border": {
+      "radius": true,
+      "color": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": {
+      "presets": [
+        {
+          "slug": "sm",
+          "name": "Sombra suave",
+          "shadow": "0 2px 8px rgba(0, 0, 0, 0.05)"
+        },
+        {
+          "slug": "md",
+          "name": "Sombra media",
+          "shadow": "0 4px 16px rgba(0, 0, 0, 0.08)"
+        },
+        {
+          "slug": "lg",
+          "name": "Sombra fuerte",
+          "shadow": "0 8px 24px rgba(0, 0, 0, 0.12)"
+        },
+        {
+          "slug": "gold",
+          "name": "Sombra dorada",
+          "shadow": "0 4px 16px rgba(168, 134, 28, 0.2)"
+        }
+      ]
+    },
+    "custom": {
+      "fontFamily": {
+        "body": "'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        "display": "'Newsreader', Georgia, 'Times New Roman', serif"
+      },
+      "color": {
+        "navy": "#143B63",
+        "gold": "#A8861C",
+        "ink": "#1A2230",
+        "bg": "#F7F5EF"
+      }
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--bg)",
+      "text": "var(--ink)"
+    },
+    "typography": {
+      "fontFamily": "var(--font-body)",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "h1": {
+        "typography": {
+          "fontFamily": "var(--font-display)",
+          "fontWeight": "600",
+          "lineHeight": "1.2"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontFamily": "var(--font-display)",
+          "fontWeight": "600",
+          "lineHeight": "1.2"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontFamily": "var(--font-display)",
+          "fontWeight": "600",
+          "lineHeight": "1.3"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontFamily": "var(--font-body)",
+          "fontWeight": "600",
+          "lineHeight": "1.3"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var(--navy)"
+        },
+        "typography": {
+          "textDecoration": "none"
+        },
+        ":hover": {
+          "color": {
+            "text": "var(--gold)"
+          }
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var(--gold)",
+          "text": "#FFFFFF"
+        },
+        "typography": {
+          "fontFamily": "var(--font-body)",
+          "fontWeight": "500"
+        },
+        "border": {
+          "radius": "6px"
+        }
+      },
+      "caption": {
+        "typography": {
+          "fontSize": "0.8125rem",
+          "fontFamily": "var(--font-body)"
+        }
+      }
+    },
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "fontSize": "1rem",
+          "lineHeight": "1.6"
+        }
+      },
+      "core/heading": {
+        "typography": {
+          "fontWeight": "600"
+        }
+      },
+      "core/button": {
+        "border": {
+          "radius": "6px"
+        },
+        "color": {
+          "background": "var(--gold)",
+          "text": "#FFFFFF"
+        }
+      },
+      "core/separator": {
+        "border": {
+          "color": "var(--gray-200)",
+          "width": "1px"
+        }
+      },
+      "core/quote": {
+        "typography": {
+          "fontFamily": "var(--font-display)",
+          "fontStyle": "italic"
+        }
+      },
+      "core/pullquote": {
+        "typography": {
+          "fontFamily": "var(--font-display)"
+        },
+        "border": {
+          "color": "var(--gold)"
+        }
+      }
+    }
+  }
+}

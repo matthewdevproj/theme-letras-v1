@@ -5,8 +5,6 @@
 (function () {
     'use strict';
 
-    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     function ready(callback) {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', callback);
@@ -65,34 +63,45 @@
     }
 
     function initGsapReveals() {
-        var items = document.querySelectorAll('[data-flch-animate]');
-        if (!items.length || reducedMotion) return;
-
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-            items.forEach(function (item) {
+            var fallback = document.querySelectorAll('[data-flch-animate]');
+            fallback.forEach(function (item) {
                 item.classList.add('flch-animate-ready');
             });
             return;
         }
 
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.set(items, { autoAlpha: 0, y: 22 });
+        var items = gsap.utils.toArray('[data-flch-animate]');
+        if (!items.length) return;
 
-        items.forEach(function (item) {
-            ScrollTrigger.create({
-                trigger: item,
+        gsap.registerPlugin(ScrollTrigger);
+
+        // gsap-scrolltrigger: batch instead of individual triggers
+        // gsap-core: matchMedia handles prefers-reduced-motion
+        var mm = gsap.matchMedia();
+        mm.add('(prefers-reduced-motion: reduce)', function() {
+            items.forEach(function(item) { item.classList.add('flch-animate-ready'); });
+            return function() {};
+        });
+        mm.add('(prefers-reduced-motion: no-preference)', function() {
+            gsap.set(items, { autoAlpha: 0, y: 22 });
+
+            ScrollTrigger.batch(items, {
                 start: 'top 88%',
                 once: true,
-                onEnter: function () {
-                    gsap.to(item, {
+                onEnter: function(batch) {
+                    gsap.to(batch, {
                         autoAlpha: 1,
                         y: 0,
                         duration: 0.55,
                         ease: 'power2.out',
+                        stagger: 0.06,
                         clearProps: 'transform,opacity,visibility'
                     });
                 }
             });
+
+            return function() {};
         });
     }
 
@@ -289,15 +298,23 @@ lineas: [
 
                     animate: function () {
                         var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-                        var reveals = document.querySelectorAll('.reveal');
+                        var reveals = window.gsap ? gsap.utils.toArray('.reveal') : [].slice.call(document.querySelectorAll('.reveal'));
+                        if (!reveals.length) return;
                         if (reduce) {
                             reveals.forEach(function (el) { el.classList.add('is-in'); });
                             return;
                         }
+
                         if (window.gsap && window.ScrollTrigger) {
                             gsap.registerPlugin(ScrollTrigger);
-                            reveals.forEach(function (el) {
-                                ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: function () { el.classList.add('is-in'); } });
+
+                            // gsap-scrolltrigger: batch reveals instead of individual triggers
+                            ScrollTrigger.batch('.reveal', {
+                                start: 'top 88%',
+                                once: true,
+                                onEnter: function(batch) {
+                                    batch.forEach(function(el) { el.classList.add('is-in'); });
+                                }
                             });
                             requestAnimationFrame(function () { ScrollTrigger.refresh(); });
                         } else {

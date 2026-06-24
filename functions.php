@@ -9,8 +9,8 @@
 // 0. CONFIGURACIÓN GENERAL
 // ═══════════════════════════════════════════════════════════
 
-// ACTIVAR HEADER MODERNO: Cambiar a true para usar header-modern.php
-define('LETRAS_USE_MODERN_HEADER', true);
+// HEADER MODERNO: Desactivado — el CSS de entrada se movió a header.css
+define('LETRAS_USE_MODERN_HEADER', false);
 
 // WhatsApp number for contact button
 define('LETRAS_WHATSAPP_NUMBER', '51982086285');
@@ -55,8 +55,20 @@ function letras_flch_setup() {
     add_image_size( 'card-thumbnail',   800,  450, true );
     add_image_size( 'card-square',      400,  400, true );
     add_image_size( 'archive-featured', 1200, 675, true );
+
+    // Elementor support — fuentes CODICE ya se definen en performance.php
+    add_theme_support( 'elementor' );
+    add_theme_support( 'elementor-default-fonts' );
 }
 add_action( 'after_setup_theme', 'letras_flch_setup' );
+
+// Elementor Pro: Registrar locations del theme builder (header, footer)
+add_action( 'elementor/theme/register_locations', function( $elementor_theme_manager ) {
+    $elementor_theme_manager->register_location( 'header' );
+    $elementor_theme_manager->register_location( 'footer' );
+    $elementor_theme_manager->register_location( 'single'  );
+    $elementor_theme_manager->register_location( 'archive' );
+});
 
 // ═══════════════════════════════════════════════════════════
 // FIX: Font Awesome en Vista Previa de Elementor
@@ -302,23 +314,23 @@ function letras_flch_enqueue_scripts() {
     $dir     = get_template_directory();
     $version = wp_get_theme()->get( 'Version' ) ?: '1.0';
 
-    // Google Fonts CODICE (Hanken Grotesk + Newsreader) — CDN + autoalojadas
+    // Fuentes CODICE autoalojadas (sin CDN — zero HTTP externo)
     wp_enqueue_style(
-        'letras-fonts-cdn',
-        'https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap',
-        array(), null
-    );
-    wp_enqueue_style(
-        'letras-fonts-consolidated',
-        get_template_directory_uri() . '/css/fonts.css',
-        array('letras-fonts-cdn'), null
+        'letras-fonts',
+        $uri . '/css/fonts.css',
+        array(), $version
     );
 
-    // Font Awesome 6 (local)
+    // Font Awesome 6 — vía cdnjs (con fallback local en el tema si existe)
+    $fa_local = $dir . '/css/fontawesome.min.css';
+    $fa_src = file_exists($fa_local)
+        ? $uri . '/css/fontawesome.min.css'
+        : 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css';
     wp_enqueue_style(
         'letras-fontawesome',
-        get_site_url() . '/assets/libs/fontawesome/all.min.css',
-        array(), '6.4.0'
+        $fa_src,
+        array(),
+        file_exists($fa_local) ? filemtime($fa_local) : null
     );
 
     // FontAwesome global fix (asegura rendering correcto)
@@ -329,79 +341,28 @@ function letras_flch_enqueue_scripts() {
         $version
     );
 
-    // CSS pipeline: variables → tailwind → main → header → theme → responsive → modern-ui
-    wp_enqueue_style( 'letras-variables',  $uri . '/css/variables.css',  array(),                                    $version );
-    wp_enqueue_style(
-        'letras-tailwind',
-        $uri . '/css/tailwind.css',
+    // CSS pipeline: variables → tailwind → main → header → theme → modern-ui
+    wp_enqueue_style( 'letras-variables', $uri . '/css/variables.css', array(), $version );
+    wp_enqueue_style( 'letras-tailwind',  $uri . '/css/tailwind.css',
         array( 'letras-variables' ),
-        file_exists( $dir . '/css/tailwind.css' ) ? filemtime( $dir . '/css/tailwind.css' ) : $version
-    );
-    wp_enqueue_style( 'letras-main',       $uri . '/css/main.css',       array( 'letras-tailwind' ),                 $version );
-    wp_enqueue_style(
-        'letras-header',
-        $uri . '/css/header.css',
+        file_exists( $dir . '/css/tailwind.css' ) ? filemtime( $dir . '/css/tailwind.css' ) : $version );
+    wp_enqueue_style( 'letras-main',      $uri . '/css/main.css',      array( 'letras-tailwind' ), $version );
+    wp_enqueue_style( 'letras-header',    $uri . '/css/header.css',
         array( 'letras-main' ),
-        file_exists( $dir . '/css/header.css' ) ? filemtime( $dir . '/css/header.css' ) : $version
-    );
-    wp_enqueue_style( 'letras-theme',      get_stylesheet_uri(),         array( 'letras-header' ),                   $version );
-    wp_enqueue_style( 'letras-responsive', $uri . '/css/responsive.css', array( 'letras-theme' ),                    $version );
-    wp_enqueue_style(
-        'letras-modern-ui',
-        $uri . '/css/modern-ui.css',
-        array( 'letras-theme', 'letras-responsive' ),
-        file_exists( $dir . '/css/modern-ui.css' ) ? filemtime( $dir . '/css/modern-ui.css' ) : $version
-    );
-    wp_enqueue_style(
-        'letras-footer',
-        $uri . '/css/footer.css',
+        file_exists( $dir . '/css/header.css' ) ? filemtime( $dir . '/css/header.css' ) : $version );
+    wp_enqueue_style( 'letras-theme',     get_stylesheet_uri(),        array( 'letras-header' ),   $version );
+    wp_enqueue_style( 'letras-modern-ui', $uri . '/css/modern-ui.css',
+        array( 'letras-theme' ),
+        file_exists( $dir . '/css/modern-ui.css' ) ? filemtime( $dir . '/css/modern-ui.css' ) : $version );
+    wp_enqueue_style( 'letras-footer',    $uri . '/css/footer.css',
         array( 'letras-modern-ui' ),
-        file_exists( $dir . '/css/footer.css' ) ? filemtime( $dir . '/css/footer.css' ) : $version
-    );
+        file_exists( $dir . '/css/footer.css' ) ? filemtime( $dir . '/css/footer.css' ) : $version );
 
-    // Header Moderno CSS (opcional - solo si se usa header-modern.php)
+    // Header Moderno CSS (opcional - todos los estilos consolidados en un archivo)
     if (defined('LETRAS_USE_MODERN_HEADER') && LETRAS_USE_MODERN_HEADER) {
-        // Mantener header.css para estilos del topbar original
-        // header.css ya está encolado arriba, solo agregamos los modernos
-
-        wp_enqueue_style(
-            'letras-header-modern',
-            $uri . '/css/header-modern.css',
+        wp_enqueue_style( 'letras-header-modern', $uri . '/css/header-modern.css',
             array( 'letras-header' ),
-            file_exists( $dir . '/css/header-modern.css' ) ? filemtime( $dir . '/css/header-modern.css' ) : $version
-        );
-
-        // Override final para asegurar estilos correctos
-        wp_enqueue_style(
-            'letras-header-modern-override',
-            $uri . '/css/header-modern-override.css',
-            array( 'letras-header-modern' ),
-            file_exists( $dir . '/css/header-modern-override.css' ) ? filemtime( $dir . '/css/header-modern-override.css' ) : $version
-        );
-
-        // Menú profesional UI/UX
-        wp_enqueue_style(
-            'letras-menu-professional',
-            $uri . '/css/menu-professional.css',
-            array( 'letras-header-modern-override' ),
-            file_exists( $dir . '/css/menu-professional.css' ) ? filemtime( $dir . '/css/menu-professional.css' ) : $version
-        );
-
-        // Mejoras de accesibilidad y performance
-        wp_enqueue_style(
-            'letras-a11y',
-            $uri . '/css/a11y-improvements.css',
-            array( 'letras-menu-professional', 'letras-modern-ui' ),
-            file_exists( $dir . '/css/a11y-improvements.css' ) ? filemtime( $dir . '/css/a11y-improvements.css' ) : $version
-        );
-    } else {
-        // Sin header moderno: igual cargar a11y (último en cascada)
-        wp_enqueue_style(
-            'letras-a11y',
-            $uri . '/css/a11y-improvements.css',
-            array( 'letras-modern-ui' ),
-            file_exists( $dir . '/css/a11y-improvements.css' ) ? filemtime( $dir . '/css/a11y-improvements.css' ) : $version
-        );
+            file_exists( $dir . '/css/header-modern.css' ) ? filemtime( $dir . '/css/header-modern.css' ) : $version );
     }
 
     wp_enqueue_script(

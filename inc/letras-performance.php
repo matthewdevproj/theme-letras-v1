@@ -557,6 +557,20 @@ add_action('wp_footer', function() {
             console.warn('flchGSAP: GSAP no disponible después de ' + (maxAttempts * 50) + 'ms');
         }
     };
+
+    // gsap-core: matchMedia for prefers-reduced-motion
+    // Used by each file individually — this ensures GSAP.matchMedia is available
+    // See: theme-stack.js, home-animations.js
+
+    // gsap-scrolltrigger: refresh after fonts and images load (prevents layout shift)
+    if (typeof ScrollTrigger !== 'undefined') {
+        if (document.fonts) {
+            document.fonts.ready.then(function() { ScrollTrigger.refresh(); });
+        }
+        if (window.addEventListener) {
+            window.addEventListener('load', function() { ScrollTrigger.refresh(); });
+        }
+    }
     </script>
     <?php
 }, 14); // Before Alpine components (15)
@@ -792,8 +806,63 @@ add_action('wp_head', function() {
 }, 999); // Priority 999 para override cualquier otro CSS
 
 /* ══════════════════════════════════════════════════════════════
-   SECCIÓN 13: LIMPIEZA ADICIONAL DE ELEMENTOR Y PLUGINS
-   Optimizaciones críticas de rendimiento
+   SECCIÓN 13: ELEMENTOR — OPTIMIZACIÓN DE RENDIMIENTO
+   El theme declara add_theme_support('elementor') en functions.php.
+   Aquí: desactivar assets de Elementor que duplican funcionalidad
+   de GSAP y reducir CSS innecesario.
+   ══════════════════════════════════════════════════════════ */
+
+// 13a. Desactivar entrance animations de Elementor (solo frontend)
+//      Saltar en editor/preview de Elementor para no romper la edición
+add_action('elementor/frontend/before_enqueue_scripts', function() {
+    // No aplicar en el editor/preview de Elementor
+    if (class_exists('\Elementor\Plugin') && (
+        \Elementor\Plugin::$instance->editor->is_edit_mode() ||
+        \Elementor\Plugin::$instance->preview->is_preview_mode()
+    )) return;
+
+    // Desactivar en front-page y páginas con stack GSAP completo
+    if (is_front_page() || is_page(['linguistica-flch'])) {
+        // elementor-waypoints: scroll detection — duplicado con GSAP ScrollTrigger
+        wp_dequeue_script('elementor-waypoints');
+    }
+});
+
+// 13b. Remover CSS de animaciones de Elementor en páginas con GSAP (solo frontend)
+add_filter('elementor/frontend/enqueue_styles', function($styles) {
+    if (class_exists('\Elementor\Plugin') && (
+        \Elementor\Plugin::$instance->editor->is_edit_mode() ||
+        \Elementor\Plugin::$instance->preview->is_preview_mode()
+    )) return $styles;
+
+    if (is_front_page() || is_page(['linguistica-flch'])) {
+        unset($styles['elementor-animations']);
+    }
+    return $styles;
+}, 999);
+
+// 13c. Prevenir doble animación visible: Elementor entrance + GSAP (solo frontend)
+//      Forzar visibilidad en Elementor animated elements
+add_action('wp_head', function() {
+    if (class_exists('\Elementor\Plugin') && (
+        \Elementor\Plugin::$instance->editor->is_edit_mode() ||
+        \Elementor\Plugin::$instance->preview->is_preview_mode()
+    )) return;
+
+    if (!is_front_page() && !is_page(['linguistica-flch'])) return;
+    echo '<style id="flch-elementor-animations-off">
+    .elementor-invisible { visibility: visible !important; }
+    .elementor-element .elementor-animation-grow,
+    .elementor-element .elementor-animation-shrink,
+    .elementor-element .elementor-animation-pulse,
+    .elementor-element .elementor-animation-pop {
+        animation: none !important; transition: none !important;
+    }
+    </style>' . "\n";
+}, 999);
+
+/* ══════════════════════════════════════════════════════════════
+   SECCIÓN 14: LIMPIEZA ADICIONAL DE PLUGINS
    ══════════════════════════════════════════════════════════ */
 
 add_action('wp_enqueue_scripts', function() {
@@ -821,4 +890,4 @@ add_action('wp_enqueue_scripts', function() {
         }
     }
 
-}, 999); // Prioridad alta para override todo
+}, 999);
