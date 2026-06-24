@@ -177,7 +177,8 @@ table th {
    MEJORAS GLOBALES — Modernización Junio 2026
    ═══════════════════════════════════════════════════ */
 
-.main-header {
+/* Specificity (0,1,1) > modern-ui.css .main-header (0,1,0) */
+header.main-header {
   transition: background-color 0.3s ease,
               backdrop-filter 0.3s ease,
               -webkit-backdrop-filter 0.3s ease,
@@ -185,10 +186,10 @@ table th {
 }
 
 .main-header.is-scrolled {
-  background-color: rgba(20, 59, 99, 0.95) !important;
+  background: rgba(20, 59, 99, 0.92) !important;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow: 0 2px 24px rgba(20,59,99,0.15);
+  box-shadow: 0 2px 24px rgba(20,59,99,0.15) !important;
 }
 
 .main-header.sticky,

@@ -44,7 +44,6 @@
 
         function update() {
             var currentY = window.scrollY;
-            header.classList.toggle('flch-header--scrolled', currentY > 12);
             header.classList.toggle('flch-header--compact', currentY > 160 && currentY > lastY);
             if (currentY < 80 || currentY < lastY) {
                 header.classList.remove('flch-header--compact');
