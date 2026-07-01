@@ -3,6 +3,11 @@
  * Banner de noticias destacadas (fade, autoplay 6s, pausa hover/focus) y
  * carrusel de revistas académicas (perPage responsivo 5/3/2).
  *
+ * Los botones prev/next se resuelven vía delegación de eventos en
+ * document (en vez de listeners directos en el botón) para que
+ * funcionen sin importar el orden/timing en que otros scripts del
+ * sitio terminan de inicializar.
+ *
  * @package LetrasFLCH
  */
 (function () {
@@ -15,6 +20,8 @@
             fn();
         }
     }
+
+    var instances = {};
 
     function initBannerDestacadas() {
         var el = document.querySelector('.kg-banner__splide');
@@ -33,11 +40,7 @@
             keyboard: 'global',
         });
         splide.mount();
-
-        var prev = document.querySelector('.kg-banner__prev');
-        var next = document.querySelector('.kg-banner__next');
-        if (prev) prev.addEventListener('click', function () { splide.go('<'); });
-        if (next) next.addEventListener('click', function () { splide.go('>'); });
+        instances.banner = splide;
     }
 
     function initRevistas() {
@@ -58,12 +61,28 @@
             },
         });
         splide.mount();
-
-        var prev = document.querySelector('.kg-rev-prev');
-        var next = document.querySelector('.kg-rev-next');
-        if (prev) prev.addEventListener('click', function () { splide.go('<'); });
-        if (next) next.addEventListener('click', function () { splide.go('>'); });
+        instances.revistas = splide;
     }
+
+    // Delegación: un solo listener en document cubre ambos pares de
+    // botones, sin importar cuándo se creó/reemplazó el DOM de cada
+    // carrusel ni el orden de ejecución de otros scripts del tema.
+    document.addEventListener('click', function (e) {
+        var target = e.target.closest && e.target.closest(
+            '.kg-banner__prev, .kg-banner__next, .kg-rev-prev, .kg-rev-next'
+        );
+        if (!target) return;
+
+        if (target.classList.contains('kg-banner__prev') && instances.banner) {
+            instances.banner.go('<');
+        } else if (target.classList.contains('kg-banner__next') && instances.banner) {
+            instances.banner.go('>');
+        } else if (target.classList.contains('kg-rev-prev') && instances.revistas) {
+            instances.revistas.go('<');
+        } else if (target.classList.contains('kg-rev-next') && instances.revistas) {
+            instances.revistas.go('>');
+        }
+    });
 
     ready(function () {
         initBannerDestacadas();

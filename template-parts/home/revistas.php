@@ -29,6 +29,9 @@ $letras_flch_revistas = letras_flch_revistas_data();
 					<li class="splide__slide">
 						<a href="<?php echo esc_url( $revista['href'] ); ?>" target="_blank" rel="noopener noreferrer" class="kg-revcard">
 							<div class="kg-rev-cover" style="background-image:linear-gradient(155deg, <?php echo esc_attr( $revista['c1'] ); ?>, <?php echo esc_attr( $revista['c2'] ); ?>)">
+								<?php if ( ! empty( $revista['cover'] ) ) : ?>
+									<img src="<?php echo esc_url( $revista['cover'] ); ?>" alt="Portada de <?php echo esc_attr( $revista['name'] ); ?>" loading="lazy" class="kg-rev-cover__img" onerror="this.remove()">
+								<?php endif; ?>
 								<span class="kg-rev-issn"><?php echo esc_html( $revista['issn'] ); ?></span>
 								<span class="kg-rev-short"><?php echo esc_html( $revista['short'] ); ?></span>
 							</div>
@@ -55,12 +58,17 @@ $letras_flch_revistas = letras_flch_revistas_data();
 	transform: translateY(-8px) scale(1.02);
 	box-shadow: 0 22px 44px rgba(8,18,32,.22);
 }
+.kg-rev-cover__img {
+	position: absolute; inset: 0; z-index: 0;
+	width: 100%; height: 100%; object-fit: cover; display: block;
+}
 .kg-rev-issn {
-	position: absolute; top: 14px; right: 14px;
+	position: absolute; top: 14px; right: 14px; z-index: 1;
 	font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: .04em;
 	color: #fff; background: rgba(0,0,0,.28); padding: 4px 8px; border-radius: 5px;
 }
 .kg-rev-short {
+	position: relative; z-index: 1;
 	font-family: var(--font-display, 'Newsreader', serif); font-style: normal; font-size: 30px; line-height: 1;
 	color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,.3);
 }
