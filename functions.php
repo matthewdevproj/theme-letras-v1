@@ -341,7 +341,7 @@ function letras_flch_enqueue_scripts() {
         $version
     );
 
-    // CSS pipeline: variables → tailwind → main → header → theme → modern-ui
+    // CSS pipeline: variables → tailwind → main → header → theme → kingster → footer
     wp_enqueue_style( 'letras-variables', $uri . '/css/variables.css', array(), $version );
     wp_enqueue_style( 'letras-tailwind',  $uri . '/css/tailwind.css',
         array( 'letras-variables' ),
@@ -351,11 +351,11 @@ function letras_flch_enqueue_scripts() {
         array( 'letras-main' ),
         file_exists( $dir . '/css/header.css' ) ? filemtime( $dir . '/css/header.css' ) : $version );
     wp_enqueue_style( 'letras-theme',     get_stylesheet_uri(),        array( 'letras-header' ),   $version );
-    wp_enqueue_style( 'letras-modern-ui', $uri . '/css/modern-ui.css',
+    wp_enqueue_style( 'letras-kingster',  $uri . '/css/kingster.css',
         array( 'letras-theme' ),
-        file_exists( $dir . '/css/modern-ui.css' ) ? filemtime( $dir . '/css/modern-ui.css' ) : $version );
+        file_exists( $dir . '/css/kingster.css' ) ? filemtime( $dir . '/css/kingster.css' ) : $version );
     wp_enqueue_style( 'letras-footer',    $uri . '/css/footer.css',
-        array( 'letras-modern-ui' ),
+        array( 'letras-kingster' ),
         file_exists( $dir . '/css/footer.css' ) ? filemtime( $dir . '/css/footer.css' ) : $version );
 
     // Header Moderno CSS (opcional - todos los estilos consolidados en un archivo)
@@ -748,13 +748,6 @@ function letras_flch_kingster_extras_assets() {
     $uri = get_template_directory_uri();
     $dir = get_template_directory();
 
-    wp_enqueue_style(
-        'letras-kingster-extras',
-        $uri . '/css/kingster-extras.css',
-        array( 'letras-modern-ui' ),
-        file_exists( $dir . '/css/kingster-extras.css' ) ? filemtime( $dir . '/css/kingster-extras.css' ) : wp_get_theme()->get( 'Version' )
-    );
-
     wp_enqueue_script(
         'letras-kingster-extras',
         $uri . '/js/kingster-extras.js',
@@ -809,7 +802,7 @@ function letras_flch_kingster_extras_assets() {
         wp_reset_postdata();
     }
 
-    wp_localize_script( 'letras-kingster-extras', 'flchSearchIndex', $search_index );
+    wp_localize_script( 'letras-kingster-extras', 'kgSearchIndex', $search_index );
 }
 add_action( 'wp_enqueue_scripts', 'letras_flch_kingster_extras_assets', 40 );
 

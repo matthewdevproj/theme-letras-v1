@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <script>(function(){var t;try{t=localStorage.getItem('flch-theme')}catch(e){}if(t==='dark')document.documentElement.classList.add('dark')})()</script>
+    <script>(function(){var t;try{t=localStorage.getItem('kg-theme')}catch(e){}if(t==='dark')document.documentElement.classList.add('dark')})()</script>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">
@@ -43,41 +43,41 @@
     <a href="#main" class="skip-link">Saltar al contenido</a>
 
     <!-- TOPBAR -->
-    <div class="flch-topbar hidden lg:block">
-        <div class="tb-desktop">
-            <div class="tb-contact-group">
-                <a href="https://letras.unmsm.edu.pe/directorio/" target="_blank" class="tb-item">
-                    <div class="tb-icon"><i class="fas fa-address-book"></i></div>
-                    <div class="tb-text">
-                        <span class="tb-label">Directorio</span>
-                        <span class="tb-value">FLCH</span>
+    <div class="kg-topbar hidden lg:block">
+        <div class="kg-topbar__desktop">
+            <div class="kg-topbar__contact-group">
+                <a href="https://letras.unmsm.edu.pe/directorio/" target="_blank" class="kg-topbar__item">
+                    <div class="kg-topbar__icon"><i class="fas fa-address-book"></i></div>
+                    <div class="kg-topbar__text">
+                        <span class="kg-topbar__label">Directorio</span>
+                        <span class="kg-topbar__value">FLCH</span>
                     </div>
                 </a>
-                <a href="mailto:informatica.letras@unmsm.edu.pe" class="tb-item">
-                    <div class="tb-icon"><i class="fas fa-envelope"></i></div>
-                    <div class="tb-text">
-                        <span class="tb-label">Email</span>
-                        <span class="tb-value">informatica.letras@unmsm.edu.pe</span>
+                <a href="mailto:informatica.letras@unmsm.edu.pe" class="kg-topbar__item">
+                    <div class="kg-topbar__icon"><i class="fas fa-envelope"></i></div>
+                    <div class="kg-topbar__text">
+                        <span class="kg-topbar__label">Email</span>
+                        <span class="kg-topbar__value">informatica.letras@unmsm.edu.pe</span>
                     </div>
                 </a>
-                <a href="https://letras.unmsm.edu.pe/horarios-flch.php" target="_blank" class="tb-item">
-                    <div class="tb-icon"><i class="fas fa-clock"></i></div>
-                    <div class="tb-text">
-                        <span class="tb-label">Horarios</span>
-                        <span class="tb-value"><?php echo esc_html( date('Y') . '-I' ); ?></span>
+                <a href="https://letras.unmsm.edu.pe/horarios-flch.php" target="_blank" class="kg-topbar__item">
+                    <div class="kg-topbar__icon"><i class="fas fa-clock"></i></div>
+                    <div class="kg-topbar__text">
+                        <span class="kg-topbar__label">Horarios</span>
+                        <span class="kg-topbar__value"><?php echo esc_html( date('Y') . '-I' ); ?></span>
                     </div>
                 </a>
             </div>
-            <div class="tb-badge">
-                <span class="tb-badge-dot"></span>
+            <div class="kg-topbar__badge">
+                <span class="kg-topbar__badge-dot"></span>
                 <span>Ciclo <?php echo esc_html( date('Y') ); ?>-I</span>
             </div>
-            <div class="tb-social-group">
-                <span class="tb-social-label">Síguenos</span>
-                <a href="https://www.facebook.com/letrassanmarcos" target="_blank" class="tb-soc fb"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/letrasunmsm/" target="_blank" class="tb-soc ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@LetrasTV-p9j" target="_blank" class="tb-soc yt"><i class="fab fa-youtube"></i></a>
-                <a href="https://pe.linkedin.com/school/letrasunmsm/" target="_blank" class="tb-soc li"><i class="fab fa-linkedin-in"></i></a>
+            <div class="kg-topbar__social-group">
+                <span class="kg-topbar__social-label">Síguenos</span>
+                <a href="https://www.facebook.com/letrassanmarcos" target="_blank" class="kg-topbar__soc fb"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/letrasunmsm/" target="_blank" class="kg-topbar__soc ig"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@LetrasTV-p9j" target="_blank" class="kg-topbar__soc yt"><i class="fab fa-youtube"></i></a>
+                <a href="https://pe.linkedin.com/school/letrasunmsm/" target="_blank" class="kg-topbar__soc li"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
@@ -113,7 +113,7 @@
                         aria-haspopup="dialog">
                     <i class="fas fa-search"></i>
                 </button>
-                <button x-data="flchTheme"
+                <button x-data="kgTheme"
                         @click="toggle()"
                         class="header-btn"
                         :class="{'active': isDark}"
