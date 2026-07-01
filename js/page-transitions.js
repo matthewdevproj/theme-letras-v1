@@ -9,7 +9,7 @@
         if (overlay) return;
 
         overlay = document.createElement("div");
-        overlay.id = "flch-page-overlay";
+        overlay.id = "kg-page-overlay";
         overlay.style.cssText = [
             "position: fixed",
             "inset: 0",
@@ -26,7 +26,7 @@
         ].join("; ");
 
         var img = document.createElement("img");
-        img.src = (window.flchTransition && flchTransition.logoUrl) || "";
+        img.src = (window.kgTransition && kgTransition.logoUrl) || "";
         img.alt = "FLCH";
         img.style.cssText = "width: 260px; height: auto; opacity: 0.95;";
 
@@ -42,7 +42,7 @@
         document.body.appendChild(overlay);
     }
 
-    var waitForGSAP = (window.flchGSAP && window.flchGSAP.waitForGSAP) || function(cb, n) {
+    var waitForGSAP = (window.kgGSAP && window.kgGSAP.waitForGSAP) || function(cb, n) {
         n = n || 0;
         if (typeof gsap !== "undefined") {
             cb();

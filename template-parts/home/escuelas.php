@@ -9,73 +9,73 @@
  * @package LetrasFLCH
  */
 ?>
-<section id="escuelas" class="flch-escuelas"
+<section id="escuelas" class="kg-schools"
 		 aria-labelledby="escuelas-title"
-		 x-data="flchHome()"
+		 x-data="kgHome()"
 		 x-init="init()">
 
-	<div class="flch-escuelas__container">
+	<div class="kg-schools__container">
 
 		<!-- Header -->
-		<div class="flch-escuelas__header reveal">
+		<div class="kg-schools__header reveal">
 			<div>
-				<div class="flch-escuelas__eyebrow">
-					<span class="flch-escuelas__eyebrow-num">N.º 02 —</span>
+				<div class="kg-schools__eyebrow">
+					<span class="kg-schools__eyebrow-num">N.º 02 —</span>
 					Oferta académica
 				</div>
-				<h2 class="flch-escuelas__title" id="escuelas-title">
-					Carreras de <span class="flch-escuelas__title-accent">Pregrado</span>
+				<h2 class="kg-schools__title" id="escuelas-title">
+					Carreras de <span class="kg-schools__title-accent">Pregrado</span>
 				</h2>
 			</div>
-			<p class="flch-escuelas__subtitle">
+			<p class="kg-schools__subtitle">
 				Diez escuelas en humanidades, lenguaje, comunicación y arte.
 				Recorre el índice y descubre cada una.
 			</p>
 		</div>
 
 		<!-- Grid: índice + preview -->
-		<div class="flch-escuelas__grid">
+		<div class="kg-schools__grid">
 
 			<!-- Columna izquierda: índice -->
-			<div class="flch-escuelas__index reveal">
+			<div class="kg-schools__index reveal">
 				<template x-for="(s, i) in schools" :key="s.name">
 					<a :href="s.href"
 					   @mouseenter="school = i"
-					   class="flch-escuelas__index-row"
+					   class="kg-schools__index-row"
 					   :class="school === i ? 'is-active' : ''"
 					   target="_blank" rel="noopener noreferrer">
-						<span class="flch-escuelas__index-num"
+						<span class="kg-schools__index-num"
 							  :class="school === i ? 'is-active' : ''"
 							  x-text="s.n"></span>
-						<span class="flch-escuelas__index-name" x-text="s.name"></span>
-						<i class="fa-solid fa-arrow-right flch-escuelas__index-arrow"
+						<span class="kg-schools__index-name" x-text="s.name"></span>
+						<i class="fa-solid fa-arrow-right kg-schools__index-arrow"
 						   :class="school === i ? 'is-visible' : ''"></i>
 					</a>
 				</template>
 			</div>
 
 			<!-- Columna derecha: preview sticky -->
-			<div class="flch-escuelas__preview reveal">
-				<div class="flch-escuelas__preview-card">
+			<div class="kg-schools__preview reveal">
+				<div class="kg-schools__preview-card">
 					<template x-for="(s, i) in schools" :key="'p' + s.name">
-						<div class="flch-escuelas__preview-image"
+						<div class="kg-schools__preview-image"
 							 :class="school === i ? 'is-visible' : ''">
 							<img :src="s.img" :alt="s.name" loading="lazy">
 						</div>
 					</template>
-					<div class="flch-escuelas__preview-overlay"></div>
-					<div class="flch-escuelas__preview-body">
-						<div class="flch-escuelas__preview-meta">
-							<span class="flch-escuelas__preview-num"
+					<div class="kg-schools__preview-overlay"></div>
+					<div class="kg-schools__preview-body">
+						<div class="kg-schools__preview-meta">
+							<span class="kg-schools__preview-num"
 								  x-text="schools[school].n"></span>
-							<span class="flch-escuelas__preview-line"></span>
+							<span class="kg-schools__preview-line"></span>
 						</div>
-						<h3 class="flch-escuelas__preview-title"
+						<h3 class="kg-schools__preview-title"
 							x-text="schools[school].name"></h3>
-						<p class="flch-escuelas__preview-desc"
+						<p class="kg-schools__preview-desc"
 						   x-text="schools[school].desc"></p>
 						<a :href="schools[school].href"
-						   class="flch-escuelas__preview-cta"
+						   class="kg-schools__preview-cta"
 						   target="_blank" rel="noopener noreferrer">
 							Ver escuela
 							<i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -91,22 +91,22 @@
 
 <style>
 /* ── Escuelas ───────────────────────────────────────────── */
-.flch-escuelas {
+.kg-schools {
 	padding: 90px 0 32px;
-	background: var(--flch-surface, #FFFFFF);
+	background: var(--kg-surface, #FFFFFF);
 }
-:root.dark .flch-escuelas {
-	background: var(--flch-surface, #0D2747);
+:root.dark .kg-schools {
+	background: var(--kg-surface, #0D2747);
 }
 
-.flch-escuelas__container {
+.kg-schools__container {
 	max-width: var(--container-max, 1300px);
 	margin: 0 auto;
 	padding: 0 2.5rem;
 }
 
 /* ── Header ─────────────────────────────────────────────── */
-.flch-escuelas__header {
+.kg-schools__header {
 	display:         flex;
 	align-items:     flex-end;
 	justify-content: space-between;
@@ -115,20 +115,20 @@
 	margin-bottom:   40px;
 }
 
-.flch-escuelas__eyebrow {
+.kg-schools__eyebrow {
 	font-size:      12px;
 	font-weight:    700;
 	letter-spacing: .16em;
 	text-transform: uppercase;
-	color:          var(--flch-gold, #A8861C);
+	color:          var(--kg-gold, #A8861C);
 	margin-bottom:  12px;
 }
 
-.flch-escuelas__eyebrow-num {
+.kg-schools__eyebrow-num {
 	opacity: 0.6;
 }
 
-.flch-escuelas__title {
+.kg-schools__title {
 	font-family:    var(--font-display, 'Newsreader', serif);
 	font-size:      clamp(32px, 4vw, 50px);
 	font-weight:    600;
@@ -138,15 +138,15 @@
 	margin:         0;
 }
 
-:root.dark .flch-escuelas__title {
+:root.dark .kg-schools__title {
 	color: #F1F0EC;
 }
 
-.flch-escuelas__title-accent {
-	color: var(--flch-gold, #A8861C);
+.kg-schools__title-accent {
+	color: var(--kg-gold, #A8861C);
 }
 
-.flch-escuelas__subtitle {
+.kg-schools__subtitle {
 	font-size:    16px;
 	line-height:  1.6;
 	color:        var(--gray-dark, #6E6B64);
@@ -154,12 +154,12 @@
 	margin:       0;
 }
 
-:root.dark .flch-escuelas__subtitle {
+:root.dark .kg-schools__subtitle {
 	color: rgba(255,255,255,.65);
 }
 
 /* ── Grid ───────────────────────────────────────────────── */
-.flch-escuelas__grid {
+.kg-schools__grid {
 	display: grid;
 	grid-template-columns: 1.15fr 0.85fr;
 	gap: 48px;
@@ -167,45 +167,45 @@
 }
 
 @media (max-width: 1024px) {
-	.flch-escuelas__grid {
+	.kg-schools__grid {
 		grid-template-columns: 1fr;
 		gap: 32px;
 	}
 }
 
 /* ── Index (columna izquierda) ──────────────────────────── */
-.flch-escuelas__index {
+.kg-schools__index {
 	display:        flex;
 	flex-direction: column;
-	border-top:     1px solid var(--flch-border, rgba(0,0,0,.1));
+	border-top:     1px solid var(--kg-border, rgba(0,0,0,.1));
 }
 
-:root.dark .flch-escuelas__index {
+:root.dark .kg-schools__index {
 	border-top-color: rgba(255,255,255,.1);
 }
 
-.flch-escuelas__index-row {
+.kg-schools__index-row {
 	display:         flex;
 	align-items:     center;
 	gap:             18px;
 	padding:         18px 0 18px 16px;
-	border-bottom:   1px solid var(--flch-border, rgba(0,0,0,.1));
+	border-bottom:   1px solid var(--kg-border, rgba(0,0,0,.1));
 	border-left:     3px solid transparent;
 	text-decoration: none;
 	transition:      all .3s ease;
 }
 
-:root.dark .flch-escuelas__index-row {
+:root.dark .kg-schools__index-row {
 	border-bottom-color: rgba(255,255,255,.1);
 }
 
-.flch-escuelas__index-row.is-active {
-	border-left-color: var(--flch-gold, #A8861C);
+.kg-schools__index-row.is-active {
+	border-left-color: var(--kg-gold, #A8861C);
 	padding-left: 20px;
 	background: linear-gradient(90deg, rgba(168,134,28,.07) 0%, transparent 100%);
 }
 
-.flch-escuelas__index-num {
+.kg-schools__index-num {
 	font-family:  var(--font-display, 'Newsreader', serif);
 	font-style:   italic;
 	font-size:    15px;
@@ -215,11 +215,11 @@
 	transition:   color .3s ease;
 }
 
-.flch-escuelas__index-num.is-active {
-	color: var(--flch-gold, #A8861C);
+.kg-schools__index-num.is-active {
+	color: var(--kg-gold, #A8861C);
 }
 
-.flch-escuelas__index-name {
+.kg-schools__index-name {
 	font-family:  var(--font-display, 'Newsreader', serif);
 	font-size:    clamp(20px, 2vw, 27px);
 	font-weight:  600;
@@ -230,56 +230,56 @@
 	transition:   color .3s ease;
 }
 
-:root.dark .flch-escuelas__index-name {
+:root.dark .kg-schools__index-name {
 	color: #F1F0EC;
 }
 
-.flch-escuelas__index-row.is-active .flch-escuelas__index-name {
-	color: var(--flch-gold, #A8861C);
+.kg-schools__index-row.is-active .kg-schools__index-name {
+	color: var(--kg-gold, #A8861C);
 }
 
-.flch-escuelas__index-arrow {
+.kg-schools__index-arrow {
 	font-size:   14px;
-	color:       var(--flch-gold, #A8861C);
+	color:       var(--kg-gold, #A8861C);
 	opacity:     0;
 	transform:   translateX(-8px);
 	transition:  all .3s ease;
 }
 
-.flch-escuelas__index-arrow.is-visible {
+.kg-schools__index-arrow.is-visible {
 	opacity:   1;
 	transform: translateX(0);
 }
 
 /* ── Preview (columna derecha) ─────────────────────────── */
-.flch-escuelas__preview {
+.kg-schools__preview {
 	position: sticky;
 	top: 112px;
 }
 
 @media (max-width: 1024px) {
-	.flch-escuelas__preview {
+	.kg-schools__preview {
 		position: relative;
 		top: 0;
 	}
 }
 
-.flch-escuelas__preview-card {
+.kg-schools__preview-card {
 	position:       relative;
 	border-radius:  18px;
 	overflow:       hidden;
-	border:         1px solid var(--flch-border, rgba(0,0,0,.1));
+	border:         1px solid var(--kg-border, rgba(0,0,0,.1));
 	box-shadow:     0 24px 60px rgba(8,18,32,.2);
-	background:     var(--flch-surface-soft, #F7F5EF);
+	background:     var(--kg-surface-soft, #F7F5EF);
 	aspect-ratio:   4 / 4.4;
 }
 
-:root.dark .flch-escuelas__preview-card {
+:root.dark .kg-schools__preview-card {
 	border-color: rgba(255,255,255,.1);
 	background:   rgba(13,39,71,.5);
 }
 
-.flch-escuelas__preview-image {
+.kg-schools__preview-image {
 	position:      absolute;
 	inset:         0;
 	z-index:       1;
@@ -287,17 +287,17 @@
 	transition:    opacity .5s ease;
 }
 
-.flch-escuelas__preview-image.is-visible {
+.kg-schools__preview-image.is-visible {
 	opacity: 1;
 }
 
-.flch-escuelas__preview-image img {
+.kg-schools__preview-image img {
 	width:  100%;
 	height: 100%;
 	object-fit: cover;
 }
 
-.flch-escuelas__preview-overlay {
+.kg-schools__preview-overlay {
 	position:   absolute;
 	inset:      0;
 	z-index:    2;
@@ -305,7 +305,7 @@
 	background: linear-gradient(180deg, rgba(8,18,32,0) 40%, rgba(8,18,32,.92) 100%);
 }
 
-.flch-escuelas__preview-body {
+.kg-schools__preview-body {
 	position: absolute;
 	left:     0;
 	right:    0;
@@ -314,28 +314,28 @@
 	padding:  26px;
 }
 
-.flch-escuelas__preview-meta {
+.kg-schools__preview-meta {
 	display:     flex;
 	align-items: center;
 	gap:         10px;
 	margin-bottom: 10px;
 }
 
-.flch-escuelas__preview-num {
+.kg-schools__preview-num {
 	font-family: var(--font-display, 'Newsreader', serif);
 	font-style:  italic;
 	font-size:   16px;
-	color:       var(--flch-gold, #A8861C);
+	color:       var(--kg-gold, #A8861C);
 }
 
-.flch-escuelas__preview-line {
+.kg-schools__preview-line {
 	display: inline-block;
 	width:   26px;
 	height:  1px;
-	background: var(--flch-gold, #A8861C);
+	background: var(--kg-gold, #A8861C);
 }
 
-.flch-escuelas__preview-title {
+.kg-schools__preview-title {
 	font-family:   var(--font-display, 'Newsreader', serif);
 	font-size:     26px;
 	font-weight:   600;
@@ -344,17 +344,17 @@
 	margin:        0 0 8px;
 }
 
-.flch-escuelas__preview-desc {
+.kg-schools__preview-desc {
 	font-size:   14px;
 	line-height: 1.5;
 	color:       rgba(255,255,255,.75);
 	margin:      0 0 16px;
 }
 
-.flch-escuelas__preview-cta {
+.kg-schools__preview-cta {
 	font-size:      13.5px;
 	font-weight:    700;
-	color:          var(--flch-gold, #A8861C);
+	color:          var(--kg-gold, #A8861C);
 	text-decoration: none;
 	display:        inline-flex;
 	align-items:    center;
@@ -362,57 +362,57 @@
 	transition:     gap .3s ease;
 }
 
-.flch-escuelas__preview-cta:hover {
+.kg-schools__preview-cta:hover {
 	gap: 12px;
 }
 
-.flch-escuelas__preview-cta i {
+.kg-schools__preview-cta i {
 	font-size: 12px;
 }
 
 /* ── Mobile ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
-	.flch-escuelas {
+	.kg-schools {
 		padding: 60px 0 24px;
 	}
-	.flch-escuelas__container {
+	.kg-schools__container {
 		padding: 0 1.25rem;
 	}
-	.flch-escuelas__header {
+	.kg-schools__header {
 		margin-bottom: 28px;
 	}
-	.flch-escuelas__index-row {
+	.kg-schools__index-row {
 		padding: 14px 0 14px 12px;
 		gap: 12px;
 	}
-	.flch-escuelas__index-row.is-active {
+	.kg-schools__index-row.is-active {
 		padding-left: 16px;
 	}
-	.flch-escuelas__index-name {
+	.kg-schools__index-name {
 		font-size: 18px;
 	}
-	.flch-escuelas__preview-card {
+	.kg-schools__preview-card {
 		aspect-ratio: 16 / 10;
 	}
-	.flch-escuelas__preview-title {
+	.kg-schools__preview-title {
 		font-size: 22px;
 	}
 }
 
 @media (max-width: 480px) {
-	.flch-escuelas__preview-card {
+	.kg-schools__preview-card {
 		aspect-ratio: 4 / 3;
 	}
 }
 
 /* ── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-	.flch-escuelas__preview-image {
+	.kg-schools__preview-image {
 		transition: none;
 	}
-	.flch-escuelas__index-row,
-	.flch-escuelas__index-arrow,
-	.flch-escuelas__preview-cta {
+	.kg-schools__index-row,
+	.kg-schools__index-arrow,
+	.kg-schools__preview-cta {
 		transition: none;
 	}
 }

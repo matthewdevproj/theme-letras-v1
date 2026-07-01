@@ -13,7 +13,7 @@
 (function() {
     'use strict';
 
-    var waitForGSAP = (window.flchGSAP && window.flchGSAP.waitForGSAP) || function(cb, attempts) {
+    var waitForGSAP = (window.kgGSAP && window.kgGSAP.waitForGSAP) || function(cb, attempts) {
         attempts = attempts || 0;
         if (typeof gsap !== 'undefined') {
             cb();
@@ -31,7 +31,7 @@
         /* ─── CREAR ESTRUCTURA DEL LIGHTBOX ────────────────────────────*/
 
         var lightbox = document.createElement('div');
-        lightbox.id = 'flch-lightbox';
+        lightbox.id = 'kg-lightbox';
         lightbox.style.cssText = [
             'position: fixed',
             'inset: 0',
@@ -309,7 +309,7 @@
             '.elementor-gallery-item__link',
             '.wp-block-gallery a',
             'a[data-elementor-lightbox]',
-            '.flch-gallery a'
+            '.kg-gallery a'
         ].join(', ');
 
         // gsap-utils: toArray handles dedup and returns clean array
@@ -322,7 +322,7 @@
 
             // Encontrar galería padre
             var gallery = link.closest(
-                '.gallery, .elementor-gallery, .wp-block-gallery, .flch-gallery'
+                '.gallery, .elementor-gallery, .wp-block-gallery, .kg-gallery'
             );
 
             // Recopilar todas las imágenes de la galería

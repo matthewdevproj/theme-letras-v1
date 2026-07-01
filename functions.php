@@ -297,11 +297,6 @@ function letras_flch_widgets_init() {
         'description' => esc_html__( 'Widgets para la vista de artículo individual.', 'letrasflch' ),
     ) ) );
 
-    register_sidebar( array_merge( $defaults, array(
-        'name'        => esc_html__( 'Sidebar de Archivo',  'letrasflch' ),
-        'id'          => 'archive-sidebar',
-        'description' => esc_html__( 'Widgets para páginas de archivo.', 'letrasflch' ),
-    ) ) );
 }
 add_action( 'widgets_init', 'letras_flch_widgets_init' );
 
@@ -351,12 +346,14 @@ function letras_flch_enqueue_scripts() {
         array( 'letras-main' ),
         file_exists( $dir . '/css/header.css' ) ? filemtime( $dir . '/css/header.css' ) : $version );
     wp_enqueue_style( 'letras-theme',     get_stylesheet_uri(),        array( 'letras-header' ),   $version );
-    wp_enqueue_style( 'letras-modern-ui', $uri . '/css/modern-ui.css',
-        array( 'letras-theme' ),
-        file_exists( $dir . '/css/modern-ui.css' ) ? filemtime( $dir . '/css/modern-ui.css' ) : $version );
     wp_enqueue_style( 'letras-footer',    $uri . '/css/footer.css',
-        array( 'letras-modern-ui' ),
+        array( 'letras-theme' ),
         file_exists( $dir . '/css/footer.css' ) ? filemtime( $dir . '/css/footer.css' ) : $version );
+
+    // Kingster design system (editorial components + command palette)
+    wp_enqueue_style( 'letras-kingster', $uri . '/css/kingster.css',
+        array( 'letras-variables' ),
+        file_exists( $dir . '/css/kingster.css' ) ? filemtime( $dir . '/css/kingster.css' ) : $version );
 
     // Header Moderno CSS (opcional - todos los estilos consolidados en un archivo)
     if (defined('LETRAS_USE_MODERN_HEADER') && LETRAS_USE_MODERN_HEADER) {
@@ -381,6 +378,15 @@ function letras_flch_enqueue_scripts() {
         $uri . '/js/vendor/alpine.min.js',
         array( 'letras-theme-stack' ),
         file_exists( $dir . '/js/vendor/alpine.min.js' ) ? filemtime( $dir . '/js/vendor/alpine.min.js' ) : '3.14.8',
+        array( 'strategy' => 'defer', 'in_footer' => true )
+    );
+
+    // Kingster extras (command palette + GSAP reveals)
+    wp_enqueue_script(
+        'letras-kingster-extras',
+        $uri . '/js/kingster-extras.js',
+        array( 'letras-theme-stack' ),
+        file_exists( $dir . '/js/kingster-extras.js' ) ? filemtime( $dir . '/js/kingster-extras.js' ) : $version,
         array( 'strategy' => 'defer', 'in_footer' => true )
     );
 

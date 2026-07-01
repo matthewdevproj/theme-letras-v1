@@ -50,6 +50,22 @@
     --gray-dark:       #6C757D;
 
     /* ==========================================
+       ALIASES flch- → kg- (compatibilidad post-modern-ui)
+       ========================================== */
+    --flch-gold:        var(--kg-gold);
+    --flch-navy:        var(--kg-azul);
+    --flch-navy-900:    #07182E;
+    --flch-navy-800:    var(--kg-azuld);
+    --flch-ink:         var(--kg-ink);
+    --flch-muted:       var(--kg-muted);
+    --flch-border:      var(--kg-line);
+    --flch-surface:     var(--kg-panel);
+    --flch-surface-soft: var(--kg-soft);
+    --flch-radius:      8px;
+    --flch-ease:        var(--kg-ease);
+    --flch-shadow-sm:   0 1px 2px rgba(15, 23, 42, 0.06);
+
+    /* ==========================================
        TIPOGRAFÍA CODICE
        Display: Newsreader (editorial)
        Body:    Hanken Grotesk (UI)
@@ -166,6 +182,16 @@
     --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md:    0 4px 16px rgba(0, 0, 0, 0.4);
     --shadow-lg:    0 8px 24px rgba(0, 0, 0, 0.5);
+
+    /* flch- aliases dark */
+    --flch-navy:        #7FA9CC;
+    --flch-navy-900:    #0C1521;
+    --flch-navy-800:    #1A2230;
+    --flch-ink:         #E8E6E0;
+    --flch-muted:       #94A3B8;
+    --flch-border:      #2D3748;
+    --flch-surface:     #0D2747;
+    --flch-surface-soft: #0C1521;
 }
 
 /* System preference (cuando no hay clase .dark ni .light) */
@@ -182,5 +208,56 @@
         --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.3);
         --shadow-md:    0 4px 16px rgba(0, 0, 0, 0.4);
         --shadow-lg:    0 8px 24px rgba(0, 0, 0, 0.5);
+
+        /* flch- aliases dark */
+        --flch-navy:        #7FA9CC;
+        --flch-navy-900:    #0C1521;
+        --flch-navy-800:    #1A2230;
+        --flch-ink:         #E8E6E0;
+        --flch-muted:       #94A3B8;
+        --flch-border:      #2D3748;
+        --flch-surface:     #0D2747;
+        --flch-surface-soft: #0C1521;
+}
+
+/* ============================================================
+   KINGSTER — Design tokens (Propuesta "Portada FLCH Kingster")
+   Editorial-first layout system with premium micro-interactions.
+   ============================================================ */
+:root {
+    --kg-azul:        var(--azuld);
+    --kg-azuld:       #0E2A48;
+    --kg-azul-bright: var(--azul);
+    --kg-night:       #0E2742;
+    --kg-gold:        var(--gold);
+    --kg-gold2:       #D6B655;
+    --kg-green:       var(--success);
+    --kg-panel:       var(--white);
+    --kg-soft:        #F4F1E9;
+    --kg-line:        rgba(26,34,48,0.12);
+    --kg-ink:         var(--ink);
+    --kg-muted:       #5E6675;
+    --kg-container:   1200px;
+    --kg-ease:        cubic-bezier(.16,1,.3,1);
+}
+@media (min-width: 1600px) { :root { --kg-container: 1440px; } }
+@media (min-width: 1920px) { :root { --kg-container: 1680px; } }
+@media (min-width: 2560px) { :root { --kg-container: 2040px; } }
+
+:root.dark {
+    --kg-panel: #10243B;
+    --kg-soft:  #0C1F35;
+    --kg-line:  rgba(232,230,224,0.12);
+    --kg-ink:   #E8E6E0;
+    --kg-muted: #A0AEC0;
+}
+@media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+        --kg-panel: #10243B;
+        --kg-soft:  #0C1F35;
+        --kg-line:  rgba(232,230,224,0.12);
+        --kg-ink:   #E8E6E0;
+        --kg-muted: #A0AEC0;
     }
+}
 }

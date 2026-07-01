@@ -24,7 +24,7 @@
         document.body.classList.add('gsap-fallback');
     }, 3000);
 
-    var waitForGSAP = (window.flchGSAP && window.flchGSAP.waitForGSAP) || function(cb, attempts) {
+    var waitForGSAP = (window.kgGSAP && window.kgGSAP.waitForGSAP) || function(cb, attempts) {
         attempts = attempts || 0;
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             clearTimeout(gsapTimeout);
@@ -87,7 +87,7 @@
             '.sp-post-item',
             'article.type-post',
             '.post-card',
-            '.flch-card',
+            '.kg-card',
             '.elementor-post'
         ].join(', ');
 
@@ -182,7 +182,7 @@
         hoverCards.forEach(function(card) {
             var img = card.querySelector('img');
             var badge = card.querySelector(
-                '.flch-badge, .post-badge, .category-badge, .sp-post-cat a'
+                '.kg-badge, .post-badge, .category-badge, .sp-post-cat a'
             );
 
             // Skip hover effects en mobile

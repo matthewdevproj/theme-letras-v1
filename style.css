@@ -145,7 +145,7 @@ table th {
    ═══════════════════════════════════════════════════ */
 
 .reveal,
-[data-flch-animate] {
+[data-kg-animate] {
   will-change: transform, opacity;
   opacity: 0;
   transform: translateY(16px);
@@ -154,7 +154,7 @@ table th {
 }
 
 .reveal.is-in,
-[data-flch-animate].flch-animate-ready {
+[data-kg-animate].kg-animate-ready {
   opacity: 1;
   transform: translateY(0);
 }
@@ -166,7 +166,7 @@ table th {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  [data-flch-animate] {
+  [data-kg-animate] {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;

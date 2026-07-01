@@ -440,7 +440,7 @@ add_filter('elementor/frontend/print_google_fonts', function($fonts) {
 
 // Forzar variables CODICE en Elementor (priority 1 = antes que Elementor CSS)
 add_action('wp_head', function() {
-    echo '<style id="flch-elementor-override">
+    echo '<style id="kg-elementor-override">
     /* Override variables globales de Elementor con identidad CODICE */
     :root {
         --e-global-typography-primary-font-family: "Hanken Grotesk" !important;
@@ -508,7 +508,7 @@ add_action('wp_enqueue_scripts', function() {
         true
     );
 
-    wp_localize_script('letras-page-transitions', 'flchTransition', [
+    wp_localize_script('letras-page-transitions', 'kgTransition', [
         'logoUrl' => get_template_directory_uri() . '/images/logo-blanco-letras.png',
     ]);
 }, 36);
@@ -537,9 +537,9 @@ add_action('wp_enqueue_scripts', function() {
    ══════════════════════════════════════════════════════════ */
 add_action('wp_footer', function() {
     ?>
-    <script id="flch-gsap-utility">
-    window.flchGSAP = window.flchGSAP || {};
-    window.flchGSAP.waitForGSAP = function(cb, attempts, maxAttempts, checkScrollTrigger) {
+    <script id="kg-gsap-utility">
+    window.kgGSAP = window.kgGSAP || {};
+    window.kgGSAP.waitForGSAP = function(cb, attempts, maxAttempts, checkScrollTrigger) {
         attempts = attempts || 0;
         maxAttempts = maxAttempts || 60;
         var ready = typeof gsap !== 'undefined';
@@ -551,10 +551,10 @@ add_action('wp_footer', function() {
             cb();
         } else if (attempts < maxAttempts) {
             setTimeout(function() {
-                window.flchGSAP.waitForGSAP(cb, attempts + 1, maxAttempts, checkScrollTrigger);
+                window.kgGSAP.waitForGSAP(cb, attempts + 1, maxAttempts, checkScrollTrigger);
             }, 50);
         } else {
-            console.warn('flchGSAP: GSAP no disponible después de ' + (maxAttempts * 50) + 'ms');
+            console.warn('kgGSAP: GSAP no disponible después de ' + (maxAttempts * 50) + 'ms');
         }
     };
 
@@ -749,7 +749,7 @@ add_action('wp_head', function() {
     if (!is_admin_bar_showing()) return;
 
     ?>
-    <style id="flch-admin-bar-fix">
+    <style id="kg-admin-bar-fix">
     /* Admin bar compensation - prevents 262px white space */
     body.admin-bar .main-header {
         top: 32px !important;
@@ -850,7 +850,7 @@ add_action('wp_head', function() {
     )) return;
 
     if (!is_front_page() && !is_page(['linguistica-flch'])) return;
-    echo '<style id="flch-elementor-animations-off">
+    echo '<style id="kg-elementor-animations-off">
     .elementor-invisible { visibility: visible !important; }
     .elementor-element .elementor-animation-grow,
     .elementor-element .elementor-animation-shrink,
