@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <script>(function(){var t;try{t=localStorage.getItem('kg-theme')}catch(e){}if(t==='dark')document.documentElement.classList.add('dark')})()</script>
+    <script>(function(){var t;try{t=localStorage.getItem('flch-theme')}catch(e){}if(t==='dark')document.documentElement.classList.add('dark')})()</script>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.png">
@@ -22,7 +22,6 @@
 <body <?php body_class(); ?>
     x-data="{
         scrolled: false,
-        search: false,
         mobile: false,
         init() {
             let tick = false;
@@ -37,48 +36,48 @@
             }, { passive: true });
         }
     }"
-    @keydown.escape="search = false; mobile = false">
+    @keydown.escape="mobile = false">
 
     <?php wp_body_open(); ?>
 
     <a href="#main" class="skip-link">Saltar al contenido</a>
 
     <!-- TOPBAR -->
-    <div class="kg-topbar hidden lg:block">
-        <div class="kg-topbar__desktop">
-            <div class="kg-topbar__contact-group">
-                <a href="https://letras.unmsm.edu.pe/directorio/" target="_blank" class="kg-topbar__item">
-                    <div class="kg-topbar__icon"><i class="fas fa-address-book"></i></div>
-                    <div class="kg-topbar__text">
-                        <span class="kg-topbar__label">Directorio</span>
-                        <span class="kg-topbar__value">FLCH</span>
+    <div class="flch-topbar hidden lg:block">
+        <div class="tb-desktop">
+            <div class="tb-contact-group">
+                <a href="https://letras.unmsm.edu.pe/directorio/" target="_blank" class="tb-item">
+                    <div class="tb-icon"><i class="fas fa-address-book"></i></div>
+                    <div class="tb-text">
+                        <span class="tb-label">Directorio</span>
+                        <span class="tb-value">FLCH</span>
                     </div>
                 </a>
-                <a href="mailto:informatica.letras@unmsm.edu.pe" class="kg-topbar__item">
-                    <div class="kg-topbar__icon"><i class="fas fa-envelope"></i></div>
-                    <div class="kg-topbar__text">
-                        <span class="kg-topbar__label">Email</span>
-                        <span class="kg-topbar__value">informatica.letras@unmsm.edu.pe</span>
+                <a href="mailto:informatica.letras@unmsm.edu.pe" class="tb-item">
+                    <div class="tb-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="tb-text">
+                        <span class="tb-label">Email</span>
+                        <span class="tb-value">informatica.letras@unmsm.edu.pe</span>
                     </div>
                 </a>
-                <a href="https://letras.unmsm.edu.pe/horarios-flch.php" target="_blank" class="kg-topbar__item">
-                    <div class="kg-topbar__icon"><i class="fas fa-clock"></i></div>
-                    <div class="kg-topbar__text">
-                        <span class="kg-topbar__label">Horarios</span>
-                        <span class="kg-topbar__value"><?php echo esc_html( date('Y') . '-I' ); ?></span>
+                <a href="https://letras.unmsm.edu.pe/horarios-flch.php" target="_blank" class="tb-item">
+                    <div class="tb-icon"><i class="fas fa-clock"></i></div>
+                    <div class="tb-text">
+                        <span class="tb-label">Horarios</span>
+                        <span class="tb-value"><?php echo esc_html( date('Y') . '-I' ); ?></span>
                     </div>
                 </a>
             </div>
-            <div class="kg-topbar__badge">
-                <span class="kg-topbar__badge-dot"></span>
+            <div class="tb-badge">
+                <span class="tb-badge-dot"></span>
                 <span>Ciclo <?php echo esc_html( date('Y') ); ?>-I</span>
             </div>
-            <div class="kg-topbar__social-group">
-                <span class="kg-topbar__social-label">Síguenos</span>
-                <a href="https://www.facebook.com/letrassanmarcos" target="_blank" class="kg-topbar__soc fb"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/letrasunmsm/" target="_blank" class="kg-topbar__soc ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@LetrasTV-p9j" target="_blank" class="kg-topbar__soc yt"><i class="fab fa-youtube"></i></a>
-                <a href="https://pe.linkedin.com/school/letrasunmsm/" target="_blank" class="kg-topbar__soc li"><i class="fab fa-linkedin-in"></i></a>
+            <div class="tb-social-group">
+                <span class="tb-social-label">Síguenos</span>
+                <a href="https://www.facebook.com/letrassanmarcos" target="_blank" class="tb-soc fb"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/letrasunmsm/" target="_blank" class="tb-soc ig"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@LetrasTV-p9j" target="_blank" class="tb-soc yt"><i class="fab fa-youtube"></i></a>
+                <a href="https://pe.linkedin.com/school/letrasunmsm/" target="_blank" class="tb-soc li"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
@@ -110,11 +109,11 @@
             <div class="flex items-center gap-3" style="flex-shrink: 0;">
                 <button data-kg-search-trigger
                         class="header-btn hidden sm:flex"
-                        aria-label="Búsqueda rápida (⌘K)">
+                        aria-label="Buscar (Ctrl/Cmd + K)"
+                        aria-haspopup="dialog">
                     <i class="fas fa-search"></i>
-                    <span class="hidden lg:inline ml-1.5 text-[11px] opacity-60 kg-mono">⌘K</span>
                 </button>
-                <button x-data="kgTheme"
+                <button x-data="flchTheme"
                         @click="toggle()"
                         class="header-btn"
                         :class="{'active': isDark}"
@@ -134,24 +133,12 @@
             </div>
         </div>
 
+        <!-- Search: reemplazado por el command palette ⌘K (ver template-parts/command-palette.php) -->
     </header>
 
-    <!-- COMMAND PALETTE (⌘K) -->
-    <div data-kg-cmdk hidden class="kg-cmdk-overlay" role="dialog" aria-modal="true" aria-label="Búsqueda rápida">
-        <div class="kg-cmdk">
-            <div class="kg-cmdk__field">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input data-kg-cmdk-input type="search" placeholder="Buscar páginas, noticias, personas…" autocomplete="off">
-                <span class="kg-cmdk__esc mono">ESC</span>
-            </div>
-            <div data-kg-cmdk-results class="kg-cmdk__results"></div>
-            <div class="kg-cmdk__footer">
-                <span><kbd>↑↓</kbd> Navegar</span>
-                <span><kbd>↵</kbd> Abrir</span>
-                <span><kbd>ESC</kbd> Cerrar</span>
-            </div>
-        </div>
-    </div>
+    <?php if ( is_front_page() ) : ?>
+        <?php get_template_part( 'template-parts/command-palette' ); ?>
+    <?php endif; ?>
 
     <!-- MOBILE MENU -->
     <div x-show="mobile" @click="mobile=false" class="mobile-backdrop" style="display:none" aria-hidden="true"></div>
@@ -170,4 +157,10 @@
         </nav>
     </div>
 
-    <div id="page" class="min-h-screen">
+    <?php /* NOTA (fix de accesibilidad): no se abre <main> aquí — cada
+       plantilla (front-page.php, page.php, single.php, archive.php, etc.)
+       ya abre su propio <main id="main">. Abrirlo también en header.php
+       generaba un <main id="main"> anidado y duplicado en TODAS las
+       páginas del sitio (HTML inválido + landmark ambiguo para lectores
+       de pantalla). El cierre correspondiente en footer.php también se
+       quitó. */ ?>
