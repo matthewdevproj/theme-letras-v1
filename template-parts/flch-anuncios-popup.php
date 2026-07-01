@@ -31,18 +31,18 @@ $cfg = array(
 // ── Anuncios ───────────────────────────────────────────────
 $anuncios = array(
     array(
-        'imagen'      => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/06/Comunicado-1.jpeg',
+        'imagen'      => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/07/Comunicado.jpeg',
         'alt'         => '',
         'link'        => '',
         'link_texto'  => 'Ver más',
     ),
     // Agregar más anuncios aquí:
-    // array(
-    //     'imagen'     => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/04/otro.jpg',
-    //     'alt'        => 'Descripción del anuncio',
-    //     'link'       => 'https://letras.unmsm.edu.pe/alguna-pagina/',
-    //     'link_texto' => 'Más información',
-    // ),
+     array(
+         'imagen'     => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/06/Cynthyaan-9.png',
+         'alt'        => '',
+         'link'       => 'https://forms.office.com/r/x3RD0xsNQg',
+         'link_texto' => 'Más información',
+     ),
 );
 
 if ( empty( $anuncios ) ) {
