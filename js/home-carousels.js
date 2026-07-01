@@ -67,6 +67,12 @@
     // Delegación: un solo listener en document cubre ambos pares de
     // botones, sin importar cuándo se creó/reemplazó el DOM de cada
     // carrusel ni el orden de ejecución de otros scripts del tema.
+    //
+    // OJO: con arrows:false (usamos botones propios en vez de las
+    // flechas nativas de Splide) el control relativo '<'/'>' no
+    // resuelve dirección porque depende del componente Arrows, que
+    // aquí no está montado — queda como no-op silencioso. '+1'/'-1'
+    // sí funcionan siempre, con o sin el componente Arrows.
     document.addEventListener('click', function (e) {
         var target = e.target.closest && e.target.closest(
             '.kg-banner__prev, .kg-banner__next, .kg-rev-prev, .kg-rev-next'
@@ -74,19 +80,18 @@
         if (!target) return;
 
         if (target.classList.contains('kg-banner__prev') && instances.banner) {
-            instances.banner.go('<');
+            instances.banner.go('-1');
         } else if (target.classList.contains('kg-banner__next') && instances.banner) {
-            instances.banner.go('>');
+            instances.banner.go('+1');
         } else if (target.classList.contains('kg-rev-prev') && instances.revistas) {
-            instances.revistas.go('<');
+            instances.revistas.go('-1');
         } else if (target.classList.contains('kg-rev-next') && instances.revistas) {
-            instances.revistas.go('>');
+            instances.revistas.go('+1');
         }
     });
 
     ready(function () {
         initBannerDestacadas();
         initRevistas();
-        window.__kgCarousels = instances;
     });
 })();
