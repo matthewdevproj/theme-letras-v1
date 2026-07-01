@@ -225,28 +225,6 @@
         ) );
         ?>
 
-        <!-- Fila de perfiles -->
-        <ul class="kg-footer__profiles" aria-label="<?php esc_attr_e( 'Accesos por perfil', 'letrasflch' ); ?>">
-            <?php
-            $letras_flch_profiles = array(
-                array( 'label' => __( 'Postulantes', 'letrasflch' ), 'href' => 'https://admision.unmsm.edu.pe/' ),
-                array( 'label' => __( 'Estudiantes', 'letrasflch' ), 'href' => '#' ),
-                array( 'label' => __( 'Egresados', 'letrasflch' ), 'href' => '#' ),
-                array( 'label' => __( 'Docentes', 'letrasflch' ), 'href' => '#' ),
-                array( 'label' => __( 'Administrativos', 'letrasflch' ), 'href' => '#' ),
-                array( 'label' => __( 'Medios y externos', 'letrasflch' ), 'href' => '#' ),
-                array( 'label' => __( 'Directorio', 'letrasflch' ), 'href' => 'https://letras.unmsm.edu.pe/directorio/' ),
-            );
-            foreach ( $letras_flch_profiles as $profile ) :
-            ?>
-                <li>
-                    <a href="<?php echo esc_url( $profile['href'] ); ?>" class="kg-footer__profile-link">
-                        <?php echo esc_html( $profile['label'] ); ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-
         <!-- Barra inferior: copyright -->
         <div class="kg-footer__bottom">
             <div class="kg-footer__bottom-container">

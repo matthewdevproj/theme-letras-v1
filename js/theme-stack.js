@@ -252,6 +252,13 @@
                     apply: function () {
                         var root = document.documentElement;
                         root.classList.toggle('dark', this.isDark);
+                        // Además de .dark, hay que marcar .light explícitamente:
+                        // variables.css tiene un fallback "@media (prefers-color-scheme:
+                        // dark) :root:not(.light)" para respetar el tema del SO en la
+                        // primera visita. Sin la clase .light, ese fallback seguía
+                        // aplicando los colores oscuros aunque el usuario eligiera
+                        // "claro" en un sistema con dark mode activado.
+                        root.classList.toggle('light', !this.isDark);
                         root.style.colorScheme = this.isDark ? 'dark' : 'light';
                         localStorage.setItem('kg-theme', this.isDark ? 'dark' : 'light');
                     }
