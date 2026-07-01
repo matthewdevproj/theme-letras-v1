@@ -87,5 +87,6 @@
     ready(function () {
         initBannerDestacadas();
         initRevistas();
+        window.__kgCarousels = instances;
     });
 })();
