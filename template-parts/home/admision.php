@@ -59,6 +59,7 @@
 .kg-apply__title {
 	position: relative;
 	font-family: var(--font-display, 'Newsreader', serif);
+	color: #fff;
 	font-weight: 600; font-size: clamp(28px, 3vw, 40px); line-height: 1.05;
 	margin: 0 0 8px;
 }

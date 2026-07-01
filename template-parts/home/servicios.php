@@ -62,6 +62,7 @@ $letras_flch_servicios = array(
 .kg-serv-card:hover .kg-serv-ic { transform: translateY(-4px) scale(1.08); }
 .kg-serv-title {
 	font-family: var(--font-display, 'Newsreader', serif);
+	color: #fff;
 	font-weight: 600; font-size: 20px; margin: 18px 0 9px;
 }
 .kg-serv-desc { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,.72); margin: 0 0 14px; }

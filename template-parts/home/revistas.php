@@ -66,6 +66,7 @@ $letras_flch_revistas = letras_flch_revistas_data();
 }
 .kg-rev-name {
 	font-family: var(--font-display, 'Newsreader', serif); font-weight: 600;
+	color: var(--kg-ink, #1A2230);
 	font-size: 16px; line-height: 1.15; margin: 14px 0 4px;
 	transition: color .2s ease;
 }

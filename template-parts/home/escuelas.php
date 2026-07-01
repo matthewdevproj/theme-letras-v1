@@ -87,6 +87,7 @@ $letras_flch_schools = letras_flch_schools_data();
 .kg-school__num-line { width: 20px; height: 1px; background: var(--kg-gold2, #D6B655); }
 .kg-school__name {
 	font-family: var(--font-display, 'Newsreader', serif); font-weight: 600;
+	color: #fff;
 	font-size: 17px; line-height: 1.12; margin: 0 0 9px;
 }
 .kg-school-go {
