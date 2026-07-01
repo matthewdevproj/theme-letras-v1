@@ -56,7 +56,11 @@
     }
 
     function initMegaMenu() {
-        var items = document.querySelectorAll('.main-menu > li.has-dropdown');
+        // Sin '>': cubre también los submenús anidados (2º nivel y más).
+        // Con solo '.main-menu > li.has-dropdown' los hijos con sub-submenú
+        // propio nunca recibían mouseenter/mouseleave y solo se abrían con
+        // :focus-within (teclado) — con mouse el usuario no podía verlos.
+        var items = document.querySelectorAll('.main-menu li.has-dropdown');
         if (!items.length) return;
 
         items.forEach(function (item) {
@@ -73,6 +77,20 @@
             });
         });
     }
+
+    // Invocada vía onclick inline desde Letras_FLCH_Mobile_Walker_Nav
+    // (functions.php) — debe quedar en window porque el atributo
+    // onclick="" del HTML solo puede llamar funciones globales.
+    // Sin esto, expandir un submenú en el menú móvil no hacía nada
+    // (ReferenceError silencioso: la función nunca existía).
+    window.toggleMobileSubmenu = function (btn) {
+        var submenu = btn.parentElement && btn.parentElement.querySelector(':scope > ul.sub-menu');
+        if (!submenu) return;
+        var isOpen = submenu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        var icon = btn.querySelector('i');
+        if (icon) icon.classList.toggle('rotate-180', isOpen);
+    };
 
     function initScrollSpy() {
         var sections = ['admision', 'escuelas', 'revistas', 'noticias']
