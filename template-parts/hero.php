@@ -13,7 +13,7 @@
 <section class="kg-hero" id="kgHero" aria-label="Hero principal — Facultad de Letras y Ciencias Humanas">
 
 	<div class="kg-hero__bg"
-		 style="background-image:url('https://letras.unmsm.edu.pe/wp-content/uploads/2025/12/DJI_0007-Trim-frame-at-0m5s.jpg')"
+		 style="background-image:url('https://letras.unmsm.edu.pe/wp-content/uploads/2025/12/DJI_0007-Trim-frame-at-0m5s.webp')"
 		 role="img"
 		 aria-label="Vista aérea del campus universitario"></div>
 	<div class="kg-hero__overlay" aria-hidden="true"></div>
