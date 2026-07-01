@@ -673,6 +673,9 @@ button:active { transform: scale(.98); }
   display: flex; align-items: flex-start;
   justify-content: center; padding: 84px 24px 24px;
 }
+.kg-cmdk-overlay[hidden] {
+  display: none;
+}
 .kg-cmdk {
   background: var(--kg-panel); color: var(--kg-ink);
   border: 1px solid var(--kg-line); border-radius: 16px;

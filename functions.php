@@ -399,11 +399,19 @@ function letras_flch_enqueue_scripts() {
     );
 
     // CSS pipeline: variables → tailwind → main → header → theme → kingster → footer
-    wp_enqueue_style( 'letras-variables', $uri . '/css/variables.css', array(), $version );
+    // NOTA: variables.css/main.css usaban $version (número de versión fijo del
+    // tema) en vez de filemtime(), por lo que un cambio en el archivo no
+    // invalidaba la caché del navegador/CDN. Se homologa con el resto del
+    // pipeline (header/kingster/footer) que ya usa filemtime().
+    wp_enqueue_style( 'letras-variables', $uri . '/css/variables.css',
+        array(),
+        file_exists( $dir . '/css/variables.css' ) ? filemtime( $dir . '/css/variables.css' ) : $version );
     wp_enqueue_style( 'letras-tailwind',  $uri . '/css/tailwind.css',
         array( 'letras-variables' ),
         file_exists( $dir . '/css/tailwind.css' ) ? filemtime( $dir . '/css/tailwind.css' ) : $version );
-    wp_enqueue_style( 'letras-main',      $uri . '/css/main.css',      array( 'letras-tailwind' ), $version );
+    wp_enqueue_style( 'letras-main',      $uri . '/css/main.css',
+        array( 'letras-tailwind' ),
+        file_exists( $dir . '/css/main.css' ) ? filemtime( $dir . '/css/main.css' ) : $version );
     wp_enqueue_style( 'letras-header',    $uri . '/css/header.css',
         array( 'letras-main' ),
         file_exists( $dir . '/css/header.css' ) ? filemtime( $dir . '/css/header.css' ) : $version );
