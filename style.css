@@ -323,10 +323,17 @@ table tr:hover td {
 body,
 .elementor-widget-container,
 .elementor *,
-p, h1, h2, h3, h4, h5, h6,
+p,
 .entry-content, .site-content {
   font-family: var(--font-body, 'Hanken Grotesk', sans-serif) !important;
 }
+
+/* Los h1-h6 sueltos se quitaron de la regla de arriba: forzaban Hanken
+   Grotesk con !important sobre TODOS los títulos del sitio (rompía el
+   sistema editorial Newsreader/Hanken Grotesk en cada componente nuevo,
+   desde el H1 del hero hasta cada título de sección). El contenido
+   dentro de .elementor sigue cubierto por el selector ".elementor *"
+   de arriba; los títulos fuera de Elementor recuperan su font-display. */
 
 h1.entry-title,
 .site-title,
