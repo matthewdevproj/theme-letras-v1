@@ -81,9 +81,15 @@
 
         function filter(q) {
             q = (q || '').toLowerCase().trim();
-            matches = !q ? index.slice(0, 8) : index.filter(function (item) {
-                return ((item.title || '') + ' ' + (item.sub || '')).toLowerCase().indexOf(q) !== -1;
-            }).slice(0, 10);
+            // Spec del handoff: sin query, el palette solo muestra el grupo
+            // "Centros" (Posgrado, Centro de Idiomas, Examen de Suficiencia,
+            // CERSEU — los mismos 4 del hero/accesos), no los primeros N del
+            // índice completo (que antes traía ítems de menú/noticias).
+            matches = !q
+                ? index.filter(function (item) { return item.group === 'Centros'; })
+                : index.filter(function (item) {
+                    return ((item.title || '') + ' ' + (item.sub || '')).toLowerCase().indexOf(q) !== -1;
+                }).slice(0, 10);
             selIdx = 0;
             render();
         }
