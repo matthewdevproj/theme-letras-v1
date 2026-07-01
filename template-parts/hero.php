@@ -85,14 +85,14 @@
 	z-index:     5;
 	max-width:   var(--kg-container, 1200px);
 	margin:      0 auto;
-	padding:     96px 28px 150px;
-	min-height:  62vh;
+	padding:     110px 28px 170px;
+	min-height:  76vh;
 	display:     flex;
 	align-items: center;
 }
 
 .kg-hero__container {
-	max-width: 720px;
+	max-width: 640px;
 }
 
 .kg-hero__eyebrow {
