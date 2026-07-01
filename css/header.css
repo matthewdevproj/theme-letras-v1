@@ -710,6 +710,13 @@ nav.main-nav {
     border-color: var(--color-accent);
     color: #fff;
 }
+/* .header-btn{display:flex} tiene la misma especificidad que la utilidad
+   Tailwind .lg\:hidden y carga después en el pipeline de enqueue, por lo
+   que le ganaba y el hamburguesa quedaba visible en desktop. Selector
+   compuesto (mayor especificidad) para que gane sin depender del orden. */
+@media (min-width: 1024px) {
+    .header-btn.lg\:hidden { display: none; }
+}
 @media (max-width: 640px) {
     .header-btn { width: 38px; height: 38px; font-size: 0.9rem; }
 }
