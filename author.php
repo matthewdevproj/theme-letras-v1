@@ -165,7 +165,7 @@ if ( $letras_flch_bio ) {
 .kg-authorpage__tags { display: flex; flex-wrap: wrap; gap: 9px; }
 .kg-authorpage__tag {
 	font-size: 12.5px; font-weight: 600; color: var(--kg-azul, #143B63);
-	background: rgba(36,87,166,.1); padding: 7px 14px; border-radius: 999px;
+	background: var(--kg-azul-tint, rgba(20,59,99,.1)); padding: 7px 14px; border-radius: 999px;
 }
 
 .kg-authorpage__pubs { display: flex; flex-direction: column; }

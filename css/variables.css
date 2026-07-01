@@ -11,7 +11,8 @@
        ========================================== */
 
     /* Primarios */
-    --azul:         #2457A6;
+    --azul:         #143B63;
+    --azul-bright:  #2457A6;
     --azuld:        #143B63;
     --gold:         #A8861C;
 
@@ -228,7 +229,8 @@
 :root {
     --kg-azul:        var(--azuld);
     --kg-azuld:       #0E2A48;
-    --kg-azul-bright: var(--azul);
+    --kg-azul-bright: var(--azul-bright);
+    --kg-azul-tint:   rgba(20, 59, 99, .1);
     --kg-night:       #0E2742;
     --kg-gold:        var(--gold);
     --kg-gold2:       #D6B655;
@@ -251,6 +253,7 @@
     --kg-line:  rgba(232,230,224,0.12);
     --kg-ink:   #E8E6E0;
     --kg-muted: #A0AEC0;
+    --kg-azul-tint: rgba(36, 87, 166, .22);
 }
 @media (prefers-color-scheme: dark) {
     :root:not(.light) {
@@ -259,5 +262,6 @@
         --kg-line:  rgba(232,230,224,0.12);
         --kg-ink:   #E8E6E0;
         --kg-muted: #A0AEC0;
+        --kg-azul-tint: rgba(36, 87, 166, .22);
     }
 }

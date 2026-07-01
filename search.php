@@ -95,7 +95,7 @@ foreach ($search_post_types as $pt) {
                         $type_icon = isset($type_icons[get_post_type()]) ? $type_icons[get_post_type()] : 'fa-regular fa-file';
                     ?>
                         <a href="<?php the_permalink(); ?>" style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--kg-line);text-decoration:none;color:var(--kg-ink);transition:background-color .2s ease;" onmouseover="this.style.backgroundColor='var(--kg-soft)'" onmouseout="this.style.backgroundColor='transparent'">
-                            <span style="width:42px;height:42px;flex:none;border-radius:10px;background:rgba(36,87,166,.1);color:var(--kg-azul);display:flex;align-items:center;justify-content:center;font-size:16px;">
+                            <span style="width:42px;height:42px;flex:none;border-radius:10px;background:var(--kg-azul-tint, rgba(20,59,99,.1));color:var(--kg-azul);display:flex;align-items:center;justify-content:center;font-size:16px;">
                                 <i class="<?php echo esc_attr($type_icon); ?>" aria-hidden="true"></i>
                             </span>
                             <div style="flex:1;">
