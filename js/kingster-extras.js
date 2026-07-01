@@ -41,6 +41,15 @@
             });
         }
 
+        // Solo actualiza la clase .is-active sobre los nodos existentes.
+        // IMPORTANTE: no reconstruir el DOM aquí (ver bug de abajo).
+        function highlightActive() {
+            var rows = resultsWrap.querySelectorAll('.kg-cmdk__row');
+            rows.forEach(function (row, i) {
+                row.classList.toggle('is-active', i === selIdx);
+            });
+        }
+
         function render() {
             resultsWrap.innerHTML = '';
             if (!matches.length) {
@@ -60,7 +69,12 @@
                     '<span class="kg-cmdk__row-title">' + escapeHtml(item.title) + '</span>' +
                     '<span class="kg-cmdk__row-sub">' + escapeHtml(item.sub || '') + '</span></span>' +
                     '<span class="kg-cmdk__row-group">' + escapeHtml(item.group) + '</span>';
-                a.addEventListener('mouseenter', function () { selIdx = i; render(); });
+                // OJO: rehacer todo el DOM en mouseenter (como antes) destruye el
+                // <a> justo cuando el usuario está haciendo click sobre él — el
+                // navegador cancela la navegación porque el nodo original quedó
+                // desconectado entre mousedown y mouseup. Por eso el clic parecía
+                // no funcionar y solo Enter navegaba. Ahora solo se resalta.
+                a.addEventListener('mouseenter', function () { selIdx = i; highlightActive(); });
                 resultsWrap.appendChild(a);
             });
         }
@@ -99,8 +113,8 @@
             }
             if (!overlay.hidden) {
                 if (e.key === 'Escape') { closePalette(); }
-                else if (e.key === 'ArrowDown') { e.preventDefault(); selIdx = Math.min(matches.length - 1, selIdx + 1); render(); }
-                else if (e.key === 'ArrowUp') { e.preventDefault(); selIdx = Math.max(0, selIdx - 1); render(); }
+                else if (e.key === 'ArrowDown') { e.preventDefault(); selIdx = Math.min(matches.length - 1, selIdx + 1); highlightActive(); }
+                else if (e.key === 'ArrowUp') { e.preventDefault(); selIdx = Math.max(0, selIdx - 1); highlightActive(); }
                 else if (e.key === 'Enter' && matches[selIdx]) { window.location.href = matches[selIdx].href; }
             }
         });
