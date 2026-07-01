@@ -142,8 +142,13 @@
     <?php get_template_part( 'template-parts/command-palette' ); ?>
 
     <!-- MOBILE MENU -->
-    <div x-show="mobile" @click="mobile=false" class="mobile-backdrop" style="display:none" aria-hidden="true"></div>
-    <div id="mobile-menu-panel" x-show="mobile" x-transition class="mobile-menu" style="display:none">
+    <?php /* Sin x-transition: en este entorno la transición de Alpine
+       se queda "congelada" en display:none (mobile pasa a true pero el
+       DOM nunca se actualiza — reproducido de forma aislada con un
+       x-data de prueba). x-show puro sí funciona de forma confiable;
+       la animación de entrada/salida se resuelve con CSS vía .is-open. */ ?>
+    <div x-show="mobile" @click="mobile=false" :class="{'is-open': mobile}" class="mobile-backdrop" style="display:none" aria-hidden="true"></div>
+    <div id="mobile-menu-panel" x-show="mobile" :class="{'is-open': mobile}" class="mobile-menu" style="display:none">
         <div class="mobile-header">
             <h2>Menú</h2>
             <button @click="mobile=false"><i class="fas fa-times"></i></button>

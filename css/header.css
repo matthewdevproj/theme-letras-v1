@@ -889,6 +889,77 @@ nav.main-nav {
     padding: 1rem;
 }
 
+/* El panel real es #mobile-menu-panel (id) — la clase .mobile-menu-panel
+   de arriba (con guion) nunca coincide con el HTML actual y quedó huérfana.
+   Sin esto, el div del panel no tenía position/background/max-height:
+   aunque x-show lo mostrara, se veía como un bloque sin estilo.
+   Además el markup no está anidado dentro de <header> (es hermano en el
+   DOM), así que position:absolute;top:100% quedaba relativo a <body>
+   entero, no al header — se usa position:fixed en su lugar, panel
+   completo tipo "slide-in" (coincide con el header propio "Menú + ×"
+   que ya trae el markup). */
+#mobile-menu-panel {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(360px, 86vw);
+    background: var(--color-primary);
+    box-shadow: -20px 0 50px -8px rgba(0, 0, 0, 0.45);
+    overflow-y: auto;
+    z-index: 200;
+    transform: translateX(100%);
+    transition: transform .28s cubic-bezier(.16,1,.3,1);
+}
+#mobile-menu-panel.is-open { transform: translateX(0); }
+@media (min-width: 1024px) {
+    #mobile-menu-panel { display: none !important; }
+}
+.mobile-backdrop {
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+.mobile-backdrop.is-open { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+    #mobile-menu-panel, .mobile-backdrop { transition: none; }
+}
+#mobile-menu-panel::-webkit-scrollbar { width: 5px; }
+#mobile-menu-panel::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.04); }
+#mobile-menu-panel::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 3px;
+}
+.mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.mobile-header h2 {
+    color: #fff;
+    font-family: var(--font-display, 'Newsreader', serif);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+.mobile-header button {
+    color: rgba(255, 255, 255, .8);
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+}
+.mobile-header button:hover {
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+}
+
 .mobile-menu {
     margin: 0;
     padding: 0;
