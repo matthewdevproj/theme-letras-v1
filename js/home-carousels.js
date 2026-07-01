@@ -93,5 +93,7 @@
     ready(function () {
         initBannerDestacadas();
         initRevistas();
+        window.__kgCarousels = instances;
+        window.__kgRevEl = document.querySelector('.kg-rev-splide');
     });
 })();
