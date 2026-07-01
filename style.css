@@ -185,21 +185,11 @@ header.main-header {
               box-shadow 0.3s ease;
 }
 
-.main-header.is-scrolled {
-  background: rgba(20, 59, 99, 0.92) !important;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow: 0 2px 24px rgba(20,59,99,0.15) !important;
-}
-
-.main-header.sticky,
-.site-header.fixed {
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  background-color: rgba(255, 255, 255, 0.85) !important;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  transition: all var(--transition-base);
-}
+/* Glassmorphism decorativo retirado (prohibido por inc/design-os.md §6):
+   estas dos reglas ponían un fondo semitransparente + blur sobre el header
+   sticky, dejando que el contenido detrás lo tiñera al hacer scroll —
+   el handoff pide un header sólido y consistente (background sólido de
+   header.css .main-header), sin importar el scroll. */
 
 a {
   transition: color var(--transition-fast);
