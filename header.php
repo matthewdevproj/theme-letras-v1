@@ -42,6 +42,8 @@
 
     <a href="#main" class="skip-link">Saltar al contenido</a>
 
+    <div id="kg-progress-bar" class="kg-progress" aria-hidden="true"></div>
+
     <!-- TOPBAR -->
     <div class="kg-topbar hidden lg:block">
         <div class="kg-topbar__desktop">
@@ -90,17 +92,18 @@
             <a href="<?php echo esc_url( home_url('/') ); ?>" class="header-logo flex-shrink-0">
                 <img src="<?php echo esc_url( get_template_directory_uri() . '/images/logo-blanco-letras.png' ); ?>"
                      alt="FLCH"
+                     class="header-logo-img"
                      width="200"
                      height="62"
                      loading="eager">
             </a>
 
             <!-- Nav Desktop -->
-            <nav class="hidden lg:flex">
+            <nav class="hidden lg:flex main-nav">
                 <?php wp_nav_menu([
                     'theme_location' => 'primary',
                     'container' => false,
-                    'menu_class' => 'nav-modern',
+                    'menu_class' => 'main-menu',
                     'walker' => new Modern_Nav_Walker()
                 ]); ?>
             </nav>
@@ -136,9 +139,7 @@
         <!-- Search: reemplazado por el command palette ⌘K (ver template-parts/command-palette.php) -->
     </header>
 
-    <?php if ( is_front_page() ) : ?>
-        <?php get_template_part( 'template-parts/command-palette' ); ?>
-    <?php endif; ?>
+    <?php get_template_part( 'template-parts/command-palette' ); ?>
 
     <!-- MOBILE MENU -->
     <div x-show="mobile" @click="mobile=false" class="mobile-backdrop" style="display:none" aria-hidden="true"></div>

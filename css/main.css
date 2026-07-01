@@ -146,3 +146,18 @@ a {
 a:hover {
     color: var(--accent-gold-wcag);
 }
+
+/* ===== Barra de progreso de lectura (global, spec Kingster) ===== */
+.kg-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    z-index: 300;
+    background: linear-gradient(90deg, var(--kg-azul, #143B63), var(--kg-gold2, #D6B655));
+    width: 0;
+    transition: width .1s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+    .kg-progress { transition: none; }
+}

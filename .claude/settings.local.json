@@ -3,7 +3,9 @@
     "allow": [
       "WebFetch(domain:letras.unmsm.edu.pe)",
       "Bash(cat)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\User\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-User-Desktop-Repos-theme-letras-v1\\\\ac46d1ca-534a-4c12-a26d-5fddefdbecd8\\\\scratchpad\\\\propuesta\")",
+      "Bash(unzip -o \"C:\\\\Users\\\\User\\\\Desktop\\\\Files\\\\Propuesta tema WordPress innovador.zip\" -d .)"
     ]
   }
 }

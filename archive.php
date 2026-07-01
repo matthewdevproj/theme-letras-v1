@@ -63,10 +63,10 @@ if (is_category()) {
                 <aside class="kg-filter">
                     <div class="kg-filter__title"><?php esc_html_e('Filtrar', 'letrasflch'); ?></div>
 
-                    <div class="kg-filter__search">
+                    <form class="kg-filter__search" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
                         <i class="fas fa-search" aria-hidden="true"></i>
-                        <input type="text" placeholder="<?php esc_attr_e('Buscar…', 'letrasflch'); ?>" id="kg-archive-search">
-                    </div>
+                        <input type="search" name="s" placeholder="<?php esc_attr_e('Buscar…', 'letrasflch'); ?>" id="kg-archive-search" value="<?php echo esc_attr(get_search_query()); ?>">
+                    </form>
 
                     <div class="kg-filter__group">
                         <div class="kg-filter__label"><?php esc_html_e('Categoría', 'letrasflch'); ?></div>
@@ -95,9 +95,25 @@ if (is_category()) {
                     <?php if (have_posts()) : ?>
 
                         <!-- Sort bar -->
+                        <?php $current_orderby = isset($_GET['orderby']) ? sanitize_key(wp_unslash($_GET['orderby'])) : 'recientes'; ?>
                         <div class="kg-search__info">
                             <span><?php printf(esc_html(_n('%s resultado', '%s resultados', $found_posts, 'letrasflch')), number_format_i18n($found_posts)); ?></span>
-                            <span class="kg-search__sort"><?php esc_html_e('Más recientes', 'letrasflch'); ?> <i class="fas fa-chevron-down" style="font-size:9px;margin-left:4px;"></i></span>
+                            <label class="kg-search__sort" style="cursor:pointer;">
+                                <?php esc_html_e('Ordenar', 'letrasflch'); ?>:
+                                <select onchange="location.href=this.value" style="border:none;background:transparent;font:inherit;color:inherit;cursor:pointer;">
+                                    <?php
+                                    $sort_options = array(
+                                        'recientes' => esc_html__('Más recientes', 'letrasflch'),
+                                        'oldest'    => esc_html__('Más antiguas', 'letrasflch'),
+                                        'comments'  => esc_html__('Más comentadas', 'letrasflch'),
+                                    );
+                                    foreach ($sort_options as $value => $label) :
+                                        $url = esc_url(add_query_arg('orderby', $value));
+                                    ?>
+                                        <option value="<?php echo $url; ?>" <?php selected($current_orderby, $value); ?>><?php echo $label; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
                         </div>
 
                         <!-- Cards grid -->

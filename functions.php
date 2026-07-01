@@ -274,6 +274,63 @@ class Letras_FLCH_Mobile_Walker_Nav extends Walker_Nav_Menu {
 }
 
 // ═══════════════════════════════════════════════════════════
+// CAMPOS DE PERFIL — author.php (docente/investigador)
+// Sin ACF: usermeta simple editable desde el perfil de WP-Admin.
+// ═══════════════════════════════════════════════════════════
+function letras_flch_user_profile_fields( $user ) {
+    if ( ! current_user_can( 'edit_user', $user->ID ) ) {
+        return;
+    }
+    ?>
+    <h2><?php esc_html_e( 'Perfil académico FLCH', 'letrasflch' ); ?></h2>
+    <table class="form-table">
+        <tr>
+            <th><label for="letras_departamento"><?php esc_html_e( 'Departamento / Instituto', 'letrasflch' ); ?></label></th>
+            <td><input type="text" name="letras_departamento" id="letras_departamento" value="<?php echo esc_attr( get_user_meta( $user->ID, 'letras_departamento', true ) ); ?>" class="regular-text"></td>
+        </tr>
+        <tr>
+            <th><label for="letras_orcid"><?php esc_html_e( 'ORCID (URL)', 'letrasflch' ); ?></label></th>
+            <td><input type="url" name="letras_orcid" id="letras_orcid" value="<?php echo esc_attr( get_user_meta( $user->ID, 'letras_orcid', true ) ); ?>" class="regular-text" placeholder="https://orcid.org/0000-0000-0000-0000"></td>
+        </tr>
+        <tr>
+            <th><label for="letras_lineas_investigacion"><?php esc_html_e( 'Líneas de investigación (separadas por coma)', 'letrasflch' ); ?></label></th>
+            <td><input type="text" name="letras_lineas_investigacion" id="letras_lineas_investigacion" value="<?php echo esc_attr( get_user_meta( $user->ID, 'letras_lineas_investigacion', true ) ); ?>" class="regular-text"></td>
+        </tr>
+        <tr>
+            <th><label for="letras_proyectos"><?php esc_html_e( 'Proyectos activos', 'letrasflch' ); ?></label></th>
+            <td><input type="number" min="0" name="letras_proyectos" id="letras_proyectos" value="<?php echo esc_attr( get_user_meta( $user->ID, 'letras_proyectos', true ) ); ?>" class="small-text"></td>
+        </tr>
+        <tr>
+            <th><label for="letras_citas"><?php esc_html_e( 'Citas', 'letrasflch' ); ?></label></th>
+            <td><input type="number" min="0" name="letras_citas" id="letras_citas" value="<?php echo esc_attr( get_user_meta( $user->ID, 'letras_citas', true ) ); ?>" class="small-text"></td>
+        </tr>
+    </table>
+    <?php
+}
+add_action( 'show_user_profile', 'letras_flch_user_profile_fields' );
+add_action( 'edit_user_profile', 'letras_flch_user_profile_fields' );
+
+function letras_flch_save_user_profile_fields( $user_id ) {
+    if ( ! current_user_can( 'edit_user', $user_id ) ) {
+        return;
+    }
+    $fields = array( 'letras_departamento', 'letras_orcid', 'letras_lineas_investigacion' );
+    foreach ( $fields as $field ) {
+        if ( isset( $_POST[ $field ] ) ) {
+            update_user_meta( $user_id, $field, sanitize_text_field( wp_unslash( $_POST[ $field ] ) ) );
+        }
+    }
+    $number_fields = array( 'letras_proyectos', 'letras_citas' );
+    foreach ( $number_fields as $field ) {
+        if ( isset( $_POST[ $field ] ) ) {
+            update_user_meta( $user_id, $field, absint( $_POST[ $field ] ) );
+        }
+    }
+}
+add_action( 'personal_options_update', 'letras_flch_save_user_profile_fields' );
+add_action( 'edit_user_profile_update', 'letras_flch_save_user_profile_fields' );
+
+// ═══════════════════════════════════════════════════════════
 // 3. SIDEBARS
 // ═══════════════════════════════════════════════════════════
 
@@ -365,10 +422,20 @@ function letras_flch_enqueue_scripts() {
             file_exists( $dir . '/css/header-modern.css' ) ? filemtime( $dir . '/css/header-modern.css' ) : $version );
     }
 
+    // Lenis — smooth scroll ligero (spec Kingster: lerp 0.42). Debe cargar
+    // antes que theme-stack.js, que es quien la inicializa (initLenis()).
+    wp_enqueue_script(
+        'letras-lenis',
+        $uri . '/js/vendor/lenis.min.js',
+        array(),
+        file_exists( $dir . '/js/vendor/lenis.min.js' ) ? filemtime( $dir . '/js/vendor/lenis.min.js' ) : '1.3.25',
+        array( 'strategy' => 'defer', 'in_footer' => true )
+    );
+
     wp_enqueue_script(
         'letras-theme-stack',
         $uri . '/js/theme-stack.js',
-        array(),
+        array( 'letras-lenis' ),
         file_exists( $dir . '/js/theme-stack.js' ) ? filemtime( $dir . '/js/theme-stack.js' ) : $version,
         array( 'strategy' => 'defer', 'in_footer' => true )
     );
@@ -497,6 +564,29 @@ function letras_flch_custom_image_sizes( $sizes ) {
     ) );
 }
 add_filter( 'image_size_names_choose', 'letras_flch_custom_image_sizes' );
+
+/**
+ * Orden de resultados en archive.php ("Más recientes ▾"), vía ?orderby=.
+ * Solo afecta la query principal de archivo (categoría/etiqueta/fecha/autor).
+ */
+function letras_flch_archive_orderby( $query ) {
+    if ( is_admin() || ! $query->is_main_query() || ! $query->is_archive() ) {
+        return;
+    }
+    $orderby = isset( $_GET['orderby'] ) ? sanitize_key( wp_unslash( $_GET['orderby'] ) ) : '';
+    switch ( $orderby ) {
+        case 'oldest':
+            $query->set( 'orderby', 'date' );
+            $query->set( 'order', 'ASC' );
+            break;
+        case 'comments':
+            $query->set( 'orderby', 'comment_count' );
+            $query->set( 'order', 'DESC' );
+            break;
+        // 'recientes' (por defecto de WordPress: date DESC) — no requiere cambios.
+    }
+}
+add_action( 'pre_get_posts', 'letras_flch_archive_orderby' );
 
 function letras_flch_get_post_type_label( $post_type = '' ) {
     if ( empty( $post_type ) ) {
@@ -736,15 +826,64 @@ function letras_flch_localize_news() {
 /* Cache bust - jue 18 jun 2026 15:40:55 -05 */
 
 /* ══════════════════════════════════════════════════════════════
+   DATOS REALES COMPARTIDOS — Kingster (portada + command palette)
+   Fuente única para escuelas / revistas / centros: se usan en el
+   índice del command palette ⌘K y en los template-parts de la
+   portada, para no duplicar/desincronizar los mismos datos.
+   ══════════════════════════════════════════════════════════════ */
+function letras_flch_schools_data() {
+    return array(
+        array( 'n' => '01', 'name' => 'Arte', 'desc' => 'Historia del arte, curaduría y gestión cultural.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/arte.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/arte-kg/' ),
+        array( 'n' => '02', 'name' => 'Bibliotecología y CC. de la Información', 'desc' => 'Gestión del conocimiento y acceso a la información.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2021/01/Bibliotecologia.jpeg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/bibliotecologia-kg/' ),
+        array( 'n' => '03', 'name' => 'Comunicación Social', 'desc' => 'Periodismo, medios y comunicación para el cambio.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/comunica.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/comunicacion-social-kg/' ),
+        array( 'n' => '04', 'name' => 'Conservación y Restauración', 'desc' => 'Patrimonio material, ciencia y memoria.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2021/01/WhatsApp-Image-2021-01-05-at-3.38.22-PM.jpeg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/conservacion-y-restauracion-kg/' ),
+        array( 'n' => '05', 'name' => 'Danza', 'desc' => 'Cuerpo, coreografía e investigación escénica.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/danza.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/danza-kg/' ),
+        array( 'n' => '06', 'name' => 'Filosofía', 'desc' => 'Pensamiento crítico, ética y tradición de las ideas.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/Filosofia.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/filosofia-kg/' ),
+        array( 'n' => '07', 'name' => 'Literatura', 'desc' => 'Crítica, creación e historia literaria peruana y universal.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/literatura.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/literatura-kg/' ),
+        array( 'n' => '08', 'name' => 'Lingüística', 'desc' => 'El lenguaje, las lenguas originarias y el pensamiento.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2021/01/linguistica-pagina-e1609879534767.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/linguistica-kg/' ),
+        array( 'n' => '09', 'name' => 'Estudios Generales', 'desc' => 'Formación humanística común de primer ciclo.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/02/portada.png', 'href' => 'https://letras.unmsm.edu.pe/escuelas/estudios-generales-kg/' ),
+        array( 'n' => '10', 'name' => 'Lenguas, Traducción e Interpretación', 'desc' => 'Diálogo intercultural en varias lenguas.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2025/01/interpretacion-1024x384.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/lenguas-traduccion-e-interpretacion-kg/' ),
+    );
+}
+
+function letras_flch_revistas_data() {
+    return array(
+        array( 'short' => 'Letras', 'name' => 'Letras (Lima)', 'issn' => 'ISSN 2071-5072', 'c1' => '#1A4279', 'c2' => '#0E2742', 'cover' => 'https://revistaletras.unmsm.edu.pe/public/journals/1/cover_issue_150_es.png', 'href' => 'https://revistaletras.unmsm.edu.pe/index.php/le/issue/view/150' ),
+        array( 'short' => 'L&S', 'name' => 'Lengua y Sociedad', 'issn' => 'ISSN 1729-9721', 'c1' => '#1F6E5A', 'c2' => '#0C3429', 'cover' => 'https://revistasinvestigacion.unmsm.edu.pe/public/journals/40/cover_issue_1836_es.png', 'href' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/lys/issue/view/1836' ),
+        array( 'short' => 'E&P', 'name' => 'Escritura y Pensamiento', 'issn' => 'ISSN 1561-0837', 'c1' => '#3A4C8A', 'c2' => '#161E3D', 'cover' => 'https://revistasinvestigacion.unmsm.edu.pe/public/journals/21/cover_issue_1855_es.jpg', 'href' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/ayp/issue/view/1855' ),
+        array( 'short' => 'Tesis', 'name' => 'Tesis (Lima)', 'issn' => 'ISSN 2519-7843', 'c1' => '#8A5A18', 'c2' => '#3F280A', 'cover' => 'https://revistasinvestigacion.unmsm.edu.pe/public/journals/36/cover_issue_1868_es.png', 'href' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/tesis/issue/view/1868' ),
+        array( 'short' => 'Azul', 'name' => 'Revista Azul', 'issn' => 'ISSN', 'c1' => '#155E63', 'c2' => '#0A2E31', 'cover' => 'https://revistaazulletras.unmsm.edu.pe/public/journals/1/cover_issue_2_es.png', 'href' => 'https://revistaazulletras.unmsm.edu.pe/index.php/azul/issue/view/2' ),
+    );
+}
+
+function letras_flch_centros_data() {
+    return array(
+        array( 'icon' => 'fa-solid fa-user-graduate', 'title' => 'Posgrado', 'sub' => 'Maestrías y doctorados', 'desc' => 'Maestrías y doctorados en humanidades, lingüística y comunicación.', 'cta' => 'Ver programas', 'href' => 'https://posgradoletras.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-language', 'title' => 'Centro de Idiomas', 'sub' => 'Cursos y certificación', 'desc' => 'Cursos y certificación en lenguas modernas y originarias.', 'cta' => 'Inscríbete', 'href' => 'https://ceidletras.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-certificate', 'title' => 'Examen de Suficiencia', 'sub' => 'OESI', 'desc' => 'Acredita tu dominio de idiomas con la OESI de la Facultad.', 'cta' => 'Programa tu examen', 'href' => 'https://letras.unmsm.edu.pe/oficina-de-examen-de-suficiencia-en-idiomas/' ),
+        array( 'icon' => 'fa-solid fa-hands-holding-circle', 'title' => 'CERSEU', 'sub' => 'Extensión y educación continua', 'desc' => 'Extensión, responsabilidad social y educación continua.', 'cta' => 'Conoce más', 'href' => 'https://letras.unmsm.edu.pe/cerseu/' ),
+    );
+}
+
+// NOTA: algunos hrefs apuntan a la home institucional (letras.unmsm.edu.pe)
+// como fallback seguro porque no se confirmó la URL profunda exacta de ese
+// servicio; reemplazar por el enlace específico real cuando se confirme.
+function letras_flch_quicklinks_data() {
+    return array(
+        array( 'icon' => 'fa-solid fa-file-signature', 'title' => 'Admisión y postulación', 'href' => 'https://admision.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-calendar-days',   'title' => 'Calendario académico',    'href' => 'https://letras.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-clock',           'title' => 'Horarios 2026-I',          'href' => 'https://letras.unmsm.edu.pe/horarios-flch.php' ),
+        array( 'icon' => 'fa-solid fa-laptop',          'title' => 'Aula Virtual',             'href' => 'https://letras.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-book',            'title' => 'Biblioteca',               'href' => 'https://letras.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-stamp',           'title' => 'Trámites y certificados',  'href' => 'https://letras.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-address-book',    'title' => 'Directorio',               'href' => 'https://letras.unmsm.edu.pe/directorio/' ),
+    );
+}
+
+/* ══════════════════════════════════════════════════════════════
    KINGSTER EXTRAS — propuesta "Portada FLCH Kingster"
-   Solo se cargan en front-page. No tocan main.css/header.css/
-   modern-ui.css ni el pipeline de enqueue existente arriba.
    ══════════════════════════════════════════════════════════════ */
 function letras_flch_kingster_extras_assets() {
-    if ( ! is_front_page() ) {
-        return;
-    }
-
     $uri = get_template_directory_uri();
     $dir = get_template_directory();
 
@@ -755,6 +894,31 @@ function letras_flch_kingster_extras_assets() {
         file_exists( $dir . '/js/kingster-extras.js' ) ? filemtime( $dir . '/js/kingster-extras.js' ) : wp_get_theme()->get( 'Version' ),
         array( 'strategy' => 'defer', 'in_footer' => true )
     );
+
+    // Splide — carruseles de la portada (banner de destacadas + revistas).
+    // Solo se necesita en front-page; el resto del sitio no paga su costo.
+    if ( is_front_page() ) {
+        wp_enqueue_style(
+            'letras-splide',
+            $uri . '/css/splide.min.css',
+            array(),
+            file_exists( $dir . '/css/splide.min.css' ) ? filemtime( $dir . '/css/splide.min.css' ) : '4.1.4'
+        );
+        wp_enqueue_script(
+            'letras-splide',
+            $uri . '/js/vendor/splide.min.js',
+            array(),
+            file_exists( $dir . '/js/vendor/splide.min.js' ) ? filemtime( $dir . '/js/vendor/splide.min.js' ) : '4.1.4',
+            array( 'strategy' => 'defer', 'in_footer' => true )
+        );
+        wp_enqueue_script(
+            'letras-home-carousels',
+            $uri . '/js/home-carousels.js',
+            array( 'letras-splide', 'letras-theme-stack' ),
+            file_exists( $dir . '/js/home-carousels.js' ) ? filemtime( $dir . '/js/home-carousels.js' ) : wp_get_theme()->get( 'Version' ),
+            array( 'strategy' => 'defer', 'in_footer' => true )
+        );
+    }
 
     // ── Índice de búsqueda del command palette ⌘K ──────────────
     // 100% datos reales: el menú "Menú Principal" que administras
@@ -802,7 +966,88 @@ function letras_flch_kingster_extras_assets() {
         wp_reset_postdata();
     }
 
+    // 3) Escuelas profesionales (10, mismos datos reales de template-parts/home/escuelas.php).
+    foreach ( letras_flch_schools_data() as $school ) {
+        $search_index[] = array(
+            'title' => $school['name'],
+            'sub'   => 'Escuela profesional',
+            'icon'  => 'fa-solid fa-graduation-cap',
+            'group' => 'Escuelas',
+            'href'  => $school['href'],
+        );
+    }
+
+    // 4) Revistas académicas (mismos datos reales de template-parts/home/revistas.php).
+    foreach ( letras_flch_revistas_data() as $revista ) {
+        $search_index[] = array(
+            'title' => $revista['name'],
+            'sub'   => $revista['issn'],
+            'icon'  => 'fa-solid fa-book-open',
+            'group' => 'Revistas',
+            'href'  => $revista['href'],
+        );
+    }
+
+    // 5) Centros de producción (mismos datos reales del hero/accesos).
+    foreach ( letras_flch_centros_data() as $centro ) {
+        $search_index[] = array(
+            'title' => $centro['title'],
+            'sub'   => 'Centro de producción',
+            'icon'  => $centro['icon'],
+            'group' => 'Centros',
+            'href'  => $centro['href'],
+        );
+    }
+
+    // 6) Accesos rápidos.
+    $search_index[] = array( 'title' => 'Horarios 2026-I', 'sub' => 'Consulta tu horario de clases', 'icon' => 'fa-solid fa-clock', 'group' => 'Accesos', 'href' => 'https://letras.unmsm.edu.pe/horarios-flch.php' );
+    $search_index[] = array( 'title' => 'Directorio FLCH', 'sub' => 'Contactos institucionales', 'icon' => 'fa-solid fa-address-book', 'group' => 'Accesos', 'href' => 'https://letras.unmsm.edu.pe/directorio/' );
+    $search_index[] = array( 'title' => 'Admisión 2026', 'sub' => 'Postula a la Decana de América', 'icon' => 'fa-solid fa-file-signature', 'group' => 'Accesos', 'href' => 'https://admision.unmsm.edu.pe/' );
+
     wp_localize_script( 'letras-kingster-extras', 'kgSearchIndex', $search_index );
 }
 add_action( 'wp_enqueue_scripts', 'letras_flch_kingster_extras_assets', 40 );
+
+/* ══════════════════════════════════════════════════════════════
+   LOGIN INSTITUCIONAL — estiliza wp-login.php (sin plantilla nueva)
+   ══════════════════════════════════════════════════════════════ */
+function letras_flch_login_styles() {
+    $uri = get_template_directory_uri();
+    $dir = get_template_directory();
+    wp_enqueue_style(
+        'letras-fonts',
+        $uri . '/css/fonts.css',
+        array(),
+        file_exists( $dir . '/css/fonts.css' ) ? filemtime( $dir . '/css/fonts.css' ) : wp_get_theme()->get( 'Version' )
+    );
+    wp_enqueue_style(
+        'letras-variables',
+        $uri . '/css/variables.css',
+        array(),
+        file_exists( $dir . '/css/variables.css' ) ? filemtime( $dir . '/css/variables.css' ) : wp_get_theme()->get( 'Version' )
+    );
+    wp_enqueue_style(
+        'letras-login',
+        $uri . '/css/login.css',
+        array( 'letras-variables' ),
+        file_exists( $dir . '/css/login.css' ) ? filemtime( $dir . '/css/login.css' ) : wp_get_theme()->get( 'Version' )
+    );
+}
+add_action( 'login_enqueue_scripts', 'letras_flch_login_styles' );
+
+function letras_flch_login_heading() {
+    echo '<p class="kg-login__title">' . esc_html__( 'Acceso institucional', 'letrasflch' ) . '</p>';
+    echo '<p class="kg-login__subtitle">' . esc_html__( 'Intranet · Aula Virtual · Correo FLCH', 'letrasflch' ) . '</p>';
+}
+add_action( 'login_header', 'letras_flch_login_heading' );
+
+function letras_flch_login_logo_url() {
+    return home_url( '/' );
+}
+add_filter( 'login_headerurl', 'letras_flch_login_logo_url' );
+
+function letras_flch_login_logo_title() {
+    return get_bloginfo( 'name' );
+}
+add_filter( 'login_headertext', 'letras_flch_login_logo_title' );
 

@@ -10,7 +10,16 @@ get_header();
 
 <main id="main" class="site-main" role="main" tabindex="-1">
 
-<?php while (have_posts()) : the_post(); ?>
+<?php while (have_posts()) : the_post();
+
+$letras_flch_parent_id  = wp_get_post_parent_id(get_the_ID());
+$letras_flch_section_id = $letras_flch_parent_id ? $letras_flch_parent_id : get_the_ID();
+$letras_flch_siblings   = get_pages(array(
+    'parent'      => $letras_flch_section_id,
+    'sort_column' => 'menu_order',
+    'sort_order'  => 'ASC',
+));
+?>
 
 <section class="kg-page-header">
     <div class="kg-container">
@@ -44,6 +53,28 @@ get_header();
             </div>
 
             <aside class="kg-single__sidebar">
+                <?php if ($letras_flch_siblings) : ?>
+                    <div class="kg-page-siblings">
+                        <div class="kg-page-siblings__title"><?php esc_html_e('En esta sección', 'letrasflch'); ?></div>
+                        <ul class="kg-page-siblings__list">
+                            <?php foreach ($letras_flch_siblings as $sibling) :
+                                $is_current = $sibling->ID === get_the_ID();
+                            ?>
+                                <li>
+                                    <a href="<?php echo esc_url(get_permalink($sibling->ID)); ?>" class="kg-page-siblings__link<?php echo $is_current ? ' is-current' : ''; ?>">
+                                        <?php echo esc_html(get_the_title($sibling->ID)); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+
+                <div class="kg-page-institutional">
+                    <p class="kg-page-institutional__tag"><?php esc_html_e('Decana de América', 'letrasflch'); ?></p>
+                    <p class="kg-page-institutional__desc"><?php esc_html_e('Facultad de Letras y Ciencias Humanas — Universidad Nacional Mayor de San Marcos, fundada en 1551.', 'letrasflch'); ?></p>
+                </div>
+
                 <?php if (is_active_sidebar('blog-sidebar')) : ?>
                     <?php dynamic_sidebar('blog-sidebar'); ?>
                 <?php else : ?>

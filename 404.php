@@ -20,19 +20,22 @@ get_header();
 
     <?php get_template_part('template-parts/breadcrumbs'); ?>
 
-    <div class="kg-404">
-        <div class="kg-404__code" aria-hidden="true">404</div>
-        <h1 class="kg-404__title"><?php esc_html_e('Página no encontrada', 'letrasflch'); ?></h1>
-        <p class="kg-404__desc"><?php esc_html_e('La página que buscas no existe o fue movida. Vuelve al inicio o usa el buscador.', 'letrasflch'); ?></p>
-        <div class="kg-404__actions">
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="kg-btn kg-btn--gold">
-                <i class="fas fa-home" aria-hidden="true"></i>
-                <?php esc_html_e('Ir al inicio', 'letrasflch'); ?>
-            </a>
-            <a href="#" onclick="document.querySelector('[data-kg-search-trigger]')?.click();return false;" class="kg-btn kg-btn--outline">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <?php esc_html_e('Buscar en el sitio', 'letrasflch'); ?>
-            </a>
+    <div class="kg-container">
+        <div class="kg-404">
+            <span class="kg-404__glyph" aria-hidden="true">?</span>
+            <div class="kg-404__code" aria-hidden="true">404</div>
+            <h1 class="kg-404__title"><?php esc_html_e('Página no encontrada', 'letrasflch'); ?></h1>
+            <p class="kg-404__desc"><?php esc_html_e('La página que buscas no existe o fue movida. Vuelve al inicio o usa el buscador.', 'letrasflch'); ?></p>
+            <div class="kg-404__actions">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="kg-btn kg-btn--gold">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <?php esc_html_e('Ir al inicio', 'letrasflch'); ?>
+                </a>
+                <a href="#" onclick="document.querySelector('[data-kg-search-trigger]')?.click();return false;" class="kg-btn kg-btn--outline-light">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <?php esc_html_e('Buscar en el sitio', 'letrasflch'); ?>
+                </a>
+            </div>
         </div>
     </div>
 

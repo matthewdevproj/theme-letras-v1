@@ -36,7 +36,7 @@
    =================================== */
 .kg-footer {
     position: relative;
-    background: linear-gradient(135deg, var(--kg-primary) 0%, var(--kg-primary-light) 50%, var(--kg-primary-dark) 100%);
+    background: #08131F;
     color: var(--kg-white);
     width: 100%;
     overflow: hidden;
@@ -87,8 +87,8 @@
 .kg-footer__accent-line {
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--kg-accent) 20%, var(--kg-accent) 80%, transparent 100%);
+    height: 3px;
+    background: var(--gold, var(--kg-accent));
 }
 
 .kg-footer__container {
@@ -307,9 +307,9 @@
 .kg-footer__social-link:hover     { transform: translateY(-3px); color: var(--kg-white); }
 .kg-footer__social-link:focus-visible { outline: 2px solid var(--kg-accent); outline-offset: 2px; }
 .kg-footer__social-link--facebook:hover  { background: #1877F2; }
-.kg-footer__social-link--instagram:hover { background: #E4405F; }
+.kg-footer__social-link--instagram:hover { background: linear-gradient(45deg,#F58529,#DD2A7B,#8134AF); }
 .kg-footer__social-link--youtube:hover   { background: #FF0000; }
-.kg-footer__social-link--linkedin:hover  { background: #0077B5; }
+.kg-footer__social-link--linkedin:hover  { background: #0A66C2; }
 
 /* ===================================
    FOOTER NAV MENU
@@ -338,6 +338,31 @@
 }
 .kg-footer__nav a:hover        { color: var(--kg-accent-light); }
 .kg-footer__nav a:focus-visible { outline: 2px solid var(--kg-accent); outline-offset: 2px; border-radius: 3px; }
+
+/* ===================================
+   FILA DE PERFILES
+   =================================== */
+.kg-footer__profiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    margin: 40px 0 0;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--kg-white-10);
+}
+.kg-footer__profile-link {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--kg-white-70);
+    text-decoration: none;
+    transition: color var(--kg-transition-fast);
+}
+.kg-footer__profile-link:hover,
+.kg-footer__profile-link:focus-visible {
+    color: var(--kg-gold2, var(--kg-accent-light));
+}
 
 /* ===================================
    BOTTOM BAR

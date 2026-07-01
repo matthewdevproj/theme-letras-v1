@@ -39,6 +39,23 @@
 
     waitForGSAP(function() {
 
+        /* ─── 0. HERO — Parallax de fondo (spec Kingster) ──────────────
+           Único tween de parallax real: yPercent 16, scrub 1. */
+        var kgHeroSection = document.getElementById('kgHero');
+        var kgHeroBg = kgHeroSection ? kgHeroSection.querySelector('.kg-hero__bg') : null;
+        if (kgHeroSection && kgHeroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            gsap.to(kgHeroBg, {
+                yPercent: 16,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: kgHeroSection,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1
+                }
+            });
+        }
+
         /* ─── 1. HERO — Animación de entrada ───────────────────────────
            Selectores flexibles para diferentes estructuras de Elementor */
 

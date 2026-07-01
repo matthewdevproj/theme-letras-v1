@@ -1,13 +1,9 @@
 /**
- * Kingster extras — Command palette + GSAP reveals
+ * Kingster extras — Command palette + TOC de single.php
  * Design system: "Portada FLCH Kingster"
  *
- * GSAP skills applied:
- *   - matchMedia() for responsive / reduced-motion
- *   - ScrollTrigger.batch() for kg-reveal elements
- *   - gsap.utils.toArray() for selector queries
- *   - will-change on animated elements (set via CSS)
- *   - No raw window.addEventListener("scroll")
+ * El reveal-on-scroll (.kg-reveal/.kg-rL/.kg-rR) vive en un único sitio:
+ * js/theme-stack.js → initKgReveals().
  *
  * @package LetrasFLCH
  */
@@ -23,20 +19,6 @@
         } else {
             fn();
         }
-    }
-
-    function loadGSAP(callback) {
-        if (typeof gsap !== 'undefined') {
-            callback();
-            return;
-        }
-        var check = setInterval(function () {
-            if (typeof gsap !== 'undefined') {
-                clearInterval(check);
-                callback();
-            }
-        }, 50);
-        setTimeout(function () { clearInterval(check); }, 5000);
     }
 
     /* ──────────────────────────────────────────────
@@ -125,63 +107,7 @@
     }
 
     /* ──────────────────────────────────────────────
-       2. GSAP reveals — ScrollTrigger.batch
-       ────────────────────────────────────────────── */
-    function initGSAPReveals() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-        var revealEls = gsap.utils.toArray('.kg-reveal, .kg-rL, .kg-rR');
-        if (!revealEls.length) return;
-
-        // matchMedia: responsive + reduced-motion
-        var mm = gsap.matchMedia();
-        mm.add('(prefers-reduced-motion: no-preference)', function () {
-            ScrollTrigger.batch(revealEls, {
-                interval: 0.12,
-                batchMax: 8,
-                onEnter: function (batch) {
-                    gsap.to(batch, {
-                        opacity: 1,
-                        y: 0,
-                        x: 0,
-                        duration: 0.6,
-                        ease: 'power2.out',
-                        stagger: 0.08,
-                        overwrite: 'auto',
-                    });
-                },
-                onLeave: function (batch) {
-                    gsap.set(batch, { clearProps: 'all' });
-                },
-                onEnterBack: function (batch) {
-                    gsap.to(batch, {
-                        opacity: 1,
-                        y: 0,
-                        x: 0,
-                        duration: 0.6,
-                        ease: 'power2.out',
-                        stagger: 0.08,
-                        overwrite: 'auto',
-                    });
-                },
-                onLeaveBack: function (batch) {
-                    gsap.set(batch, { clearProps: 'all' });
-                },
-            });
-        });
-
-        mm.add('(prefers-reduced-motion: reduce)', function () {
-            revealEls.forEach(function (el) {
-                el.style.opacity = '1';
-                el.style.transform = 'none';
-            });
-        });
-
-        ScrollTrigger.refresh();
-    }
-
-    /* ──────────────────────────────────────────────
-       3. TOC generation for single posts
+       2. TOC generation for single posts
        ────────────────────────────────────────────── */
     function initTOC() {
         var toc = document.getElementById('kg-toc');
@@ -220,7 +146,6 @@
     ready(function () {
         initCommandPalette();
         initTOC();
-        loadGSAP(initGSAPReveals);
     });
 
 })();

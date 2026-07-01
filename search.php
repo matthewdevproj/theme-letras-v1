@@ -18,6 +18,22 @@ function letras_flch_highlight($text, $query) {
     $pattern = '/(' . preg_quote(esc_html($query), '/') . ')/iu';
     return preg_replace($pattern, '<mark style="background:rgba(168,134,28,.18);color:var(--kg-ink);padding:1px 3px;border-radius:3px;">$1</mark>', $escaped);
 }
+
+// Conteo real de resultados por tipo de contenido (para los pills de filtro).
+$active_post_type = isset($_GET['post_type']) ? sanitize_key(wp_unslash($_GET['post_type'])) : '';
+$search_post_types = get_post_types(['public' => true], 'objects');
+unset($search_post_types['attachment']);
+$search_type_counts = array();
+foreach ($search_post_types as $pt) {
+    $count_query = new WP_Query(array(
+        's'              => $search_query,
+        'post_type'      => $pt->name,
+        'posts_per_page' => 1,
+        'fields'         => 'ids',
+        'no_found_rows'  => false,
+    ));
+    $search_type_counts[$pt->name] = $count_query->found_posts;
+}
 ?>
 
 <main id="main" class="site-main" role="main" tabindex="-1">
@@ -48,16 +64,23 @@ function letras_flch_highlight($text, $query) {
 
             <?php if (have_posts()) : ?>
 
-                <!-- Filter pills (by post type) -->
+                <!-- Filter pills (by post type, conteos reales) -->
                 <div style="display:flex;gap:9px;margin-bottom:28px;flex-wrap:wrap;">
-                    <span style="font-size:12.5px;font-weight:600;color:#fff;background:var(--kg-azul);padding:7px 14px;border-radius:999px;"><?php esc_html_e('Todos', 'letrasflch'); ?> · <?php echo absint($found_posts); ?></span>
                     <?php
-                    $post_types = get_post_types(['public' => true], 'objects');
-                    foreach ($post_types as $pt) :
-                        if (in_array($pt->name, ['attachment'], true)) continue;
-                        $count = $wp_query->found_posts; // simplified; real count per type would need a separate query
+                    $all_url = esc_url(add_query_arg(array('s' => $search_query, 'post_type' => false)));
+                    $is_all_active = $active_post_type === '';
                     ?>
-                        <span style="font-size:12.5px;font-weight:600;color:var(--kg-ink);background:var(--kg-soft);padding:7px 14px;border-radius:999px;cursor:pointer;"><?php echo esc_html($pt->labels->singular_name); ?></span>
+                    <a href="<?php echo $all_url; ?>" style="text-decoration:none;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;<?php echo $is_all_active ? 'color:#fff;background:var(--kg-azul);' : 'color:var(--kg-ink);background:var(--kg-soft);'; ?>">
+                        <?php esc_html_e('Todos', 'letrasflch'); ?> · <?php echo absint($found_posts); ?>
+                    </a>
+                    <?php foreach ($search_post_types as $pt) :
+                        if (empty($search_type_counts[$pt->name])) continue;
+                        $is_active = $active_post_type === $pt->name;
+                        $pt_url = esc_url(add_query_arg(array('s' => $search_query, 'post_type' => $pt->name)));
+                    ?>
+                        <a href="<?php echo $pt_url; ?>" style="text-decoration:none;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;<?php echo $is_active ? 'color:#fff;background:var(--kg-azul);' : 'color:var(--kg-ink);background:var(--kg-soft);'; ?>">
+                            <?php echo esc_html($pt->labels->name); ?> · <?php echo absint($search_type_counts[$pt->name]); ?>
+                        </a>
                     <?php endforeach; ?>
                 </div>
 
