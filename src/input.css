@@ -14,7 +14,28 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-semibold text-primary-dark;
   }
-  
+
+  /* text-primary-dark es un navy fijo (no una variable de tema), pensado
+     para fondos claros. En dark mode (clase .dark, o preferencia de SO sin
+     .light) queda casi ilegible sobre fondos oscuros. Se corrige con la
+     MISMA especificidad que la regla de arriba (":where()" no suma nada,
+     solo el selector de tag) para no pisar los títulos que ya tienen su
+     propio color por componente (ej. .kg-hero__title{color:#fff}) — esos
+     siguen ganando por especificidad de clase. Esto solo alcanza a los
+     títulos que quedaban sin color explícito heredando el navy fijo. */
+  :where(:root.dark) h1, :where(:root.dark) h2, :where(:root.dark) h3,
+  :where(:root.dark) h4, :where(:root.dark) h5, :where(:root.dark) h6 {
+    color: var(--kg-ink, #E8E6E0);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :where(:root:not(.light)) h1, :where(:root:not(.light)) h2, :where(:root:not(.light)) h3,
+  :where(:root:not(.light)) h4, :where(:root:not(.light)) h5, :where(:root:not(.light)) h6 {
+    color: var(--kg-ink, #E8E6E0);
+  }
+}
+@layer base {
+
   h1 {
     @apply text-4xl md:text-5xl;
   }
