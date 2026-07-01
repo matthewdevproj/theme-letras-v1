@@ -142,7 +142,7 @@ if ($primary_cat) $schema['articleSection'] = $primary_cat->name;
 <?php if (comments_open() || get_comments_number()) : ?>
     <div class="kg-comments">
         <h3 class="kg-comments__title"><?php esc_html_e('Comentarios', 'letrasflch'); ?></h3>
-        <?php comments_template(); ?>
+        <?php comments_template( '/template-parts/comments.php' ); ?>
     </div>
 <?php endif; ?>
 

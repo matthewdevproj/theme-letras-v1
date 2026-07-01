@@ -528,9 +528,11 @@
 }
 .kg-comment { padding: 16px 0; border-bottom: 1px solid var(--kg-line); }
 .kg-comment:last-child { border-bottom: none; }
+.kg-comment__avatar { border-radius: 50%; display: block; }
 .kg-comment__meta { font-size: 13px; color: var(--kg-muted); margin-bottom: 6px; }
 .kg-comment__body { font-size: 14.5px; line-height: 1.6; }
-.kg-comment__reply { font-size: 12px; font-weight: 600; color: var(--kg-azul); }
+.kg-comment__reply { font-size: 12px; font-weight: 600; color: var(--kg-azul); text-decoration: none; }
+.kg-comment__reply:hover { text-decoration: underline; }
 
 /* ════════════════════════════════════════════════════════════
    SEARCH RESULTS

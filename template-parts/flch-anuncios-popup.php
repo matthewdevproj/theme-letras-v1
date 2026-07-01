@@ -414,9 +414,9 @@ $cfg_json = wp_json_encode( array_merge( $cfg, array( 'total' => $total ) ), JSO
 <style id="kg-popup-styles">
 /* ── Design tokens ────────────────────────────────────── */
 :root {
-    --fp-primary:      #0A1E3C;
-    --fp-gold:         #C6A43F;
-    --fp-gold-light:   #DAB95C;
+    --fp-primary:      var(--kg-azul, #143B63);
+    --fp-gold:         var(--kg-gold, #A8861C);
+    --fp-gold-light:   var(--kg-gold2, #D6B655);
     --fp-white:        #ffffff;
     --fp-gray-50:      #F8F7F5;
     --fp-gray-100:     #EEECEA;
