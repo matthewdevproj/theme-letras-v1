@@ -53,7 +53,8 @@ $letras_flch_schools = letras_flch_schools_data();
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	min-height: 230px;
+	aspect-ratio: 3 / 4;
+	min-height: 0;
 	background: var(--kg-night, #0E2742);
 	transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s ease;
 }
@@ -107,6 +108,9 @@ $letras_flch_schools = letras_flch_schools_data();
 }
 @media (max-width: 480px) {
 	.kg-esc { grid-template-columns: 1fr; }
+	/* A 1 columna, la tarjeta ocupa todo el ancho — con 3/4 quedaría
+	   demasiado alta; se abre a un ratio más panorámico. */
+	.kg-school { aspect-ratio: 16 / 9; }
 }
 @media (min-width: 1920px) {
 	.kg-esc { grid-template-columns: repeat(5, 1fr); }
