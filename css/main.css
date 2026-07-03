@@ -143,7 +143,12 @@ a {
     transition: color var(--transition-fast);
 }
 
-a:hover {
+/* Acotado (fix cascada): este a:hover global repintaba CUALQUIER
+   enlace, incluidos botones con fondo (kg-btn--gold quedaba
+   dorado-sobre-dorado al pasar el cursor). Los componentes kg-* y los
+   botones gestionan sus propios estados: quedan excluidos. :where()
+   mantiene la especificidad en cero, igual que antes. */
+a:where(:not([class*="kg-"]):not([class*="btn"]):not([class*="button"])):hover {
     color: var(--accent-gold-wcag);
 }
 

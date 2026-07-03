@@ -124,7 +124,7 @@ if ( ! $letras_flch_banner_query->have_posts() ) {
 	font-weight: 700; font-size: 14px; padding: 13px 26px; border-radius: 999px;
 	transition: filter .2s ease, gap .2s ease;
 }
-.kg-banner__cta:hover { filter: brightness(1.08); gap: 13px; }
+.kg-banner__cta:hover { color: #231d05; filter: brightness(1.08); gap: 13px; } /* color explícito: estado autocontenido */
 
 /* Paginación Splide → puntos dorados spec Kingster */
 .kg-banner__splide .splide__pagination {
