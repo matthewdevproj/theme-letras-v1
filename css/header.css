@@ -42,7 +42,7 @@ body {
     margin: 0 auto;
     padding: 0 1.5rem;
 }
-@media (max-width: 640px) {
+@media (max-width: 760px) /* breakpoint unificado al canon 760 (antes 640px; auditoria P1: zona muerta 761-768) */ {
     .container-custom { padding: 0 1rem; }
 }
 
@@ -375,7 +375,7 @@ body {
 }
 
 /* TABLET (768–1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 761px) and (max-width: 1023px) /* rango tablet ajustado al canon: antes 768, cerraba mal contra el movil <=760 */ {
     .kg-topbar__mobile-social,
     .kg-topbar__mobile-contact { display: none !important; }
     .kg-topbar__tablet { display: flex !important; }
@@ -731,7 +731,7 @@ nav.main-nav {
 @media (min-width: 1024px) {
     .header-btn.lg\:hidden { display: none; }
 }
-@media (max-width: 640px) {
+@media (max-width: 760px) /* breakpoint unificado al canon 760 (antes 640px; auditoria P1: zona muerta 761-768) */ {
     .header-btn { width: 38px; height: 38px; font-size: 0.9rem; }
 }
 
@@ -876,7 +876,7 @@ nav.main-nav {
     z-index: 200;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) /* breakpoint unificado al canon 760 (antes 640px; auditoria P1: zona muerta 761-768) */ {
     .mobile-menu-panel {
         max-height: calc(100dvh - 60px);
     }

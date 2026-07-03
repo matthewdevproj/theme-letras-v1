@@ -756,6 +756,26 @@ require_once get_template_directory() . '/inc/diagnostico-recursos.php';
    Envía noticias reales de WordPress al frontend
    ══════════════════════════════════════════════════ */
 add_action('wp_enqueue_scripts', 'letras_flch_localize_news');
+/* ══════════════════════════════════════════════════════════════
+   POOL DE IMAGENES FALLBACK PARA NOTICIAS (auditoria P0)
+   Fotos institucionales reales ya publicadas en el sitio. Se elige
+   por post_id % n: determinista (misma noticia -> misma foto siempre)
+   y variado (noticias contiguas -> fotos distintas).
+   ══════════════════════════════════════════════════════════════ */
+function letras_flch_news_fallback_img( $post_id ) {
+    $pool = array(
+        'https://letras.unmsm.edu.pe/wp-content/uploads/2025/12/IMG_1556-scaled.webp',
+        'https://letras.unmsm.edu.pe/wp-content/uploads/2025/12/IMG_1565-scaled.webp',
+        'https://letras.unmsm.edu.pe/wp-content/uploads/2025/12/DJI_0007-Trim-frame-at-0m5s.webp',
+        'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/literatura.jpg',
+        'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/Filosofia.jpg',
+        'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/comunica.jpg',
+        'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/arte.jpg',
+        'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/danza.jpg',
+    );
+    return $pool[ absint( $post_id ) % count( $pool ) ];
+}
+
 function letras_flch_localize_news() {
     // Solo en front page
     if (!is_front_page()) {
@@ -788,11 +808,15 @@ function letras_flch_localize_news() {
                 $categories[] = $cat_name;
             }
 
-            // Thumbnail con fallback a data URI SVG
+            // Thumbnail con fallback determinista a un POOL de fotos
+            // institucionales reales. Antes: un unico SVG gris -> cuando
+            // varias noticias no tienen imagen destacada, la reticula
+            // repite la misma tarjeta n veces (visto en produccion:
+            // 8 de 10 tarjetas identicas). Con post_id % pool, cada
+            // noticia sin imagen recibe una foto distinta y ESTABLE.
             $thumb = get_the_post_thumbnail_url(get_the_ID(), 'card-thumbnail');
             if (!$thumb) {
-                // SVG placeholder incrustado (mejor performance que imagen externa)
-                $thumb = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450"%3E%3Crect fill="%23143B63" width="800" height="450"/%3E%3Ctext fill="rgba(255,255,255,0.3)" font-family="system-ui" font-size="24" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EFLCH UNMSM%3C/text%3E%3C/svg%3E';
+                $thumb = letras_flch_news_fallback_img( get_the_ID() );
             }
 
             $news_data[] = array(
