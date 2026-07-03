@@ -882,11 +882,11 @@ function letras_flch_schools_data() {
 function letras_flch_revistas_data() {
     return array(
         array( 'short' => 'Letras', 'name' => 'Letras (Lima)', 'issn' => 'ISSN 2071-5072', 'c1' => '#1A4279', 'c2' => '#0E2742', 'cover' => 'https://revistaletras.unmsm.edu.pe/public/journals/1/cover_issue_150_es.png', 'href' => 'https://revistaletras.unmsm.edu.pe/index.php/le/issue/view/150' ),
-        array( 'short' => 'RCLL', 'name' => 'Crítica Literaria Latinoamericana', 'issn' => 'ISSN', 'c1' => '#7A1F2B', 'c2' => '#3A0E15', 'cover' => 'https://rcllletras.unmsm.edu.pe/public/journals/1/cover_issue_97_es.jpg', 'href' => 'https://rcllletras.unmsm.edu.pe/' ),
+        array( 'short' => 'RCLL', 'name' => 'Crítica Literaria Latinoamericana', 'issn' => 'ISSN 0252-8843', 'c1' => '#7A1F2B', 'c2' => '#3A0E15', 'cover' => 'https://rcllletras.unmsm.edu.pe/public/journals/1/cover_issue_97_es.jpg', 'href' => 'https://rcllletras.unmsm.edu.pe/' ),
         array( 'short' => 'L&S', 'name' => 'Lengua y Sociedad', 'issn' => 'ISSN 1729-9721', 'c1' => '#1F6E5A', 'c2' => '#0C3429', 'cover' => 'https://revistasinvestigacion.unmsm.edu.pe/public/journals/40/cover_issue_1836_es.png', 'href' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/lys/issue/view/1836' ),
         array( 'short' => 'E&P', 'name' => 'Escritura y Pensamiento', 'issn' => 'ISSN 1561-0837', 'c1' => '#3A4C8A', 'c2' => '#161E3D', 'cover' => 'https://revistasinvestigacion.unmsm.edu.pe/public/journals/21/cover_issue_1855_es.jpg', 'href' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/ayp/issue/view/1855' ),
         array( 'short' => 'Tesis', 'name' => 'Tesis (Lima)', 'issn' => 'ISSN 2519-7843', 'c1' => '#8A5A18', 'c2' => '#3F280A', 'cover' => 'https://revistasinvestigacion.unmsm.edu.pe/public/journals/36/cover_issue_1868_es.png', 'href' => 'https://revistasinvestigacion.unmsm.edu.pe/index.php/tesis/issue/view/1868' ),
-        array( 'short' => 'Azul', 'name' => 'Revista Azul', 'issn' => 'ISSN', 'c1' => '#155E63', 'c2' => '#0A2E31', 'cover' => 'https://revistaazulletras.unmsm.edu.pe/public/journals/1/cover_issue_2_es.png', 'href' => 'https://revistaazulletras.unmsm.edu.pe/index.php/azul/issue/view/2' ),
+        array( 'short' => 'Azul', 'name' => 'Revista Azul', 'issn' => 'ISSN 2789-1135', 'c1' => '#155E63', 'c2' => '#0A2E31', 'cover' => 'https://revistaazulletras.unmsm.edu.pe/public/journals/1/cover_issue_2_es.png', 'href' => 'https://revistaazulletras.unmsm.edu.pe/index.php/azul/issue/view/2' ),
     );
 }
 

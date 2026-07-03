@@ -140,7 +140,7 @@
 .kg-btn--outline-light {
   background: transparent; color: #fff;
   font-size: 15px; padding: 14px 24px;
-  border: 1px solid rgba(255,255,255,.45);
+  border: 1px solid rgba(255,255,255,.55); /* +contraste del contorno sobre foto (antes .45, se perdia en zonas claras del hero) */
 }
 .kg-btn--outline-light:hover { color: #fff; background: rgba(255,255,255,.12); border-color: #fff; } /* color explícito: estado autocontenido */
 
