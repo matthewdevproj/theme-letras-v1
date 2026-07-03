@@ -90,6 +90,11 @@
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         var icon = btn.querySelector('i');
         if (icon) icon.classList.toggle('rotate-180', isOpen);
+        if (isOpen) {
+            submenu.style.maxHeight = submenu.scrollHeight + 'px';
+        } else {
+            submenu.style.maxHeight = '0';
+        }
     };
 
     function initScrollSpy() {
@@ -212,7 +217,7 @@
             lerp: 0.42,
             wheelMultiplier: 1.1,
             smoothWheel: true,
-            touchMultiplier: 2
+            touchMultiplier: 1.2
         });
 
         var rafId = null;
