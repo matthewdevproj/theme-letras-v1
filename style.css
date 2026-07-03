@@ -14,6 +14,12 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold, #A8861C);
+  color: #fff;
 }
 
 body {
@@ -195,6 +201,12 @@ a {
   transition: color var(--transition-fast);
 }
 
+a:focus-visible {
+  outline: 2px solid var(--gold, #A8861C);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 a:hover {
   color: var(--gold);
 }
@@ -211,18 +223,29 @@ button:hover,
 .button:hover,
 .btn:hover,
 input[type="submit"]:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+button:active,
+.button:active,
+.btn:active,
+input[type="submit"]:active {
+  transform: scale(0.97);
 }
 
 img[loading="lazy"] {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
 }
 
 img[loading="lazy"].loaded,
 img[loading="lazy"][src] {
   opacity: 1;
+}
+
+img {
+  color: transparent;
 }
 
 .card,
@@ -234,8 +257,8 @@ img[loading="lazy"][src] {
 .card:hover,
 .post-card:hover,
 .entry-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .site-footer h2,

@@ -67,21 +67,39 @@
     @apply max-w-container mx-auto px-4 md:px-6;
   }
   
-  /* Botones */
+  /* Botones modernos v2 */
   .btn {
-    @apply inline-block px-8 py-3 text-sm font-medium text-center no-underline transition-all duration-300 border-2 border-transparent rounded cursor-pointer uppercase tracking-wider;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-bold text-center no-underline transition-all duration-300 border-2 border-transparent rounded-lg cursor-pointer select-none;
   }
   
   .btn-primary {
-    @apply text-white bg-accent-gold hover:bg-transparent hover:text-accent-gold hover:border-accent-gold hover:-translate-y-0.5 hover:shadow-lg;
+    @apply relative text-white;
+    overflow: hidden;
+    background: linear-gradient(135deg, #A8861C 0%, #C4A822 50%, #A8861C 100%);
+    box-shadow: 0 4px 12px rgba(168, 134, 28, 0.25);
+  }
+  .btn-primary:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 8px 24px rgba(168, 134, 28, 0.35);
+    filter: brightness(1.06);
+  }
+  .btn-primary:active {
+    transform: scale(0.97);
   }
   
   .btn-outline {
-    @apply text-white bg-transparent border-white hover:bg-white hover:text-primary-dark hover:-translate-y-0.5;
+    @apply text-white bg-transparent border-white/60 backdrop-blur-sm;
+  }
+  .btn-outline:hover {
+    @apply bg-white/15 border-white text-white -translate-y-0.5;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  .btn-outline:active {
+    transform: scale(0.97);
   }
   
   .btn-card {
-    @apply relative inline-flex items-center gap-2 px-0 py-2 text-primary-dark bg-transparent border-0 btn hover:text-primary-dark;
+    @apply relative inline-flex items-center gap-2 px-0 py-2 text-primary-dark bg-transparent border-0 btn hover:text-primary-dark rounded-none;
   }
   
   .btn-card::after {
@@ -100,10 +118,17 @@
   .btn-card:hover i {
     @apply translate-x-1;
   }
+
+
   
-  /* Cards */
+  /* Cards modernos */
   .card {
-    @apply flex flex-col h-full overflow-hidden bg-white border border-gray-light rounded-lg shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+    @apply flex flex-col h-full overflow-hidden bg-white border border-gray-light/60 rounded-xl transition-all duration-300;
+    box-shadow: 0 1px 3px rgba(8,18,32,.04), 0 8px 24px rgba(8,18,32,.04);
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 4px 12px rgba(8,18,32,.06), 0 20px 48px rgba(8,18,32,.08);
   }
   
   .card-image {
@@ -162,7 +187,8 @@
   
   /* Hero */
   .hero {
-    @apply relative overflow-hidden text-white bg-gradient-to-br from-primary-dark to-secondary-blue;
+    @apply relative overflow-hidden text-white;
+    background: var(--gradient-hero, linear-gradient(135deg, #0E2A48 0%, #1A4279 100%));
   }
   
   .hero::before {
@@ -269,11 +295,15 @@
   }
   
   .program-icon {
-    @apply flex items-center justify-center w-20 h-20 mx-auto mb-6 text-3xl text-primary-dark bg-secondary-light rounded-full transition-all duration-500;
+    @apply flex items-center justify-center w-20 h-20 mx-auto mb-6 text-3xl text-primary-dark bg-secondary-light rounded-full;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .program-card:hover .program-icon {
-    @apply text-white bg-accent-gold rotate-180;
+    @apply text-white;
+    background: var(--gradient-gold, linear-gradient(135deg, #A8861C 0%, #C4A822 50%, #A8861C 100%));
+    transform: rotate(180deg) scale(1.05);
+    box-shadow: 0 8px 24px rgba(168, 134, 28, 0.3);
   }
   
   .program-card h3 {
@@ -535,7 +565,8 @@
      DARK MODE — Component Overrides
      ═══════════════════════════════════ */
   :root.dark .card {
-    @apply bg-gray-800 border-gray-700;
+    background: #10243B;
+    border-color: rgba(255,255,255,0.08);
   }
 
   :root.dark .widget {
@@ -590,15 +621,8 @@
 }
 
 @layer utilities {
-  .border-l-3 {
-    border-left-width: 3px;
-  }
-  
-  .border-t-3 {
-    border-top-width: 3px;
-  }
-  
-  .text-balance {
-    text-wrap: balance;
-  }
+  .border-l-3 { border-left-width: 3px; }
+  .border-t-3 { border-top-width: 3px; }
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
 }

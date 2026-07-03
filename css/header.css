@@ -489,9 +489,9 @@ body {
        — antes era un vertical de 2 paradas (180deg #143B63→#0f2549)
        que aplanaba el header respecto al diseño. Sombra y blur también
        igualados al handoff. */
-    background: linear-gradient(105deg, #0E2A48 0%, #143B63 55%, #1A4E86 100%) !important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    background: var(--gradient-navy, linear-gradient(105deg, #0E2A48 0%, #143B63 55%, #1A4E86 100%)) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     box-shadow: 0 4px 22px rgba(8,18,32,.28) !important;
     position: sticky !important;
     top: 0 !important;
@@ -700,28 +700,36 @@ nav.main-nav {
 /* ── Header action buttons (search + hamburger) ── */
 .header-btn {
     width: 40px; height: 40px;
-    border-radius: 8px;
-    background: rgba(255,255,255,.1);
+    border-radius: 10px;
+    background: rgba(255,255,255,.08);
     border: 1px solid rgba(255,255,255,.1);
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     color: rgba(255,255,255,.9);
     font-size: 1rem;
-    transition: background .2s ease, border-color .2s ease, color .2s ease;
+    transition: background .25s cubic-bezier(.16,1,.3,1),
+                border-color .25s ease, color .25s ease,
+                transform .2s cubic-bezier(.16,1,.3,1),
+                box-shadow .25s ease;
     flex-shrink: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 .header-btn:hover  {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+    background: var(--gradient-gold, linear-gradient(135deg, #A8861C, #C4A822));
+    border-color: transparent;
     color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(168,134,28,.3);
 }
 .header-btn:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
+.header-btn:active { transform: scale(0.93); }
 .header-btn.active  {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+    background: var(--gradient-gold, linear-gradient(135deg, #A8861C, #C4A822));
+    border-color: transparent;
     color: #fff;
 }
 /* .header-btn{display:flex} tiene la misma especificidad que la utilidad
@@ -780,9 +788,9 @@ nav.main-nav {
 .search-submit-btn {
     position:absolute; right:0.4rem; top:50%;
     transform:translateY(-50%);
-    background: var(--color-accent-wcag); /* #7A6600 — blanco sobre dorado 5.1:1 */
-    color: #fff;
-    font-weight: 600;
+    background: var(--gradient-gold, linear-gradient(135deg, #A8861C, #C4A822));
+    color: #1F1A05;
+    font-weight: 700;
     padding: 0.55rem 1.1rem;
     border-radius: 8px;
     border: none;
@@ -791,10 +799,15 @@ nav.main-nav {
     font-size: 0.875rem;
     font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
     transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(168,134,28,.25);
 }
 .search-submit-btn:hover {
-    background: #5A4B00;
+    filter: brightness(1.08);
     transform: translateY(-50%) scale(1.02);
+    box-shadow: 0 6px 16px rgba(168,134,28,.35);
+}
+.search-submit-btn:active {
+    transform: translateY(-50%) scale(0.98);
 }
 
 .search-clear-btn {
@@ -819,10 +832,11 @@ nav.main-nav {
     transition:all 0.22s ease;
 }
 .suggestion-link:hover {
-    background:var(--color-accent);
-    color:#fff;
-    border-color:var(--color-accent);
+    background:var(--gradient-gold, linear-gradient(135deg, #A8861C, #C4A822));
+    color:#1F1A05;
+    border-color:transparent;
     transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(168,134,28,.25);
 }
 
 /* ================================================================

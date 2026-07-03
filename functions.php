@@ -415,7 +415,8 @@ function letras_flch_enqueue_scripts() {
     wp_enqueue_style( 'letras-header',    $uri . '/css/header.css',
         array( 'letras-main' ),
         file_exists( $dir . '/css/header.css' ) ? filemtime( $dir . '/css/header.css' ) : $version );
-    wp_enqueue_style( 'letras-theme',     get_stylesheet_uri(),        array( 'letras-header' ),   $version );
+    wp_enqueue_style( 'letras-theme',     get_stylesheet_uri(),        array( 'letras-header' ),
+        file_exists( $dir . '/style.css' ) ? filemtime( $dir . '/style.css' ) : $version );
     wp_enqueue_style( 'letras-kingster',  $uri . '/css/kingster.css',
         array( 'letras-theme' ),
         file_exists( $dir . '/css/kingster.css' ) ? filemtime( $dir . '/css/kingster.css' ) : $version );
