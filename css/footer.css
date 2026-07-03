@@ -45,44 +45,10 @@
     line-height: 1.5;
 }
 
-.kg-footer__background {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-.kg-footer__blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.2;
-    background: var(--kg-accent);
-    will-change: transform;
-}
-
-.kg-footer__blob--top-left {
-    top: -10%; left: -10%;
-    width: 50vw; height: 50vw;
-    max-width: 600px; max-height: 600px;
-    animation: kg-float-slow 20s infinite alternate;
-}
-
-.kg-footer__blob--bottom-right {
-    bottom: -10%; right: -10%;
-    width: 50vw; height: 50vw;
-    max-width: 600px; max-height: 600px;
-    animation: kg-float-slower 25s infinite alternate;
-}
-
-.kg-footer__pattern {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(45deg,  var(--kg-white-05) 1px, transparent 1px),
-        linear-gradient(-45deg, var(--kg-white-05) 1px, transparent 1px);
-    background-size: 30px 30px;
-    opacity: 0.3;
-}
+/* Fidelidad al handoff: blobs y pattern retirados (el footer del
+   prototipo es plano). Se eliminan sus reglas para no dejar CSS muerto
+   y ahorrar el compositing de dos círculos con blur(120px) animados
+   (gsap-performance: menos capas, menos GPU en idle). */
 
 .kg-footer__accent-line {
     position: absolute;
@@ -483,8 +449,6 @@
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes kg-float-slow    { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(5%,5%) scale(1.1); } }
-@keyframes kg-float-slower  { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-5%) scale(1.1); } }
 @keyframes kg-ping  { 0%  { transform: scale(1);   opacity: 0.3; } 75%  { transform: scale(1.5); opacity: 0; } 100% { transform: scale(1.5); opacity: 0; } }
 @keyframes kg-pulse { 0%  { transform: scale(1);   opacity: 0.3; } 50%  { transform: scale(1.2); opacity: 0.2; } 100% { transform: scale(1); opacity: 0.3; } }
 

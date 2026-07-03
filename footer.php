@@ -27,11 +27,12 @@
 ════════════════════════════════════════════════════════════ -->
 <footer class="kg-footer" role="contentinfo">
 
-    <div class="kg-footer__background" aria-hidden="true">
-        <div class="kg-footer__blob kg-footer__blob--top-left"></div>
-        <div class="kg-footer__blob kg-footer__blob--bottom-right"></div>
-        <div class="kg-footer__pattern"></div>
-    </div>
+    <?php /* Fidelidad al handoff Kingster: el footer del prototipo es
+       PLANO — fondo #08131F + línea dorada superior de 3px, sin blobs
+       ni patterns decorativos. Se retiran kg-footer__background (blobs
+       animados con blur 120px y grilla diagonal) que no existen en el
+       diseño. La línea dorada (accent-line) sí es del handoff y se
+       conserva. */ ?>
 
     <div class="kg-footer__accent-line" aria-hidden="true"></div>
 
