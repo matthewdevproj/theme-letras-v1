@@ -933,3 +933,29 @@ add_action('wp_enqueue_scripts', function() {
     }
 
 }, 999);
+
+/* ══════════════════════════════════════════════════════════════════
+   MODO COMPATIBILIDAD ELEMENTOR (medida dura, prioridad 10000)
+   Complementa las guardas individuales: dentro del editor/preview se
+   DESENCOLA TODO el JS propio del tema, quede lo que quede. El preview
+   debe ser casi vanilla: solo WordPress + Elementor. El CSS del tema
+   SÍ se mantiene para que el preview se vea como el sitio real.
+   Un solo punto de verdad: si mañana se agrega un script nuevo al
+   tema y se olvida la guarda, esta red lo atrapa igual.
+   ══════════════════════════════════════════════════════════════════ */
+add_action( 'wp_enqueue_scripts', function () {
+    if ( ! letras_flch_is_elementor_context() ) {
+        return;
+    }
+    $theme_scripts = array(
+        'letras-theme-stack', 'alpinejs', 'letras-header-modern',
+        'letras-home-animations', 'letras-page-transitions',
+        'letras-header-effects', 'letras-lightbox', 'letras-splide',
+        'letras-home-carousels', 'letras-kingster-extras',
+        'letras-kingster', 'letras-lenis', 'lenis',
+        'gsap', 'gsap-scrolltrigger',
+    );
+    foreach ( $theme_scripts as $h ) {
+        wp_dequeue_script( $h );
+    }
+}, 10000 );

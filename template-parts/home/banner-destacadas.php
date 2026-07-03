@@ -21,7 +21,7 @@ if ( ! $letras_flch_banner_query->have_posts() ) {
 	return;
 }
 ?>
-<section id="destacadas" aria-labelledby="destacadas-title" class="kg-sec kg-banner">
+<section id="destacadas" aria-labelledby="destacadas-title" class="kg-sec kg-banner" aria-roledescription="carrusel">
 	<header class="kg-banner__head kg-reveal">
 		<div>
 			<p class="kg-banner__eyebrow">Lo más reciente</p>
@@ -52,7 +52,7 @@ if ( ! $letras_flch_banner_query->have_posts() ) {
 							<div class="kg-banner__body">
 								<div class="kg-banner__meta">
 									<span class="kg-banner__cat"><i class="fa-solid fa-star" aria-hidden="true"></i> <?php echo esc_html( $cat_name ); ?></span>
-									<time class="kg-banner__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i> <?php echo esc_html( get_the_date( 'j F Y' ) ); ?></time>
+									<time class="kg-banner__date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><i class="fa-regular fa-calendar" aria-hidden="true"></i> <?php echo esc_html( get_the_date( 'j F Y' ) ); ?></time>
 								</div>
 								<h3 class="kg-banner__slide-title"><?php the_title(); ?></h3>
 								<p class="kg-banner__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 24, '…' ) ); ?></p>
@@ -75,7 +75,7 @@ if ( ! $letras_flch_banner_query->have_posts() ) {
 }
 .kg-banner__eyebrow {
 	font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-	color: var(--kg-gold, #A8861C); margin: 0 0 8px;
+	color: var(--kg-gold2, #D6B655); margin: 0 0 8px; /* sobre foto oscura: gold2 contrasta 5.8:1 */
 }
 .kg-banner__title {
 	font-family: var(--font-display, 'Newsreader', serif); font-weight: 600;

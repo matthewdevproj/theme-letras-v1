@@ -40,6 +40,7 @@ if ( $letras_flch_news_q->have_posts() ) {
 		$letras_flch_ssr_news[] = array(
 			'cat'     => ! empty( $letras_flch_cats ) ? $letras_flch_cats[0]->name : 'Noticias',
 			'date'    => get_the_date( 'j F Y' ),
+			'iso'     => get_the_date( 'c' ),
 			'title'   => get_the_title(),
 			'excerpt' => wp_trim_words( get_the_excerpt(), 20, '...' ),
 			'img'     => $letras_flch_thumb,
@@ -65,7 +66,7 @@ if ( $letras_flch_news_q->have_posts() ) {
 				</div>
 				<div class="kg-noticias__featured-meta">
 					<span class="kg-noticias__cat"><?php echo esc_html( $letras_flch_ssr_news[0]['cat'] ); ?></span>
-					<span class="kg-noticias__date"><?php echo esc_html( $letras_flch_ssr_news[0]['date'] ); ?></span>
+					<time class="kg-noticias__date" datetime="<?php echo esc_attr( $letras_flch_ssr_news[0]['iso'] ); ?>"><?php echo esc_html( $letras_flch_ssr_news[0]['date'] ); ?></time>
 				</div>
 				<h3 class="kg-noticias__featured-title"><?php echo esc_html( $letras_flch_ssr_news[0]['title'] ); ?></h3>
 				<p class="kg-noticias__featured-excerpt"><?php echo esc_html( $letras_flch_ssr_news[0]['excerpt'] ); ?></p>
@@ -77,7 +78,7 @@ if ( $letras_flch_news_q->have_posts() ) {
 					<div class="kg-sidenews__body">
 						<div class="kg-sidenews__meta">
 							<span class="kg-sidenews__cat"><?php echo esc_html( $letras_flch_n['cat'] ); ?></span>
-							<span class="kg-sidenews__date"><?php echo esc_html( $letras_flch_n['date'] ); ?></span>
+							<time class="kg-sidenews__date" datetime="<?php echo esc_attr( $letras_flch_n['iso'] ); ?>"><?php echo esc_html( $letras_flch_n['date'] ); ?></time>
 						</div>
 						<h4 class="kg-sidenews__title"><?php echo esc_html( $letras_flch_n['title'] ); ?></h4>
 					</div>
@@ -149,7 +150,7 @@ if ( $letras_flch_news_q->have_posts() ) {
 	padding-bottom: 90px;
 }
 .kg-noticias__all { font-size: 13.5px; font-weight: 700; color: var(--kg-azul, #143B63); text-decoration: none; white-space: nowrap; transition: color .2s ease; }
-.kg-noticias__all:hover { color: var(--kg-gold, #A8861C); }
+.kg-noticias__all:hover { color: var(--kg-gold-text, #8A6D14); } /* AA */
 
 .kg-noticias__featured { display: block; text-decoration: none; color: var(--kg-ink, #1A2230); margin-bottom: 24px; cursor: pointer; }
 .kg-noticias__featured-img { aspect-ratio: 16/8; border-radius: 12px; overflow: hidden; background: var(--kg-soft, #F4F1E9); margin-bottom: 16px; }
@@ -178,7 +179,7 @@ if ( $letras_flch_news_q->have_posts() ) {
 .kg-sidenews__thumb { width: 96px; height: 74px; flex: none; border-radius: 8px; overflow: hidden; background: var(--kg-soft, #F4F1E9); }
 .kg-sidenews__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .kg-sidenews__meta { display: flex; align-items: center; gap: 9px; margin-bottom: 6px; }
-.kg-sidenews__cat { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--kg-gold, #A8861C); }
+.kg-sidenews__cat { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--kg-gold-text, #8A6D14); } /* AA */
 .kg-sidenews__date { font-size: 11.5px; color: var(--kg-muted, #5E6675); }
 .kg-sidenews__title { font-family: var(--font-display, 'Newsreader', serif); font-weight: 600; font-size: 17px; line-height: 1.2; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; /* P0: titulares RR largos */ }
 

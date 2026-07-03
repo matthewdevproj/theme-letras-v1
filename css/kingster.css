@@ -51,7 +51,7 @@
 .kg-div__num {
   font-family: var(--font-display, 'Newsreader', serif);
   font-style: italic; font-size: 15px;
-  color: var(--kg-gold); letter-spacing: 0.02em;
+  color: var(--kg-gold-text, #8A6D14); letter-spacing: 0.02em; /* AA sobre claro */
 }
 .kg-div__lbl {
   font-size: 11px; font-weight: 700;
@@ -77,7 +77,7 @@
 }
 .kg-sec__eyebrow {
   font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--kg-gold, #A8861C); margin-bottom: 8px;
+  color: var(--kg-gold-text, #8A6D14); margin-bottom: 8px; /* AA sobre claro */
 }
 .kg-sec__title {
   font-family: var(--font-display, 'Newsreader', serif); font-weight: 600;
@@ -201,7 +201,7 @@
   font-size: 12px; color: var(--kg-muted);
   display: inline-flex; align-items: center; gap: 6px;
 }
-.kg-card__meta i { color: var(--kg-gold); font-size: 11px; }
+.kg-card__meta i { color: var(--kg-gold-text, #8A6D14); font-size: 11px; }
 
 .kg-card__title {
   font-family: var(--font-display, 'Newsreader', serif);
@@ -408,7 +408,7 @@
 .kg-single__content ol { margin: 0 0 16px; padding-left: 22px; }
 .kg-single__content li { margin-bottom: 8px; }
 .kg-single__content a { color: var(--kg-azul); text-decoration: underline; text-decoration-color: var(--kg-line); text-underline-offset: 2px; }
-.kg-single__content a:hover { color: var(--kg-gold); }
+.kg-single__content a:hover { color: var(--kg-gold-text, #8A6D14); }
 .kg-single__content img,
 .kg-single__content figure { max-width: 100%; height: auto; border-radius: 10px; margin: 24px 0; }
 .kg-single__content figcaption { font-size: 13px; color: var(--kg-muted); text-align: center; margin-top: 8px; }
@@ -725,7 +725,7 @@ button:active { transform: scale(.98); }
 .kg-cmdk__row-group {
   margin-left: auto; font-size: 10.5px; font-weight: 700;
   letter-spacing: .06em; text-transform: uppercase;
-  color: var(--kg-gold); background: rgba(168,134,28,.1);
+  color: var(--kg-gold-text, #8A6D14); background: rgba(168,134,28,.1);
   padding: 4px 9px; border-radius: 6px;
 }
 .kg-cmdk__footer {
@@ -757,3 +757,40 @@ button:active { transform: scale(.98); }
 /* Utilidad (SSR noticias): oculta el bloque server-rendered cuando el
    usuario pagina y Alpine toma el control (patrón booted). */
 .kg-hidden { display: none !important; }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   PASADA SENIOR (auditoría fina) — scroll, render y tipografía
+   ═══════════════════════════════════════════════════════════════ */
+
+/* D1 · Anclas bajo header sticky: al navegar a #escuelas, #revistas,
+   etc. sin Lenis (navegación nativa, enlaces externos con hash,
+   botón atrás), el título quedaba OCULTO bajo el header pegajoso.
+   scroll-margin reserva el alto del header + respiro. */
+section[id] { scroll-margin-top: 96px; }
+
+/* E1 · Render diferido de secciones bajo el pliegue: el navegador no
+   calcula layout/paint de estas secciones hasta acercarse a ellas.
+   Mejora directa de First Paint sin tocar diseño ni animaciones
+   (IntersectionObserver de los reveals sigue funcionando igual).
+   contain-intrinsic-size evita saltos de scrollbar. */
+@supports (content-visibility: auto) {
+	#adn, #admision, #cifras, #escuelas, #revistas, #noticias,
+	#investigacion, #comunidad {
+		content-visibility: auto;
+		contain-intrinsic-size: auto 640px;
+	}
+}
+
+/* E2 · Tipografía moderna: balance evita líneas viudas en títulos
+   ("Facultad en cifras" partido feo); pretty mejora la última línea
+   de párrafos. Progressive enhancement: navegadores viejos ignoran. */
+.kg-sec__title, .kg-h1, .kg-banner__slide-title,
+.kg-noticias__featured-title { text-wrap: balance; }
+.kg-noticias__featured-excerpt, .kg-somos__text p { text-wrap: pretty; }
+
+/* D2 · Ritmo vertical unificado: un solo token de respiro entre
+   secciones (antes convivían 54/62/64/78/90/110px ad hoc). Los
+   divisores editoriales usan el mismo compás. */
+:root { --kg-section-gap: clamp(64px, 8vw, 96px); }
+.kg-div { padding-top: var(--kg-section-gap); }

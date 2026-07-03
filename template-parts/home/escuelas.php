@@ -22,7 +22,7 @@ $letras_flch_schools = letras_flch_schools_data();
 		<?php foreach ( $letras_flch_schools as $school ) : ?>
 			<a href="<?php echo esc_url( $school['href'] ); ?>" class="kg-reveal kg-school">
 				<div class="kg-school-img">
-					<img src="<?php echo esc_url( $school['img'] ); ?>" alt="<?php echo esc_attr( $school['name'] ); ?>" loading="lazy">
+					<img src="<?php echo esc_url( $school['img'] ); ?>" alt="" loading="lazy"><?php /* alt vacío a propósito: el nombre de la escuela es texto visible dentro del mismo enlace; repetirlo en alt duplica el anuncio en lectores de pantalla */ ?>
 				</div>
 				<div class="kg-school__scrim" aria-hidden="true"></div>
 				<div class="kg-school__body">

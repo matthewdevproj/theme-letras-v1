@@ -265,3 +265,12 @@
         --kg-azul-tint: rgba(36, 87, 166, .22);
     }
 }
+
+/* ── Contraste AA (auditoría senior) ─────────────────────────────
+   El dorado institucional #A8861C rinde 3.4:1 sobre blanco: FALLA
+   WCAG AA para texto normal (mín. 4.5:1). Sirve para rellenos,
+   bordes y texto sobre azul/negro, pero NO como texto pequeño sobre
+   fondo claro. Este token (#8A6D14, 4.9:1 sobre blanco) es el dorado
+   PARA TEXTO en superficies claras. Mismo matiz, legible. */
+:root { --kg-gold-text: #8A6D14; }
+:root.dark { --kg-gold-text: var(--kg-gold2, #D6B655); } /* en oscuro, el claro ya contrasta */

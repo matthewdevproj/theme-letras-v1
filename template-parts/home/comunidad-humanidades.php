@@ -86,7 +86,7 @@
 	font-weight: 700;
 	letter-spacing: 0.16em;
 	text-transform: uppercase;
-	color: var(--kg-gold, #A8861C);
+	color: var(--kg-gold-text, #8A6D14); /* AA sobre claro */
 	margin-bottom: 14px;
 }
 :root.dark .kg-community__eyebrow {
@@ -141,7 +141,7 @@
 	color: rgba(255,255,255,.7);
 }
 .kg-community__tag i {
-	color: var(--kg-gold, #A8861C);
+	color: var(--kg-gold-text, #8A6D14); /* AA sobre claro */
 	font-size: 12px;
 }
 :root.dark .kg-community__tag i {

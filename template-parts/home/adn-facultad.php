@@ -61,7 +61,7 @@
 	background: var(--gold, #D6B655);
 }
 .kg-adn__eyebrow i {
-	color: var(--kg-gold, #A8861C);
+	color: var(--kg-gold-text, #8A6D14); /* AA sobre claro */
 }
 :root.dark .kg-adn__eyebrow i {
 	color: var(--gold, #D6B655);
@@ -83,7 +83,7 @@
 	align-items: center;
 }
 .kg-adn__sep {
-	color: var(--kg-gold, #A8861C);
+	color: var(--kg-gold-text, #8A6D14); /* AA sobre claro */
 	margin: 0 1rem;
 	font-size: 0.6em;
 	opacity: 0.8;
