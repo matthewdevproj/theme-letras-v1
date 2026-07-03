@@ -152,7 +152,6 @@ table th {
 
 .reveal,
 [data-kg-animate] {
-  will-change: transform, opacity;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
@@ -215,7 +214,7 @@ button,
 .button,
 .btn,
 input[type="submit"] {
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   cursor: pointer;
 }
 
@@ -251,7 +250,7 @@ img {
 .card,
 .post-card,
 .entry-card {
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .card:hover,

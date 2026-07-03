@@ -147,10 +147,20 @@
         function reveal(el) {
             if (el.dataset.kgRevealed) return;
             el.dataset.kgRevealed = '1';
-            el.style.transitionDelay = Math.min(Math.max(siblingIndex(el), 0) * 70, 350) + 'ms';
+            var delay = Math.min(Math.max(siblingIndex(el), 0) * 70, 350);
+            el.style.transitionDelay = delay + 'ms';
+            // will-change dinámico: promueve a capa compuesta solo durante la animación
+            var restoreWillChange = false;
+            if (!el.style.willChange) {
+                el.style.willChange = 'transform, opacity';
+                restoreWillChange = true;
+            }
             el.style.opacity = '1';
             el.style.transform = 'none';
             el.classList.add('is-in', 'kg-animate-ready');
+            if (restoreWillChange) {
+                setTimeout(function () { el.style.willChange = ''; }, delay + 600);
+            }
         }
 
         // Oculta solo lo que está bajo el pliegue (protege el LCP).
@@ -176,20 +186,16 @@
         }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
         dirEls.forEach(function (el) { dio.observe(el); });
 
-        // Redes de seguridad: evita contenido atascado en opacity:0 por timing de layout.
-        function showInView() {
+        // Safety net: revela elementos visibles atascados (evita opacity:0 eterno)
+        function revealVisible() {
+            var viewport = window.innerHeight + 100;
             fadeEls.forEach(function (el) {
-                if (!el.dataset.kgRevealed && el.getBoundingClientRect().top < window.innerHeight * 0.96) {
+                if (!el.dataset.kgRevealed && el.getBoundingClientRect().top < viewport) {
                     reveal(el);
                 }
             });
         }
-        requestAnimationFrame(showInView);
-        setTimeout(showInView, 200);
-        setTimeout(function () {
-            fadeEls.forEach(reveal);
-            dirEls.forEach(function (el) { el.classList.add('kg-in'); });
-        }, 700);
+        setTimeout(revealVisible, 300);
     }
 
     /**
@@ -209,11 +215,38 @@
             touchMultiplier: 2
         });
 
+        var rafId = null;
         function raf(time) {
             lenis.raf(time);
-            requestAnimationFrame(raf);
+            rafId = requestAnimationFrame(raf);
         }
-        requestAnimationFrame(raf);
+        function startRaf() {
+            if (rafId) return;
+            rafId = requestAnimationFrame(raf);
+        }
+        function stopRaf() {
+            if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        }
+
+        // Pausa RAF cuando no hay scroll activo (idle 2s)
+        var idleTimer = null;
+        function resetIdle() {
+            if (idleTimer) clearTimeout(idleTimer);
+            startRaf();
+            idleTimer = setTimeout(function () {
+                stopRaf();
+            }, 2000);
+        }
+
+        lenis.on('scroll', resetIdle);
+        // Pausa RAF cuando la pestaña está oculta
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) { stopRaf(); }
+            else { startRaf(); }
+        });
+
+        // Inicia RAF para que Lenis procese el primer scroll
+        startRaf();
 
         if (window.gsap && window.ScrollTrigger) {
             lenis.on('scroll', ScrollTrigger.update);
