@@ -489,9 +489,9 @@ body {
        — antes era un vertical de 2 paradas (180deg #143B63→#0f2549)
        que aplanaba el header respecto al diseño. Sombra y blur también
        igualados al handoff. */
-    background: var(--gradient-navy, linear-gradient(105deg, #0E2A48 0%, #143B63 55%, #1A4E86 100%)) !important;
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    background: linear-gradient(105deg, #0E2A48 0%, #143B63 55%, #1A4E86 100%) !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 22px rgba(8,18,32,.28) !important;
     position: sticky !important;
     top: 0 !important;
@@ -700,42 +700,28 @@ nav.main-nav {
 /* ── Header action buttons (search + hamburger) ── */
 .header-btn {
     width: 40px; height: 40px;
-    border-radius: 10px;
-    background: rgba(255,255,255,.08);
+    border-radius: 8px;
+    background: rgba(255,255,255,.1);
     border: 1px solid rgba(255,255,255,.1);
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     color: rgba(255,255,255,.9);
     font-size: 1rem;
-    transition: background .25s cubic-bezier(.16,1,.3,1),
-                border-color .25s ease, color .25s ease,
-                transform .2s cubic-bezier(.16,1,.3,1),
-                box-shadow .25s ease;
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
     flex-shrink: 0;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-@media (hover: hover) and (pointer: fine) {
-    .header-btn {
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-    }
 }
 .header-btn:hover  {
-    background: var(--gradient-gold, linear-gradient(135deg, #A8861C, #C4A822));
-    border-color: transparent;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
     color: #fff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(168,134,28,.3);
 }
 .header-btn:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
-.header-btn:active { transform: scale(0.93); }
 .header-btn.active  {
-    background: var(--gradient-gold, linear-gradient(135deg, #A8861C, #C4A822));
-    border-color: transparent;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
     color: #fff;
 }
 /* .header-btn{display:flex} tiene la misma especificidad que la utilidad
@@ -743,42 +729,10 @@ nav.main-nav {
    que le ganaba y el hamburguesa quedaba visible en desktop. Selector
    compuesto (mayor especificidad) para que gane sin depender del orden. */
 @media (min-width: 1024px) {
-    .header-btn.lg\:hidden { display: none !important; }
+    .header-btn.lg\:hidden { display: none; }
 }
 @media (max-width: 760px) /* breakpoint unificado al canon 760 (antes 640px; auditoria P1: zona muerta 761-768) */ {
     .header-btn { width: 38px; height: 38px; font-size: 0.9rem; }
-}
-
-/* ── Hamburger icon (3 spans → 3 barras) ── */
-.header-btn[aria-controls="mobile-menu-panel"] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-}
-.header-btn[aria-controls="mobile-menu-panel"] span {
-    display: block;
-    width: 18px;
-    height: 2px;
-    background: rgba(255,255,255,.9);
-    border-radius: 2px;
-    transition: transform .3s cubic-bezier(.16,1,.3,1),
-                opacity .25s ease;
-    transform-origin: center;
-}
-.header-btn[aria-controls="mobile-menu-panel"].is-open span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-}
-.header-btn[aria-controls="mobile-menu-panel"].is-open span:nth-child(2) {
-    opacity: 0;
-}
-.header-btn[aria-controls="mobile-menu-panel"].is-open span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-}
-@media (max-width: 760px) {
-    .header-btn[aria-controls="mobile-menu-panel"] { gap: 3.5px; }
-    .header-btn[aria-controls="mobile-menu-panel"] span { width: 16px; }
 }
 
 /* BARRA DE BÚSQUEDA */
@@ -813,7 +767,7 @@ nav.main-nav {
     width: 100%;
     font-size: 0.95rem;
     font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
-    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
 }
 .search-input:focus {
     border-color: var(--color-accent) !important;
@@ -826,9 +780,9 @@ nav.main-nav {
 .search-submit-btn {
     position:absolute; right:0.4rem; top:50%;
     transform:translateY(-50%);
-    background: var(--gradient-gold, linear-gradient(135deg, #A8861C, #C4A822));
-    color: #1F1A05;
-    font-weight: 700;
+    background: var(--color-accent-wcag); /* #7A6600 — blanco sobre dorado 5.1:1 */
+    color: #fff;
+    font-weight: 600;
     padding: 0.55rem 1.1rem;
     border-radius: 8px;
     border: none;
@@ -836,16 +790,11 @@ nav.main-nav {
     display: flex; align-items:center; gap:0.4rem;
     font-size: 0.875rem;
     font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
-    transition: filter 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-    box-shadow: 0 4px 12px rgba(168,134,28,.25);
+    transition: all 0.25s ease;
 }
 .search-submit-btn:hover {
-    filter: brightness(1.08);
+    background: #5A4B00;
     transform: translateY(-50%) scale(1.02);
-    box-shadow: 0 6px 16px rgba(168,134,28,.35);
-}
-.search-submit-btn:active {
-    transform: translateY(-50%) scale(0.98);
 }
 
 .search-clear-btn {
@@ -870,11 +819,10 @@ nav.main-nav {
     transition:all 0.22s ease;
 }
 .suggestion-link:hover {
-    background:var(--gradient-gold, linear-gradient(135deg, #A8861C, #C4A822));
-    color:#1F1A05;
-    border-color:transparent;
+    background:var(--color-accent);
+    color:#fff;
+    border-color:var(--color-accent);
     transform:translateY(-2px);
-    box-shadow:0 4px 12px rgba(168,134,28,.25);
 }
 
 /* ================================================================
@@ -955,10 +903,15 @@ nav.main-nav {
     padding: 1rem;
 }
 
-/* Panel real #mobile-menu-panel (slide-in lateral).
-   Sin x-show ni display:none para que la transición CSS funcione.
-   Estado oculto: translateX(100%) + visibility hidden (inaccesible
-   al foco/tab). Estado visible: translateX(0) + visibility visible. */
+/* El panel real es #mobile-menu-panel (id) — la clase .mobile-menu-panel
+   de arriba (con guion) nunca coincide con el HTML actual y quedó huérfana.
+   Sin esto, el div del panel no tenía position/background/max-height:
+   aunque x-show lo mostrara, se veía como un bloque sin estilo.
+   Además el markup no está anidado dentro de <header> (es hermano en el
+   DOM), así que position:absolute;top:100% quedaba relativo a <body>
+   entero, no al header — se usa position:fixed en su lugar, panel
+   completo tipo "slide-in" (coincide con el header propio "Menú + ×"
+   que ya trae el markup). */
 #mobile-menu-panel {
     position: fixed;
     inset: 0 0 0 auto;
@@ -968,41 +921,19 @@ nav.main-nav {
     overflow-y: auto;
     z-index: 200;
     transform: translateX(100%);
-    visibility: hidden;
-    will-change: transform;
-    transition: transform .3s cubic-bezier(.16,1,.3,1),
-                visibility .3s ease;
+    transition: transform .28s cubic-bezier(.16,1,.3,1);
 }
-#mobile-menu-panel.is-open {
-    transform: translateX(0);
-    visibility: visible;
-}
+#mobile-menu-panel.is-open { transform: translateX(0); }
 @media (min-width: 1024px) {
     #mobile-menu-panel { display: none !important; }
 }
 .mobile-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 99;
-    cursor: pointer;
     opacity: 0;
-    visibility: hidden;
-    will-change: opacity;
-    transition: opacity .25s ease, visibility .25s ease;
+    transition: opacity .25s ease;
 }
-@media (hover: hover) and (pointer: fine) {
-    .mobile-backdrop {
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-    }
-}
-.mobile-backdrop.is-open {
-    opacity: 1;
-    visibility: visible;
-}
+.mobile-backdrop.is-open { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
-    #mobile-menu-panel, .mobile-backdrop { transition: none !important; }
+    #mobile-menu-panel, .mobile-backdrop { transition: none; }
 }
 #mobile-menu-panel::-webkit-scrollbar { width: 5px; }
 #mobile-menu-panel::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.04); }
@@ -1049,7 +980,7 @@ nav.main-nav {
     list-style: none;
 }
 
-.mobile-menu li {
+.mobile-menu > li {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1060,7 +991,7 @@ nav.main-nav {
     color: rgba(255, 255, 255, 0.92);
     padding: 0.9rem 1rem;
     display: block;
-    transition: color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+    transition: all 0.2s ease;
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -1068,8 +999,8 @@ nav.main-nav {
 
 .mobile-menu a:hover,
 .mobile-menu a:focus {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--kg-gold2, #D6B655);
+    background: #1E4A7A;
+    color: var(--color-accent);
     padding-left: 1.5rem;
 }
 
@@ -1080,47 +1011,29 @@ nav.main-nav {
 .mobile-menu .menu-item-has-children > a {
     padding-right: 2.5rem;
 }
-.mobile-menu .menu-item-has-children > a::after {
-    content: "›";
-    position: absolute;
-    right: 3rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.1em;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.3);
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-.mobile-menu .menu-item-has-children > a:hover::after {
-    color: var(--kg-gold2, #D6B655);
-    transform: translateY(-50%) translateX(2px);
-}
 
 .mobile-submenu-toggle {
     position: absolute;
     right: 0.5rem;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.8);
-    padding: 0.45rem 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 0.8rem;
     cursor: pointer;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     border-radius: 6px;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: all 0.2s ease;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.25rem;
-    min-width: 28px;
-    min-height: 28px;
 }
 
 .mobile-submenu-toggle:hover {
     background: var(--color-accent);
-    border-color: var(--color-accent);
     color: white;
 }
 
@@ -1138,14 +1051,11 @@ nav.main-nav {
     list-style: none;
     background: rgba(0, 0, 0, 0.25);
     border-left: 2px solid var(--color-accent);
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease, opacity 0.25s ease;
+    display: none;
 }
 
 .mobile-menu ul.sub-menu.open {
-    opacity: 1;
+    display: block;
 }
 
 .mobile-menu ul.sub-menu li {
@@ -1160,42 +1070,30 @@ nav.main-nav {
     padding: 0.7rem 1rem;
     font-size: 0.85rem;
     font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.mobile-menu ul.sub-menu a::before {
-    content: "›";
-    display: inline-block;
-    width: 0.75rem;
-    flex-shrink: 0;
-    color: var(--color-accent);
-    font-weight: 700;
-    font-size: 1.1em;
-    transition: transform 0.2s ease;
 }
 
 .mobile-menu ul.sub-menu a:hover {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--kg-gold2, #D6B655);
     padding-left: 1.5rem;
 }
 
-.mobile-menu ul.sub-menu a:hover::before {
-    transform: translateX(3px);
-}
-
 .mobile-menu ul.sub-menu ul.sub-menu {
-    margin-left: 0.25rem;
+    margin-left: 0.5rem;
     border-left: 1px solid rgba(168, 143, 29, 0.4);
 }
 
-.mobile-menu ul.sub-menu ul.sub-menu a::before {
-    content: "·";
-    font-size: 1.5em;
-    width: 0.85rem;
-    line-height: 0;
+/* Mobile menu backdrop overlay — outside header, so z-index is root-level */
+.mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 99; /* below .main-header (100) → panel inside header stacks above */
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .mobile-backdrop { display: none !important; }
 }
 
 .mobile-contact-info {
@@ -1232,7 +1130,7 @@ nav.main-nav {
     gap: 0.75rem;
     color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
-    transition: color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+    transition: all 0.2s ease;
     padding: 0.5rem 0.5rem;
     border-radius: 6px;
     font-size: 0.85rem;

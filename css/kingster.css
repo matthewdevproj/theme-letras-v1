@@ -94,38 +94,25 @@
 .kg-revnav:hover { background: var(--kg-azul, #143B63); color: #fff; }
 
 /* ════════════════════════════════════════════════════════════
-   BUTTONS — Modern v2
+   BUTTONS
    ════════════════════════════════════════════════════════════ */
 .kg-btn {
   display: inline-flex; align-items: center; gap: 9px;
   font-weight: 700; text-decoration: none; cursor: pointer;
-  border: none; border-radius: var(--btn-radius, 10px);
-  transition: background-color .25s cubic-bezier(.16,1,.3,1),
-              color .25s ease,
+  border: none; border-radius: 8px;
+  transition: background-color .2s ease, color .2s ease,
               transform .2s cubic-bezier(.16,1,.3,1),
-              box-shadow .25s ease, filter .25s ease;
-  position: relative;
-  isolation: isolate;
+              box-shadow .2s ease, filter .2s ease;
 }
-.kg-btn:focus-visible {
-  outline: 2px solid var(--kg-gold, #A8861C);
-  outline-offset: 3px;
-}
-.kg-btn:active { transform: scale(.96); }
+.kg-btn:active { transform: scale(.97); }
 .kg-btn i { transition: transform .2s cubic-bezier(.16,1,.3,1); }
 .kg-btn:hover i.kg-icon-right { transform: translateX(4px); }
 .kg-btn:hover i.kg-icon-up   { transform: translate(2px,-2px); }
 
-/* ── Pill variant ── */
-.kg-btn--pill { border-radius: var(--btn-radius-pill, 9999px); }
-
-/* ── Primary Gold — gradient + shine ── */
 .kg-btn--gold {
   position: relative; overflow: hidden;
-  background: var(--gradient-gold, linear-gradient(135deg, #A8861C 0%, #C4A822 50%, #A8861C 100%));
-  color: #1F1A05;
-  font-size: 14.5px; padding: 13px 28px;
-  box-shadow: 0 4px 12px rgba(168,134,28,.25);
+  background: var(--kg-gold); color: #231d05;
+  font-size: 14.5px; padding: 13px 26px;
 }
 .kg-btn--gold::before {
   content: ""; position: absolute; top: 0; left: -120%;
@@ -134,94 +121,28 @@
   transform: skewX(-18deg); transition: left .55s ease;
 }
 .kg-btn--gold:hover::before { left: 140%; }
-.kg-btn--gold:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(168,134,28,.35);
-  filter: brightness(1.08);
-}
+.kg-btn--gold:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(168,134,28,.32); filter: brightness(1.06); }
 
-/* ── Primary Navy — gradient variant ── */
-.kg-btn--navy {
-  position: relative; overflow: hidden;
-  background: var(--gradient-navy, linear-gradient(135deg, #0E2A48 0%, #143B63 50%, #1A4E86 100%));
-  color: #fff;
-  font-size: 14.5px; padding: 13px 28px;
-  box-shadow: 0 4px 12px rgba(20,59,99,.25);
-}
-.kg-btn--navy::before {
-  content: ""; position: absolute; top: 0; left: -120%;
-  width: 60%; height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.12), transparent);
-  transform: skewX(-18deg); transition: left .55s ease;
-}
-.kg-btn--navy:hover::before { left: 140%; }
-.kg-btn--navy:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(20,59,99,.35);
-}
-
-/* ── Outline — modern glass ── */
 .kg-btn--outline {
   background: transparent; color: var(--kg-azul);
-  font-size: 13px; padding: 10px 20px;
+  font-size: 13px; padding: 9px 18px;
   border: 1.5px solid var(--kg-azul);
-  backdrop-filter: blur(4px);
 }
-.kg-btn--outline:hover {
-  background: var(--kg-azul); color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(20,59,99,.2);
-}
+.kg-btn--outline:hover { background: var(--kg-azul); color: #fff; }
 
-/* ── Ghost ── */
 .kg-btn--ghost {
   background: transparent; color: var(--kg-azul);
   font-size: 13.5px; padding: 8px 14px;
-  border-radius: var(--btn-radius, 10px);
 }
-.kg-btn--ghost:hover {
-  background: var(--kg-soft);
-  transform: translateY(-1px);
-}
+.kg-btn--ghost:hover { background: var(--kg-soft); }
 
-/* ── Variante para fondos oscuros (hero, bandas navy) ── */
+/* Variante para fondos oscuros (hero, bandas navy) */
 .kg-btn--outline-light {
   background: transparent; color: #fff;
-  font-size: 15px; padding: 14px 26px;
+  font-size: 15px; padding: 14px 24px;
   border: 1px solid rgba(255,255,255,.45);
-  backdrop-filter: blur(4px);
 }
-.kg-btn--outline-light:hover {
-  background: rgba(255,255,255,.12);
-  border-color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,.15);
-}
-
-/* ── Navy gradient variant ── */
-.kg-btn--navy-gradient {
-  position: relative; overflow: hidden;
-  background: var(--gradient-navy, linear-gradient(135deg, #0E2A48 0%, #143B63 50%, #1A4E86 100%));
-  color: #fff;
-  font-size: 14.5px; padding: 13px 28px;
-  box-shadow: 0 4px 12px rgba(20,59,99,.25);
-}
-.kg-btn--navy-gradient::before {
-  content: ""; position: absolute; top: 0; left: -120%;
-  width: 60%; height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.12), transparent);
-  transform: skewX(-18deg); transition: left .55s ease;
-}
-.kg-btn--navy-gradient:hover::before { left: 140%; }
-.kg-btn--navy-gradient:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(20,59,99,.35);
-}
-
-/* ── Sizes ── */
-.kg-btn--sm  { font-size: 12px; padding: 8px 16px; gap: 6px; }
-.kg-btn--lg  { font-size: 16px; padding: 16px 32px; gap: 10px; }
-.kg-btn--full { width: 100%; justify-content: center; }
+.kg-btn--outline-light:hover { background: rgba(255,255,255,.12); border-color: #fff; }
 
 /* ════════════════════════════════════════════════════════════
    BREADCRUMBS — Schema.org BreadcrumbList
@@ -248,13 +169,12 @@
    ════════════════════════════════════════════════════════════ */
 .kg-card {
   background: var(--kg-panel); border-radius: 12px; overflow: hidden;
-  box-shadow: 0 1px 3px rgba(8,18,32,.04), 0 8px 24px rgba(8,18,32,.04);
-  transition: transform .3s cubic-bezier(.16,1,.3,1),
-              box-shadow .3s ease;
+  box-shadow: 0 1px 3px rgba(8,18,32,.05), 0 12px 32px rgba(8,18,32,.06);
+  transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease;
 }
 .kg-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 4px 12px rgba(8,18,32,.06), 0 20px 48px rgba(8,18,32,.08);
+  transform: translateY(-4px);
+  box-shadow: 0 2px 10px rgba(8,18,32,.05), 0 16px 40px rgba(8,18,32,.07);
 }
 
 .kg-card__thumb {
@@ -838,33 +758,6 @@ button:active { transform: scale(.98); }
    usuario pagina y Alpine toma el control (patrón booted). */
 .kg-hidden { display: none !important; }
 
-/* ════════════════════════════════════════════════════════════
-   UTILITIES — Layout helpers, Glass, Shadows, Smooth
-   ════════════════════════════════════════════════════════════ */
-.border-l-3 { border-left-width: 3px; }
-.border-t-3 { border-top-width: 3px; }
-.text-balance { text-wrap: balance; }
-.text-pretty { text-wrap: pretty; }
-.bg-glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-.shadow-soft {
-  box-shadow: 0 1px 3px rgba(8,18,32,.04), 0 8px 24px rgba(8,18,32,.04);
-}
-.shadow-lift {
-  box-shadow: 0 4px 12px rgba(8,18,32,.06), 0 20px 48px rgba(8,18,32,.08);
-}
-.img-smooth {
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-}
-.img-smooth.loaded,
-.img-smooth[src] {
-  opacity: 1;
-}
-
 
 /* ═══════════════════════════════════════════════════════════════
    PASADA SENIOR (auditoría fina) — scroll, render y tipografía
@@ -901,3 +794,68 @@ section[id] { scroll-margin-top: 96px; }
    divisores editoriales usan el mismo compás. */
 :root { --kg-section-gap: clamp(64px, 8vw, 96px); }
 .kg-div { padding-top: var(--kg-section-gap); }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MICRO-INTERACCIONES DEL HANDOFF (pasada v5 — brechas cerradas)
+   Inventario cruzado firma a firma contra el prototipo. Ya
+   existían y NO se tocan: zoom de escuelas, elevación de revistas,
+   chevrons del footer, focus-visible, :active, redes con color de
+   marca, sidenews scaleY, shine del botón dorado.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1 · Selección de texto con la marca (handoff verbatim) */
+::selection { background: #143B63; color: #fff; }
+
+/* 2 · Nav principal: subrayado dorado que crece DESDE EL CENTRO
+   (la firma del handoff; también marca la página actual) */
+.main-nav > li > a { position: relative; }
+.main-nav > li > a::after {
+	content: ""; position: absolute; left: 50%; right: 50%; bottom: 2px;
+	height: 2px; background: var(--kg-gold2, #D6B655); border-radius: 2px;
+	transition: left .25s cubic-bezier(.16,1,.3,1), right .25s cubic-bezier(.16,1,.3,1);
+}
+.main-nav > li > a:hover::after,
+.main-nav > li.current-menu-item > a::after,
+.main-nav > li.current-menu-ancestor > a::after { left: 12px; right: 12px; }
+
+/* 3 · Topbar: barrido de subrayado dorado bajo cada acceso */
+.kg-topbar__item { position: relative; }
+.kg-topbar__item::after {
+	content: ""; position: absolute; left: 0; right: 100%; bottom: -3px;
+	height: 1px; background: var(--kg-gold2, #D6B655); transition: right .25s ease;
+}
+.kg-topbar__item:hover::after { right: 0; }
+
+/* 4 · Badge "Ciclo 2026-I": levita con halo verde (handoff kg-ciclo) */
+.kg-topbar__badge { transition: background-color .2s ease, border-color .2s ease, transform .2s cubic-bezier(.16,1,.3,1); }
+.kg-topbar__badge:hover {
+	background: rgba(31,138,91,.16); border-color: rgba(31,138,91,.5);
+	transform: translateY(-1px);
+}
+
+/* 5 · Footer: el reloj del horario "hace tic" al pasar el cursor */
+.kg-footer__schedule-icon { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+.kg-footer__schedule:hover .kg-footer__schedule-icon,
+.kg-footer__schedule-icon:hover { transform: rotate(-12deg) scale(1.08); }
+
+/* 6 · Flechas de los carruseles Splide: mismo lenguaje que el resto
+   de controles (levitan y se tiñen de azul; el handoff kg-revnav) */
+.kg-sec .splide__arrow {
+	transition: background-color .2s ease, color .2s ease,
+		transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease, opacity .2s ease;
+}
+.kg-sec .splide__arrow:hover:not(:disabled) {
+	background: var(--kg-azul, #143B63); color: #fff;
+	transform: translateY(-2px); box-shadow: 0 8px 18px rgba(8,18,32,.22);
+}
+.kg-sec .splide__arrow:hover:not(:disabled) svg { fill: #fff; }
+.kg-sec .splide__arrow:active { transform: scale(.94); }
+
+@media (prefers-reduced-motion: reduce) {
+	.main-nav > li > a::after,
+	.kg-topbar__item::after,
+	.kg-topbar__badge,
+	.kg-footer__schedule-icon,
+	.kg-sec .splide__arrow { transition: none !important; }
+}

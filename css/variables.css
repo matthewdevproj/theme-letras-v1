@@ -15,7 +15,6 @@
     --azul-bright:  #2457A6;
     --azuld:        #143B63;
     --gold:         #A8861C;
-    --gold-accessible: #8A7A1C; /* 4.6:1 sobre blanco — WCAG AA para texto */
 
     /* Acentos */
     --accent-2:     #6E1226;
@@ -66,20 +65,6 @@
     --flch-radius:      8px;
     --flch-ease:        var(--kg-ease);
     --flch-shadow-sm:   0 1px 2px rgba(15, 23, 42, 0.06);
-
-    /* ==========================================
-       TOKENS MODERNOS v2 — Glass, Gradients, Glow
-       ========================================== */
-    --glass-bg:        rgba(255, 255, 255, 0.08);
-    --glass-border:    rgba(255, 255, 255, 0.15);
-    --glass-shadow:    0 8px 32px rgba(0, 0, 0, 0.12);
-    --glow-gold:       0 0 20px rgba(168, 134, 28, 0.3);
-    --glow-navy:       0 0 20px rgba(20, 59, 99, 0.25);
-    --gradient-gold:   linear-gradient(135deg, #A8861C 0%, #C4A822 50%, #A8861C 100%);
-    --gradient-navy:   linear-gradient(135deg, #0E2A48 0%, #143B63 50%, #1A4E86 100%);
-    --gradient-hero:   linear-gradient(135deg, #0E2A48 0%, #1A4279 100%);
-    --btn-radius:      10px;
-    --btn-radius-pill: 9999px;
 
     /* ==========================================
        TIPOGRAFÍA CODICE
@@ -287,5 +272,5 @@
    bordes y texto sobre azul/negro, pero NO como texto pequeño sobre
    fondo claro. Este token (#8A6D14, 4.9:1 sobre blanco) es el dorado
    PARA TEXTO en superficies claras. Mismo matiz, legible. */
-:root { --kg-gold-text: #8A6D14; } /* ~4.9:1 sobre blanco — WCAG AA (texto pequeño) */
+:root { --kg-gold-text: #8A6D14; }
 :root.dark { --kg-gold-text: var(--kg-gold2, #D6B655); } /* en oscuro, el claro ya contrasta */

@@ -139,4 +139,29 @@ if ( ! $letras_flch_banner_query->have_posts() ) {
 .kg-banner__splide .splide__pagination__page.is-active {
 	width: 24px; background: var(--kg-gold2, #D6B655); transform: none;
 }
+
+/* ── Micro-animación del handoff: Ken Burns + entrada escalonada ──
+   El prototipo anima cada slide activo: la foto "respira" (escala
+   1.08→1 durante 7s) y el contenido sube en cascada (cat → título →
+   fecha/CTA, 80ms entre sí). La foto vive como background-image
+   inline en el <article>, así que se anima un ::before que HEREDA ese
+   fondo (escalar el artículo escalaría también el texto). El scrim y
+   el body ya quedan por encima en el stacking. Splide re-aplica
+   .is-active en cada cambio → la animación se reinicia sola. */
+.kg-banner__slide { overflow: hidden; }
+.kg-banner__slide::before {
+	content: ""; position: absolute; inset: 0; z-index: 0;
+	background-image: inherit; background-size: cover; background-position: center;
+}
+@keyframes kgKen  { from { transform: scale(1.08); } to { transform: scale(1); } }
+@keyframes kgRise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+.splide__slide.is-active .kg-banner__slide::before { animation: kgKen 7s ease-out both; }
+.splide__slide.is-active .kg-banner__body > * { animation: kgRise .7s cubic-bezier(.16,1,.3,1) both; }
+.splide__slide.is-active .kg-banner__body > *:nth-child(2) { animation-delay: .08s; }
+.splide__slide.is-active .kg-banner__body > *:nth-child(3) { animation-delay: .16s; }
+.splide__slide.is-active .kg-banner__body > *:nth-child(4) { animation-delay: .24s; }
+@media (prefers-reduced-motion: reduce) {
+	.splide__slide.is-active .kg-banner__slide::before,
+	.splide__slide.is-active .kg-banner__body > * { animation: none !important; }
+}
 </style>
