@@ -753,3 +753,7 @@ button:active { transform: scale(.98); }
 @media (min-width: 2560px) {
   html { font-size: 20px; }
 }
+
+/* Utilidad (SSR noticias): oculta el bloque server-rendered cuando el
+   usuario pagina y Alpine toma el control (patrón booted). */
+.kg-hidden { display: none !important; }

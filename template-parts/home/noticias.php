@@ -2,22 +2,92 @@
 /**
  * Template part: Noticias + Accesos rápidos — spec "Portada FLCH Kingster".
  *
- * Destacada + 3 laterales con paginación por puntos (noticias reales de la
+ * Destacada + laterales con paginación por puntos (noticias reales de la
  * categoría "noticias", en páginas de 3) + columna "Accesos rápidos".
+ *
+ * SSR + mejora progresiva (auditoría P0): antes TODO el contenido era
+ * Alpine (x-text / x-for) → el HTML servido llegaba vacío (sección hueca
+ * para buscadores y sin JS). Ahora la PRIMERA página (destacada + 2
+ * laterales) se imprime en PHP con enlaces reales; Alpine solo toma el
+ * control cuando el usuario pagina (patrón "booted"): al primer click en
+ * un punto se oculta el bloque SSR y los templates x-if entran. Sin JS:
+ * la página 1 se ve completa. Con JS sin interacción: idéntico, sin
+ * doble render ni parpadeo.
  *
  * @package LetrasFLCH
  */
 $letras_flch_quicklinks = letras_flch_quicklinks_data();
+
+/* Primera página de noticias (misma consulta y mismos campos que
+   letras_flch_localize_news(), para que SSR y Alpine coincidan 1:1). */
+$letras_flch_ssr_news = array();
+$letras_flch_news_q = new WP_Query( array(
+	'post_type'      => 'post',
+	'posts_per_page' => 3,
+	'post_status'    => 'publish',
+	'orderby'        => 'date',
+	'order'          => 'DESC',
+	'category_name'  => 'noticias',
+) );
+if ( $letras_flch_news_q->have_posts() ) {
+	while ( $letras_flch_news_q->have_posts() ) {
+		$letras_flch_news_q->the_post();
+		$letras_flch_cats = get_the_category();
+		$letras_flch_thumb = get_the_post_thumbnail_url( get_the_ID(), 'card-thumbnail' );
+		if ( ! $letras_flch_thumb && function_exists( 'letras_flch_news_fallback_img' ) ) {
+			$letras_flch_thumb = letras_flch_news_fallback_img( get_the_ID() );
+		}
+		$letras_flch_ssr_news[] = array(
+			'cat'     => ! empty( $letras_flch_cats ) ? $letras_flch_cats[0]->name : 'Noticias',
+			'date'    => get_the_date( 'j F Y' ),
+			'title'   => get_the_title(),
+			'excerpt' => wp_trim_words( get_the_excerpt(), 20, '...' ),
+			'img'     => $letras_flch_thumb,
+			'url'     => get_permalink(),
+		);
+	}
+	wp_reset_postdata();
+}
 ?>
 <div class="kg-div kg-reveal" aria-hidden="true"><span class="kg-div__num">03</span><span class="kg-div__lbl">Actualidad</span><span class="kg-div__line"></span></div>
 <section id="noticias" class="kg-noticias kg-sec kg-sec--tight" x-data="kgHome()" x-init="init()">
-	<div>
+	<div x-data="{ booted: false }">
 		<div class="kg-sec__head kg-reveal">
 			<h2 class="kg-sec__title">Noticias y novedades</h2>
 			<a href="<?php echo esc_url( home_url( '/noticias' ) ); ?>" class="kg-noticias__all">Ver todas</a>
 		</div>
 
-		<template x-if="newsPages()[newsPage] && newsPages()[newsPage][0]">
+		<?php if ( $letras_flch_ssr_news ) : ?>
+		<div class="kg-noticias__ssr" :class="booted ? 'kg-hidden' : ''">
+			<a href="<?php echo esc_url( $letras_flch_ssr_news[0]['url'] ); ?>" class="kg-noticias__featured kg-reveal">
+				<div class="kg-noticias__featured-img">
+					<img src="<?php echo esc_url( $letras_flch_ssr_news[0]['img'] ); ?>" alt="<?php echo esc_attr( $letras_flch_ssr_news[0]['title'] ); ?>" loading="lazy">
+				</div>
+				<div class="kg-noticias__featured-meta">
+					<span class="kg-noticias__cat"><?php echo esc_html( $letras_flch_ssr_news[0]['cat'] ); ?></span>
+					<span class="kg-noticias__date"><?php echo esc_html( $letras_flch_ssr_news[0]['date'] ); ?></span>
+				</div>
+				<h3 class="kg-noticias__featured-title"><?php echo esc_html( $letras_flch_ssr_news[0]['title'] ); ?></h3>
+				<p class="kg-noticias__featured-excerpt"><?php echo esc_html( $letras_flch_ssr_news[0]['excerpt'] ); ?></p>
+			</a>
+			<div class="kg-noticias__list">
+				<?php foreach ( array_slice( $letras_flch_ssr_news, 1 ) as $letras_flch_n ) : ?>
+				<a href="<?php echo esc_url( $letras_flch_n['url'] ); ?>" class="kg-sidenews">
+					<div class="kg-sidenews__thumb"><img src="<?php echo esc_url( $letras_flch_n['img'] ); ?>" alt="<?php echo esc_attr( $letras_flch_n['title'] ); ?>" loading="lazy"></div>
+					<div class="kg-sidenews__body">
+						<div class="kg-sidenews__meta">
+							<span class="kg-sidenews__cat"><?php echo esc_html( $letras_flch_n['cat'] ); ?></span>
+							<span class="kg-sidenews__date"><?php echo esc_html( $letras_flch_n['date'] ); ?></span>
+						</div>
+						<h4 class="kg-sidenews__title"><?php echo esc_html( $letras_flch_n['title'] ); ?></h4>
+					</div>
+				</a>
+				<?php endforeach; ?>
+			</div>
+		</div>
+		<?php endif; ?>
+
+		<template x-if="booted && newsPages()[newsPage] && newsPages()[newsPage][0]">
 			<a :href="newsPages()[newsPage][0].url" class="kg-noticias__featured kg-reveal">
 				<div class="kg-noticias__featured-img">
 					<img :src="newsPages()[newsPage][0].img" :alt="newsPages()[newsPage][0].title" loading="lazy">
@@ -32,7 +102,7 @@ $letras_flch_quicklinks = letras_flch_quicklinks_data();
 		</template>
 
 		<div class="kg-noticias__list">
-			<template x-for="n in newsPages()[newsPage] ? newsPages()[newsPage].slice(1) : []" :key="n.id">
+			<template x-for="n in (booted && newsPages()[newsPage]) ? newsPages()[newsPage].slice(1) : []" :key="n.id">
 				<a :href="n.url" class="kg-sidenews">
 					<div class="kg-sidenews__thumb"><img :src="n.img" :alt="n.title" loading="lazy"></div>
 					<div class="kg-sidenews__body">
@@ -48,7 +118,7 @@ $letras_flch_quicklinks = letras_flch_quicklinks_data();
 
 		<div class="kg-noticias__dots" role="tablist" aria-label="Página de noticias">
 			<template x-for="(page, i) in newsPages()" :key="i">
-				<button type="button" role="tab" :aria-selected="newsPage === i ? 'true' : 'false'" @click="goNewsPage(i)" :class="newsPage === i ? 'is-active' : ''" class="kg-noticias__dot" :aria-label="'Página ' + (i + 1)"></button>
+				<button type="button" role="tab" :aria-selected="newsPage === i ? 'true' : 'false'" @click="booted = true; goNewsPage(i)" :class="newsPage === i ? 'is-active' : ''" class="kg-noticias__dot" :aria-label="'Página ' + (i + 1)"></button>
 			</template>
 		</div>
 	</div>
@@ -87,7 +157,7 @@ $letras_flch_quicklinks = letras_flch_quicklinks_data();
 .kg-noticias__featured-meta { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
 .kg-noticias__cat { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--kg-azul, #143B63); padding: 4px 10px; border-radius: 4px; }
 .kg-noticias__date { font-size: 12.5px; color: var(--kg-muted, #5E6675); }
-.kg-noticias__featured-title { font-family: var(--font-display, 'Newsreader', serif); font-weight: 600; font-size: 25px; line-height: 1.15; margin: 0 0 8px; }
+.kg-noticias__featured-title { font-family: var(--font-display, 'Newsreader', serif); font-weight: 600; font-size: 25px; line-height: 1.15; margin: 0 0 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; /* P0: titulares RR largos */ }
 .kg-noticias__featured-excerpt { font-size: 14.5px; line-height: 1.6; color: var(--kg-muted, #5E6675); margin: 0; }
 
 .kg-noticias__list { display: flex; flex-direction: column; gap: 16px; min-height: 300px; }
@@ -110,7 +180,7 @@ $letras_flch_quicklinks = letras_flch_quicklinks_data();
 .kg-sidenews__meta { display: flex; align-items: center; gap: 9px; margin-bottom: 6px; }
 .kg-sidenews__cat { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--kg-gold, #A8861C); }
 .kg-sidenews__date { font-size: 11.5px; color: var(--kg-muted, #5E6675); }
-.kg-sidenews__title { font-family: var(--font-display, 'Newsreader', serif); font-weight: 600; font-size: 17px; line-height: 1.2; margin: 0; }
+.kg-sidenews__title { font-family: var(--font-display, 'Newsreader', serif); font-weight: 600; font-size: 17px; line-height: 1.2; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; /* P0: titulares RR largos */ }
 
 .kg-noticias__dots { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 22px; }
 .kg-noticias__dot {

@@ -3,20 +3,33 @@
  * Template part: Indicadores / Facultad en cifras — spec "Portada FLCH Kingster".
  *
  * Sección editorial plana (sin tarjeta ni degradado): 4 contadores con
- * separador vertical entre columnas. Los números se animan vía el contador
- * GSAP genérico [data-count] ya existente en js/home-animations.js.
+ * separador vertical entre columnas.
+ *
+ * SSR (auditoría P0): antes los 4 indicadores se generaban con un
+ * <template x-for> de Alpine → el HTML servido llegaba VACÍO (invisible
+ * para buscadores y para visitantes sin JS). Son datos institucionales
+ * estáticos, así que se imprimen en PHP con su valor final como texto;
+ * el contador GSAP genérico [data-count] (js/home-animations.js) anima
+ * de 0 al valor cuando hay JS. Sin JS, el número final ya está ahí.
+ * Alpine ya no es necesario en esta sección.
  *
  * @package LetrasFLCH
  */
+$letras_flch_stats = array(
+	array( 'value' => 10,  'suffix' => '',  'label' => 'Escuelas profesionales' ),
+	array( 'value' => 475, 'suffix' => '',  'label' => 'Años de trayectoria' ),
+	array( 'value' => 300, 'suffix' => '+', 'label' => 'Docentes' ),
+	array( 'value' => 6,   'suffix' => '',  'label' => 'Revistas indexadas' ),
+);
 ?>
-<section id="cifras" class="kg-sec" aria-label="La Facultad en cifras" x-data="kgHome()" x-init="init()">
+<section id="cifras" class="kg-sec" aria-label="La Facultad en cifras">
 	<div class="kg-cifras kg-reveal">
-		<template x-for="s in stats" :key="s.label">
+		<?php foreach ( $letras_flch_stats as $s ) : ?>
 			<div class="kg-cifras__item">
-				<div class="kg-cifras__value" :data-count="s.value" :data-suffix="s.suffix" x-text="s.value + s.suffix">0</div>
-				<div class="kg-cifras__label" x-text="s.label"></div>
+				<div class="kg-cifras__value" data-count="<?php echo esc_attr( $s['value'] ); ?>" data-suffix="<?php echo esc_attr( $s['suffix'] ); ?>"><?php echo esc_html( $s['value'] . $s['suffix'] ); ?></div>
+				<div class="kg-cifras__label"><?php echo esc_html( $s['label'] ); ?></div>
 			</div>
-		</template>
+		<?php endforeach; ?>
 	</div>
 </section>
 

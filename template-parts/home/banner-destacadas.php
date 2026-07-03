@@ -41,7 +41,9 @@ if ( ! $letras_flch_banner_query->have_posts() ) {
 					$cat_name = ! empty( $cats ) ? $cats[0]->name : 'Noticias';
 					$img = get_the_post_thumbnail_url( get_the_ID(), 'archive-featured' );
 					if ( ! $img ) {
-						$img = 'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/literatura.jpg';
+						/* Pool determinista (auditoría P0): evita que varios
+						   slides sin imagen destacada repitan la misma foto. */
+						$img = letras_flch_news_fallback_img( get_the_ID() );
 					}
 				?>
 					<li class="splide__slide">
@@ -54,7 +56,7 @@ if ( ! $letras_flch_banner_query->have_posts() ) {
 								</div>
 								<h3 class="kg-banner__slide-title"><?php the_title(); ?></h3>
 								<p class="kg-banner__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 24, '…' ) ); ?></p>
-								<a href="<?php the_permalink(); ?>" class="kg-banner__cta">Leer noticia <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+								<a href="<?php the_permalink(); ?>" class="kg-banner__cta" aria-label="<?php echo esc_attr( 'Leer noticia: ' . get_the_title() ); ?>">Leer noticia <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
 							</div>
 						</article>
 					</li>
@@ -110,6 +112,10 @@ if ( ! $letras_flch_banner_query->have_posts() ) {
 .kg-banner__slide-title {
 	font-family: var(--font-display, 'Newsreader', serif); font-weight: 600;
 	font-size: clamp(25px, 3vw, 38px); line-height: 1.1; color: #fff; margin: 0 0 12px;
+	/* Auditoría P0: titulares administrativos (RR N° …) de 200+ caracteres
+	   aplastaban el slide. 3 líneas máximo; el título completo vive en el
+	   single y en el aria-label del CTA. */
+	display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 .kg-banner__excerpt { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.84); margin: 0 0 24px; max-width: 42em; }
 .kg-banner__cta {
