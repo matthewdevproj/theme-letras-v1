@@ -15,7 +15,7 @@ $letras_flch_servicios = array(
 		'icon' => 'fa-solid fa-flask',
 		'title' => 'Investigación',
 		'desc'  => 'Institutos, grupos y proyectos que producen conocimiento humanístico de frontera.',
-		'href'  => '#',
+		'href'  => 'https://letras.unmsm.edu.pe/unidad-de-investigacion/',
 	),
 	array(
 		'icon' => 'fa-solid fa-book-open',
@@ -27,7 +27,7 @@ $letras_flch_servicios = array(
 		'icon' => 'fa-solid fa-masks-theater',
 		'title' => 'Vida cultural',
 		'desc'  => 'Cine, teatro, recitales y actividades que hacen de la Facultad un espacio vivo.',
-		'href'  => '#',
+		'href'  => 'https://letras.unmsm.edu.pe/cine-club-san-marcos/',
 	),
 );
 ?>

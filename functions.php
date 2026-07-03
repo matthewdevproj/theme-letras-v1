@@ -675,6 +675,7 @@ add_filter( 'wp_get_attachment_image_attributes', function ( $attrs, $attachment
 // ═══════════════════════════════════════════════════════════
 
 function letras_flch_anuncios_popup() {
+    if ( function_exists( 'letras_flch_is_elementor_context' ) && letras_flch_is_elementor_context() ) { return; } // el overlay bloquearía el preview del editor
     if ( is_admin() ) {
         return;
     }
@@ -904,11 +905,11 @@ function letras_flch_centros_data() {
 function letras_flch_quicklinks_data() {
     return array(
         array( 'icon' => 'fa-solid fa-file-signature', 'title' => 'Admisión y postulación', 'href' => 'https://admision.unmsm.edu.pe/' ),
-        array( 'icon' => 'fa-solid fa-calendar-days',   'title' => 'Calendario académico',    'href' => 'https://letras.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-calendar-days',   'title' => 'Calendario académico',    'href' => 'https://letras.unmsm.edu.pe/' ), // TODO: URL real del calendario
         array( 'icon' => 'fa-solid fa-clock',           'title' => 'Horarios 2026-I',          'href' => 'https://letras.unmsm.edu.pe/horarios-flch.php' ),
-        array( 'icon' => 'fa-solid fa-laptop',          'title' => 'Aula Virtual',             'href' => 'https://letras.unmsm.edu.pe/' ),
-        array( 'icon' => 'fa-solid fa-book',            'title' => 'Biblioteca',               'href' => 'https://letras.unmsm.edu.pe/' ),
-        array( 'icon' => 'fa-solid fa-stamp',           'title' => 'Trámites y certificados',  'href' => 'https://letras.unmsm.edu.pe/' ),
+        array( 'icon' => 'fa-solid fa-laptop',          'title' => 'Aula Virtual',             'href' => 'https://letras.unmsm.edu.pe/' ), // TODO: URL real del aula virtual
+        array( 'icon' => 'fa-solid fa-book',            'title' => 'Biblioteca',               'href' => 'https://bibliotecadeletras.unmsm.edu.pe/' ), // URL real (la misma del menu Investigacion)
+        array( 'icon' => 'fa-solid fa-stamp',           'title' => 'Trámites y certificados',  'href' => 'https://letras.unmsm.edu.pe/tarifario/' ), // Tarifario como destino más útil que la portada
         array( 'icon' => 'fa-solid fa-address-book',    'title' => 'Directorio',               'href' => 'https://letras.unmsm.edu.pe/directorio/' ),
     );
 }
@@ -917,6 +918,7 @@ function letras_flch_quicklinks_data() {
    KINGSTER EXTRAS — propuesta "Portada FLCH Kingster"
    ══════════════════════════════════════════════════════════════ */
 function letras_flch_kingster_extras_assets() {
+    if ( function_exists( 'letras_flch_is_elementor_context' ) && letras_flch_is_elementor_context() ) { return; }
     $uri = get_template_directory_uri();
     $dir = get_template_directory();
 

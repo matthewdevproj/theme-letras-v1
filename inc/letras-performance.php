@@ -1,4 +1,38 @@
 <?php
+
+/* ══════════════════════════════════════════════════════════════════
+   GUARDA ELEMENTOR (fix: "¿No puedes editar? Activar modo seguro")
+   El editor de Elementor carga la página en un IFRAME de vista previa
+   (?elementor-preview=ID) que es FRONTEND: ahí is_admin() es false y
+   las optimizaciones de este archivo corrían DENTRO del editor. La
+   peor: deregistrar wp-tinymce, que Elementor necesita en el preview
+   para sus widgets de texto -> el editor nunca terminaba de cargar.
+   Esta funcion detecta ambos contextos (editor y preview) y cada
+   optimizacion agresiva hace early-return con ella.
+   ══════════════════════════════════════════════════════════════════ */
+if ( ! function_exists( 'letras_flch_is_elementor_context' ) ) {
+    function letras_flch_is_elementor_context() {
+        // Editor (admin): post.php?action=elementor
+        if ( is_admin() && isset( $_GET['action'] ) && 'elementor' === $_GET['action'] ) {
+            return true;
+        }
+        // Iframe de vista previa (frontend): ?elementor-preview=ID
+        if ( isset( $_GET['elementor-preview'] ) ) {
+            return true;
+        }
+        // API del plugin (cubre AJAX del editor y modos internos)
+        if ( class_exists( '\Elementor\Plugin' ) && \Elementor\Plugin::$instance ) {
+            $el = \Elementor\Plugin::$instance;
+            if ( isset( $el->preview ) && $el->preview && $el->preview->is_preview_mode() ) {
+                return true;
+            }
+            if ( isset( $el->editor ) && $el->editor && $el->editor->is_edit_mode() ) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
 /**
  * letras-performance.php
  * Stack frontend global + optimizaciones de rendimiento
@@ -142,6 +176,7 @@ add_action( 'wp_head', 'letras_resource_hints', 1 );
    ══════════════════════════════════════════════════ */
 add_filter( 'script_loader_tag', function( $tag, $handle ) {
     if ( is_admin() ) return $tag;
+    if ( letras_flch_is_elementor_context() ) return $tag; // preview de Elementor = frontend
 
     $defer_handles = [
         'wp-statistics',        // WP Statistics analytics
@@ -247,6 +282,7 @@ add_action( 'wp_head', function() {
    ══════════════════════════════════════════════════ */
 function letras_page_stacks() {
     if ( is_admin() ) return;
+    if ( letras_flch_is_elementor_context() ) return;
 
     $slug = get_post_field( 'post_name', get_the_ID() );
 
@@ -493,6 +529,7 @@ add_action('wp_enqueue_scripts', function() {
 // 2. Page Transitions (global - skip 404, search, admin)
 add_action('wp_enqueue_scripts', function() {
     if (is_admin() || is_404() || is_search()) return;
+    if ( letras_flch_is_elementor_context() ) return; // transitions intercepta clicks: fuera del editor
 
     // Cargar GSAP si aún no está encolado (para transitions)
     if (!wp_script_is('gsap', 'enqueued')) {
@@ -516,6 +553,7 @@ add_action('wp_enqueue_scripts', function() {
 // 3. Header Effects (global con GSAP)
 add_action('wp_enqueue_scripts', function() {
     if (is_admin()) return;
+    if ( letras_flch_is_elementor_context() ) return;
 
     $slug = get_post_field('post_name', get_the_ID());
     $gsap_pages = ['linguistica-flch'];
@@ -715,6 +753,7 @@ add_action('wp_footer', function() {
 // 5. Lightbox GSAP (global - galerías en cualquier página)
 add_action('wp_enqueue_scripts', function() {
     if (is_admin()) return;
+    if ( letras_flch_is_elementor_context() ) return; // el lightbox secuestra clicks en el preview
 
     // Cargar en páginas con galerías
     $has_gallery = (
@@ -866,6 +905,9 @@ add_action('wp_head', function() {
    ══════════════════════════════════════════════════════════ */
 
 add_action('wp_enqueue_scripts', function() {
+    /* Nunca dentro del editor/preview de Elementor: el preview es frontend y NECESITA wp-tinymce e iconos. */
+    if ( letras_flch_is_elementor_context() ) { return; }
+
     if (is_admin()) return;
 
     // 1. FontAwesome 4 Shims JS (no necesario con FA 6)

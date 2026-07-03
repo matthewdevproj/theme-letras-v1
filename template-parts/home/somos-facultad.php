@@ -23,7 +23,7 @@
 		<div class="kg-reveal kg-rR">
 			<p class="kg-somos__lead">Somos una de las facultades de humanidades más influyentes del país: diez escuelas, decenas de grupos y líneas de investigación.</p>
 			<p class="kg-somos__desc">Fundada con la propia Universidad Nacional Mayor de San Marcos en 1551, la Facultad de Letras y Ciencias Humanas ha sido cuna de escritores, lingüistas, filósofos y comunicadores que han transformado la cultura y la academia del Perú y la región.</p>
-			<a href="#" class="kg-somos__link">Conoce nuestra historia <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+			<a href="https://letras.unmsm.edu.pe/historia/" class="kg-somos__link">Conoce nuestra historia <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
 		</div>
 	</div>
 </section>

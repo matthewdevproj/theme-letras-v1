@@ -28,7 +28,7 @@
 			</h1>
 
 			<p class="kg-hero__tagline">
-				Nueve siglos de humanidades, investigación y cultura. Diez escuelas profesionales que forman a quienes piensan y escriben el Perú.
+				Casi cinco siglos de humanidades, investigación y cultura. Diez escuelas profesionales que forman a quienes piensan y escriben el Perú.
 			</p>
 
 			<div class="kg-hero__cta-row">
