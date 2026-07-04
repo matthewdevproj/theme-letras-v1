@@ -55,7 +55,7 @@ if ( $letras_flch_news_q->have_posts() ) {
 	<div x-data="{ booted: false }">
 		<div class="kg-sec__head kg-reveal">
 			<h2 class="kg-sec__title">Noticias y novedades</h2>
-			<a href="<?php echo esc_url( home_url( '/noticias' ) ); ?>" class="kg-noticias__all">Ver todas</a>
+			<a href="<?php echo esc_url( home_url( '/noticias' ) ); ?>" class="kg-sec__action kg-noticias__all">Ver todas <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
 		</div>
 
 		<?php if ( $letras_flch_ssr_news ) : ?>

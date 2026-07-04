@@ -17,6 +17,7 @@ $letras_flch_schools = letras_flch_schools_data();
 			<div class="kg-sec__eyebrow">Carreras de pregrado</div>
 			<h2 class="kg-sec__title">Escuelas Profesionales</h2>
 		</div>
+		<a href="#admision" class="kg-sec__action">Ver admisión <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
 	</div>
 	<div class="kg-esc">
 		<?php foreach ( $letras_flch_schools as $school ) : ?>

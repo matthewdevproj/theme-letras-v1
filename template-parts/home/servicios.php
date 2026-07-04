@@ -10,24 +10,28 @@ $letras_flch_servicios = array(
 		'title' => 'Diez escuelas',
 		'desc'  => 'Programas de pregrado en humanidades, lenguas, arte y ciencias de la comunicación.',
 		'href'  => '#escuelas',
+		'cta'   => 'Conoce las escuelas',
 	),
 	array(
 		'icon' => 'fa-solid fa-flask',
 		'title' => 'Investigación',
 		'desc'  => 'Institutos, grupos y proyectos que producen conocimiento humanístico de frontera.',
 		'href'  => 'https://letras.unmsm.edu.pe/unidad-de-investigacion/',
+		'cta'   => 'Conoce la investigación',
 	),
 	array(
 		'icon' => 'fa-solid fa-book-open',
 		'title' => 'Producción editorial',
 		'desc'  => 'Revistas académicas indexadas con más de medio siglo de trayectoria.',
 		'href'  => '#revistas',
+		'cta'   => 'Conoce las revistas',
 	),
 	array(
 		'icon' => 'fa-solid fa-masks-theater',
 		'title' => 'Vida cultural',
 		'desc'  => 'Cine, teatro, recitales y actividades que hacen de la Facultad un espacio vivo.',
 		'href'  => 'https://letras.unmsm.edu.pe/cine-club-san-marcos/',
+		'cta'   => 'Conoce la vida cultural',
 	),
 );
 ?>
@@ -38,7 +42,7 @@ $letras_flch_servicios = array(
 				<i class="<?php echo esc_attr( $s['icon'] ); ?> kg-serv-ic" aria-hidden="true"></i>
 				<h3 class="kg-serv-title"><?php echo esc_html( $s['title'] ); ?></h3>
 				<p class="kg-serv-desc"><?php echo esc_html( $s['desc'] ); ?></p>
-				<a href="<?php echo esc_url( $s['href'] ); ?>" class="kg-serv-link">Saber más <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+				<a href="<?php echo esc_url( $s['href'] ); ?>" class="kg-serv-link"><?php echo esc_html( $s['cta'] ); ?> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
 			</div>
 		<?php endforeach; ?>
 	</div>
