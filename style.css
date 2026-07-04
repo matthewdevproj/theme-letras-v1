@@ -450,3 +450,58 @@ body i.fas, body i.far, body i.fab,
 body i.fab {
     font-family: "Font Awesome 6 Brands" !important;
 }
+
+/* ════════════════════════════════════════════════════════════
+   VIEW TRANSITIONS API — sucesor progresivo de page-transitions.js
+   En navegadores que la soportan, activa la transición nativa entre
+   documentos (cross-document) para toda navegación same-origin; el
+   overlay/GSAP de page-transitions.js se auto-desactiva vía JS
+   cuando detecta soporte (ver ese archivo), evitando doble transición.
+   At-rule desconocida en navegadores sin soporte: se ignora sola,
+   cero riesgo.
+   ════════════════════════════════════════════════════════════ */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.32s;
+    animation-timing-function: cubic-bezier(.16,1,.3,1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}
+
+/* ════════════════════════════════════════════════════════════
+   HOJA DE ESTILOS DE IMPRESIÓN
+   Público académico: se imprimen horarios, comunicados, convocatorias.
+   Fuera nav/footer/flotantes, tinta negra, URLs visibles tras los links.
+   ════════════════════════════════════════════════════════════ */
+@media print {
+    .kg-topbar, .main-header, #mobile-menu-panel, .mobile-backdrop,
+    .kg-cmdk-overlay, .kg-whatsapp, .kg-btt, .kg-progress,
+    .kg-footer, .kg-share__list, video, iframe.pdfemb-viewer-iframe,
+    [aria-hidden="true"] {
+        display: none !important;
+    }
+    body, .kg-single__content, .entry-content {
+        color: #000 !important;
+        background: #fff !important;
+        font-size: 12pt;
+    }
+    a { color: #000 !important; text-decoration: underline; }
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        color: #444;
+    }
+    .kg-single__grid, .kg-noticias { display: block !important; }
+    .kg-single__sidebar { display: none !important; }
+    @page { margin: 1.8cm; }
+}

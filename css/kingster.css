@@ -893,3 +893,56 @@ a.kg-topbar__item:hover::after { right: 0; }
 @media (prefers-reduced-motion: reduce) {
 	.kg-skel::after { animation: none; display: none; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   8 · Scroll-driven animations (CSS puro) — reemplazo progresivo
+   de los reveals por JS/IntersectionObserver. Donde el navegador
+   soporta animation-timeline:view(), theme-stack.js se retira solo
+   (ver initKgReveals()) y el reveal queda 100% en el hilo de
+   compositor, sin costo de JS. Donde no hay soporte, el JS sigue
+   siendo el único responsable (fallback real, no cosmético).
+   ════════════════════════════════════════════════════════════ */
+@supports (animation-timeline: view()) {
+	.kg-css-driven.kg-reveal:not(.kg-rL):not(.kg-rR),
+	.kg-css-driven.reveal,
+	.kg-css-driven[data-kg-animate] {
+		animation: kg-scroll-reveal linear both;
+		animation-timeline: view();
+		animation-range: entry 0% cover 20%;
+	}
+	.kg-css-driven.kg-rL,
+	.kg-css-driven.kg-rR {
+		animation: kg-scroll-reveal linear both;
+		animation-timeline: view();
+		animation-range: entry 0% cover 25%;
+	}
+	@keyframes kg-scroll-reveal {
+		from { opacity: 0; transform: translateY(16px); }
+		to   { opacity: 1; transform: translateY(0); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.kg-css-driven { animation: none !important; }
+	}
+}
+
+/* ════════════════════════════════════════════════════════════
+   9 · forced-colors (Alto Contraste de Windows) — público
+   institucional/estatal lo usa más de lo que parece. Los botones y
+   controles de este tema usan border:none apoyados solo en
+   background-color; en forced-colors el fondo se normaliza y quedan
+   sin ningún borde visible. Se restaura un borde con los colores de
+   sistema (sin pisar el resto del diseño en modo normal).
+   ════════════════════════════════════════════════════════════ */
+@media (forced-colors: active) {
+	.kg-btn, .header-btn, .kg-revnav, .kg-badge,
+	.mobile-submenu-toggle, .kg-cmdk__row.is-active {
+		border: 1px solid ButtonText;
+		forced-color-adjust: none;
+		background: ButtonFace;
+		color: ButtonText;
+	}
+	.kg-btn:hover, .header-btn:hover, .kg-revnav:hover {
+		background: Highlight;
+		color: HighlightText;
+	}
+}

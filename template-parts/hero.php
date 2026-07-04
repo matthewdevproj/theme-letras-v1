@@ -143,6 +143,12 @@
 	.kg-hero__cta-row { justify-content: center; }
 	.kg-hero__title { font-size: clamp(32px, 9vw, 46px); }
 	.kg-hero__tagline { font-size: 15px; }
+	/* Art direction: la foto es panorámica (edificio a la derecha,
+	   sendero/follaje a la izquierda) — con background-size:cover en un
+	   viewport angosto el recorte lateral centrado deja mayormente cielo
+	   y follaje, perdiendo el campus. Se corre el punto focal hacia el
+	   edificio. */
+	.kg-hero__bg { background-position: 72% 32%; }
 }
 
 @media (max-width: 480px) {

@@ -134,6 +134,19 @@
         var fadeEls = Array.prototype.slice.call(document.querySelectorAll('.kg-reveal:not(.kg-rL):not(.kg-rR), .reveal, [data-kg-animate]'));
         var dirEls = Array.prototype.slice.call(document.querySelectorAll('.kg-rL, .kg-rR'));
 
+        // Progresivo: si el navegador soporta scroll-driven animations
+        // (animation-timeline: view()), el CSS en kingster.css ya anima
+        // el reveal por su cuenta sin JS en el hilo principal — este
+        // IntersectionObserver queda de fallback solo para el resto.
+        // Se marca is-in/kg-animate-ready igual (sin tocar opacity/transform
+        // inline) para que el resto del código que depende de esas clases
+        // (ej. selectores CSS) siga funcionando igual en ambos casos.
+        if (window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) {
+            fadeEls.forEach(function (el) { el.classList.add('is-in', 'kg-animate-ready', 'kg-css-driven'); });
+            dirEls.forEach(function (el) { el.classList.add('kg-in', 'kg-css-driven'); });
+            return;
+        }
+
         if (reduce || typeof IntersectionObserver === 'undefined') {
             fadeEls.forEach(function (el) {
                 el.style.opacity = '1';

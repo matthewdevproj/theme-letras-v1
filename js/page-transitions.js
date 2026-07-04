@@ -1,6 +1,16 @@
 (function() {
     "use strict";
 
+    // Progresivo: donde el navegador soporta View Transitions nativas
+    // (cross-document, activadas vía @view-transition en style.css), se
+    // deja que el navegador anime la navegación por su cuenta — el
+    // overlay GSAP de abajo es el fallback para el resto. Sin este check
+    // ambas transiciones se disparaban a la vez.
+    if ('startViewTransition' in document) {
+        console.log("LETRAS Page Transitions: View Transitions nativas detectadas, overlay GSAP desactivado");
+        return;
+    }
+
     var DOMAIN = window.location.hostname;
     var transitioning = false;
     var overlay = null;
