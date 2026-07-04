@@ -874,8 +874,12 @@ function letras_flch_schools_data() {
         array( 'n' => '06', 'name' => 'Filosofía', 'desc' => 'Pensamiento crítico, ética y tradición de las ideas.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/Filosofia.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/filosofia-flch/' ),
         array( 'n' => '07', 'name' => 'Literatura', 'desc' => 'Crítica, creación e historia literaria peruana y universal.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2019/07/literatura.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/literatura-flch/' ),
         array( 'n' => '08', 'name' => 'Lingüística', 'desc' => 'El lenguaje, las lenguas originarias y el pensamiento.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2021/01/linguistica-pagina-e1609879534767.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/linguistica-flch/' ),
-        array( 'n' => '09', 'name' => 'Estudios Generales', 'desc' => 'Formación humanística común de primer ciclo.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/02/portada.png', 'href' => 'https://letras.unmsm.edu.pe/escuelas/estudios-generales-flch/' ),
-        array( 'n' => '10', 'name' => 'Lenguas, Traducción e Interpretación', 'desc' => 'Diálogo intercultural en varias lenguas.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2025/01/interpretacion-1024x384.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/lenguas-traduccion-e-interpretacion-flch/' ),
+        // 'fit'/'pos': la 09 es un logo (no foto) y la 10 es un banner panorámico
+        // con texto quemado que abarca casi todo el ancho — recortarlo 3:4 centrado
+        // corta el texto a la mitad. Ver comentario en escuelas.php sobre cómo se
+        // consumen estos dos campos opcionales.
+        array( 'n' => '09', 'name' => 'Estudios Generales', 'desc' => 'Formación humanística común de primer ciclo.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/02/portada.png', 'href' => 'https://letras.unmsm.edu.pe/escuelas/estudios-generales-flch/', 'fit' => 'contain' ),
+        array( 'n' => '10', 'name' => 'Lenguas, Traducción e Interpretación', 'desc' => 'Diálogo intercultural en varias lenguas.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2025/01/interpretacion-1024x384.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/lenguas-traduccion-e-interpretacion-flch/', 'pos' => '95% center' ),
     );
 }
 

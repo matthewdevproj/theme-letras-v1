@@ -22,8 +22,23 @@ $letras_flch_schools = letras_flch_schools_data();
 	<div class="kg-esc">
 		<?php foreach ( $letras_flch_schools as $school ) : ?>
 			<a href="<?php echo esc_url( $school['href'] ); ?>" class="kg-reveal kg-school">
+				<?php
+				/* 'fit'/'pos' (opcionales, ver letras_flch_schools_data()): permiten
+				   corregir por-escuela una imagen que no es una foto de retrato
+				   estándar (ej. un logo, o un banner panorámico con texto quemado
+				   que un recorte 3/4 centrado partiría a la mitad). Por defecto
+				   ambas quedan vacías y el CSS base (object-fit:cover, sin position
+				   explícita) sigue aplicando igual que en las otras 8 escuelas. */
+				$letras_flch_img_style = '';
+				if ( ! empty( $school['fit'] ) ) {
+					$letras_flch_img_style .= 'object-fit:' . esc_attr( $school['fit'] ) . ';';
+				}
+				if ( ! empty( $school['pos'] ) ) {
+					$letras_flch_img_style .= 'object-position:' . esc_attr( $school['pos'] ) . ';';
+				}
+				?>
 				<div class="kg-school-img">
-					<img src="<?php echo esc_url( $school['img'] ); ?>" alt="" loading="lazy"><?php /* alt vacío a propósito: el nombre de la escuela es texto visible dentro del mismo enlace; repetirlo en alt duplica el anuncio en lectores de pantalla */ ?>
+					<img src="<?php echo esc_url( $school['img'] ); ?>" alt="" loading="lazy"<?php echo $letras_flch_img_style ? ' style="' . $letras_flch_img_style . '"' : ''; ?>><?php /* alt vacío a propósito: el nombre de la escuela es texto visible dentro del mismo enlace; repetirlo en alt duplica el anuncio en lectores de pantalla */ ?>
 				</div>
 				<div class="kg-school__scrim" aria-hidden="true"></div>
 				<div class="kg-school__body">
