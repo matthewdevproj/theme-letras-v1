@@ -280,6 +280,38 @@
             e.preventDefault();
             lenis.scrollTo(target, { offset: -84, duration: 0.6 });
         });
+
+        // Lenis solo engancha el evento wheel/touch — el scroll por teclado
+        // (Page Up/Down, Espacio, Home/End, flechas) nunca queda enlazado a
+        // su propio manejo, así que se queda "muerto" (auditoría real:
+        // scrollY se quedaba en 0 tras Page Down con la página enfocada).
+        // Se reimplementa a mano llamando a lenis.scrollTo() con la misma
+        // distancia que usaría el navegador de forma nativa.
+        var kgScrollKeys = {
+            PageDown: function () { return window.innerHeight * 0.9; },
+            PageUp: function () { return -window.innerHeight * 0.9; },
+            ArrowDown: function () { return 80; },
+            ArrowUp: function () { return -80; },
+            ' ': function (e) { return e.shiftKey ? -window.innerHeight * 0.9 : window.innerHeight * 0.9; },
+        };
+        document.addEventListener('keydown', function (e) {
+            var tag = (document.activeElement && document.activeElement.tagName) || '';
+            if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag) || (document.activeElement && document.activeElement.isContentEditable)) return;
+            if (e.key === 'Home') {
+                e.preventDefault();
+                lenis.scrollTo(0, { duration: 0.8 });
+                return;
+            }
+            if (e.key === 'End') {
+                e.preventDefault();
+                lenis.scrollTo(document.documentElement.scrollHeight, { duration: 0.8 });
+                return;
+            }
+            var delta = kgScrollKeys[e.key];
+            if (!delta) return;
+            e.preventDefault();
+            lenis.scrollTo(window.scrollY + delta(e), { duration: 0.5 });
+        });
     }
 
     function initAlpineComponents() {
