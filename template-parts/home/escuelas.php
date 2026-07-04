@@ -91,6 +91,10 @@ $letras_flch_schools = letras_flch_schools_data();
 	font-family: var(--font-display, 'Newsreader', serif); font-weight: 600;
 	color: #fff;
 	font-size: 17px; line-height: 1.12; margin: 0 0 9px;
+	/* Nombres largos como "Bibliotecología" o "Interculturalidad" en una
+	   tarjeta angosta (2 columnas en adelante) parten feo sin esto. */
+	hyphens: auto;
+	overflow-wrap: break-word;
 }
 .kg-school-go {
 	font-size: 12px; font-weight: 700; color: var(--kg-gold2, #D6B655);

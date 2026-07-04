@@ -77,6 +77,8 @@ $letras_flch_revistas = letras_flch_revistas_data();
 	color: var(--kg-ink, #1A2230);
 	font-size: 16px; line-height: 1.15; margin: 14px 0 4px;
 	transition: color .2s ease;
+	hyphens: auto;
+	overflow-wrap: break-word;
 }
 .kg-revcard:hover .kg-rev-name,
 .kg-revcard:focus-visible .kg-rev-name { color: var(--kg-azul, #143B63); }

@@ -921,7 +921,7 @@ nav.main-nav {
     overflow-y: auto;
     z-index: 200;
     transform: translateX(100%);
-    transition: transform .28s cubic-bezier(.16,1,.3,1);
+    transition: transform var(--kg-dur-2, 280ms) var(--kg-ease, cubic-bezier(.16,1,.3,1));
 }
 #mobile-menu-panel.is-open { transform: translateX(0); }
 @media (min-width: 1024px) {
@@ -929,7 +929,7 @@ nav.main-nav {
 }
 .mobile-backdrop {
     opacity: 0;
-    transition: opacity .25s ease;
+    transition: opacity var(--kg-dur-2, 280ms) var(--kg-ease, cubic-bezier(.16,1,.3,1));
 }
 .mobile-backdrop.is-open { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {

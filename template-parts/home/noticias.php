@@ -86,6 +86,12 @@ if ( $letras_flch_news_q->have_posts() ) {
 				<?php endforeach; ?>
 			</div>
 		</div>
+		<?php else : ?>
+		<div class="kg-noticias__empty kg-reveal">
+			<i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+			<p class="kg-noticias__empty-title">Sin noticias por el momento</p>
+			<p class="kg-noticias__empty-desc">Todavía no hay publicaciones en esta categoría. Vuelve pronto o revisa los accesos rápidos.</p>
+		</div>
 		<?php endif; ?>
 
 		<template x-if="booted && newsPages()[newsPage] && newsPages()[newsPage][0]">
@@ -151,6 +157,33 @@ if ( $letras_flch_news_q->have_posts() ) {
 }
 .kg-noticias__all { font-size: 13.5px; font-weight: 700; color: var(--kg-azul, #143B63); text-decoration: none; white-space: nowrap; transition: color .2s ease; }
 .kg-noticias__all:hover { color: var(--kg-gold-text, #8A6D14); } /* AA */
+
+/* Estado vacío: si la categoría "noticias" queda sin publicaciones. */
+.kg-noticias__empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 12px;
+	min-height: 320px;
+	padding: 40px 32px;
+	border: 1.5px dashed var(--kg-line, rgba(26,34,48,.18));
+	border-radius: 14px;
+	background: var(--kg-soft, #F4F1E9);
+}
+.kg-noticias__empty i {
+	font-size: 32px;
+	color: var(--kg-muted, #5E6675);
+	margin-bottom: 4px;
+}
+.kg-noticias__empty-title {
+	font-family: var(--font-display, 'Newsreader', serif);
+	font-weight: 600; font-size: 19px; color: var(--kg-ink, #1A2230); margin: 0;
+}
+.kg-noticias__empty-desc {
+	font-size: 13.5px; color: var(--kg-muted, #5E6675); max-width: 360px; margin: 0;
+}
 
 .kg-noticias__featured { display: block; text-decoration: none; color: var(--kg-ink, #1A2230); margin-bottom: 24px; cursor: pointer; }
 .kg-noticias__featured-img { aspect-ratio: 16/8; border-radius: 12px; overflow: hidden; background: var(--kg-soft, #F4F1E9); margin-bottom: 16px; }

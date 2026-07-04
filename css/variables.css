@@ -241,7 +241,14 @@
     --kg-ink:         var(--ink);
     --kg-muted:       #5E6675;
     --kg-container:   1200px;
+    /* Prácticamente toda animación del sitio ya converge en esta misma
+       curva y en estas 3 duraciones (hover/feedback rápido, paneles y
+       reveals, zoom de imagen/parallax) — se formaliza como tokens para
+       que ninguna animación futura invente su propia curva/duración. */
     --kg-ease:        cubic-bezier(.16,1,.3,1);
+    --kg-dur-1:       150ms;
+    --kg-dur-2:       280ms;
+    --kg-dur-3:       500ms;
 }
 @media (min-width: 1600px) { :root { --kg-container: 1440px; } }
 @media (min-width: 1920px) { :root { --kg-container: 1680px; } }

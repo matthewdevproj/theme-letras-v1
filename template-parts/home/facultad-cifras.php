@@ -51,6 +51,10 @@ $letras_flch_stats = array(
 	font-size: clamp(38px, 4.6vw, 56px);
 	line-height: 1;
 	color: var(--kg-azul, #143B63);
+	/* Sin esto, cada dígito tiene su propio ancho (Newsreader no es
+	   monoespaciada) y el contador GSAP "baila" de ancho mientras anima
+	   de 0 al valor final. */
+	font-variant-numeric: tabular-nums;
 }
 .kg-cifras__label {
 	font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;

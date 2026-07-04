@@ -9,10 +9,27 @@
   
   body {
     @apply font-body text-gray-text antialiased bg-bg;
+    /* Dígitos de ancho uniforme en toda fecha/cifra del sitio — sin
+       costo real en texto sin números, y evita que fechas en listados
+       (tarjetas de noticias, meta de single.php) salten de ancho entre
+       sí cuando cambian de mes/día. */
+    font-variant-numeric: tabular-nums;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-semibold text-primary-dark;
+    /* Newsreader es variable con eje óptico (opsz) — sin esto el navegador
+       puede quedarse en el tamaño óptico por defecto en vez de ajustarlo
+       al font-size real, perdiendo el detalle que distingue un display
+       grande de un texto de párrafo en la misma familia. */
+    font-optical-sizing: auto;
+  }
+
+  /* Tracking negativo solo en los dos niveles que funcionan como "display"
+     real (portada/hero, títulos de sección) — en h3-h6 el texto es chico
+     y un tracking negativo ahí perjudica la legibilidad en vez de ayudar. */
+  h1, h2 {
+    letter-spacing: -0.015em;
   }
 
   /* text-primary-dark es un navy fijo (no una variable de tema), pensado
