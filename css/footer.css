@@ -355,6 +355,24 @@
 }
 @media (max-width: 760px) /* breakpoint unificado al canon 760 (antes 768px; auditoria P1: zona muerta 761-768) */ { .kg-whatsapp { bottom: 1rem; right: 1rem; } }
 
+/* Colisión real confirmada en vivo: el botón "volver arriba" de un
+   plugin ajeno al tema (#sp-smart-post-back-to-top-btn) usa casi la
+   misma esquina que el WhatsApp del tema (bottom/right 30px vs 32px),
+   dejando asomar la punta azul detrás del círculo verde en cualquier
+   punto del scroll. Se reubica por CSS del tema (no se toca el plugin,
+   para no perder el cambio en una actualización) apilándolo justo
+   encima del WhatsApp. */
+#sp-smart-post-back-to-top-btn {
+    bottom: 6.5rem !important;
+    right: 2rem !important;
+}
+@media (max-width: 760px) {
+    #sp-smart-post-back-to-top-btn {
+        bottom: 5rem !important;
+        right: 1rem !important;
+    }
+}
+
 .kg-whatsapp__ripple,
 .kg-whatsapp__ripple-2 {
     position: absolute; inset: 0;

@@ -257,6 +257,16 @@
         }
 
         lenis.on('scroll', resetIdle);
+        // Candado real (auditoría en vivo): el evento 'scroll' de Lenis solo
+        // se dispara DESDE DENTRO del propio bucle RAF (lenis.raf() detecta
+        // el cambio de posición y lo emite). Si el bucle ya se pausó por los
+        // 2s de inactividad, ningún wheel/touch/tecla nuevo puede disparar
+        // ese evento — nada vuelve a llamar startRaf() y el scroll queda
+        // "flotando" sin procesarse. Se reinicia el RAF directamente sobre
+        // el input crudo del usuario, sin depender del evento interno.
+        ['wheel', 'touchstart', 'keydown'].forEach(function (evt) {
+            window.addEventListener(evt, resetIdle, { passive: true });
+        });
         // Pausa RAF cuando la pestaña está oculta
         document.addEventListener('visibilitychange', function () {
             if (document.hidden) { stopRaf(); }
