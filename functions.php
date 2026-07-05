@@ -879,7 +879,7 @@ function letras_flch_schools_data() {
         // corta el texto a la mitad. Ver comentario en escuelas.php sobre cómo se
         // consumen estos dos campos opcionales.
         array( 'n' => '09', 'name' => 'Estudios Generales', 'desc' => 'Formación humanística común de primer ciclo.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/02/portada.png', 'href' => 'https://letras.unmsm.edu.pe/escuelas/estudios-generales-flch/', 'fit' => 'contain' ),
-        array( 'n' => '10', 'name' => 'Lenguas, Traducción e Interpretación', 'desc' => 'Diálogo intercultural en varias lenguas.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2025/01/interpretacion-1024x384.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/lenguas-traduccion-e-interpretacion-flch/', 'pos' => '95% center' ),
+        array( 'n' => '10', 'name' => 'Lenguas, Traducción e Interpretación', 'desc' => 'Diálogo intercultural en varias lenguas.', 'img' => 'https://letras.unmsm.edu.pe/wp-content/uploads/2025/01/interpretacion-1024x384.jpg', 'href' => 'https://letras.unmsm.edu.pe/escuelas/lenguas-traduccion-e-interpretacion-flch/', 'fit' => 'contain' ),
     );
 }
 
