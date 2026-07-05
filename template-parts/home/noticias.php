@@ -108,7 +108,7 @@ if ( $letras_flch_news_q->have_posts() ) {
 			</a>
 		</template>
 
-		<div class="kg-noticias__list">
+		<div class="kg-noticias__list" :class="!booted ? 'kg-hidden' : ''">
 			<template x-for="n in (booted && newsPages()[newsPage]) ? newsPages()[newsPage].slice(1) : []" :key="n.id">
 				<a :href="n.url" class="kg-sidenews">
 					<div class="kg-sidenews__thumb"><img :src="n.img" :alt="n.title" loading="lazy"></div>
