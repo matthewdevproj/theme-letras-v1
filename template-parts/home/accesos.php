@@ -11,7 +11,7 @@
 $letras_flch_centros = letras_flch_centros_data();
 ?>
 <section class="kg-accesos" aria-label="Accesos rápidos y centros de producción">
-	<div class="kg-accesos__wrap kg-reveal">
+	<div class="kg-accesos__wrap">
 		<div class="kg-accesos__grid">
 			<?php foreach ( $letras_flch_centros as $centro ) : ?>
 				<a href="<?php echo esc_url( $centro['href'] ); ?>"
