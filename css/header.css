@@ -599,6 +599,7 @@ nav.main-nav {
     left: 0;
     top: calc(100% + 12px);
     background: var(--kg-panel, #fff);
+   border-top: 3px solid var(--kg-gold, #A8861C);
     border: 1px solid var(--kg-line, rgba(26,34,48,.12));
     border-radius: 12px;
     box-shadow: 0 22px 50px rgba(8,18,32,.22);
