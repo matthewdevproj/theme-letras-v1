@@ -74,9 +74,9 @@ $letras_flch_schools = letras_flch_schools_data();
 	background: var(--kg-night, #0E2742);
 	transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s ease;
 }
-.kg-school:hover,
+/* Feedback jul 2026: antes solo la foto interna hacia zoom (recorte) y la card no crecia; ahora toda la tarjeta se agranda un poco junto con la foto. */ .kg-school:hover,
 .kg-school:focus-visible {
-	transform: translateY(-5px);
+	transform: translateY(-5px) scale(1.03);
 	box-shadow: 0 20px 44px rgba(8,18,32,.3);
 }
 .kg-school-img { position: absolute; inset: 0; z-index: 0; }
@@ -85,7 +85,7 @@ $letras_flch_schools = letras_flch_schools_data();
 	transition: transform .5s cubic-bezier(.16,1,.3,1);
 }
 .kg-school:hover .kg-school-img img,
-.kg-school:focus-visible .kg-school-img img { transform: scale(1.07); }
+.kg-school:focus-visible .kg-school-img img { transform: scale(1.02); }
 
 .kg-school__scrim {
 	position: absolute; inset: 0; z-index: 1;
