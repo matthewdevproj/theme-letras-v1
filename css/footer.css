@@ -99,15 +99,15 @@
 .kg-footer__brand { display: flex; align-items: center; gap: 1rem; }
 
 .kg-footer__logo {
-    width: 3.5rem; height: 3.5rem;
-    background: linear-gradient(135deg, var(--kg-accent), var(--kg-accent-dark));
-    border-radius: 0.75rem;
+    width: auto; height: 3rem;
+    background: none;
+    border-radius: 0;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: var(--kg-shadow-md);
+    box-shadow: none;
     transition: transform var(--kg-transition-base);
 }
-.kg-footer__logo:hover { transform: scale(1.05) rotate(5deg); }
-.kg-footer__logo-icon { font-size: 1.5rem; color: var(--kg-white); }
+.kg-footer__logo:hover { transform: scale(1.03); }
+.kg-footer__logo-icon { font-size: 1.5rem; color: var(--kg-white); } .kg-footer__logo-img { height: 100%; width: auto; display: block; max-width: 100%; object-fit: contain; }
 
 .kg-footer__title-group { display: flex; flex-direction: column; }
 
