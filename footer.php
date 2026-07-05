@@ -48,7 +48,7 @@
                 <?php else : ?>
                 <div class="kg-footer__brand">
                     <div class="kg-footer__logo" aria-hidden="true">
-                        <i class="fas fa-university kg-footer__logo-icon"></i>
+                        <img src="<?php echo esc_url( get_template_directory_uri() . '/images/logo-blanco-letras.png' ); ?>" alt="Facultad de Letras y Ciencias Humanas - UNMSM" class="kg-footer__logo-img" width="200" height="52" loading="lazy">
                     </div>
                     <div class="kg-footer__title-group">
                         <span class="kg-footer__pretitle">Facultad de</span>
