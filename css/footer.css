@@ -366,6 +366,23 @@
     bottom: 6.5rem !important;
     right: 2rem !important;
 }
+
+/* Mejora UX (feedback en vivo, jul 2026): dos botones "volver arriba"
+   simultáneos (este + el kg-btt propio del tema, en la esquina inferior
+   izquierda) eran redundantes y confusos para el usuario. Se deja uno
+   solo -este, ya reubicado encima del WhatsApp por el fix anterior- y
+   se le da forma circular para que visualmente forme un par coherente
+   con el botón de WhatsApp (mismo lenguaje redondo, misma columna). */
+#sp-smart-post-back-to-top-btn {
+     border-radius: 50% !important;
+     overflow: hidden;
+     box-shadow: var(--kg-shadow-lg);
+     transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease;
+}
+#sp-smart-post-back-to-top-btn:hover {
+     transform: translateY(-3px) scale(1.06);
+     box-shadow: 0 16px 32px rgba(8,18,32,.28);
+}
 @media (max-width: 760px) {
     #sp-smart-post-back-to-top-btn {
         bottom: 5rem !important;
@@ -420,6 +437,13 @@
    BACK TO TOP
    =================================== */
 .kg-btt {
+     /* Consolidación de botones "volver arriba" (jul 2026): se deja uno
+        solo, visible encima del WhatsApp (#sp-smart-post-back-to-top-btn,
+        ver css arriba). Este botón propio del tema quedaba duplicado en
+        la esquina inferior izquierda, confundiendo al usuario. Se oculta
+        por CSS en vez de borrar footer.php/theme-stack.js, para poder
+        reactivarlo fácilmente si se retira el plugin más adelante. */
+     display: none !important;
     position: fixed;
     bottom: 2rem; left: 2rem;
     z-index: 9999;
