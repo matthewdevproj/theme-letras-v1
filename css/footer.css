@@ -360,19 +360,19 @@
    misma esquina que el WhatsApp del tema (bottom/right 30px vs 32px),
    dejando asomar la punta azul detrás del círculo verde en cualquier
    punto del scroll. Se reubica por CSS del tema (no se toca el plugin,
-   para no perder el cambio en una actualización) apilándolo justo
-   encima del WhatsApp. */
+   para no perder el cambio en una actualización) llevandolo a la esquina inferior izquierda
+   -antes ocupada por el kg-btt propio del tema, ver mas abajo-, liberando la esquina inferior derecha solo para el WhatsApp. */
 #sp-smart-post-back-to-top-btn {
-    bottom: 6.5rem !important;
-    right: 2rem !important;
+    bottom: 2rem !important;
+    left: 2rem !important;
 }
 
 /* Mejora UX (feedback en vivo, jul 2026): dos botones "volver arriba"
    simultáneos (este + el kg-btt propio del tema, en la esquina inferior
    izquierda) eran redundantes y confusos para el usuario. Se deja uno
-   solo -este, ya reubicado encima del WhatsApp por el fix anterior- y
+   solo -este, ya reubicado a la esquina inferior izquierda por el fix anterior- y
    se le da forma circular para que visualmente forme un par coherente
-   con el botón de WhatsApp (mismo lenguaje redondo, misma columna). */
+   con el botón de WhatsApp (mismo lenguaje redondo), aunque ahora cada uno en su propia esquina. */
 #sp-smart-post-back-to-top-btn {
      border-radius: 50% !important;
      overflow: hidden;
@@ -385,8 +385,8 @@
 }
 @media (max-width: 760px) {
     #sp-smart-post-back-to-top-btn {
-        bottom: 5rem !important;
-        right: 1rem !important;
+        bottom: 1rem !important;
+        left: 1rem !important;
     }
 }
 
