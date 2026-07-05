@@ -307,6 +307,7 @@
         document.addEventListener('keydown', function (e) {
             var tag = (document.activeElement && document.activeElement.tagName) || '';
             if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag) || (document.activeElement && document.activeElement.isContentEditable)) return;
+            resetIdle();
             if (e.key === 'Home') {
                 e.preventDefault();
                 lenis.scrollTo(0, { duration: 0.8 });
