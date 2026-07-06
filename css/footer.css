@@ -337,7 +337,7 @@
     width: 4px; height: 4px;
     background: var(--kg-white-40);
     border-radius: 50%; display: inline-block;
-left: 1rem !important; right: auto !important;
+}
 @media (max-width: 760px) /* breakpoint unificado al canon 760 (antes 640px; auditoria P1: zona muerta 761-768) */ {
     .kg-footer__bottom-container { flex-direction: column; gap: 0.25rem; }
     .kg-footer__separator { display: none; }
