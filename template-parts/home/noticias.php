@@ -152,7 +152,7 @@ if ( $letras_flch_news_q->have_posts() ) {
 	display: grid;
 	grid-template-columns: 1.6fr 1fr;
 	gap: 46px;
-	align-items: stretch;
+	align-items: start;
 	padding-bottom: 90px;
 }
 .kg-noticias__all { font-size: 13.5px; font-weight: 700; color: var(--kg-azul, #143B63); text-decoration: none; white-space: nowrap; transition: color .2s ease; }
