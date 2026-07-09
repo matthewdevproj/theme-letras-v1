@@ -30,12 +30,6 @@ $cfg = array(
 
 // ── Anuncios ───────────────────────────────────────────────
 $anuncios = array(
-    array(
-        'imagen'      => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/07/Comunicado.jpeg',
-        'alt'         => '',
-        'link'        => '',
-        'link_texto'  => 'Ver más',
-    ),
     // Agregar más anuncios aquí:
      array(
          'imagen'     => 'https://letras.unmsm.edu.pe/wp-content/uploads/2026/06/Cynthyaan-9.png',
