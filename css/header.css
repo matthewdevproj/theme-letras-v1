@@ -593,6 +593,14 @@ nav.main-nav {
     color: var(--kg-gold2, #D6B655) !important;
 }
 
+.main-menu > li > button {
+     color: rgba(255,255,255,.95) !important;
+}
+.main-menu > li > button:hover,
+.main-menu > li > button:focus-visible {
+     color: #fff !important;
+}
+
 /* ── Dropdown / mega-menú (panel claro, spec Kingster) ── */
 .main-menu .sub-menu {
     position: absolute;
