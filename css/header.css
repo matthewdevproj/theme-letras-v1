@@ -660,6 +660,15 @@ nav.main-nav {
     border-bottom: none;
     transition: background .15s ease, color .15s ease;
 }
+
+/* Botones de submenu (nivel 2, 3 y superiores) - mismo color que los enlaces */
+.main-menu .sub-menu button {
+     color: var(--kg-ink, #1A2230);
+}
+.main-menu .sub-menu button:hover,
+.main-menu .sub-menu button:focus-visible {
+     color: var(--kg-azul-bright, var(--kg-azul, #143B63));
+}
 .main-menu .sub-menu a::before {
     content: "";
     width: 6px;
